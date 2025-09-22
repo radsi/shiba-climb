@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://ugrtkue07813"]
+
+[ext_resource type="Script" uid="uid://cypa4ubl63rl0" path="res://scripts/player_hands.gd" id="1_xnqco"]
+[ext_resource type="Texture2D" uid="uid://2aifnikeyn1s" path="res://open hand.png" id="2_i4t2i"]
+
+[node name="Holes" type="Node2D"]
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+position = Vector2(-69, 259)
+script = ExtResource("1_xnqco")
+
+[node name="Hand1" type="Sprite2D" parent="CanvasGroup"]
+z_index = 10
+texture_filter = 1
+position = Vector2(427.25, 97.75)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_i4t2i")
+
+[node name="Hand2" type="Sprite2D" parent="CanvasGroup"]
+z_index = 10
+texture_filter = 1
+position = Vector2(678.24994, 105.75)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_i4t2i")
+flip_h = true

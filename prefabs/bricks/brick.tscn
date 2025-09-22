@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn50pfk71s74w"]
+
+[ext_resource type="Texture2D" uid="uid://cibhdggbjj63a" path="res://prefabs/bricks/brick.png" id="1_yg8w3"]
+
+[node name="Brick" type="Sprite2D"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_yg8w3")

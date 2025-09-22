@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://cixrflpp0hrhq"]
+
+[ext_resource type="Script" uid="uid://cypa4ubl63rl0" path="res://scripts/player_hands.gd" id="2_lbhrr"]
+[ext_resource type="Script" uid="uid://buy4sh406xno6" path="res://scripts/bricks_manager.gd" id="3_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://bn50pfk71s74w" path="res://bricks/brick.tscn" id="3_gee14"]
+[ext_resource type="Texture2D" uid="uid://2aifnikeyn1s" path="res://open hand.png" id="3_iywne"]
+[ext_resource type="Texture2D" uid="uid://dcryun6rufjbr" path="res://bricks/brick_small.png" id="4_iywne"]
+[ext_resource type="Texture2D" uid="uid://cibhdggbjj63a" path="res://bricks/brick.png" id="4_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://bywk7wwuncmdd" path="res://bricks/brick_small.tscn" id="5_0tnpc"]
+[ext_resource type="Texture2D" uid="uid://d8g1ha2w23x" path="res://bricks/brick thicc.png" id="5_p57ef"]
+[ext_resource type="PackedScene" uid="uid://df0fnehbx5oq2" path="res://bricks/brick_thicc.tscn" id="7_vtaks"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+script = ExtResource("2_lbhrr")
+
+[node name="Hand1" type="Sprite2D" parent="CanvasGroup"]
+z_index = 10
+texture_filter = 1
+position = Vector2(437.59998, 955.75)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_iywne")
+
+[node name="Hand2" type="Sprite2D" parent="CanvasGroup"]
+z_index = 10
+texture_filter = 1
+position = Vector2(688.5999, 963.75)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_iywne")
+flip_h = true
+
+[node name="Grabables" type="CanvasGroup" parent="."]
+script = ExtResource("3_0tnpc")
+
+[node name="Brick" parent="Grabables" instance=ExtResource("3_gee14")]
+position = Vector2(255, 439)
+
+[node name="Brick2" type="Sprite2D" parent="Grabables"]
+position = Vector2(878, 312)
+scale = Vector2(2, 2)
+texture = ExtResource("4_u5sy4")
+
+[node name="Brick3" type="Sprite2D" parent="Grabables"]
+position = Vector2(357, 180)
+scale = Vector2(2, 2)
+texture = ExtResource("4_u5sy4")
+
+[node name="Brick4" type="Sprite2D" parent="Grabables"]
+position = Vector2(555.6, 915.75)
+scale = Vector2(11.24, 2)
+texture = ExtResource("4_u5sy4")
+
+[node name="BrickSmall" parent="Grabables" instance=ExtResource("5_0tnpc")]
+position = Vector2(937, 169)
+
+[node name="BrickSmall2" type="Sprite2D" parent="Grabables"]
+position = Vector2(117, 261)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_iywne")
+
+[node name="BrickThicc" parent="Grabables" instance=ExtResource("7_vtaks")]
+position = Vector2(593, 323)
+
+[node name="BrickThicc2" type="Sprite2D" parent="Grabables"]
+position = Vector2(325, 748)
+scale = Vector2(2, 2)
+texture = ExtResource("5_p57ef")
+
+[node name="Brick5" type="Sprite2D" parent="Grabables"]
+position = Vector2(814, 683)
+scale = Vector2(2, 2)
+texture = ExtResource("4_u5sy4")

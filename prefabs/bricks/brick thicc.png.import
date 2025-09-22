@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cogmxfscnf621"
-path="res://.godot/imported/fist hand.png-6e116f784c6f971a7f74ac1344e84b63.ctex"
+uid="uid://d8g1ha2w23x"
+path="res://.godot/imported/brick thicc.png-23525c7dc711f4e989ae3c1f784e683f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://fist hand.png"
-dest_files=["res://.godot/imported/fist hand.png-6e116f784c6f971a7f74ac1344e84b63.ctex"]
+source_file="res://prefabs/bricks/brick thicc.png"
+dest_files=["res://.godot/imported/brick thicc.png-23525c7dc711f4e989ae3c1f784e683f.ctex"]
 
 [params]
 
