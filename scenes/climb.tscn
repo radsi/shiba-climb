@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://cixrflpp0hrhq"]
 
-[ext_resource type="Script" uid="uid://cypa4ubl63rl0" path="res://scripts/player_hands.gd" id="2_lbhrr"]
+[ext_resource type="Script" uid="uid://cypa4ubl63rl0" path="res://scripts/player_hands_CLIMB.gd" id="2_lbhrr"]
 [ext_resource type="Script" uid="uid://buy4sh406xno6" path="res://scripts/bricks_manager.gd" id="3_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://2aifnikeyn1s" path="res://open hand.png" id="3_iywne"]
 [ext_resource type="Texture2D" uid="uid://cviajr77lsm3q" path="res://startline.png" id="4_00lvc"]
 
-[node name="Node2D" type="Node2D"]
+[node name="climb" type="Node2D"]
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
 script = ExtResource("2_lbhrr")

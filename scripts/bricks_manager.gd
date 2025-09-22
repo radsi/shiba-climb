@@ -19,12 +19,10 @@ func _ready():
 			file_name = dir.get_next()
 		dir.list_dir_end()
 
-func _process(delta):
-	timer -= delta
-	if timer <= 0:
-		timer = spawn_interval
-		spawn_brick()
+var spawn_delay = 0.5
 
+func _process(delta):
+	# Actualización de todos los bricks ya existentes
 	for brick in get_children():
 		brick.position.y += brick_speed * delta
 		if not brick.has_meta("age"):
@@ -33,8 +31,17 @@ func _process(delta):
 		if brick.get_meta("age") >= brick_lifetime:
 			brick.queue_free()
 
-	if $"../CanvasGroup/Hand1" == null and $"../CanvasGroup/Hand2" == null:
-		print("Hand1 ha sido destruido")
+	# Contador para empezar a spawnear
+	if spawn_delay > 0:
+		spawn_delay -= delta
+		return
+
+	timer -= delta
+	if timer <= 0:
+		timer = spawn_interval
+		spawn_brick()
+
+
 
 func spawn_brick():
 	if brick_scenes.size() == 0:
