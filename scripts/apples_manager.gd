@@ -5,16 +5,8 @@ func _ready():
 	if children.size() <= 7:
 		return
 	
-	var rng = RandomNumberGenerator.new()
-	rng.randomize()
-	
-	var picked = []
-	while picked.size() < 4:
-		var index = rng.randi_range(0, children.size() - 1)
-		if not picked.has(index):
-			picked.append(index)
-	
-	for i in picked:
+	children.shuffle()
+	for i in range(4):
 		var child = children[i]
 		if child is Node:
 			child.visible = false
@@ -23,5 +15,5 @@ func _process(delta):
 	var children = get_children()
 	for apple in children:
 		if apple is Node2D and apple.is_inside_tree():
-			if apple.global_position.distance_to($"../Basket".global_position) < 32: # Ajusta según tamaño del cesto
+			if apple.global_position.distance_to($"../Basket".global_position) < 50:
 				apple.queue_free()

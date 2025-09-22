@@ -32,7 +32,6 @@ func _ready() -> void:
 	hand_right.texture = closehand_texture
 	hand_left.modulate = Color(1,1,1)
 	hand_right.modulate = Color(1,1,1)
-	
 	last_pos_left = hand_left.global_position
 	last_pos_right = hand_right.global_position
 

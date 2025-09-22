@@ -92,6 +92,7 @@ func process_hand_left(delta, mouse_pos, screen_half, viewport_height):
 	hand_left.modulate = Color(1, durability_left/max_durability, durability_left/max_durability)
 
 	if hand_left.global_position.y > viewport_height or durability_left <= 0:
+		globals.life -= 1
 		hand_left.queue_free()
 		hand_left = null
 		attached_left = null
@@ -124,6 +125,7 @@ func process_hand_right(delta, mouse_pos, screen_half, viewport_height):
 	hand_right.modulate = Color(1, durability_right/max_durability, durability_right/max_durability)
 
 	if hand_right.global_position.y > viewport_height or durability_right <= 0:
+		globals.life -= 1
 		hand_right.queue_free()
 		hand_right = null
 		attached_right = null
