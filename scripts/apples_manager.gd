@@ -15,5 +15,5 @@ func _process(delta):
 	var children = get_children()
 	for apple in children:
 		if apple is Node2D and apple.is_inside_tree():
-			if apple.global_position.distance_to($"../Basket".global_position) < 50:
+			if apple.global_position.distance_to($"../Basket".global_position) < 64:
 				apple.queue_free()

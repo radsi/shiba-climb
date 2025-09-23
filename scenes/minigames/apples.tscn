@@ -1,0 +1,104 @@
+[gd_scene load_steps=10 format=3 uid="uid://ugrtkue07813"]
+
+[ext_resource type="Script" uid="uid://dgnpmsnsy80pq" path="res://scripts/player_hands_APPLES.gd" id="1_nlc5t"]
+[ext_resource type="Texture2D" uid="uid://2aifnikeyn1s" path="res://open hand.png" id="2_mgt7l"]
+[ext_resource type="Texture2D" uid="uid://cub0fkhhqhald" path="res://tree.jpg" id="3_4f355"]
+[ext_resource type="Script" uid="uid://bwdl16e7m5rwg" path="res://scripts/apples_manager.gd" id="4_pgdah"]
+[ext_resource type="Texture2D" uid="uid://bvsw07s7jj7cs" path="res://apple.png" id="5_1xauh"]
+[ext_resource type="Texture2D" uid="uid://dkyjhfg4gm6w3" path="res://basket.png" id="6_jscof"]
+[ext_resource type="Texture2D" uid="uid://bl8ugknwfuxiy" path="res://TextBG2.png" id="7_uuwgh"]
+[ext_resource type="Script" uid="uid://cujlduaqdkpvi" path="res://scripts/mgIntro_manager.gd" id="8_1y4su"]
+[ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="9_jnh0o"]
+
+[node name="apples" type="Node2D"]
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+position = Vector2(-69, 259)
+script = ExtResource("1_nlc5t")
+
+[node name="Hand1" type="Sprite2D" parent="CanvasGroup"]
+z_index = 10
+texture_filter = 1
+position = Vector2(427.25, 97.75)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_mgt7l")
+
+[node name="Hand2" type="Sprite2D" parent="CanvasGroup"]
+z_index = 10
+texture_filter = 1
+position = Vector2(678.24994, 105.75)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_mgt7l")
+flip_h = true
+
+[node name="Tree" type="Sprite2D" parent="."]
+position = Vector2(709, 531)
+scale = Vector2(1.5, 1.8199999)
+texture = ExtResource("3_4f355")
+
+[node name="Apples" type="CanvasGroup" parent="."]
+script = ExtResource("4_pgdah")
+
+[node name="Apple" type="Sprite2D" parent="Apples"]
+position = Vector2(307, 463)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("5_1xauh")
+
+[node name="Apple2" type="Sprite2D" parent="Apples"]
+position = Vector2(154.00002, 391)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("5_1xauh")
+
+[node name="Apple3" type="Sprite2D" parent="Apples"]
+position = Vector2(214, 818)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("5_1xauh")
+
+[node name="Apple4" type="Sprite2D" parent="Apples"]
+position = Vector2(396, 758)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("5_1xauh")
+
+[node name="Apple5" type="Sprite2D" parent="Apples"]
+position = Vector2(565, 755)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("5_1xauh")
+
+[node name="Apple6" type="Sprite2D" parent="Apples"]
+position = Vector2(687, 659)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("5_1xauh")
+
+[node name="Apple7" type="Sprite2D" parent="Apples"]
+position = Vector2(840, 538)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("5_1xauh")
+
+[node name="Apple8" type="Sprite2D" parent="Apples"]
+position = Vector2(974.99994, 613)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("5_1xauh")
+
+[node name="Basket" type="Sprite2D" parent="."]
+position = Vector2(931, 944)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_jscof")
+
+[node name="TextBg1" type="Sprite2D" parent="."]
+z_index = 15
+texture_filter = 1
+position = Vector2(551, 346)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("7_uuwgh")
+script = ExtResource("8_1y4su")
+
+[node name="Label" type="Label" parent="TextBg1"]
+z_index = 15
+offset_left = -112.44444
+offset_top = -40.444443
+offset_right = 158.55556
+offset_bottom = 27.555557
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_jnh0o")
+theme_override_font_sizes/font_size = 52
+text = "COLLECT"

@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://cixrflpp0hrhq"]
+
+[ext_resource type="Script" uid="uid://cypa4ubl63rl0" path="res://scripts/player_hands_CLIMB.gd" id="1_rop5r"]
+[ext_resource type="Texture2D" uid="uid://2aifnikeyn1s" path="res://open hand.png" id="2_xfmqs"]
+[ext_resource type="Script" uid="uid://buy4sh406xno6" path="res://scripts/bricks_manager.gd" id="3_0mtps"]
+[ext_resource type="Texture2D" uid="uid://cviajr77lsm3q" path="res://startline.png" id="4_nn3ri"]
+[ext_resource type="Texture2D" uid="uid://cv1fw4hdtixpo" path="res://TextBG1.png" id="5_uss2j"]
+[ext_resource type="Script" uid="uid://cujlduaqdkpvi" path="res://scripts/mgIntro_manager.gd" id="6_eq5q2"]
+[ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="7_kvda0"]
+
+[node name="climb" type="Node2D"]
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+script = ExtResource("1_rop5r")
+
+[node name="Hand1" type="Sprite2D" parent="CanvasGroup"]
+z_index = 10
+texture_filter = 1
+position = Vector2(427.25, 97.75)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_xfmqs")
+
+[node name="Hand2" type="Sprite2D" parent="CanvasGroup"]
+z_index = 10
+texture_filter = 1
+position = Vector2(678.24994, 105.75)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_xfmqs")
+flip_h = true
+
+[node name="Grabables" type="CanvasGroup" parent="."]
+script = ExtResource("3_0mtps")
+
+[node name="StarterBrick" type="Sprite2D" parent="Grabables"]
+texture_filter = 1
+position = Vector2(545.6, 73.75)
+scale = Vector2(0.7193972, 0.2551831)
+texture = ExtResource("4_nn3ri")
+
+[node name="TextBg1" type="Sprite2D" parent="."]
+z_index = 15
+texture_filter = 1
+position = Vector2(551, 346)
+scale = Vector2(2, 2)
+texture = ExtResource("5_uss2j")
+script = ExtResource("6_eq5q2")
+
+[node name="Label" type="Label" parent="TextBg1"]
+z_index = 15
+offset_left = -115.5
+offset_top = -40.0
+offset_right = 70.5
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_kvda0")
+theme_override_font_sizes/font_size = 64
+text = "CLIMB"

@@ -3,9 +3,17 @@ extends Node
 func _ready():
 	var children = get_children()
 	children.shuffle()
+
 	for i in range(min(9, children.size())):
-		if children[i] is Node2D or children[i] is Control:
-			children[i].hide()
+		var child = children[i]
+		if child is Node2D or child is Control:
+			child.hide()
+
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	for child in children:
+		if child is Node2D:
+			child.rotation = deg_to_rad(rng.randi_range(0, 360))
 
 func _process(delta):
 	var all_max_transparent = true
