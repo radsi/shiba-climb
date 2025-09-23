@@ -10,7 +10,7 @@ func _ready() -> void:
 	$AnimationPlayer.play("mainmenu")
 
 	if first_time == false:
-		$ColorRect2.color.a = 1
+		$ColorRect.color.a = 1
 		var tween = create_tween()
 		tween.tween_property($ColorRect2, "color:a", 0.0, 1.0)
 
@@ -34,8 +34,7 @@ func _is_mouse_over_palm(pos: Vector2) -> bool:
 	return false
 
 func _on_fade_complete() -> void:
-	print("Fade completo, empezar juego")
-	globals._start_roll()
+	globals.start_roll_from_menu()
 
 func _on_button_2_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/credits.tscn")

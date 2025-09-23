@@ -93,6 +93,8 @@ func process_hand_left(delta, mouse_pos, screen_half, viewport_height):
 
 	if hand_left.global_position.y > viewport_height or durability_left <= 0:
 		globals.life -= 1
+		globals.has_lost_life = true
+		globals._start_roll()
 		hand_left.queue_free()
 		hand_left = null
 		attached_left = null
@@ -126,6 +128,8 @@ func process_hand_right(delta, mouse_pos, screen_half, viewport_height):
 
 	if hand_right.global_position.y > viewport_height or durability_right <= 0:
 		globals.life -= 1
+		globals.has_lost_life = true
+		globals._start_roll()
 		hand_right.queue_free()
 		hand_right = null
 		attached_right = null

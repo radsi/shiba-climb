@@ -78,11 +78,19 @@ func process_hand(hand, dragging, is_left, delta, mouse_pos, screen_half):
 		if durability_left <= 0:
 			dragging_left = false
 			hand.texture = closehand_texture
+			globals.life -= 1
+			globals.has_lost_life = true
+			globals._start_roll()
+			hand.queue_free()
 	else:
 		durability_right = durability
 		if durability_right <= 0:
 			dragging_right = false
 			hand.texture = closehand_texture
+			globals.life -= 1
+			globals.has_lost_life = true
+			globals._start_roll()
+			hand.queue_free()
 
 func increase_transparency_under_hand(hand, last_pos):
 	if hand == null:

@@ -26,4 +26,4 @@ func _process(delta):
 				break
 	
 	if all_max_transparent:
-		print("Todos los hijos visibles han llegado a transparencia máxima")
+		globals.minigame_completed = true

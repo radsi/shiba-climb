@@ -9,6 +9,7 @@ var min_distance = 50.0
 var max_attempts = 10
 
 func _ready():
+	globals.minigame_completed = true
 	var dir = DirAccess.open("res://prefabs/bricks/")
 	if dir != null:
 		dir.list_dir_begin()
@@ -22,7 +23,6 @@ func _ready():
 var spawn_delay = 0.5
 
 func _process(delta):
-	# Actualización de todos los bricks ya existentes
 	for brick in get_children():
 		brick.position.y += brick_speed * delta
 		if not brick.has_meta("age"):
@@ -31,7 +31,6 @@ func _process(delta):
 		if brick.get_meta("age") >= brick_lifetime:
 			brick.queue_free()
 
-	# Contador para empezar a spawnear
 	if spawn_delay > 0:
 		spawn_delay -= delta
 		return
