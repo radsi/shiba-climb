@@ -6,13 +6,15 @@ var clapped_texture = preload("res://palm hand_clapped.png")
 @onready var palm = $PalmHand
 
 func _ready() -> void:
-	$AnimationPlayer.seek(0, true)
-	$AnimationPlayer.play("mainmenu")
+	if $AnimationPlayer != null:
+		$AnimationPlayer.seek(0, true)
+		$AnimationPlayer.play("mainmenu")
 
 	if first_time == false:
-		$ColorRect.color.a = 1
+		
+		if$ColorRect != null: $ColorRect.color.a = 1
 		var tween = create_tween()
-		tween.tween_property($ColorRect2, "color:a", 0.0, 1.0)
+		tween.tween_property($ColorRect, "color:a", 0.0, 1.0)
 
 func _input(event) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -34,7 +36,7 @@ func _is_mouse_over_palm(pos: Vector2) -> bool:
 	return false
 
 func _on_fade_complete() -> void:
-	globals.start_roll_from_menu()
+	get_tree().change_scene_to_file("res://scenes/countdown.tscn")
 
 func _on_button_2_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/credits.tscn")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ugrtkue07813"]
+[gd_scene load_steps=13 format=3 uid="uid://ugrtkue07813"]
 
 [ext_resource type="Script" uid="uid://dgnpmsnsy80pq" path="res://scripts/player_hands_APPLES.gd" id="1_nlc5t"]
 [ext_resource type="Texture2D" uid="uid://2aifnikeyn1s" path="res://open hand.png" id="2_mgt7l"]
@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://bl8ugknwfuxiy" path="res://TextBG2.png" id="7_uuwgh"]
 [ext_resource type="Script" uid="uid://cujlduaqdkpvi" path="res://scripts/mgIntro_manager.gd" id="8_1y4su"]
 [ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="9_jnh0o"]
+[ext_resource type="Texture2D" uid="uid://et2xnvdt4tu5" path="res://heart hand.png" id="10_4f355"]
+[ext_resource type="Script" uid="uid://ho5oyn8p3ner" path="res://scripts/footer_manager.gd" id="11_1xauh"]
+[ext_resource type="Texture2D" uid="uid://ddxgo2saijcvr" path="res://footer.png" id="11_pgdah"]
 
 [node name="apples" type="Node2D"]
 
@@ -32,8 +35,8 @@ texture = ExtResource("2_mgt7l")
 flip_h = true
 
 [node name="Tree" type="Sprite2D" parent="."]
-position = Vector2(709, 531)
-scale = Vector2(1.5, 1.8199999)
+position = Vector2(600.00006, 474.00003)
+scale = Vector2(1.25, 1.518)
 texture = ExtResource("3_4f355")
 
 [node name="Apples" type="CanvasGroup" parent="."]
@@ -50,22 +53,22 @@ scale = Vector2(0.05, 0.05)
 texture = ExtResource("5_1xauh")
 
 [node name="Apple3" type="Sprite2D" parent="Apples"]
-position = Vector2(214, 818)
+position = Vector2(264, 704)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("5_1xauh")
 
 [node name="Apple4" type="Sprite2D" parent="Apples"]
-position = Vector2(396, 758)
+position = Vector2(424, 688)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("5_1xauh")
 
 [node name="Apple5" type="Sprite2D" parent="Apples"]
-position = Vector2(565, 755)
+position = Vector2(576, 584)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("5_1xauh")
 
 [node name="Apple6" type="Sprite2D" parent="Apples"]
-position = Vector2(687, 659)
+position = Vector2(712, 496)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("5_1xauh")
 
@@ -75,12 +78,12 @@ scale = Vector2(0.05, 0.05)
 texture = ExtResource("5_1xauh")
 
 [node name="Apple8" type="Sprite2D" parent="Apples"]
-position = Vector2(974.99994, 613)
+position = Vector2(1015.99994, 576)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("5_1xauh")
 
 [node name="Basket" type="Sprite2D" parent="."]
-position = Vector2(931, 944)
+position = Vector2(564, 888)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_jscof")
 
@@ -94,11 +97,64 @@ script = ExtResource("8_1y4su")
 
 [node name="Label" type="Label" parent="TextBg1"]
 z_index = 15
-offset_left = -112.44444
-offset_top = -40.444443
-offset_right = 158.55556
-offset_bottom = 27.555557
+anchors_preset = -1
+anchor_left = 0.14416316
+anchor_top = 0.20903279
+anchor_right = 1.0017581
+anchor_bottom = 0.6982414
+offset_left = -158.0
+offset_top = -69.5
+offset_right = -158.00002
+offset_bottom = -69.5
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("9_jnh0o")
 theme_override_font_sizes/font_size = 52
 text = "COLLECT"
+metadata/_edit_use_anchors_ = true
+
+[node name="Footer" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(544.00006, 1024)
+scale = Vector2(1.11, 1.06)
+texture = ExtResource("11_pgdah")
+script = ExtResource("11_1xauh")
+
+[node name="HeartHand" type="Sprite2D" parent="Footer"]
+modulate = Color(0.8891468, 0.8891468, 0.88914675, 1)
+z_index = 2
+texture_filter = 1
+position = Vector2(368.46835, -13.207642)
+scale = Vector2(0.7, 0.733)
+texture = ExtResource("10_4f355")
+
+[node name="Label" type="Label" parent="Footer"]
+anchors_preset = -1
+anchor_left = 0.71171165
+anchor_top = 0.33262315
+anchor_right = 0.8057116
+anchor_bottom = 1.018107
+offset_left = -500.00003
+offset_top = -62.0
+offset_right = -500.0
+offset_bottom = -62.000008
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_jnh0o")
+theme_override_font_sizes/font_size = 64
+text = "X"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Footer"]
+anchors_preset = -1
+anchor_left = 0.6657657
+anchor_top = 0.19567865
+anchor_right = 0.7597657
+anchor_bottom = 0.8811625
+offset_left = -500.0
+offset_top = -62.0
+offset_right = -500.0
+offset_bottom = -62.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_jnh0o")
+theme_override_font_sizes/font_size = 80
+text = "3"
+metadata/_edit_use_anchors_ = true

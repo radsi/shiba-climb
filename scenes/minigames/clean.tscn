@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b6svc10pht0ub"]
+[gd_scene load_steps=12 format=3 uid="uid://b6svc10pht0ub"]
 
 [ext_resource type="Script" uid="uid://d3x8srp1fi68e" path="res://scripts/player_hands_CLEAN.gd" id="1_0unv6"]
 [ext_resource type="Texture2D" uid="uid://2aifnikeyn1s" path="res://open hand.png" id="2_y0wth"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://cf5oqcpcplw0c" path="res://TextBG3.png" id="6_uxn8f"]
 [ext_resource type="Script" uid="uid://cujlduaqdkpvi" path="res://scripts/mgIntro_manager.gd" id="7_rwsbi"]
 [ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="8_jly5d"]
+[ext_resource type="Texture2D" uid="uid://ddxgo2saijcvr" path="res://footer.png" id="9_41vlf"]
+[ext_resource type="Script" uid="uid://ho5oyn8p3ner" path="res://scripts/footer_manager.gd" id="10_jr7kr"]
+[ext_resource type="Texture2D" uid="uid://et2xnvdt4tu5" path="res://heart hand.png" id="10_x8gsu"]
 
 [node name="Clean" type="Node2D"]
 
@@ -39,56 +42,67 @@ texture = ExtResource("3_41vlf")
 script = ExtResource("4_x8gsu")
 
 [node name="Dirt" type="Sprite2D" parent="Dirty"]
+texture_filter = 1
 position = Vector2(482, 440)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_jr7kr")
 
 [node name="Dirt2" type="Sprite2D" parent="Dirty"]
+texture_filter = 1
 position = Vector2(627, 588)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_jr7kr")
 
 [node name="Dirt3" type="Sprite2D" parent="Dirty"]
+texture_filter = 1
 position = Vector2(473, 522)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_jr7kr")
 
 [node name="Dirt4" type="Sprite2D" parent="Dirty"]
+texture_filter = 1
 position = Vector2(471, 616)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_jr7kr")
 
 [node name="Dirt5" type="Sprite2D" parent="Dirty"]
+texture_filter = 1
 position = Vector2(558, 687)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_jr7kr")
 
 [node name="Dirt6" type="Sprite2D" parent="Dirty"]
+texture_filter = 1
 position = Vector2(660, 692)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_jr7kr")
 
 [node name="Dirt7" type="Sprite2D" parent="Dirty"]
+texture_filter = 1
 position = Vector2(567, 509)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_jr7kr")
 
 [node name="Dirt8" type="Sprite2D" parent="Dirty"]
+texture_filter = 1
 position = Vector2(652, 421)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_jr7kr")
 
 [node name="Dirt9" type="Sprite2D" parent="Dirty"]
+texture_filter = 1
 position = Vector2(541, 337)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_jr7kr")
 
 [node name="Dirt10" type="Sprite2D" parent="Dirty"]
+texture_filter = 1
 position = Vector2(431, 341)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_jr7kr")
 
 [node name="Dirt11" type="Sprite2D" parent="Dirty"]
+texture_filter = 1
 position = Vector2(657, 325)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_jr7kr")
@@ -103,11 +117,64 @@ script = ExtResource("7_rwsbi")
 
 [node name="Label" type="Label" parent="TextBg1"]
 z_index = 15
-offset_left = -87.5
-offset_top = -34.0
-offset_right = 110.5
-offset_bottom = 34.0
+anchors_preset = -1
+anchor_left = 0.17228465
+anchor_top = 0.22580644
+anchor_right = 0.9138577
+anchor_bottom = 0.7741935
+offset_left = -133.5
+offset_top = -62.0
+offset_right = -133.5
+offset_bottom = -62.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("8_jly5d")
 theme_override_font_sizes/font_size = 64
 text = "CLEAN"
+metadata/_edit_use_anchors_ = true
+
+[node name="Footer" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(544.00006, 1024)
+scale = Vector2(1.11, 1.06)
+texture = ExtResource("9_41vlf")
+script = ExtResource("10_jr7kr")
+
+[node name="HeartHand" type="Sprite2D" parent="Footer"]
+modulate = Color(0.8891468, 0.8891468, 0.88914675, 1)
+z_index = 2
+texture_filter = 1
+position = Vector2(368.46835, -13.207642)
+scale = Vector2(0.7, 0.733)
+texture = ExtResource("10_x8gsu")
+
+[node name="Label" type="Label" parent="Footer"]
+anchors_preset = -1
+anchor_left = 0.71171165
+anchor_top = 0.33262315
+anchor_right = 0.8057116
+anchor_bottom = 1.018107
+offset_left = -500.00003
+offset_top = -62.0
+offset_right = -500.0
+offset_bottom = -62.000008
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_jly5d")
+theme_override_font_sizes/font_size = 64
+text = "X"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Footer"]
+anchors_preset = -1
+anchor_left = 0.6657657
+anchor_top = 0.19567865
+anchor_right = 0.7597657
+anchor_bottom = 0.8811625
+offset_left = -500.0
+offset_top = -62.0
+offset_right = -500.0
+offset_bottom = -62.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_jly5d")
+theme_override_font_sizes/font_size = 80
+text = "3"
+metadata/_edit_use_anchors_ = true

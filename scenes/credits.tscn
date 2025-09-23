@@ -37,8 +37,9 @@ offset_bottom = 34.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_u3bib")
-theme_override_font_sizes/font_size = 64
-text = "Text font: 1001Fonts"
+theme_override_font_sizes/font_size = 56
+text = "Text font: 1001Fonts
+Whistle SFX: Pablo-F on freesound.org"
 horizontal_alignment = 1
 vertical_alignment = 1
 

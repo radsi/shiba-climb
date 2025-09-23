@@ -1,7 +1,7 @@
 extends Node
 
 var brick_scenes := []
-var spawn_interval = 1.0
+var spawn_interval = 0.8
 var brick_speed = globals.game_speed
 var brick_lifetime = 20.0
 var timer = 0.0
@@ -9,6 +9,8 @@ var min_distance = 50.0
 var max_attempts = 10
 
 func _ready():
+	spawn_interval = max(0.8, 0.8 * 200 / brick_speed)
+	print(spawn_interval)
 	globals.minigame_completed = true
 	var dir = DirAccess.open("res://prefabs/bricks/")
 	if dir != null:
@@ -20,7 +22,7 @@ func _ready():
 			file_name = dir.get_next()
 		dir.list_dir_end()
 
-var spawn_delay = 0.5
+var spawn_delay = 0.25
 
 func _process(delta):
 	for brick in get_children():
@@ -39,8 +41,6 @@ func _process(delta):
 	if timer <= 0:
 		timer = spawn_interval
 		spawn_brick()
-
-
 
 func spawn_brick():
 	if brick_scenes.size() == 0:

@@ -14,15 +14,25 @@ var minigame_folder := "res://scenes/minigames/"
 var all_scenes := []
 var pool := []
 var last_scene := ""
-var roll_pending := false  # <-- controla que solo se haga un roll por evento
+var roll_pending := false
+
+var audio_player: AudioStreamPlayer2D
+var whiste_audio = preload("res://90743__pablo-f__referee-whistle.wav")
+var lose_audio = preload("res://350985__cabled_mess__lose_c_02.wav")
 
 func _ready():
+	audio_player = AudioStreamPlayer2D.new()
+	audio_player.stream = whiste_audio
+	add_child(audio_player)
+	audio_player.bus = "Master"
+	audio_player.volume_db = -5
+	
 	_load_all_scenes()
 
 func _process(delta: float) -> void:
 	if not roll_started:
 		return
-
+		
 	if life <= 0:
 		_game_over()
 		return
@@ -34,10 +44,11 @@ func _process(delta: float) -> void:
 			has_lost_life = true
 			life -= 1
 		roll_pending = true
-		_start_roll()  # solo se llamará una vez por roll
+		_start_roll()
 		roll_pending = false
 
 func start_roll_from_menu():
+	last_scene = "Countdown"
 	game_speed = 200
 	game_time = 10
 	game_time_long = 10
@@ -65,11 +76,11 @@ func _load_all_scenes():
 	dir.list_dir_end()
 
 func _start_roll():
+	if last_scene == "Countdown": audio_player.play()
 	if life <= 0:
 		_game_over()
 		return
 
-	# Refill pool excluyendo la última escena
 	if pool.is_empty():
 		pool = []
 		for s in all_scenes:
@@ -92,7 +103,7 @@ func _start_roll():
 	var scene_path: String = pool[index]
 
 	last_scene = scene_path
-	pool.remove_at(index)  # <-- eliminar antes de cargar la escena para no repetir
+	pool.remove_at(index)
 
 	if scene_path.contains("long"):
 		is_long = true
@@ -104,6 +115,9 @@ func _start_roll():
 	get_tree().change_scene_to_file(scene_path)
 
 func _game_over():
+	audio_player.stream = lose_audio
+	audio_player.play()
+	audio_player.stream = whiste_audio
 	is_long = false
 	game_speed += 50
 	game_time = 10

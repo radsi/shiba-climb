@@ -21,7 +21,7 @@ func _process(delta):
 	for child in get_children():
 		if (child is Node2D or child is Control) and child.visible:
 			var modulate_color = child.modulate if "modulate" in child else null
-			if modulate_color != null and modulate_color.a > 0:
+			if modulate_color != null and modulate_color.a > 25:
 				all_max_transparent = false
 				break
 	
