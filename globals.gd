@@ -9,30 +9,31 @@ var minigame_completed := false
 var has_lost_life := false
 var roll_started := false
 var is_long := false
-
-var minigame_folder := "res://scenes/minigames/"
-var all_scenes := []
-var pool := []
-var last_scene := ""
 var roll_pending := false
 
+var all_scenes := [
+	"res://scenes/minigames/apples.tscn",
+	"res://scenes/minigames/clean.tscn",
+    "res://scenes/minigames/climb long.tscn"
+]
+var pool := []
+var last_scene := ""
+
 var audio_player: AudioStreamPlayer2D
-var whiste_audio = preload("res://90743__pablo-f__referee-whistle.wav")
+var whistle_audio = preload("res://90743__pablo-f__referee-whistle.wav")
 var lose_audio = preload("res://350985__cabled_mess__lose_c_02.wav")
 
 func _ready():
 	audio_player = AudioStreamPlayer2D.new()
-	audio_player.stream = whiste_audio
+	audio_player.stream = whistle_audio
 	add_child(audio_player)
 	audio_player.bus = "Master"
 	audio_player.volume_db = -5
-	
-	_load_all_scenes()
 
 func _process(delta: float) -> void:
 	if not roll_started:
 		return
-		
+
 	if life <= 0:
 		_game_over()
 		return
@@ -44,11 +45,11 @@ func _process(delta: float) -> void:
 			has_lost_life = true
 			life -= 1
 		roll_pending = true
-		_start_roll()
+		call_deferred("_start_roll")  # esperar a que termine el frame
 		roll_pending = false
 
 func start_roll_from_menu():
-	last_scene = "Countdown"
+	audio_player.play()
 	game_speed = 200
 	game_time = 10
 	game_time_long = 10
@@ -59,28 +60,15 @@ func start_roll_from_menu():
 	roll_started = true
 	is_long = false
 	pool = all_scenes.duplicate()
+	last_scene = ""
 	_start_roll()
 
-func _load_all_scenes():
-	var dir = DirAccess.open(minigame_folder)
-	if dir == null:
-		print("Cannot open folder: ", minigame_folder)
-		return
-	
-	dir.list_dir_begin()
-	var file_name = dir.get_next()
-	while file_name != "":
-		if not dir.current_is_dir() and file_name.ends_with(".tscn"):
-			all_scenes.append(minigame_folder + file_name)
-		file_name = dir.get_next()
-	dir.list_dir_end()
-
 func _start_roll():
-	if last_scene == "Countdown": audio_player.play()
 	if life <= 0:
 		_game_over()
 		return
 
+	# Refill pool excluyendo la última escena
 	if pool.is_empty():
 		pool = []
 		for s in all_scenes:
@@ -107,6 +95,7 @@ func _start_roll():
 
 	if scene_path.contains("long"):
 		is_long = true
+		minigame_completed = true
 		time_left = game_time_long
 	else:
 		is_long = false
@@ -114,16 +103,21 @@ func _start_roll():
 
 	get_tree().change_scene_to_file(scene_path)
 
+func play_whistle():
+	audio_player.stream = whistle_audio
+	audio_player.play()
+
 func _game_over():
 	audio_player.stream = lose_audio
 	audio_player.play()
-	audio_player.stream = whiste_audio
+	audio_player.stream = whistle_audio
 	is_long = false
-	game_speed += 50
+	game_speed = 200
 	game_time = 10
 	game_time_long = 15
 	life = 3
 	minigame_completed = false
 	roll_started = false
-	_load_all_scenes()
+	pool = all_scenes.duplicate()
+	last_scene = ""
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")

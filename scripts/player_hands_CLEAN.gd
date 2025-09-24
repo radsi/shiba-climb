@@ -46,7 +46,7 @@ func _input(event):
 
 func _process(delta):
 	var mouse_pos = get_viewport().get_mouse_position()
-	var screen_half = get_viewport().size.x / 2
+	var screen_half = get_viewport().get_visible_rect().size.x / 2
 
 	process_hand(hand_left, dragging_left, true, delta, mouse_pos, screen_half)
 	process_hand(hand_right, dragging_right, false, delta, mouse_pos, screen_half)
@@ -57,7 +57,7 @@ func _process(delta):
 	last_pos_left = hand_left.global_position if hand_left != null else last_pos_left
 	last_pos_right = hand_right.global_position if hand_right != null else last_pos_right
 
-func process_hand(hand, dragging, is_left, delta, mouse_pos, screen_half):
+func process_hand(hand: Node2D, dragging: bool, is_left: bool, delta: float, mouse_pos: Vector2, screen_half: float):
 	if hand == null:
 		return
 
@@ -65,13 +65,14 @@ func process_hand(hand, dragging, is_left, delta, mouse_pos, screen_half):
 	var factor = 0.5 if (is_left and mouse_pos.x <= screen_half) or (not is_left and mouse_pos.x >= screen_half) else slow_factor
 
 	if dragging and durability > 0:
-		hand.global_position = hand.global_position.lerp(mouse_pos, factor)
+		var target_pos = get_viewport().get_canvas_transform().affine_inverse() * mouse_pos
+		hand.global_position = hand.global_position.lerp(target_pos, factor)
 		durability -= drain_rate * delta
 	else:
-		durability += drain_rate/4 * delta  # recuperación cuando no arrastras
+		durability += drain_rate / 4 * delta
 
 	durability = clamp(durability, 0, max_durability)
-	hand.modulate = Color(1, durability/max_durability, durability/max_durability)
+	hand.modulate = Color(1, durability / max_durability, durability / max_durability)
 
 	if is_left:
 		durability_left = durability
@@ -92,11 +93,10 @@ func process_hand(hand, dragging, is_left, delta, mouse_pos, screen_half):
 			globals._start_roll()
 			hand.queue_free()
 
-func increase_transparency_under_hand(hand, last_pos):
+func increase_transparency_under_hand(hand: Node2D, last_pos: Vector2):
 	if hand == null:
 		return
 
-	# Solo si la mano se está moviendo
 	if hand.global_position.distance_to(last_pos) < 1:
 		return
 

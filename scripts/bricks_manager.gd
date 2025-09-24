@@ -1,30 +1,26 @@
 extends Node
 
-var brick_scenes := []
+var brick_scenes := [
+	preload("res://prefabs/bricks/brick.tscn"),
+	preload("res://prefabs/bricks/brick_small.tscn"),
+	preload("res://prefabs/bricks/brick_thicc.tscn")
+]
+
 var spawn_interval = 0.8
-var brick_speed = globals.game_speed
+var brick_speed = 200
 var brick_lifetime = 20.0
 var timer = 0.0
 var min_distance = 50.0
 var max_attempts = 10
-
-func _ready():
-	spawn_interval = max(0.8, 0.8 * 200 / brick_speed)
-	print(spawn_interval)
-	globals.minigame_completed = true
-	var dir = DirAccess.open("res://prefabs/bricks/")
-	if dir != null:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if file_name.ends_with(".tscn"):
-				brick_scenes.append(load("res://prefabs/bricks/" + file_name))
-			file_name = dir.get_next()
-		dir.list_dir_end()
-
 var spawn_delay = 0.25
 
+func _ready():
+	timer = spawn_interval
+
 func _process(delta):
+	brick_speed = globals.game_speed
+	spawn_interval = max(0.2, 0.8 * 200 / brick_speed)
+
 	for brick in get_children():
 		brick.position.y += brick_speed * delta
 		if not brick.has_meta("age"):
@@ -61,7 +57,7 @@ func spawn_brick():
 		)
 		valid_pos = true
 		for existing in get_children():
-			if pos.distance_to(existing.position) < min_distance:
+			if existing is Node2D and pos.distance_to(existing.position) < min_distance:
 				valid_pos = false
 				break
 		attempts += 1

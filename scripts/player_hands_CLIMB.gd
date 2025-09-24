@@ -32,8 +32,8 @@ func _ready() -> void:
 	hand_right.texture = closehand_texture
 	hand_left.modulate = Color(1,1,1)
 	hand_right.modulate = Color(1,1,1)
-	last_pos_left = hand_left.global_position
-	last_pos_right = hand_right.global_position
+	last_pos_left = hand_left.position
+	last_pos_right = hand_right.position
 
 	attached_left = $"../Grabables/StarterBrick"
 	last_attached_left = attached_left
@@ -80,8 +80,8 @@ func _input(event):
 
 func _process(delta):
 	var mouse_pos = get_viewport().get_mouse_position()
-	var screen_half = get_viewport().size.x / 2
-	var viewport_height = get_viewport().size.y
+	var screen_half = get_viewport().get_visible_rect().size.x / 2
+	var viewport_height = get_viewport().get_visible_rect().size.y
 
 	process_hand_left(delta, mouse_pos, screen_half, viewport_height)
 	process_hand_right(delta, mouse_pos, screen_half, viewport_height)
@@ -90,15 +90,16 @@ func process_hand_left(delta, mouse_pos, screen_half, viewport_height):
 	if hand_left == null:
 		return
 
+	var hand_screen_pos = get_viewport().get_canvas_transform() * hand_left.global_position
 	var factor = slow_factor
-	if mouse_pos.x <= screen_half:
+	if hand_screen_pos.x <= screen_half:
 		factor = 0.5
 	else:
 		factor = 0.1
 
 	if dragging_left:
-		var target_pos = hand_left.global_position.lerp(mouse_pos, factor)
-		hand_left.global_position = target_pos
+		var target_pos = get_viewport().get_canvas_transform().affine_inverse() * mouse_pos
+		hand_left.global_position = hand_left.global_position.lerp(target_pos, factor)
 		attached_left = null
 	else:
 		if attached_left != null:
@@ -111,12 +112,12 @@ func process_hand_left(delta, mouse_pos, screen_half, viewport_height):
 	if dragging_left:
 		durability_left -= drain_rate * delta
 	else:
-		durability_left += drain_rate/4 * delta
+		durability_left += drain_rate / 4 * delta
 
 	durability_left = clamp(durability_left, 0, max_durability)
-	hand_left.modulate = Color(1, durability_left/max_durability, durability_left/max_durability)
+	hand_left.modulate = Color(1, durability_left / max_durability, durability_left / max_durability)
 
-	if hand_left.global_position.y > viewport_height or durability_left <= 0:
+	if hand_screen_pos.y > viewport_height or durability_left <= 0:
 		globals.life -= 1
 		globals.has_lost_life = true
 		globals._start_roll()
@@ -131,15 +132,16 @@ func process_hand_right(delta, mouse_pos, screen_half, viewport_height):
 	if hand_right == null:
 		return
 
+	var hand_screen_pos = get_viewport().get_canvas_transform() * hand_right.global_position
 	var factor = slow_factor
-	if mouse_pos.x >= screen_half:
+	if hand_screen_pos.x >= screen_half:
 		factor = 0.5
 	else:
 		factor = 0.1
 
 	if dragging_right:
-		var target_pos = hand_right.global_position.lerp(mouse_pos, factor)
-		hand_right.global_position = target_pos
+		var target_pos = get_viewport().get_canvas_transform().affine_inverse() * mouse_pos
+		hand_right.global_position = hand_right.global_position.lerp(target_pos, factor)
 		attached_right = null
 	else:
 		if attached_right != null:
@@ -152,12 +154,12 @@ func process_hand_right(delta, mouse_pos, screen_half, viewport_height):
 	if dragging_right:
 		durability_right -= drain_rate * delta
 	else:
-		durability_right += drain_rate/4 * delta
+		durability_right += drain_rate / 4 * delta
 
 	durability_right = clamp(durability_right, 0, max_durability)
-	hand_right.modulate = Color(1, durability_right/max_durability, durability_right/max_durability)
+	hand_right.modulate = Color(1, durability_right / max_durability, durability_right / max_durability)
 
-	if hand_right.global_position.y > viewport_height or durability_right <= 0:
+	if hand_screen_pos.y > viewport_height or durability_right <= 0:
 		globals.life -= 1
 		globals.has_lost_life = true
 		globals._start_roll()
@@ -173,12 +175,12 @@ func return_hand_left():
 		return
 	var target_y = last_pos_left.y
 	if last_attached_left != null and last_attached_left.is_inside_tree():
-		target_y = last_attached_left.global_position.y - 5
+		target_y = last_attached_left.position.y - 5
 	var target = Vector2(last_pos_left.x, target_y)
 	returning_left = true
 
 	var tween = create_tween()
-	tween.tween_property(hand_left, "global_position", target, return_time).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(hand_left, "position", target, return_time).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 	tween.finished.connect(_on_return_left_done)
 
 func return_hand_right():
@@ -186,12 +188,12 @@ func return_hand_right():
 		return
 	var target_y = last_pos_right.y
 	if last_attached_right != null and last_attached_right.is_inside_tree():
-		target_y = last_attached_right.global_position.y - 5
+		target_y = last_attached_right.position.y - 5
 	var target = Vector2(last_pos_right.x, target_y)
 	returning_right = true
 
 	var tween = create_tween()
-	tween.tween_property(hand_right, "global_position", target, return_time).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(hand_right, "position", target, return_time).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 	tween.finished.connect(_on_return_right_done)
 
 func _on_return_left_done():
@@ -212,10 +214,10 @@ func get_grabable_under_hand(hand: Node2D) -> Sprite2D:
 	for g in grabables.get_children():
 		if g is Sprite2D and g.texture != null:
 			var size = g.texture.get_size() * g.scale
-			var rect = Rect2(g.global_position - size * 0.5, size)
-			if rect.has_point(hand.global_position):
+			var rect = Rect2(g.position - size * 0.5, size)
+			if rect.has_point(hand.position):
 				return g
 			var max_half = max(size.x, size.y) * 0.5
-			if hand.global_position.distance_to(g.global_position) <= max_half + grab_margin:
+			if hand.position.distance_to(g.position) <= max_half + grab_margin:
 				return g
 	return null
