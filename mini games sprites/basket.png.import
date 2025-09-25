@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2aifnikeyn1s"
-path="res://.godot/imported/open hand.png-29a2811cf269adebf63104a1422ecbef.ctex"
+uid="uid://d2yw8dnl3jde6"
+path="res://.godot/imported/basket.png-381277502012da67103c27a83bc84873.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://open hand.png"
-dest_files=["res://.godot/imported/open hand.png-29a2811cf269adebf63104a1422ecbef.ctex"]
+source_file="res://mini games sprites/basket.png"
+dest_files=["res://.godot/imported/basket.png-381277502012da67103c27a83bc84873.ctex"]
 
 [params]
 

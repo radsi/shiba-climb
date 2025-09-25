@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1d2eej3lb720"
-path="res://.godot/imported/palm hand.png-b8369b1458d98735bd965dbf64841cdd.ctex"
+uid="uid://dqtbnellwt2jc"
+path="res://.godot/imported/POVlike hand.png-71c58b6d1790d437392f67733f5ce790.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://palm hand.png"
-dest_files=["res://.godot/imported/palm hand.png-b8369b1458d98735bd965dbf64841cdd.ctex"]
+source_file="res://hand sprites/POVlike hand.png"
+dest_files=["res://.godot/imported/POVlike hand.png-71c58b6d1790d437392f67733f5ce790.ctex"]
 
 [params]
 

@@ -1,15 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://cixrflpp0hrhq"]
+[gd_scene load_steps=13 format=3 uid="uid://cixrflpp0hrhq"]
 
 [ext_resource type="Script" uid="uid://cypa4ubl63rl0" path="res://scripts/player_hands_CLIMB.gd" id="1_uiju8"]
-[ext_resource type="Texture2D" uid="uid://2aifnikeyn1s" path="res://open hand.png" id="2_30s7j"]
+[ext_resource type="Texture2D" uid="uid://cb0v8wmpwl7nl" path="res://hand sprites/open hand.png" id="2_pdsk5"]
 [ext_resource type="Script" uid="uid://buy4sh406xno6" path="res://scripts/bricks_manager.gd" id="3_3gio7"]
 [ext_resource type="Texture2D" uid="uid://cviajr77lsm3q" path="res://startline.png" id="4_8x6w1"]
-[ext_resource type="Texture2D" uid="uid://cv1fw4hdtixpo" path="res://TextBG1.png" id="5_5qqfy"]
+[ext_resource type="Texture2D" uid="uid://dj75ulkuxeajo" path="res://intro sprites/TextBG1.png" id="5_wuhc3"]
 [ext_resource type="Script" uid="uid://cujlduaqdkpvi" path="res://scripts/mgIntro_manager.gd" id="6_pdsk5"]
 [ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="7_wuhc3"]
 [ext_resource type="Texture2D" uid="uid://ddxgo2saijcvr" path="res://footer.png" id="8_3gio7"]
 [ext_resource type="Script" uid="uid://ho5oyn8p3ner" path="res://scripts/footer_manager.gd" id="9_5qqfy"]
-[ext_resource type="Texture2D" uid="uid://et2xnvdt4tu5" path="res://heart hand.png" id="9_8x6w1"]
+[ext_resource type="Texture2D" uid="uid://bbsvjnu6h384i" path="res://hand sprites/heart hand.png" id="10_pdsk5"]
+[ext_resource type="Texture2D" uid="uid://bptvtgxhawegg" path="res://footer-timer-background.png" id="11_pdsk5"]
+[ext_resource type="Texture2D" uid="uid://bwex4tit2aiyt" path="res://footer-timer.png" id="12_wuhc3"]
 
 [node name="climb" type="Node2D"]
 
@@ -21,14 +23,14 @@ z_index = 10
 texture_filter = 1
 position = Vector2(427.25, 97.75)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_30s7j")
+texture = ExtResource("2_pdsk5")
 
 [node name="Hand2" type="Sprite2D" parent="CanvasGroup"]
 z_index = 10
 texture_filter = 1
 position = Vector2(678.24994, 105.75)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_30s7j")
+texture = ExtResource("2_pdsk5")
 flip_h = true
 
 [node name="Grabables" type="CanvasGroup" parent="."]
@@ -45,7 +47,7 @@ z_index = 15
 texture_filter = 1
 position = Vector2(551, 346)
 scale = Vector2(2, 2)
-texture = ExtResource("5_5qqfy")
+texture = ExtResource("5_wuhc3")
 script = ExtResource("6_pdsk5")
 
 [node name="Label" type="Label" parent="TextBg1"]
@@ -66,8 +68,9 @@ text = "CLIMB"
 metadata/_edit_use_anchors_ = true
 
 [node name="Footer" type="Sprite2D" parent="."]
+z_index = 10
 texture_filter = 1
-position = Vector2(544.00006, 1024)
+position = Vector2(541, 1024)
 scale = Vector2(1.11, 1.06)
 texture = ExtResource("8_3gio7")
 script = ExtResource("9_5qqfy")
@@ -78,7 +81,7 @@ z_index = 2
 texture_filter = 1
 position = Vector2(368.46835, -13.207642)
 scale = Vector2(0.7, 0.733)
-texture = ExtResource("9_8x6w1")
+texture = ExtResource("10_pdsk5")
 
 [node name="Label" type="Label" parent="Footer"]
 anchors_preset = -1
@@ -111,3 +114,23 @@ theme_override_fonts/font = ExtResource("7_wuhc3")
 theme_override_font_sizes/font_size = 80
 text = "3"
 metadata/_edit_use_anchors_ = true
+
+[node name="TimerColor" type="ColorRect" parent="Footer"]
+z_index = 1
+offset_left = -361.26123
+offset_top = -38.67926
+offset_right = -321.26123
+offset_bottom = 1.3207397
+scale = Vector2(11.25, 1.85)
+color = Color(1, 0, 0, 1)
+
+[node name="FooterTimerBackground" type="Sprite2D" parent="Footer"]
+position = Vector2(-60.36035, 0)
+scale = Vector2(0.9009008, 0.94339615)
+texture = ExtResource("11_pdsk5")
+
+[node name="FooterTimer" type="Sprite2D" parent="Footer"]
+z_index = 1
+position = Vector2(-60.36035, 9.536743e-05)
+scale = Vector2(0.90090084, 0.9433962)
+texture = ExtResource("12_wuhc3")

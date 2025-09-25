@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bii0mfg3tknkk"
-path="res://.godot/imported/dirt.png-81db9f47be16674f640109976e043256.ctex"
+uid="uid://gyfgvyd67w1a"
+path="res://.godot/imported/updown hand.png-18eedb91b8d635f538a8ccbe355204a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dirt.png"
-dest_files=["res://.godot/imported/dirt.png-81db9f47be16674f640109976e043256.ctex"]
+source_file="res://hand sprites/updown hand.png"
+dest_files=["res://.godot/imported/updown hand.png-18eedb91b8d635f538a8ccbe355204a6.ctex"]
 
 [params]
 

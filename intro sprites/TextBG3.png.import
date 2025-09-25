@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkyjhfg4gm6w3"
-path="res://.godot/imported/basket.png-a42265f723e6889c1a11fb74cfbdb1d8.ctex"
+uid="uid://d4kdnddqly4lp"
+path="res://.godot/imported/TextBG3.png-02d3cefeb631a4eac552f4fe50a8dc8c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://basket.png"
-dest_files=["res://.godot/imported/basket.png-a42265f723e6889c1a11fb74cfbdb1d8.ctex"]
+source_file="res://intro sprites/TextBG3.png"
+dest_files=["res://.godot/imported/TextBG3.png-02d3cefeb631a4eac552f4fe50a8dc8c.ctex"]
 
 [params]
 

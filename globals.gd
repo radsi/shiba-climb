@@ -11,6 +11,12 @@ var roll_started := false
 var is_long := false
 var roll_pending := false
 
+var hands_max_durability = 20
+var hands_drain_rate: float = 5
+var openhand_texture = preload("res://hand sprites/open hand.png")
+var closehand_texture = preload("res://hand sprites/fist hand.png")
+var clapped_texture = preload("res://hand sprites/palm hand_clapped.png")
+
 var all_scenes := [
 	"res://scenes/minigames/apples.tscn",
 	"res://scenes/minigames/clean.tscn",
@@ -20,8 +26,8 @@ var pool := []
 var last_scene := ""
 
 var audio_player: AudioStreamPlayer2D
-var whistle_audio = preload("res://90743__pablo-f__referee-whistle.wav")
-var lose_audio = preload("res://350985__cabled_mess__lose_c_02.wav")
+var whistle_audio = preload("res://sounds/90743__pablo-f__referee-whistle.wav")
+var lose_audio = preload("res://sounds/350985__cabled_mess__lose_c_02.wav")
 
 func _ready():
 	audio_player = AudioStreamPlayer2D.new()
@@ -45,8 +51,9 @@ func _process(delta: float) -> void:
 			has_lost_life = true
 			life -= 1
 		roll_pending = true
-		call_deferred("_start_roll")  # esperar a que termine el frame
+		call_deferred("_start_roll")
 		roll_pending = false
+
 
 func start_roll_from_menu():
 	audio_player.play()
@@ -68,7 +75,6 @@ func _start_roll():
 		_game_over()
 		return
 
-	# Refill pool excluyendo la última escena
 	if pool.is_empty():
 		pool = []
 		for s in all_scenes:
@@ -77,6 +83,7 @@ func _start_roll():
 		game_speed += 50
 		game_time -= 1
 		game_time_long += 5
+		hands_drain_rate += 2.5
 
 	if pool.is_empty():
 		print("No scenes to load!")

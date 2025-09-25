@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6yi6pcvg46j0"
-path="res://.godot/imported/black tshirt.png-e433db3c99208a9f99d10a3885fbbf81.ctex"
+uid="uid://c54bhm7qock1c"
+path="res://.godot/imported/win hands.png-02b458ad70c975fd691f463f36ca0264.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://black tshirt.png"
-dest_files=["res://.godot/imported/black tshirt.png-e433db3c99208a9f99d10a3885fbbf81.ctex"]
+source_file="res://hand sprites/win hands.png"
+dest_files=["res://.godot/imported/win hands.png-02b458ad70c975fd691f463f36ca0264.ctex"]
 
 [params]
 

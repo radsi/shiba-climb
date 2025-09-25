@@ -4,7 +4,7 @@ func _ready():
 	var children = get_children()
 	children.shuffle()
 
-	for i in range(min(9, children.size())):
+	for i in range(min(8, children.size())):
 		var child = children[i]
 		if child is Node2D or child is Control:
 			child.hide()

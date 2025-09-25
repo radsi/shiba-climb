@@ -1,17 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://ugrtkue07813"]
+[gd_scene load_steps=15 format=3 uid="uid://ugrtkue07813"]
 
 [ext_resource type="Script" uid="uid://dgnpmsnsy80pq" path="res://scripts/player_hands_APPLES.gd" id="1_nlc5t"]
-[ext_resource type="Texture2D" uid="uid://2aifnikeyn1s" path="res://open hand.png" id="2_mgt7l"]
-[ext_resource type="Texture2D" uid="uid://cub0fkhhqhald" path="res://tree.jpg" id="3_4f355"]
+[ext_resource type="Texture2D" path="res://open hand.png" id="2_mgt7l"]
+[ext_resource type="Texture2D" uid="uid://dtrw6xug0iydb" path="res://mini games sprites/tree.jpg" id="3_jscof"]
 [ext_resource type="Script" uid="uid://bwdl16e7m5rwg" path="res://scripts/apples_manager.gd" id="4_pgdah"]
-[ext_resource type="Texture2D" uid="uid://bvsw07s7jj7cs" path="res://apple.png" id="5_1xauh"]
-[ext_resource type="Texture2D" uid="uid://dkyjhfg4gm6w3" path="res://basket.png" id="6_jscof"]
-[ext_resource type="Texture2D" uid="uid://bl8ugknwfuxiy" path="res://TextBG2.png" id="7_uuwgh"]
+[ext_resource type="Texture2D" uid="uid://bmqksb87eemda" path="res://mini games sprites/apple.png" id="5_uuwgh"]
+[ext_resource type="Texture2D" uid="uid://d2yw8dnl3jde6" path="res://mini games sprites/basket.png" id="6_1y4su"]
+[ext_resource type="Texture2D" uid="uid://b5w6bw3r2go8e" path="res://intro sprites/TextBG2.png" id="7_jnh0o"]
 [ext_resource type="Script" uid="uid://cujlduaqdkpvi" path="res://scripts/mgIntro_manager.gd" id="8_1y4su"]
 [ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="9_jnh0o"]
-[ext_resource type="Texture2D" uid="uid://et2xnvdt4tu5" path="res://heart hand.png" id="10_4f355"]
 [ext_resource type="Script" uid="uid://ho5oyn8p3ner" path="res://scripts/footer_manager.gd" id="11_1xauh"]
 [ext_resource type="Texture2D" uid="uid://ddxgo2saijcvr" path="res://footer.png" id="11_pgdah"]
+[ext_resource type="Texture2D" uid="uid://bbsvjnu6h384i" path="res://hand sprites/heart hand.png" id="12_jscof"]
+[ext_resource type="Texture2D" uid="uid://bptvtgxhawegg" path="res://footer-timer-background.png" id="13_jscof"]
+[ext_resource type="Texture2D" uid="uid://bwex4tit2aiyt" path="res://footer-timer.png" id="14_uuwgh"]
 
 [node name="apples" type="Node2D"]
 
@@ -37,7 +39,7 @@ flip_h = true
 [node name="Tree" type="Sprite2D" parent="."]
 position = Vector2(600.00006, 474.00003)
 scale = Vector2(1.25, 1.518)
-texture = ExtResource("3_4f355")
+texture = ExtResource("3_jscof")
 
 [node name="Apples" type="CanvasGroup" parent="."]
 script = ExtResource("4_pgdah")
@@ -45,54 +47,54 @@ script = ExtResource("4_pgdah")
 [node name="Apple" type="Sprite2D" parent="Apples"]
 position = Vector2(307, 463)
 scale = Vector2(0.05, 0.05)
-texture = ExtResource("5_1xauh")
+texture = ExtResource("5_uuwgh")
 
 [node name="Apple2" type="Sprite2D" parent="Apples"]
 position = Vector2(154.00002, 391)
 scale = Vector2(0.05, 0.05)
-texture = ExtResource("5_1xauh")
+texture = ExtResource("5_uuwgh")
 
 [node name="Apple3" type="Sprite2D" parent="Apples"]
 position = Vector2(264, 704)
 scale = Vector2(0.05, 0.05)
-texture = ExtResource("5_1xauh")
+texture = ExtResource("5_uuwgh")
 
 [node name="Apple4" type="Sprite2D" parent="Apples"]
 position = Vector2(424, 688)
 scale = Vector2(0.05, 0.05)
-texture = ExtResource("5_1xauh")
+texture = ExtResource("5_uuwgh")
 
 [node name="Apple5" type="Sprite2D" parent="Apples"]
 position = Vector2(576, 584)
 scale = Vector2(0.05, 0.05)
-texture = ExtResource("5_1xauh")
+texture = ExtResource("5_uuwgh")
 
 [node name="Apple6" type="Sprite2D" parent="Apples"]
 position = Vector2(712, 496)
 scale = Vector2(0.05, 0.05)
-texture = ExtResource("5_1xauh")
+texture = ExtResource("5_uuwgh")
 
 [node name="Apple7" type="Sprite2D" parent="Apples"]
 position = Vector2(840, 538)
 scale = Vector2(0.05, 0.05)
-texture = ExtResource("5_1xauh")
+texture = ExtResource("5_uuwgh")
 
 [node name="Apple8" type="Sprite2D" parent="Apples"]
 position = Vector2(1015.99994, 576)
 scale = Vector2(0.05, 0.05)
-texture = ExtResource("5_1xauh")
+texture = ExtResource("5_uuwgh")
 
 [node name="Basket" type="Sprite2D" parent="."]
 position = Vector2(564, 888)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("6_jscof")
+texture = ExtResource("6_1y4su")
 
 [node name="TextBg1" type="Sprite2D" parent="."]
 z_index = 15
 texture_filter = 1
 position = Vector2(551, 346)
 scale = Vector2(2.25, 2.25)
-texture = ExtResource("7_uuwgh")
+texture = ExtResource("7_jnh0o")
 script = ExtResource("8_1y4su")
 
 [node name="Label" type="Label" parent="TextBg1"]
@@ -113,8 +115,9 @@ text = "COLLECT"
 metadata/_edit_use_anchors_ = true
 
 [node name="Footer" type="Sprite2D" parent="."]
+z_index = 10
 texture_filter = 1
-position = Vector2(544.00006, 1024)
+position = Vector2(541, 1024)
 scale = Vector2(1.11, 1.06)
 texture = ExtResource("11_pgdah")
 script = ExtResource("11_1xauh")
@@ -125,7 +128,7 @@ z_index = 2
 texture_filter = 1
 position = Vector2(368.46835, -13.207642)
 scale = Vector2(0.7, 0.733)
-texture = ExtResource("10_4f355")
+texture = ExtResource("12_jscof")
 
 [node name="Label" type="Label" parent="Footer"]
 anchors_preset = -1
@@ -158,3 +161,23 @@ theme_override_fonts/font = ExtResource("9_jnh0o")
 theme_override_font_sizes/font_size = 80
 text = "3"
 metadata/_edit_use_anchors_ = true
+
+[node name="TimerColor" type="ColorRect" parent="Footer"]
+z_index = 1
+offset_left = -361.26123
+offset_top = -38.67926
+offset_right = -321.26123
+offset_bottom = 1.3207397
+scale = Vector2(11.25, 1.85)
+color = Color(1, 0, 0, 1)
+
+[node name="FooterTimerBackground" type="Sprite2D" parent="Footer"]
+position = Vector2(-60.36035, 0)
+scale = Vector2(0.9009008, 0.94339615)
+texture = ExtResource("13_jscof")
+
+[node name="FooterTimer" type="Sprite2D" parent="Footer"]
+z_index = 1
+position = Vector2(-60.36035, 9.536743e-05)
+scale = Vector2(0.90090084, 0.9433962)
+texture = ExtResource("14_uuwgh")

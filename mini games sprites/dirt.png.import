@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bl8ugknwfuxiy"
-path="res://.godot/imported/TextBG2.png-7d3e27260c826a33e68434d612a7f0b6.ctex"
+uid="uid://b6cqqet3btkd3"
+path="res://.godot/imported/dirt.png-c1f996185a949d13f9ab75277c2aa5db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TextBG2.png"
-dest_files=["res://.godot/imported/TextBG2.png-7d3e27260c826a33e68434d612a7f0b6.ctex"]
+source_file="res://mini games sprites/dirt.png"
+dest_files=["res://.godot/imported/dirt.png-c1f996185a949d13f9ab75277c2aa5db.ctex"]
 
 [params]
 

@@ -2,7 +2,7 @@ extends Control
 
 static var first_time = true
 var clapped = false
-var clapped_texture = preload("res://palm hand_clapped.png")
+
 @onready var palm = $PalmHand
 
 func _ready() -> void:
@@ -21,7 +21,7 @@ func _input(event) -> void:
 		var mouse_pos = get_viewport().get_mouse_position()
 		if _is_mouse_over_palm(mouse_pos) and clapped == false:
 			$AudioStreamPlayer2D.play()
-			palm.texture = clapped_texture
+			palm.texture = globals.clapped_texture
 			var tween = create_tween()
 			tween.tween_property($ColorRect, "color:a", 1.0, 1.0)
 			tween.tween_callback(Callable(self, "_on_fade_complete"))

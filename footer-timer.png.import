@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv1fw4hdtixpo"
-path="res://.godot/imported/TextBG1.png-205dc88db2f99e35eebed2c1fa0b6750.ctex"
+uid="uid://bwex4tit2aiyt"
+path="res://.godot/imported/footer-timer.png-de40096f92961152237df95eb743f60d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TextBG1.png"
-dest_files=["res://.godot/imported/TextBG1.png-205dc88db2f99e35eebed2c1fa0b6750.ctex"]
+source_file="res://footer-timer.png"
+dest_files=["res://.godot/imported/footer-timer.png-de40096f92961152237df95eb743f60d.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cub0fkhhqhald"
-path="res://.godot/imported/tree.jpg-8d388bd0fbe01bd094b68b906e59ddd1.ctex"
+uid="uid://db8d8v8unsll7"
+path="res://.godot/imported/like hand.png-933119605ba487d529c395fc5237e894.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tree.jpg"
-dest_files=["res://.godot/imported/tree.jpg-8d388bd0fbe01bd094b68b906e59ddd1.ctex"]
+source_file="res://hand sprites/like hand.png"
+dest_files=["res://.godot/imported/like hand.png-933119605ba487d529c395fc5237e894.ctex"]
 
 [params]
 

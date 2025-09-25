@@ -7,31 +7,24 @@ var brick_scenes := [
 ]
 
 var spawn_interval = 0.8
-var brick_speed = 200
 var brick_lifetime = 20.0
 var timer = 0.0
 var min_distance = 50.0
 var max_attempts = 10
-var spawn_delay = 0.25
 
 func _ready():
 	timer = spawn_interval
 
 func _process(delta):
-	brick_speed = globals.game_speed
-	spawn_interval = max(0.2, 0.8 * 200 / brick_speed)
+	spawn_interval = max(0.2, 0.8 * 200 / globals.game_speed)
 
 	for brick in get_children():
-		brick.position.y += brick_speed * delta
+		brick.position.y += globals.game_speed * delta
 		if not brick.has_meta("age"):
 			brick.set_meta("age", 0.0)
 		brick.set_meta("age", brick.get_meta("age") + delta)
 		if brick.get_meta("age") >= brick_lifetime:
 			brick.queue_free()
-
-	if spawn_delay > 0:
-		spawn_delay -= delta
-		return
 
 	timer -= delta
 	if timer <= 0:
