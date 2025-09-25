@@ -72,14 +72,12 @@ func process_hand_climb(is_left: bool, delta: float, viewport_height: float):
 		globals.has_lost_life = true
 		globals._start_roll()
 		if is_left:
-			hand_left.queue_free()
 			hand_left = null
 			attached_left = null
 			last_attached_left = null
 			dragging_left = false
 			returning_left = false
 		else:
-			hand_right.queue_free()
 			hand_right = null
 			attached_right = null
 			last_attached_right = null

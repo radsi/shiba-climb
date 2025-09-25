@@ -1,15 +1,15 @@
 [gd_scene load_steps=14 format=3 uid="uid://b6svc10pht0ub"]
 
-[ext_resource type="Script" uid="uid://d3x8srp1fi68e" path="res://scripts/player_hands_CLEAN.gd" id="1_0unv6"]
+[ext_resource type="Script" uid="uid://d3x8srp1fi68e" path="res://scripts/player/player_hands_CLEAN.gd" id="1_0unv6"]
 [ext_resource type="Texture2D" path="res://open hand.png" id="2_y0wth"]
 [ext_resource type="Texture2D" uid="uid://10h5uo53bdx8" path="res://mini games sprites/black tshirt.png" id="3_uxn8f"]
-[ext_resource type="Script" uid="uid://cicnahcxka6sk" path="res://scripts/dirt_manager.gd" id="4_x8gsu"]
+[ext_resource type="Script" uid="uid://cicnahcxka6sk" path="res://scripts/managers/dirt_manager.gd" id="4_x8gsu"]
 [ext_resource type="Texture2D" uid="uid://b6cqqet3btkd3" path="res://mini games sprites/dirt.png" id="5_rwsbi"]
 [ext_resource type="Texture2D" uid="uid://d4kdnddqly4lp" path="res://intro sprites/TextBG3.png" id="6_uxn8f"]
-[ext_resource type="Script" uid="uid://cujlduaqdkpvi" path="res://scripts/mgIntro_manager.gd" id="7_rwsbi"]
+[ext_resource type="Script" uid="uid://cujlduaqdkpvi" path="res://scripts/managers/mgIntro_manager.gd" id="7_rwsbi"]
 [ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="8_jly5d"]
 [ext_resource type="Texture2D" uid="uid://ddxgo2saijcvr" path="res://footer.png" id="9_41vlf"]
-[ext_resource type="Script" uid="uid://ho5oyn8p3ner" path="res://scripts/footer_manager.gd" id="10_jr7kr"]
+[ext_resource type="Script" uid="uid://ho5oyn8p3ner" path="res://scripts/managers/footer_manager.gd" id="10_jr7kr"]
 [ext_resource type="Texture2D" uid="uid://bbsvjnu6h384i" path="res://hand sprites/heart hand.png" id="11_uxn8f"]
 [ext_resource type="Texture2D" uid="uid://bptvtgxhawegg" path="res://footer-timer-background.png" id="12_uxn8f"]
 [ext_resource type="Texture2D" uid="uid://bwex4tit2aiyt" path="res://footer-timer.png" id="13_rwsbi"]
@@ -17,7 +17,7 @@
 [node name="Clean" type="Node2D"]
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
-position = Vector2(342, 510)
+position = Vector2(-3, 501)
 script = ExtResource("1_0unv6")
 
 [node name="Hand1" type="Sprite2D" parent="CanvasGroup"]

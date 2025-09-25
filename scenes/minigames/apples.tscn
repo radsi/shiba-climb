@@ -1,15 +1,15 @@
 [gd_scene load_steps=15 format=3 uid="uid://ugrtkue07813"]
 
-[ext_resource type="Script" uid="uid://dgnpmsnsy80pq" path="res://scripts/player_hands_APPLES.gd" id="1_nlc5t"]
+[ext_resource type="Script" uid="uid://dgnpmsnsy80pq" path="res://scripts/player/player_hands_APPLES.gd" id="1_nlc5t"]
 [ext_resource type="Texture2D" path="res://open hand.png" id="2_mgt7l"]
 [ext_resource type="Texture2D" uid="uid://dtrw6xug0iydb" path="res://mini games sprites/tree.jpg" id="3_jscof"]
-[ext_resource type="Script" uid="uid://bwdl16e7m5rwg" path="res://scripts/apples_manager.gd" id="4_pgdah"]
+[ext_resource type="Script" uid="uid://bwdl16e7m5rwg" path="res://scripts/managers/apples_manager.gd" id="4_pgdah"]
 [ext_resource type="Texture2D" uid="uid://bmqksb87eemda" path="res://mini games sprites/apple.png" id="5_uuwgh"]
 [ext_resource type="Texture2D" uid="uid://d2yw8dnl3jde6" path="res://mini games sprites/basket.png" id="6_1y4su"]
 [ext_resource type="Texture2D" uid="uid://b5w6bw3r2go8e" path="res://intro sprites/TextBG2.png" id="7_jnh0o"]
-[ext_resource type="Script" uid="uid://cujlduaqdkpvi" path="res://scripts/mgIntro_manager.gd" id="8_1y4su"]
+[ext_resource type="Script" uid="uid://cujlduaqdkpvi" path="res://scripts/managers/mgIntro_manager.gd" id="8_1y4su"]
 [ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="9_jnh0o"]
-[ext_resource type="Script" uid="uid://ho5oyn8p3ner" path="res://scripts/footer_manager.gd" id="11_1xauh"]
+[ext_resource type="Script" uid="uid://ho5oyn8p3ner" path="res://scripts/managers/footer_manager.gd" id="11_1xauh"]
 [ext_resource type="Texture2D" uid="uid://ddxgo2saijcvr" path="res://footer.png" id="11_pgdah"]
 [ext_resource type="Texture2D" uid="uid://bbsvjnu6h384i" path="res://hand sprites/heart hand.png" id="12_jscof"]
 [ext_resource type="Texture2D" uid="uid://bptvtgxhawegg" path="res://footer-timer-background.png" id="13_jscof"]
@@ -18,7 +18,7 @@
 [node name="apples" type="Node2D"]
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
-position = Vector2(-69, 259)
+position = Vector2(32, 464)
 script = ExtResource("1_nlc5t")
 
 [node name="Hand1" type="Sprite2D" parent="CanvasGroup"]
