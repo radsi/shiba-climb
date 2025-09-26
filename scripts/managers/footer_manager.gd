@@ -1,13 +1,22 @@
 extends Node
 
 var timer_colors = ["#ABCDCB", "#EBE59B", "#E78775", "#C84361"]
-@onready var timer = $TimerColor
+@onready var timer_color = $TimerColor
+@onready var heart_hand = $HeartHand
+@onready var footer_timer = $FooterTimer
+@onready var footer_sprite_1 = preload("res://footer-timer.png")
+@onready var footer_sprite_2 = preload("res://footer-timer-2.png")
+var current_footer_sprite = 1
 var initial_scale := Vector2.ONE
 
+var timer = 0
+
 func _ready() -> void:
-	initial_scale = timer.scale
+	initial_scale = timer_color.scale
+	heart_hand.rotation_degrees = 5
 
 func _process(delta: float) -> void:
+	timer += delta
 	$".".get_child(2).text = str(globals.life)
 
 	var max_time
@@ -20,9 +29,19 @@ func _process(delta: float) -> void:
 	var idx = int(floor((1.0 - t) * (timer_colors.size() - 1)))
 	if globals.is_long:
 		idx = timer_colors.size() - 1 - idx
-	timer.color = Color(timer_colors[idx])
+	timer_color.color = Color(timer_colors[idx])
 
 	if not globals.is_long:
-		timer.scale.x = initial_scale.x * t
+		timer_color.scale.x = initial_scale.x * t
 	else:
-		timer.scale.x = initial_scale.x * (1.0 - t)
+		timer_color.scale.x = initial_scale.x * (1.0 - t)
+	
+	if timer >= 1:
+		timer = 0
+		heart_hand.rotation_degrees *= -1
+		if current_footer_sprite == 1: 
+			footer_timer.texture = footer_sprite_2
+			current_footer_sprite = 2
+		else: 
+			footer_timer.texture = footer_sprite_1
+			current_footer_sprite = 1

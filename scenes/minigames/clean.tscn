@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b6svc10pht0ub"]
+[gd_scene load_steps=15 format=3 uid="uid://b6svc10pht0ub"]
 
 [ext_resource type="Script" uid="uid://d3x8srp1fi68e" path="res://scripts/player/player_hands_CLEAN.gd" id="1_0unv6"]
 [ext_resource type="Texture2D" uid="uid://cb0v8wmpwl7nl" path="res://hand sprites/open hand.png" id="2_y0wth"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bbsvjnu6h384i" path="res://hand sprites/heart hand.png" id="11_uxn8f"]
 [ext_resource type="Texture2D" uid="uid://bptvtgxhawegg" path="res://footer-timer-background.png" id="12_uxn8f"]
 [ext_resource type="Texture2D" uid="uid://bwex4tit2aiyt" path="res://footer-timer.png" id="13_rwsbi"]
+[ext_resource type="AudioStream" uid="uid://danuifr8tmgr" path="res://sounds/365588__djpablochiriboga__fx-falda.wav" id="14_rwsbi"]
 
 [node name="Clean" type="Node2D"]
 
@@ -201,3 +202,7 @@ z_index = 1
 position = Vector2(-60.36035, 9.536743e-05)
 scale = Vector2(0.90090084, 0.9433962)
 texture = ExtResource("13_rwsbi")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_rwsbi")
+pitch_scale = 2.0

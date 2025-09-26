@@ -46,6 +46,7 @@ func attach_hand_to_apple(hand: Node2D, is_left: bool) -> void:
 		else:
 			attached_right = apple
 		hand.texture = globals.closehand_texture
+		$"../AudioStreamPlayer2D".play()
 
 func _input(event):
 	super._input(event)

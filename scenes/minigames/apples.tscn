@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ugrtkue07813"]
+[gd_scene load_steps=16 format=3 uid="uid://ugrtkue07813"]
 
 [ext_resource type="Script" uid="uid://dgnpmsnsy80pq" path="res://scripts/player/player_hands_APPLES.gd" id="1_nlc5t"]
 [ext_resource type="Texture2D" uid="uid://cb0v8wmpwl7nl" path="res://hand sprites/open hand.png" id="2_mgt7l"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bbsvjnu6h384i" path="res://hand sprites/heart hand.png" id="12_jscof"]
 [ext_resource type="Texture2D" uid="uid://bptvtgxhawegg" path="res://footer-timer-background.png" id="13_jscof"]
 [ext_resource type="Texture2D" uid="uid://bwex4tit2aiyt" path="res://footer-timer.png" id="14_uuwgh"]
+[ext_resource type="AudioStream" uid="uid://pxkkdv51gu28" path="res://sounds/594277__crazychuy__stepping-on-branch.wav" id="15_uuwgh"]
 
 [node name="apples" type="Node2D"]
 
@@ -181,3 +182,7 @@ z_index = 1
 position = Vector2(-60.36035, 9.536743e-05)
 scale = Vector2(0.90090084, 0.9433962)
 texture = ExtResource("14_uuwgh")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_uuwgh")
+pitch_scale = 0.8

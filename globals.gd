@@ -20,7 +20,8 @@ var clapped_texture = preload("res://hand sprites/palm hand_clapped.png")
 var all_scenes := [
 	"res://scenes/minigames/apples.tscn",
 	"res://scenes/minigames/clean.tscn",
-    "res://scenes/minigames/climb long.tscn"
+	"res://scenes/minigames/climb long.tscn",
+	"res://scenes/minigames/arcade.tscn"
 ]
 var pool := []
 var last_scene := ""
