@@ -40,7 +40,7 @@ func update_attached_hand(attached, hand: Node2D, is_left: bool, delta: float) -
 
 func attach_hand_to_apple(hand: Node2D, is_left: bool) -> void:
 	var apple = get_apple_under_hand(hand)
-	if apple != null:
+	if apple != null and apple.visible == true:
 		if is_left:
 			attached_left = apple
 		else:

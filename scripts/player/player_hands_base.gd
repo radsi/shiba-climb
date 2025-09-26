@@ -85,7 +85,7 @@ func process_hand(hand: Node2D, dragging: bool, is_left: bool, delta: float, mou
 		hand.global_position = hand.global_position.lerp(target_pos, factor)
 		durability -= globals.hands_drain_rate * delta
 	else:
-		durability += globals.hands_drain_rate / 4 * delta
+		durability += globals.hands_drain_rate / 3 * delta
 
 	durability = clamp(durability, 0, globals.hands_max_durability)
 	hand.modulate = Color(1, durability / globals.hands_max_durability, durability / globals.hands_max_durability)

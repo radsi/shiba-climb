@@ -1,5 +1,8 @@
 extends Node
 
+var pending_menu_messages = []
+
+var game_score: int = -1
 var game_speed: float = 200
 var game_time: float = 10
 var game_time_long: float = 10
@@ -17,11 +20,10 @@ var openhand_texture = preload("res://hand sprites/open hand.png")
 var closehand_texture = preload("res://hand sprites/fist hand.png")
 var clapped_texture = preload("res://hand sprites/palm hand_clapped.png")
 
-var all_scenes := [
+var all_unlocked_scenes := [
 	"res://scenes/minigames/apples.tscn",
 	"res://scenes/minigames/clean.tscn",
-	"res://scenes/minigames/climb long.tscn",
-	"res://scenes/minigames/arcade.tscn"
+	"res://scenes/minigames/climb long.tscn"
 ]
 var pool := []
 var last_scene := ""
@@ -38,6 +40,7 @@ func _ready():
 	audio_player.volume_db = -5
 
 func _process(delta: float) -> void:
+	
 	if not roll_started:
 		return
 
@@ -55,7 +58,6 @@ func _process(delta: float) -> void:
 		call_deferred("_start_roll")
 		roll_pending = false
 
-
 func start_roll_from_menu():
 	audio_player.play()
 	game_speed = 200
@@ -67,7 +69,7 @@ func start_roll_from_menu():
 	has_lost_life = false
 	roll_started = true
 	is_long = false
-	pool = all_scenes.duplicate()
+	pool = all_unlocked_scenes.duplicate()
 	last_scene = ""
 	_start_roll()
 
@@ -78,7 +80,7 @@ func _start_roll():
 
 	if pool.is_empty():
 		pool = []
-		for s in all_scenes:
+		for s in all_unlocked_scenes:
 			if s != last_scene:
 				pool.append(s)
 		game_speed += 50
@@ -109,25 +111,36 @@ func _start_roll():
 		is_long = false
 		time_left = game_time
 
-	get_tree().change_scene_to_file("res://scenes/transition.tscn")
-	await get_tree().create_timer(3)
+	#get_tree().change_scene_to_file("res://scenes/transition.tscn")
+	game_score += 1
+	#await get_tree().create_timer(3).timeout
 	get_tree().change_scene_to_file(scene_path)
 
 func play_whistle():
 	audio_player.stream = whistle_audio
 	audio_player.play()
+	
+func _unlock_minigame(minigame: String):
+	var scene_path = "res://scenes/minigames/"+minigame.to_lower()+".tscn"
+	if all_unlocked_scenes.has(scene_path): return
+	all_unlocked_scenes.push_back(scene_path)
+	pending_menu_messages.push_back("Unlocked new .minigame: "+minigame+"!")
 
 func _game_over():
+	if game_score >= 4:
+		_unlock_minigame("Arcade")
+	
 	audio_player.stream = lose_audio
 	audio_player.play()
 	audio_player.stream = whistle_audio
 	is_long = false
+	game_score = -1
 	game_speed = 200
 	game_time = 10
 	game_time_long = 15
 	life = 3
 	minigame_completed = false
 	roll_started = false
-	pool = all_scenes.duplicate()
+	pool = all_unlocked_scenes.duplicate()
 	last_scene = ""
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")

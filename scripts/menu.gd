@@ -1,5 +1,8 @@
 extends Control
 
+var showing_messages = false
+var active_icon
+
 static var first_time = true
 var clapped = false
 
@@ -11,12 +14,17 @@ func _ready() -> void:
 		$AnimationPlayer.play("mainmenu")
 
 	if first_time == false:
-		
-		if$ColorRect != null: $ColorRect.color.a = 1
+		if $ColorRect != null: $ColorRect.color.a = 1
 		var tween = create_tween()
 		tween.tween_property($ColorRect, "color:a", 0.0, 1.0)
+	
+	if globals.pending_menu_messages.size() > 0:
+		_show_pending_message()
 
 func _input(event) -> void:
+	if event is InputEventMouseButton:
+		if showing_messages: _close_message()
+		
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		var mouse_pos = get_viewport().get_mouse_position()
 		if _is_mouse_over_palm(mouse_pos) and clapped == false:
@@ -43,3 +51,41 @@ func _on_button_2_pressed() -> void:
 
 func _on_buttonback_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+
+func _show_pending_message():
+	print("showing message")
+	showing_messages = true
+	var message = $Message
+	var icons = $Message/Icons
+	var colorrect = $ColorRect
+	
+	colorrect.color.a = 0.75
+	message.visible = true
+	message.get_child(0).text = globals.pending_menu_messages[0]
+	
+	var regex = RegEx.new()
+	regex.compile(r":\s*(.+)")
+	var text_match = regex.search(globals.pending_menu_messages[0])
+
+	if text_match:
+		var result = text_match.get_string(1)
+		var clean_regex = RegEx.new()
+		clean_regex.compile(r"[^a-zA-Z0-9 ]")
+		result = clean_regex.sub(result, "").strip_edges()
+		print(result)
+		if icons.has_node(result):
+			active_icon = icons.get_node(result)
+			active_icon.visible = true
+	
+	globals.pending_menu_messages.remove_at(0)
+
+func _close_message():
+	
+	if active_icon != null: active_icon.visible = false
+	
+	if globals.pending_menu_messages.size() > 0:
+		_show_pending_message()
+	
+	showing_messages = false
+	$ColorRect.modulate.a = 0
+	$Message.visible = false

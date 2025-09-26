@@ -58,29 +58,28 @@ texture = ExtResource("2_c74ga")
 offset = Vector2(0, -10)
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
-position = Vector2(-24, 427)
+position = Vector2(540, 540)
 script = ExtResource("6_r6yp2")
 
 [node name="Hand1" type="Sprite2D" parent="CanvasGroup"]
 z_index = 10
 texture_filter = 1
-position = Vector2(427.25, 97.75)
+position = Vector2(-50, 100)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_r6yp2")
 
 [node name="Hand2" type="Sprite2D" parent="CanvasGroup"]
 z_index = 10
 texture_filter = 1
-position = Vector2(678.24994, 105.75)
+position = Vector2(50, 100)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_r6yp2")
 flip_h = true
 
 [node name="TextBg1" type="Sprite2D" parent="."]
-visible = false
 z_index = 15
 texture_filter = 1
-position = Vector2(551, 346)
+position = Vector2(540, 400)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("5_jepv5")
 script = ExtResource("6_n1bbd")

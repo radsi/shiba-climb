@@ -19,20 +19,20 @@
 [node name="apples" type="Node2D"]
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
-position = Vector2(32, 464)
+position = Vector2(540, 540)
 script = ExtResource("1_nlc5t")
 
 [node name="Hand1" type="Sprite2D" parent="CanvasGroup"]
 z_index = 10
 texture_filter = 1
-position = Vector2(427.25, 97.75)
+position = Vector2(-50, 100)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_mgt7l")
 
 [node name="Hand2" type="Sprite2D" parent="CanvasGroup"]
 z_index = 10
 texture_filter = 1
-position = Vector2(678.24994, 105.75)
+position = Vector2(50, 100)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_mgt7l")
 flip_h = true
@@ -86,14 +86,14 @@ scale = Vector2(0.05, 0.05)
 texture = ExtResource("5_uuwgh")
 
 [node name="Basket" type="Sprite2D" parent="."]
-position = Vector2(564, 888)
+position = Vector2(540, 888)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_1y4su")
 
 [node name="TextBg1" type="Sprite2D" parent="."]
 z_index = 15
 texture_filter = 1
-position = Vector2(551, 346)
+position = Vector2(551, 400)
 scale = Vector2(2.25, 2.25)
 texture = ExtResource("7_jnh0o")
 script = ExtResource("8_1y4su")

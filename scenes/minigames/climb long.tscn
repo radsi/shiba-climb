@@ -40,14 +40,14 @@ script = ExtResource("3_3gio7")
 
 [node name="StarterBrick" type="Sprite2D" parent="Grabables"]
 texture_filter = 1
-position = Vector2(545.6, 73.75)
+position = Vector2(540, 73.75)
 scale = Vector2(0.7193972, 0.2551831)
 texture = ExtResource("4_8x6w1")
 
 [node name="TextBg1" type="Sprite2D" parent="."]
 z_index = 15
 texture_filter = 1
-position = Vector2(551, 346)
+position = Vector2(540, 400)
 scale = Vector2(2, 2)
 texture = ExtResource("5_wuhc3")
 script = ExtResource("6_pdsk5")

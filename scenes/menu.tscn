@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://re18gkg4sw4r"]
+[gd_scene load_steps=11 format=3 uid="uid://re18gkg4sw4r"]
 
 [ext_resource type="Script" uid="uid://dykhujf08cqwk" path="res://scripts/menu.gd" id="1_vjb58"]
 [ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="1_yqeox"]
 [ext_resource type="Texture2D" uid="uid://dxgq1wxu5q6as" path="res://hand sprites/palm hand.png" id="2_4ytvr"]
 [ext_resource type="Texture2D" uid="uid://dqtbnellwt2jc" path="res://hand sprites/POVlike hand.png" id="4_4ytvr"]
 [ext_resource type="AudioStream" uid="uid://bjhwi16ko1ihm" path="res://sounds/477803__saltbearer__snappy-lo-fi-perc-resonances.wav" id="5_4ytvr"]
+[ext_resource type="Texture2D" uid="uid://clpspuy257db8" path="res://message.png" id="6_g3eks"]
+[ext_resource type="Texture2D" uid="uid://dwqm5laa2uilq" path="res://SpaceInvaders.png" id="7_v86rl"]
 
 [sub_resource type="Animation" id="Animation_mhnvy"]
 length = 0.001
@@ -116,7 +118,7 @@ grow_vertical = 2
 script = ExtResource("1_vjb58")
 
 [node name="PalmHand" type="Sprite2D" parent="."]
-position = Vector2(543, 553)
+position = Vector2(540, 553)
 scale = Vector2(3, 3)
 texture = ExtResource("2_4ytvr")
 
@@ -176,18 +178,73 @@ metadata/_edit_use_anchors_ = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="Button2" type="Button" parent="CanvasLayer"]
-z_index = -2
+[node name="VSplitContainer" type="VSplitContainer" parent="CanvasLayer"]
 anchors_preset = -1
-anchor_left = 0.39266056
-anchor_top = 0.7425926
-anchor_right = 0.60733944
-anchor_bottom = 0.81296295
+anchor_left = 0.39166668
+anchor_top = 0.7398148
+anchor_right = 0.60833335
+anchor_bottom = 0.89166665
+offset_top = -32.0
+offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_constants/separation = 48
+metadata/_edit_use_anchors_ = true
+
+[node name="Button3" type="Button" parent="CanvasLayer/VSplitContainer"]
+z_index = -2
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 64
+text = "Gallery"
+metadata/_edit_use_anchors_ = true
+
+[node name="Button2" type="Button" parent="CanvasLayer/VSplitContainer"]
+z_index = -2
+layout_mode = 2
 theme_override_fonts/font = ExtResource("1_yqeox")
 theme_override_font_sizes/font_size = 64
 text = "Credits"
 metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="CanvasLayer/Button2" to="." method="_on_button_2_pressed"]
+[node name="Message" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(540, 540)
+scale = Vector2(1.28, 1)
+texture = ExtResource("6_g3eks")
+
+[node name="Label" type="Label" parent="Message"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -835.00006
+offset_top = -653.0
+offset_right = 301.99994
+offset_bottom = -480.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8437488, 1)
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 80
+text = "New minigame .unlocked: Arcade!!"
+horizontal_alignment = 1
+vertical_alignment = 1
+paragraph_separator = "."
+
+[node name="Icons" type="CanvasGroup" parent="Message"]
+
+[node name="Arcade" type="Sprite2D" parent="Message/Icons"]
+visible = false
+texture_filter = 1
+position = Vector2(-10.9375, 88)
+scale = Vector2(30, 37.366467)
+texture = ExtResource("7_v86rl")
+hframes = 7
+vframes = 5
+frame = 7
+
+[connection signal="pressed" from="CanvasLayer/VSplitContainer/Button2" to="." method="_on_button_2_pressed"]

@@ -52,7 +52,7 @@ func _process(delta):
 
 func process_hand_climb(is_left: bool, delta: float, viewport_height: float):
 	var hand = hand_left if is_left else hand_right
-	if hand == null:
+	if hand == null or get_viewport() == null:
 		return
 	var hand_screen_pos = get_viewport().get_canvas_transform() * hand.global_position
 	var attached = attached_left if is_left else attached_right

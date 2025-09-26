@@ -18,30 +18,31 @@
 [node name="Clean" type="Node2D"]
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
-position = Vector2(-3, 501)
+position = Vector2(540, 540)
 script = ExtResource("1_0unv6")
 
 [node name="Hand1" type="Sprite2D" parent="CanvasGroup"]
 z_index = 10
 texture_filter = 1
-position = Vector2(427.25, 97.75)
+position = Vector2(-50, 100)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_y0wth")
 
 [node name="Hand2" type="Sprite2D" parent="CanvasGroup"]
 z_index = 10
 texture_filter = 1
-position = Vector2(678.24994, 105.75)
+position = Vector2(50, 100)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_y0wth")
 flip_h = true
 
 [node name="BlackTshirt" type="Sprite2D" parent="."]
-position = Vector2(550, 503)
+position = Vector2(540, 540)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_uxn8f")
 
 [node name="Dirty" type="CanvasGroup" parent="."]
+position = Vector2(-15, 47)
 script = ExtResource("4_x8gsu")
 
 [node name="Dirt" type="Sprite2D" parent="Dirty"]
@@ -113,7 +114,7 @@ texture = ExtResource("5_rwsbi")
 [node name="TextBg1" type="Sprite2D" parent="."]
 z_index = 15
 texture_filter = 1
-position = Vector2(551, 346)
+position = Vector2(540, 400)
 scale = Vector2(2, 2)
 texture = ExtResource("6_uxn8f")
 script = ExtResource("7_rwsbi")
