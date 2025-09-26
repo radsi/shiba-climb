@@ -1,0 +1,697 @@
+[gd_scene load_steps=17 format=3 uid="uid://c73lq0ln0yrv"]
+
+[ext_resource type="Texture2D" uid="uid://buays2o7k4ueg" path="res://button base.png" id="1_eobic"]
+[ext_resource type="Texture2D" uid="uid://cw7k78gsoutx6" path="res://joystick base.png" id="1_ice4p"]
+[ext_resource type="Script" uid="uid://b0ui0w2ylbhwe" path="res://scripts/managers/arcade_manager.gd" id="1_r6yp2"]
+[ext_resource type="Texture2D" uid="uid://ce8dlyk056i4k" path="res://joystick head.png" id="2_c74ga"]
+[ext_resource type="Texture2D" uid="uid://b6cg5465g0qel" path="res://button head.png" id="2_r6yp2"]
+[ext_resource type="Texture2D" uid="uid://cb0v8wmpwl7nl" path="res://hand sprites/open hand.png" id="4_r6yp2"]
+[ext_resource type="Texture2D" uid="uid://bfohpwk48a12h" path="res://intro sprites/TextBG4.png" id="5_jepv5"]
+[ext_resource type="Script" uid="uid://cujlduaqdkpvi" path="res://scripts/managers/mgIntro_manager.gd" id="6_n1bbd"]
+[ext_resource type="Script" uid="uid://1ita4kxtp3sq" path="res://scripts/player/player_hands_ARCADE.gd" id="6_r6yp2"]
+[ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="7_u2cey"]
+[ext_resource type="Texture2D" uid="uid://ddxgo2saijcvr" path="res://footer.png" id="8_behgj"]
+[ext_resource type="Script" uid="uid://ho5oyn8p3ner" path="res://scripts/managers/footer_manager.gd" id="9_jxsqg"]
+[ext_resource type="Texture2D" uid="uid://bbsvjnu6h384i" path="res://hand sprites/heart hand.png" id="10_pkx3q"]
+[ext_resource type="Texture2D" uid="uid://bptvtgxhawegg" path="res://footer-timer-background.png" id="11_w0rxa"]
+[ext_resource type="Texture2D" uid="uid://bwex4tit2aiyt" path="res://footer-timer.png" id="12_c81br"]
+[ext_resource type="Texture2D" uid="uid://dwqm5laa2uilq" path="res://SpaceInvaders.png" id="16_jepv5"]
+
+[node name="Arcade" type="Node2D"]
+script = ExtResource("1_r6yp2")
+
+[node name="button" type="CanvasGroup" parent="."]
+texture_filter = 1
+position = Vector2(717, 833)
+
+[node name="buttonBase" type="Sprite2D" parent="button"]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("1_eobic")
+
+[node name="buttonHead" type="Sprite2D" parent="button"]
+z_index = -1
+texture_filter = 1
+position = Vector2(-1, 6)
+scale = Vector2(3, 3)
+texture = ExtResource("2_r6yp2")
+offset = Vector2(0, -10)
+
+[node name="joystick" type="CanvasGroup" parent="."]
+texture_filter = 1
+position = Vector2(380, 787)
+
+[node name="JoystickBase" type="Sprite2D" parent="joystick"]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("1_ice4p")
+
+[node name="JoystickHead" type="Sprite2D" parent="joystick"]
+texture_filter = 1
+position = Vector2(-2, 39)
+scale = Vector2(3, 3)
+texture = ExtResource("2_c74ga")
+offset = Vector2(0, -10)
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+position = Vector2(-24, 427)
+script = ExtResource("6_r6yp2")
+
+[node name="Hand1" type="Sprite2D" parent="CanvasGroup"]
+z_index = 10
+texture_filter = 1
+position = Vector2(427.25, 97.75)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_r6yp2")
+
+[node name="Hand2" type="Sprite2D" parent="CanvasGroup"]
+z_index = 10
+texture_filter = 1
+position = Vector2(678.24994, 105.75)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_r6yp2")
+flip_h = true
+
+[node name="TextBg1" type="Sprite2D" parent="."]
+visible = false
+z_index = 15
+texture_filter = 1
+position = Vector2(551, 346)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("5_jepv5")
+script = ExtResource("6_n1bbd")
+
+[node name="Label" type="Label" parent="TextBg1"]
+z_index = 15
+anchors_preset = -1
+anchor_left = 0.17228465
+anchor_top = 0.22580644
+anchor_right = 0.9138577
+anchor_bottom = 0.7741935
+offset_left = -109.6
+offset_top = -57.999992
+offset_right = 40.399933
+offset_bottom = 9.999947
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_u2cey")
+theme_override_font_sizes/font_size = 46
+text = "PLAY"
+
+[node name="Footer" type="Sprite2D" parent="."]
+z_index = 10
+texture_filter = 1
+position = Vector2(541, 1024)
+scale = Vector2(1.11, 1.06)
+texture = ExtResource("8_behgj")
+script = ExtResource("9_jxsqg")
+
+[node name="HeartHand" type="Sprite2D" parent="Footer"]
+modulate = Color(0.8891468, 0.8891468, 0.88914675, 1)
+z_index = 2
+texture_filter = 1
+position = Vector2(368.46835, -13.207642)
+scale = Vector2(0.7, 0.733)
+texture = ExtResource("10_pkx3q")
+
+[node name="Label" type="Label" parent="Footer"]
+anchors_preset = -1
+anchor_left = 0.71171165
+anchor_top = 0.33262315
+anchor_right = 0.8057116
+anchor_bottom = 1.018107
+offset_left = -500.00003
+offset_top = -62.0
+offset_right = -500.0
+offset_bottom = -62.000008
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_u2cey")
+theme_override_font_sizes/font_size = 64
+text = "X"
+
+[node name="Label2" type="Label" parent="Footer"]
+anchors_preset = -1
+anchor_left = 0.6657657
+anchor_top = 0.19567865
+anchor_right = 0.7597657
+anchor_bottom = 0.8811625
+offset_left = -500.0
+offset_top = -62.0
+offset_right = -500.0
+offset_bottom = -62.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_u2cey")
+theme_override_font_sizes/font_size = 80
+text = "3"
+metadata/_edit_use_anchors_ = true
+
+[node name="TimerColor" type="ColorRect" parent="Footer"]
+z_index = 1
+offset_left = -361.26123
+offset_top = -38.67926
+offset_right = -321.26123
+offset_bottom = 1.3207397
+scale = Vector2(11.25, 1.85)
+color = Color(1, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="FooterTimerBackground" type="Sprite2D" parent="Footer"]
+position = Vector2(-60.36035, 0)
+scale = Vector2(0.9009008, 0.94339615)
+texture = ExtResource("11_w0rxa")
+
+[node name="FooterTimer" type="Sprite2D" parent="Footer"]
+z_index = 1
+position = Vector2(-60.36035, 9.536743e-05)
+scale = Vector2(0.90090084, 0.9433962)
+texture = ExtResource("12_c81br")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -10
+offset_left = 128.00003
+offset_top = 29.000004
+offset_right = 168.00002
+offset_bottom = 69.0
+scale = Vector2(20.812056, 22.089012)
+color = Color(0.66656864, 0.6665687, 0.66656864, 1)
+
+[node name="screen" type="ColorRect" parent="."]
+offset_left = 176.0
+offset_top = 100.00001
+offset_right = 216.0
+offset_bottom = 140.0
+scale = Vector2(18.4, 14.64)
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="game" type="CanvasGroup" parent="."]
+
+[node name="playerShip" type="Sprite2D" parent="game"]
+texture_filter = 1
+position = Vector2(214, 615)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+hframes = 7
+vframes = 5
+frame = 4
+
+[node name="enemies" type="CanvasGroup" parent="."]
+
+[node name="enemy" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(226, 160)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy2" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(290, 160)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy3" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(354, 160)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy4" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(418, 160)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy5" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(482, 160)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy6" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(546, 160)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy7" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(610, 160)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy8" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(674, 160)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy9" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(738, 160)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy10" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(802, 160)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy11" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(866, 160)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy12" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(226, 224)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy13" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(290, 224)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy14" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(354, 224)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy15" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(418, 224)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy16" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(482, 224)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy17" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(546, 224)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy18" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(610, 224)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy19" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(674, 224)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy20" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(738, 224)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy21" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(802, 224)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy22" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(866, 224)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy23" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(226, 288)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy24" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(290, 288)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy25" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(354, 288)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy26" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(418, 288)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy27" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(482, 288)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy28" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(546, 288)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy29" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(610, 288)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy30" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(674, 288)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy31" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(738, 288)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy32" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(802, 288)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy33" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(866, 288)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy34" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(226, 352)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy35" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(290, 352)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy36" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(354, 352)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy37" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(418, 352)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy38" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(482, 352)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy39" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(546, 352)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy40" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(610, 352)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy41" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(674, 352)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy42" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(738, 352)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy43" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(802, 352)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy44" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(866, 352)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy45" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(226, 416)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy46" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(290, 416)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy47" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(354, 416)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy48" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(418, 416)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy49" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(482, 416)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy50" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(546, 416)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy51" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(610, 416)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy52" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(674, 416)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy53" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(738, 416)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy54" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(802, 416)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="enemy55" type="Sprite2D" parent="enemies"]
+texture_filter = 1
+position = Vector2(866, 416)
+scale = Vector2(4, 4)
+texture = ExtResource("16_jepv5")
+offset = Vector2(-0.5, 0)
+region_enabled = true
+region_rect = Rect2(3.7434921, 19.489788, 8.489203, 8.619209)
+
+[node name="bullets" type="CanvasGroup" parent="."]

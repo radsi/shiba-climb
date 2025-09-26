@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgu52ljbdowtw"]
+
+[ext_resource type="Texture2D" uid="uid://dwqm5laa2uilq" path="res://SpaceInvaders.png" id="1_j3f41"]
+[ext_resource type="Script" uid="uid://vjtcgrncxqau" path="res://scripts/misc/arcade_bullet.gd" id="2_7four"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7four"]
+size = Vector2(1, 4.875)
+
+[node name="playerBullet" type="Sprite2D"]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("1_j3f41")
+region_enabled = true
+region_rect = Rect2(38.926346, 5.2864137, 1.1489372, 5.656298)
+script = ExtResource("2_7four")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 0.0625)
+shape = SubResource("RectangleShape2D_7four")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

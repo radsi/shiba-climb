@@ -99,6 +99,11 @@ func attach_hand(is_left: bool, grabbed: Sprite2D):
 			last_attached_right = grabbed
 			hand_right.global_position.y = grabbed.global_position.y
 			hand_right.texture = globals.closehand_texture
+	
+	if randi() % 2 == 0:
+		$"../brick1".play()
+	else:
+		$"../brick2".play()
 
 func return_hand(is_left: bool):
 	var hand = hand_left if is_left else hand_right

@@ -108,6 +108,8 @@ func _start_roll():
 		is_long = false
 		time_left = game_time
 
+	get_tree().change_scene_to_file("res://scenes/transition.tscn")
+	await get_tree().create_timer(3)
 	get_tree().change_scene_to_file(scene_path)
 
 func play_whistle():

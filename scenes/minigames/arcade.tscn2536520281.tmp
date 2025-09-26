@@ -1387,7 +1387,6 @@ shape = SubResource("RectangleShape2D_jepv5")
 
 [node name="ArcadeMachine" type="Sprite2D" parent="."]
 z_index = -2
-texture_filter = 1
 position = Vector2(548, 449)
 scale = Vector2(2.4400024, 2)
 texture = ExtResource("17_n1bbd")

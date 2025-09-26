@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://ugrtkue07813"]
 
 [ext_resource type="Script" uid="uid://dgnpmsnsy80pq" path="res://scripts/player/player_hands_APPLES.gd" id="1_nlc5t"]
-[ext_resource type="Texture2D" path="res://open hand.png" id="2_mgt7l"]
+[ext_resource type="Texture2D" uid="uid://cb0v8wmpwl7nl" path="res://hand sprites/open hand.png" id="2_mgt7l"]
 [ext_resource type="Texture2D" uid="uid://dtrw6xug0iydb" path="res://mini games sprites/tree.jpg" id="3_jscof"]
 [ext_resource type="Script" uid="uid://bwdl16e7m5rwg" path="res://scripts/managers/apples_manager.gd" id="4_pgdah"]
 [ext_resource type="Texture2D" uid="uid://bmqksb87eemda" path="res://mini games sprites/apple.png" id="5_uuwgh"]
@@ -117,8 +117,8 @@ metadata/_edit_use_anchors_ = true
 [node name="Footer" type="Sprite2D" parent="."]
 z_index = 10
 texture_filter = 1
-position = Vector2(541, 1024)
-scale = Vector2(1.11, 1.06)
+position = Vector2(536, 1024)
+scale = Vector2(1.1, 1.06)
 texture = ExtResource("11_pgdah")
 script = ExtResource("11_1xauh")
 

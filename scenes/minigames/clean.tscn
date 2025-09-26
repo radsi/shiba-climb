@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://b6svc10pht0ub"]
 
 [ext_resource type="Script" uid="uid://d3x8srp1fi68e" path="res://scripts/player/player_hands_CLEAN.gd" id="1_0unv6"]
-[ext_resource type="Texture2D" path="res://open hand.png" id="2_y0wth"]
+[ext_resource type="Texture2D" uid="uid://cb0v8wmpwl7nl" path="res://hand sprites/open hand.png" id="2_y0wth"]
 [ext_resource type="Texture2D" uid="uid://10h5uo53bdx8" path="res://mini games sprites/black tshirt.png" id="3_uxn8f"]
 [ext_resource type="Script" uid="uid://cicnahcxka6sk" path="res://scripts/managers/dirt_manager.gd" id="4_x8gsu"]
 [ext_resource type="Texture2D" uid="uid://b6cqqet3btkd3" path="res://mini games sprites/dirt.png" id="5_rwsbi"]
@@ -137,8 +137,8 @@ metadata/_edit_use_anchors_ = true
 [node name="Footer" type="Sprite2D" parent="."]
 z_index = 10
 texture_filter = 1
-position = Vector2(541, 1024)
-scale = Vector2(1.11, 1.06)
+position = Vector2(536, 1024)
+scale = Vector2(1.1, 1.06)
 texture = ExtResource("9_41vlf")
 script = ExtResource("10_jr7kr")
 
