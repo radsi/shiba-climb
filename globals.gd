@@ -2,6 +2,8 @@ extends Node
 
 var pending_menu_messages = []
 
+var is_on_transition = false
+
 var game_score: int = -1
 var game_speed: float = 200
 var game_time: float = 10
@@ -13,6 +15,7 @@ var has_lost_life := false
 var roll_started := false
 var is_long := false
 var roll_pending := false
+var incresing_speed = false
 
 var hands_max_durability = 20
 var hands_drain_rate: float = 5
@@ -29,6 +32,7 @@ var pool := []
 var last_scene := ""
 
 var audio_player: AudioStreamPlayer2D
+var music_player: AudioStreamPlayer2D
 var whistle_audio = preload("res://sounds/90743__pablo-f__referee-whistle.wav")
 var lose_audio = preload("res://sounds/350985__cabled_mess__lose_c_02.wav")
 
@@ -38,10 +42,16 @@ func _ready():
 	add_child(audio_player)
 	audio_player.bus = "Master"
 	audio_player.volume_db = -5
+	
+	music_player = AudioStreamPlayer2D.new()
+	music_player.stream = preload("res://sounds/404717__djevilj__nu-break-july-2017-drum-track.wav")
+	add_child(music_player)
+	music_player.bus = "Master"
+	music_player.volume_db = -5
 
 func _process(delta: float) -> void:
 	
-	if not roll_started:
+	if not roll_started or is_on_transition:
 		return
 
 	if life <= 0:
@@ -59,6 +69,7 @@ func _process(delta: float) -> void:
 		roll_pending = false
 
 func start_roll_from_menu():
+	music_player.play()
 	audio_player.play()
 	game_speed = 200
 	game_time = 10
@@ -83,6 +94,7 @@ func _start_roll():
 		for s in all_unlocked_scenes:
 			if s != last_scene:
 				pool.append(s)
+		incresing_speed = true
 		game_speed += 50
 		game_time -= 1
 		game_time_long += 5
@@ -93,7 +105,6 @@ func _start_roll():
 		return
 
 	minigame_completed = false
-	has_lost_life = false
 
 	var rng := RandomNumberGenerator.new()
 	rng.randomize()
@@ -111,9 +122,14 @@ func _start_roll():
 		is_long = false
 		time_left = game_time
 
-	#get_tree().change_scene_to_file("res://scenes/transition.tscn")
+	if game_score >= 0:
+		is_on_transition = true
+		get_tree().change_scene_to_file("res://scenes/transition.tscn")
+		await get_tree().create_timer(3).timeout
+		is_on_transition = false
+		has_lost_life = false
+		incresing_speed = false
 	game_score += 1
-	#await get_tree().create_timer(3).timeout
 	get_tree().change_scene_to_file(scene_path)
 
 func play_whistle():
@@ -143,4 +159,5 @@ func _game_over():
 	roll_started = false
 	pool = all_unlocked_scenes.duplicate()
 	last_scene = ""
+	music_player.stop()
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")

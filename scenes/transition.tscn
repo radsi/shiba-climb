@@ -1,3 +1,154 @@
-[gd_scene format=3 uid="uid://c8mjt0n4v7ssp"]
+[gd_scene load_steps=11 format=3 uid="uid://c8mjt0n4v7ssp"]
 
-[node name="Transition" type="Node2D"]
+[ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="1_rerct"]
+[ext_resource type="Script" uid="uid://dye0n8x0c2xiu" path="res://scripts/managers/transition_manager.gd" id="1_xmi56"]
+[ext_resource type="Texture2D" uid="uid://c54bhm7qock1c" path="res://hand sprites/win hands.png" id="2_f0i4t"]
+[ext_resource type="PackedScene" uid="uid://chdgmiujjyorn" path="res://prefabs/transition/decoration.tscn" id="4_xmi56"]
+[ext_resource type="Texture2D" uid="uid://l2atiswygex0" path="res://transitions/bg.jpg" id="5_hi828"]
+[ext_resource type="AudioStream" uid="uid://cgyjnns6hgagw" path="res://sounds/342744__michael_kur95__increase-01.wav" id="6_50nbv"]
+[ext_resource type="AudioStream" uid="uid://c83g17qi2rdd6" path="res://sounds/650585__guilhermecayeiro__powerup-oscilation.wav" id="7_6ancn"]
+[ext_resource type="AudioStream" uid="uid://bwrklanebukt8" path="res://sounds/good.wav" id="8_lvx3c"]
+
+[sub_resource type="Animation" id="Animation_50nbv"]
+resource_name = "transition"
+length = 3.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6ancn"]
+_data = {
+&"transition": SubResource("Animation_50nbv")
+}
+
+[node name="Transition" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xmi56")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+z_index = 1
+
+[node name="message" type="Label" parent="CanvasGroup"]
+z_index = 1
+anchors_preset = -1
+anchor_left = 0.36296296
+anchor_top = 0.11851852
+anchor_right = 0.765
+anchor_bottom = 0.24074075
+offset_left = 392.0
+offset_top = 128.0
+offset_right = 686.0
+offset_bottom = 260.0
+grow_horizontal = 2
+pivot_offset = Vector2(150, 50)
+theme_override_fonts/font = ExtResource("1_rerct")
+theme_override_font_sizes/font_size = 126
+text = "Nice!"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="hands" type="Sprite2D" parent="CanvasGroup"]
+position = Vector2(540, 540)
+scale = Vector2(2, 2)
+texture = ExtResource("2_f0i4t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../CanvasGroup/message")
+libraries = {
+&"": SubResource("AnimationLibrary_6ancn")
+}
+
+[node name="decorations1" type="CanvasGroup" parent="."]
+visible = false
+
+[node name="Decoration" parent="decorations1" instance=ExtResource("4_xmi56")]
+position = Vector2(336, 984)
+
+[node name="Decoration2" parent="decorations1" instance=ExtResource("4_xmi56")]
+position = Vector2(920, 904)
+
+[node name="Decoration3" parent="decorations1" instance=ExtResource("4_xmi56")]
+position = Vector2(936, 360)
+
+[node name="Decoration4" parent="decorations1" instance=ExtResource("4_xmi56")]
+position = Vector2(224, 216)
+
+[node name="Decoration5" parent="decorations1" instance=ExtResource("4_xmi56")]
+position = Vector2(112, 544)
+
+[node name="decorations2" type="CanvasGroup" parent="."]
+visible = false
+
+[node name="Decoration" parent="decorations2" instance=ExtResource("4_xmi56")]
+position = Vector2(216, 888)
+
+[node name="Decoration2" parent="decorations2" instance=ExtResource("4_xmi56")]
+position = Vector2(808, 992)
+
+[node name="Decoration3" parent="decorations2" instance=ExtResource("4_xmi56")]
+position = Vector2(960, 568)
+
+[node name="Decoration4" parent="decorations2" instance=ExtResource("4_xmi56")]
+position = Vector2(880, 160)
+
+[node name="Decoration5" parent="decorations2" instance=ExtResource("4_xmi56")]
+position = Vector2(232, 416)
+
+[node name="decorations3" type="CanvasGroup" parent="."]
+visible = false
+
+[node name="Decoration" parent="decorations3" instance=ExtResource("4_xmi56")]
+position = Vector2(216, 888)
+
+[node name="Decoration2" parent="decorations3" instance=ExtResource("4_xmi56")]
+position = Vector2(600, 928)
+
+[node name="Decoration3" parent="decorations3" instance=ExtResource("4_xmi56")]
+position = Vector2(920, 792)
+
+[node name="Decoration4" parent="decorations3" instance=ExtResource("4_xmi56")]
+position = Vector2(952, 256)
+
+[node name="Decoration5" parent="decorations3" instance=ExtResource("4_xmi56")]
+position = Vector2(168, 168)
+
+[node name="Decoration6" parent="decorations3" instance=ExtResource("4_xmi56")]
+position = Vector2(80, 488)
+
+[node name="decorations4" type="CanvasGroup" parent="."]
+visible = false
+
+[node name="Decoration" parent="decorations4" instance=ExtResource("4_xmi56")]
+position = Vector2(216, 888)
+
+[node name="Decoration2" parent="decorations4" instance=ExtResource("4_xmi56")]
+position = Vector2(560, 776)
+
+[node name="Decoration3" parent="decorations4" instance=ExtResource("4_xmi56")]
+position = Vector2(920, 792)
+
+[node name="Decoration4" parent="decorations4" instance=ExtResource("4_xmi56")]
+position = Vector2(952, 376)
+
+[node name="Decoration5" parent="decorations4" instance=ExtResource("4_xmi56")]
+position = Vector2(280, 272)
+
+[node name="Decoration6" parent="decorations4" instance=ExtResource("4_xmi56")]
+position = Vector2(120, 688)
+
+[node name="Bg" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(540, 540)
+texture = ExtResource("5_hi828")
+
+[node name="speed" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_50nbv")
+
+[node name="bad" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_6ancn")
+
+[node name="good" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_lvx3c")

@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8mjt0n4v7ssp"]
+
+[ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="1_rerct"]
+[ext_resource type="Script" uid="uid://dye0n8x0c2xiu" path="res://scripts/managers/transition_manager.gd" id="1_xmi56"]
+[ext_resource type="Texture2D" uid="uid://c54bhm7qock1c" path="res://hand sprites/win hands.png" id="2_f0i4t"]
+[ext_resource type="PackedScene" uid="uid://chdgmiujjyorn" path="res://prefabs/transition/decoration.tscn" id="4_xmi56"]
+
+[sub_resource type="Animation" id="Animation_50nbv"]
+resource_name = "transition"
+length = 3.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6ancn"]
+_data = {
+&"transition": SubResource("Animation_50nbv")
+}
+
+[node name="Transition" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xmi56")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+z_index = 1
+
+[node name="message" type="Label" parent="CanvasGroup"]
+anchors_preset = -1
+anchor_left = 0.36296296
+anchor_top = 0.11851852
+anchor_right = 0.6351852
+anchor_bottom = 0.24074075
+offset_left = 392.0
+offset_top = 128.0
+offset_right = 686.0
+offset_bottom = 260.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_rerct")
+theme_override_font_sizes/font_size = 126
+text = "Nice!"
+metadata/_edit_use_anchors_ = true
+
+[node name="hands" type="Sprite2D" parent="CanvasGroup"]
+position = Vector2(540, 540)
+scale = Vector2(2, 2)
+texture = ExtResource("2_f0i4t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../CanvasGroup/message")
+libraries = {
+&"": SubResource("AnimationLibrary_6ancn")
+}
+
+[node name="decorations" type="CanvasGroup" parent="."]
+
+[node name="Decoration" parent="decorations" instance=ExtResource("4_xmi56")]
+position = Vector2(336, 984)
+
+[node name="Decoration2" parent="decorations" instance=ExtResource("4_xmi56")]
+position = Vector2(920, 904)
+
+[node name="Decoration3" parent="decorations" instance=ExtResource("4_xmi56")]
+position = Vector2(936, 360)
+
+[node name="Decoration4" parent="decorations" instance=ExtResource("4_xmi56")]
+position = Vector2(224, 216)
+
+[node name="Decoration5" parent="decorations" instance=ExtResource("4_xmi56")]
+position = Vector2(112, 544)

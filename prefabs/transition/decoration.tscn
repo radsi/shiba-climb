@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://chdgmiujjyorn"]
+
+[ext_resource type="Texture2D" uid="uid://cmc2upbqent4a" path="res://transitions/decoration.png" id="1_ffy3v"]
+
+[node name="Decoration" type="Sprite2D"]
+modulate = Color(0.63529414, 1, 1, 1)
+texture = ExtResource("1_ffy3v")

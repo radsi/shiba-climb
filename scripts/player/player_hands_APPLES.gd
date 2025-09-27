@@ -37,6 +37,11 @@ func update_attached_hand(attached, hand: Node2D, is_left: bool, delta: float) -
 				attached_right = null
 			if hand != null and hand.is_inside_tree():
 				hand.texture = globals.openhand_texture
+	
+	if dragging_left and attached_left == null:
+		attach_hand_to_apple(hand_left, true)
+	elif dragging_right and attached_right == null:
+		attach_hand_to_apple(hand_right, false)
 
 func attach_hand_to_apple(hand: Node2D, is_left: bool) -> void:
 	var apple = get_apple_under_hand(hand)
@@ -50,14 +55,6 @@ func attach_hand_to_apple(hand: Node2D, is_left: bool) -> void:
 
 func _input(event):
 	super._input(event)
-
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and hand_left != null:
-			if event.pressed and attached_left == null:
-				attach_hand_to_apple(hand_left, true)
-		if event.button_index == MOUSE_BUTTON_RIGHT and hand_right != null:
-			if event.pressed and attached_right == null:
-				attach_hand_to_apple(hand_right, false)
 
 func get_apple_under_hand(hand: Node2D) -> Sprite2D:
 	for apple in apples.get_children():
