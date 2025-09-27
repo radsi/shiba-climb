@@ -6,6 +6,8 @@ var active_icon
 static var first_time = true
 var clapped = false
 
+var message_timer = 0
+
 @onready var palm = $PalmHand
 
 func _ready() -> void:
@@ -21,10 +23,18 @@ func _ready() -> void:
 	if globals.pending_menu_messages.size() > 0:
 		_show_pending_message()
 
+func _process(delta: float) -> void:
+	if message_timer >= 2:
+		return
+	
+	message_timer += delta
+
 func _input(event) -> void:
 	if event is InputEventMouseButton:
-		if showing_messages: _close_message()
-		
+		if showing_messages and message_timer >= 2: _close_message()
+	
+	if showing_messages: return
+	
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		var mouse_pos = get_viewport().get_mouse_position()
 		if _is_mouse_over_palm(mouse_pos) and clapped == false:

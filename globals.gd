@@ -146,6 +146,10 @@ func _game_over():
 	if game_score >= 4:
 		_unlock_minigame("Arcade")
 	
+	roll_started = false
+	get_tree().change_scene_to_file("res://scenes/transition.tscn")
+	await get_tree().create_timer(3).timeout
+	
 	audio_player.stream = lose_audio
 	audio_player.play()
 	audio_player.stream = whistle_audio
@@ -156,7 +160,6 @@ func _game_over():
 	game_time_long = 15
 	life = 3
 	minigame_completed = false
-	roll_started = false
 	pool = all_unlocked_scenes.duplicate()
 	last_scene = ""
 	music_player.stop()

@@ -25,6 +25,12 @@ func _ready() -> void:
 		deco.modulate = Color(colors[randf_range(0, colors.size())])
 		_apply_random_transform(deco)
 	
+	if not globals.roll_started:
+		text.text = "Game over"
+		hands.flip_v = true
+		bg.modulate = Color("#231942")
+		return
+		
 	if globals.incresing_speed:
 		text.text = "Go go go!"
 		hands.texture = up_hand_sprite
