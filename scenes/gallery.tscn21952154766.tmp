@@ -45,7 +45,7 @@ position = Vector2(215, 392)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_mdy1u")
 
-[node name="climb long" type="Sprite2D" parent="items/GalleryItem"]
+[node name="climb" type="Sprite2D" parent="items/GalleryItem"]
 texture_filter = 1
 scale = Vector2(2, 2)
 texture = ExtResource("5_r0fv4")
@@ -91,27 +91,11 @@ position = Vector2(540, 732)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_mdy1u")
 
-[node name="arcade" type="Sprite2D" parent="items/GalleryItem5"]
-texture_filter = 1
-scale = Vector2(12, 12)
-texture = ExtResource("8_mtg1g")
-hframes = 7
-vframes = 5
-frame = 7
-
 [node name="GalleryItem6" type="Sprite2D" parent="items"]
 texture_filter = 1
 position = Vector2(865, 732)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_mdy1u")
-
-[node name="arcade" type="Sprite2D" parent="items/GalleryItem6"]
-texture_filter = 1
-scale = Vector2(12, 12)
-texture = ExtResource("8_mtg1g")
-hframes = 7
-vframes = 5
-frame = 7
 
 [node name="buttonback" type="Button" parent="."]
 layout_mode = 1

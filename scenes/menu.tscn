@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://re18gkg4sw4r"]
+[gd_scene load_steps=12 format=3 uid="uid://re18gkg4sw4r"]
 
 [ext_resource type="Script" uid="uid://dykhujf08cqwk" path="res://scripts/menu.gd" id="1_vjb58"]
 [ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="1_yqeox"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://bjhwi16ko1ihm" path="res://sounds/477803__saltbearer__snappy-lo-fi-perc-resonances.wav" id="5_4ytvr"]
 [ext_resource type="Texture2D" uid="uid://clpspuy257db8" path="res://message.png" id="6_g3eks"]
 [ext_resource type="Texture2D" uid="uid://dwqm5laa2uilq" path="res://SpaceInvaders.png" id="7_v86rl"]
+[ext_resource type="Texture2D" uid="uid://l2atiswygex0" path="res://transitions/bg.jpg" id="8_13sgg"]
 
 [sub_resource type="Animation" id="Animation_mhnvy"]
 length = 0.001
@@ -175,22 +176,8 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0)
 metadata/_edit_use_anchors_ = true
 
-[node name="Button2" type="Button" parent="."]
-z_index = -2
-layout_mode = 0
-offset_left = 423.0
-offset_top = 767.0
-offset_right = 657.0
-offset_bottom = 967.0
-theme_override_fonts/font = ExtResource("1_yqeox")
-theme_override_font_sizes/font_size = 64
-text = "Credits"
-metadata/_edit_use_anchors_ = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="VSplitContainer" type="VSplitContainer" parent="CanvasLayer"]
+[node name="VSplitContainer" type="VSplitContainer" parent="."]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.39166668
 anchor_top = 0.7398148
@@ -203,14 +190,24 @@ grow_vertical = 0
 theme_override_constants/separation = 48
 metadata/_edit_use_anchors_ = true
 
-[node name="Button3" type="Button" parent="CanvasLayer/VSplitContainer"]
-visible = false
+[node name="Button3" type="Button" parent="VSplitContainer"]
 z_index = -2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_yqeox")
 theme_override_font_sizes/font_size = 64
 text = "Gallery"
 metadata/_edit_use_anchors_ = true
+
+[node name="Button2" type="Button" parent="VSplitContainer"]
+z_index = -2
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 64
+text = "Credits"
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
 
 [node name="Message" type="Sprite2D" parent="."]
 visible = false
@@ -252,4 +249,11 @@ hframes = 7
 vframes = 5
 frame = 7
 
-[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[node name="Bg" type="Sprite2D" parent="."]
+modulate = Color(0.23110586, 0.40934858, 0.4403412, 1)
+z_index = -3
+position = Vector2(540, 540)
+texture = ExtResource("8_13sgg")
+
+[connection signal="pressed" from="VSplitContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="VSplitContainer/Button2" to="." method="_on_button_2_pressed"]

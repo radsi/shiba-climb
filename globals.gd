@@ -30,6 +30,7 @@ var all_unlocked_scenes := [
 ]
 var pool := []
 var last_scene := ""
+var is_single_minigame = false
 
 var audio_player: AudioStreamPlayer2D
 var music_player: AudioStreamPlayer2D
@@ -50,8 +51,7 @@ func _ready():
 	music_player.volume_db = -5
 
 func _process(delta: float) -> void:
-	
-	if not roll_started or is_on_transition:
+	if not roll_started or is_on_transition or is_single_minigame:
 		return
 
 	if life <= 0:
@@ -67,6 +67,23 @@ func _process(delta: float) -> void:
 		roll_pending = true
 		call_deferred("_start_roll")
 		roll_pending = false
+
+func start_single_minigame(minigame):
+	is_single_minigame = true
+	music_player.play()
+	audio_player.play()
+	game_speed = 200
+	game_time = 10
+	game_time_long = 10
+	life = 3
+	time_left = game_time
+	minigame_completed = false
+	has_lost_life = false
+	roll_started = true
+	is_long = false
+	pool = ["res://scenes/minigames/"+minigame+".tscn"]
+	last_scene = ""
+	_start_roll()
 
 func start_roll_from_menu():
 	music_player.play()
@@ -85,7 +102,7 @@ func start_roll_from_menu():
 	_start_roll()
 
 func _start_roll():
-	if life <= 0:
+	if life <= 0 or (is_single_minigame and has_lost_life):
 		_game_over()
 		return
 
@@ -95,6 +112,12 @@ func _start_roll():
 			if s != last_scene:
 				pool.append(s)
 		incresing_speed = true
+		game_speed += 50
+		game_time -= 1
+		game_time_long += 5
+		hands_drain_rate += 2.5
+
+	if is_single_minigame:
 		game_speed += 50
 		game_time -= 1
 		game_time_long += 5

@@ -62,6 +62,9 @@ func _on_button_2_pressed() -> void:
 func _on_buttonback_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
+func _on_button_3_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/gallery.tscn")
+
 func _show_pending_message():
 	print("showing message")
 	showing_messages = true

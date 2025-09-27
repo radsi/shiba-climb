@@ -12,6 +12,7 @@ var initial_scale := Vector2.ONE
 var timer = 0
 
 func _ready() -> void:
+	if globals.is_single_minigame: self.visible = false
 	initial_scale = timer_color.scale
 	heart_hand.rotation_degrees = 5
 

@@ -1,9 +1,17 @@
 extends Node
 
-@export var colors = ["F75270", "EF9595", "F7CAC9"]
-@export var start_count := 4
+var colors = ["F75270", "EF9595", "F7CAC9"]
+var start_count := 4
+
+@onready var mouse_left_click_sprite = preload("res://left click.png")
+@onready var mouse_right_click_sprite = preload("res://right click.png")
+@onready var mouse = $mouse
+@onready var hand_left = $OpenHand
+@onready var hand_right = $OpenHand2
 
 var count := start_count
+var timer = 0
+var index = 0
 
 func _ready():
 	$ColorRect2.color.a = 1
@@ -25,3 +33,19 @@ func _start_countdown():
 	
 	await get_tree().create_timer(1.0).timeout
 	_start_countdown()
+
+func _process(delta: float) -> void:
+	timer += delta
+	
+	if timer >= 0.75:
+		timer = 0
+		if index == 0:
+			index = 1
+			mouse.texture = mouse_right_click_sprite
+			hand_right.global_position.y = 750
+			hand_left.global_position.y = 800
+		else:
+			index = 0
+			mouse.texture = mouse_left_click_sprite
+			hand_left.global_position.y = 750
+			hand_right.global_position.y = 800
