@@ -25,6 +25,7 @@ size = Vector2(8, 8)
 script = ExtResource("1_r6yp2")
 
 [node name="button" type="CanvasGroup" parent="."]
+z_index = 3
 texture_filter = 1
 position = Vector2(717, 833)
 
@@ -34,7 +35,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("1_eobic")
 
 [node name="buttonHead" type="Sprite2D" parent="button"]
-z_index = -1
+z_index = 2
 texture_filter = 1
 position = Vector2(-1, 6)
 scale = Vector2(3, 3)
@@ -42,6 +43,7 @@ texture = ExtResource("2_r6yp2")
 offset = Vector2(0, -10)
 
 [node name="joystick" type="CanvasGroup" parent="."]
+z_index = 3
 texture_filter = 1
 position = Vector2(380, 787)
 
@@ -171,12 +173,11 @@ scale = Vector2(0.90090084, 0.9433962)
 texture = ExtResource("12_c81br")
 
 [node name="screen" type="ColorRect" parent="."]
-z_index = -2
 offset_left = -144.0
-offset_top = -8.0
+offset_top = 96.0
 offset_right = -104.0
-offset_bottom = 31.999992
-scale = Vector2(37.639996, 19.2)
+offset_bottom = 136.0
+scale = Vector2(37.639996, 14.6)
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
@@ -1385,8 +1386,17 @@ shape = SubResource("RectangleShape2D_jepv5")
 [node name="bullets" type="CanvasGroup" parent="."]
 
 [node name="ArcadeMachine" type="Sprite2D" parent="."]
-z_index = -2
+z_index = 2
 texture_filter = 1
 position = Vector2(548, 449)
 scale = Vector2(2.4400024, 2)
 texture = ExtResource("17_n1bbd")
+
+[node name="screen2" type="ColorRect" parent="."]
+offset_left = -144.0
+offset_top = -16.0
+offset_right = -104.0
+offset_bottom = 24.0
+scale = Vector2(37.639996, 3.0400012)
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true

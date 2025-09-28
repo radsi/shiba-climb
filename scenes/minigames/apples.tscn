@@ -38,50 +38,50 @@ texture = ExtResource("2_mgt7l")
 flip_h = true
 
 [node name="Tree" type="Sprite2D" parent="."]
-position = Vector2(600.00006, 474.00003)
-scale = Vector2(1.25, 1.518)
+position = Vector2(600.00006, 538.12006)
+scale = Vector2(1.25, 1.7183751)
 texture = ExtResource("3_jscof")
 
 [node name="Apples" type="CanvasGroup" parent="."]
 script = ExtResource("4_pgdah")
 
 [node name="Apple" type="Sprite2D" parent="Apples"]
-position = Vector2(307, 463)
+position = Vector2(288, 544)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("5_uuwgh")
 
 [node name="Apple2" type="Sprite2D" parent="Apples"]
-position = Vector2(154.00002, 391)
+position = Vector2(144, 440)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("5_uuwgh")
 
 [node name="Apple3" type="Sprite2D" parent="Apples"]
-position = Vector2(264, 704)
+position = Vector2(264, 808)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("5_uuwgh")
 
 [node name="Apple4" type="Sprite2D" parent="Apples"]
-position = Vector2(424, 688)
+position = Vector2(592, 624)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("5_uuwgh")
 
 [node name="Apple5" type="Sprite2D" parent="Apples"]
-position = Vector2(576, 584)
+position = Vector2(1024, 400)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("5_uuwgh")
 
 [node name="Apple6" type="Sprite2D" parent="Apples"]
-position = Vector2(712, 496)
+position = Vector2(720, 552)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("5_uuwgh")
 
 [node name="Apple7" type="Sprite2D" parent="Apples"]
-position = Vector2(840, 538)
+position = Vector2(880, 632)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("5_uuwgh")
 
 [node name="Apple8" type="Sprite2D" parent="Apples"]
-position = Vector2(1015.99994, 576)
+position = Vector2(896.0001, 464)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("5_uuwgh")
 

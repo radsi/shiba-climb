@@ -72,6 +72,7 @@ func _show_pending_message():
 	var icons = $Message/Icons
 	var colorrect = $ColorRect
 	
+	$clapping.play()
 	colorrect.color.a = 0.75
 	message.visible = true
 	message.get_child(0).text = globals.pending_menu_messages[0]
@@ -93,11 +94,12 @@ func _show_pending_message():
 	globals.pending_menu_messages.remove_at(0)
 
 func _close_message():
-	
+	message_timer = 0
 	if active_icon != null: active_icon.visible = false
 	
 	if globals.pending_menu_messages.size() > 0:
 		_show_pending_message()
+		return
 	
 	showing_messages = false
 	$ColorRect.modulate.a = 0

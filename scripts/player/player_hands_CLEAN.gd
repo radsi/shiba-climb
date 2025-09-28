@@ -23,6 +23,11 @@ func _process(delta: float) -> void:
 	var changed := false
 	changed = increase_transparency_under_hand(hand_left, last_pos_left) or changed
 	changed = increase_transparency_under_hand(hand_right, last_pos_right) or changed
+	
+	if dragging_left:
+		last_pos_left = get_viewport().get_mouse_position()
+	if dragging_right:
+		last_pos_right = get_viewport().get_mouse_position()
 
 	if changed and not scrub_sound.playing:
 		scrub_sound.play()

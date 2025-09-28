@@ -9,10 +9,13 @@ var timer_colors = ["#ABCDCB", "#EBE59B", "#E78775", "#C84361"]
 var current_footer_sprite = 1
 var initial_scale := Vector2.ONE
 
-var timer = 0
+var timer := 0.0
 
 func _ready() -> void:
-	if globals.is_single_minigame: self.visible = false
+	if globals.is_single_minigame:
+		if globals.is_long: self.visible = false
+		globals.life = 1
+	
 	initial_scale = timer_color.scale
 	heart_hand.rotation_degrees = 5
 
@@ -20,14 +23,10 @@ func _process(delta: float) -> void:
 	timer += delta
 	$".".get_child(2).text = str(globals.life)
 
-	var max_time
-	if globals.is_long:
-		max_time = globals.game_time_long
-	else:
-		max_time = globals.game_time
+	var max_time := globals.game_time_long if globals.is_long else globals.game_time
 	var t = clamp(globals.time_left / max_time, 0.0, 1.0)
 
-	var idx = int(floor((1.0 - t) * (timer_colors.size() - 1)))
+	var idx := int(floor((1.0 - t) * (timer_colors.size() - 1)))
 	if globals.is_long:
 		idx = timer_colors.size() - 1 - idx
 	timer_color.color = Color(timer_colors[idx])

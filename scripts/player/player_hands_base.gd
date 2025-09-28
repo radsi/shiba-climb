@@ -61,12 +61,12 @@ func _input(event):
 func _process(delta):
 	var mouse_pos = get_viewport().get_mouse_position()
 	var screen_half = get_viewport().get_visible_rect().size.x / 2
-	
-	last_pos_left = hand_left.global_position
-	last_pos_right = hand_right.global_position
 
 	process_hand(hand_left, dragging_left, true, delta, mouse_pos, screen_half)
 	process_hand(hand_right, dragging_right, false, delta, mouse_pos, screen_half)
+	
+	last_pos_left = hand_left.global_position
+	last_pos_right = hand_right.global_position
 
 func process_hand(hand: Node2D, dragging: bool, is_left: bool, delta: float, mouse_pos: Vector2, screen_half: float):
 	if hand == null:

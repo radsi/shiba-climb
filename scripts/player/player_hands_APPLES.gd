@@ -30,6 +30,12 @@ func update_attached_hand(attached, hand: Node2D, is_left: bool, delta: float) -
 				durability_right = clamp(durability_right, 0, globals.hands_max_durability)
 				hand.modulate = Color(1, durability_right/globals.hands_max_durability, durability_right/globals.hands_max_durability)
 			hand.texture = globals.closehand_texture
+		
+			if attached.visible == false:
+				if attached == attached_left:
+					attached_left = null
+				else:
+					attached_right = null
 		else:
 			if attached == attached_left:
 				attached_left = null

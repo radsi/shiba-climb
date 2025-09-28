@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b6svc10pht0ub"]
+[gd_scene load_steps=16 format=3 uid="uid://b6svc10pht0ub"]
 
 [ext_resource type="Script" uid="uid://d3x8srp1fi68e" path="res://scripts/player/player_hands_CLEAN.gd" id="1_0unv6"]
 [ext_resource type="Texture2D" uid="uid://cb0v8wmpwl7nl" path="res://hand sprites/open hand.png" id="2_y0wth"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bptvtgxhawegg" path="res://footer-timer-background.png" id="12_uxn8f"]
 [ext_resource type="Texture2D" uid="uid://bwex4tit2aiyt" path="res://footer-timer.png" id="13_rwsbi"]
 [ext_resource type="AudioStream" uid="uid://danuifr8tmgr" path="res://sounds/365588__djpablochiriboga__fx-falda.wav" id="14_rwsbi"]
+[ext_resource type="Texture2D" uid="uid://b47wcx2sjxfrb" path="res://mini games sprites/star.png" id="15_jly5d"]
 
 [node name="Clean" type="Node2D"]
 
@@ -208,3 +209,26 @@ texture = ExtResource("13_rwsbi")
 stream = ExtResource("14_rwsbi")
 volume_db = 5.0
 pitch_scale = 2.0
+
+[node name="Stars" type="CanvasGroup" parent="."]
+visible = false
+
+[node name="Star" type="Sprite2D" parent="Stars"]
+position = Vector2(336, 778)
+scale = Vector2(2, 2)
+texture = ExtResource("15_jly5d")
+
+[node name="Star2" type="Sprite2D" parent="Stars"]
+position = Vector2(717, 693)
+scale = Vector2(2, 2)
+texture = ExtResource("15_jly5d")
+
+[node name="Star3" type="Sprite2D" parent="Stars"]
+position = Vector2(302, 364)
+scale = Vector2(2, 2)
+texture = ExtResource("15_jly5d")
+
+[node name="Star4" type="Sprite2D" parent="Stars"]
+position = Vector2(791, 433)
+scale = Vector2(2, 2)
+texture = ExtResource("15_jly5d")

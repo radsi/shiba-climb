@@ -35,7 +35,6 @@ func _process(delta):
 	_move_ship(delta)
 
 func _move_ship(delta):
-	print(ship.global_position.x)
 	ship.global_position.x += -joystick.rotation * (globals.game_speed / 100) * delta
 	ship.global_position.x = clamp(ship.global_position.x, 214, 880)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://uosl6edrkgle"]
+[gd_scene load_steps=11 format=3 uid="uid://uosl6edrkgle"]
 
 [ext_resource type="Script" uid="uid://b8d4qfheifn3y" path="res://scripts/managers/gallery_manager.gd" id="1_543d2"]
 [ext_resource type="Texture2D" uid="uid://l2atiswygex0" path="res://transitions/bg.jpg" id="1_lg6hf"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://bmqksb87eemda" path="res://mini games sprites/apple.png" id="6_u7mkv"]
 [ext_resource type="Texture2D" uid="uid://10h5uo53bdx8" path="res://mini games sprites/black tshirt.png" id="7_fdfcg"]
 [ext_resource type="Texture2D" uid="uid://dwqm5laa2uilq" path="res://SpaceInvaders.png" id="8_mtg1g"]
+[ext_resource type="Texture2D" uid="uid://balhamsanka73" path="res://mini games sprites/toast.png" id="9_u7mkv"]
+[ext_resource type="Texture2D" uid="uid://cgx4juqgdoc6p" path="res://mini games sprites/girl hand.png" id="10_fdfcg"]
 
 [node name="Gallery" type="Control"]
 layout_mode = 3
@@ -91,13 +93,9 @@ position = Vector2(540, 732)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_mdy1u")
 
-[node name="arcade" type="Sprite2D" parent="items/GalleryItem5"]
-texture_filter = 1
-scale = Vector2(12, 12)
-texture = ExtResource("8_mtg1g")
-hframes = 7
-vframes = 5
-frame = 7
+[node name="toast" type="Sprite2D" parent="items/GalleryItem5"]
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("9_u7mkv")
 
 [node name="GalleryItem6" type="Sprite2D" parent="items"]
 texture_filter = 1
@@ -105,13 +103,9 @@ position = Vector2(865, 732)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_mdy1u")
 
-[node name="arcade" type="Sprite2D" parent="items/GalleryItem6"]
-texture_filter = 1
-scale = Vector2(12, 12)
-texture = ExtResource("8_mtg1g")
-hframes = 7
-vframes = 5
-frame = 7
+[node name="rope" type="Sprite2D" parent="items/GalleryItem6"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("10_fdfcg")
 
 [node name="buttonback" type="Button" parent="."]
 layout_mode = 1

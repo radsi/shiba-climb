@@ -1,6 +1,7 @@
 extends Node
 
 var pending_menu_messages = []
+var pending_next_scene = ""
 
 var is_on_transition = false
 
@@ -51,10 +52,15 @@ func _ready():
 	music_player.volume_db = -5
 
 func _process(delta: float) -> void:
-	if not roll_started or is_on_transition or is_single_minigame:
+	if is_single_minigame and is_long:
+		game_speed += delta / 2
+		hands_drain_rate += delta / 2
 		return
-
-	if life <= 0:
+	
+	if (not roll_started and not is_single_minigame) or is_on_transition:
+		return
+	
+	if not is_single_minigame and life == 0:
 		_game_over()
 		return
 
@@ -102,7 +108,9 @@ func start_roll_from_menu():
 	_start_roll()
 
 func _start_roll():
-	if life <= 0 or (is_single_minigame and has_lost_life):
+	if is_single_minigame and has_lost_life:
+		has_lost_life = false
+		roll_started = false
 		_game_over()
 		return
 
@@ -145,7 +153,7 @@ func _start_roll():
 		is_long = false
 		time_left = game_time
 
-	if game_score >= 0:
+	if game_score >= 0 and not is_single_minigame and life > 0:
 		is_on_transition = true
 		get_tree().change_scene_to_file("res://scenes/transition.tscn")
 		await get_tree().create_timer(3).timeout
@@ -154,6 +162,7 @@ func _start_roll():
 		incresing_speed = false
 	game_score += 1
 	get_tree().change_scene_to_file(scene_path)
+
 
 func play_whistle():
 	audio_player.stream = whistle_audio
@@ -169,7 +178,20 @@ func _game_over():
 	if game_score >= 4:
 		_unlock_minigame("Arcade")
 	
+	if game_score >= 8:
+		_unlock_minigame("Toast")
+	
+	if game_score >= 16:
+		_unlock_minigame("Rope")
+	
 	roll_started = false
+	is_on_transition = false
+	roll_pending = false
+	has_lost_life = false
+	minigame_completed = false
+	is_single_minigame = false
+	
+	life = 3
 	get_tree().change_scene_to_file("res://scenes/transition.tscn")
 	await get_tree().create_timer(3).timeout
 	
@@ -181,9 +203,7 @@ func _game_over():
 	game_speed = 200
 	game_time = 10
 	game_time_long = 15
-	life = 3
-	minigame_completed = false
-	pool = all_unlocked_scenes.duplicate()
+	pool = []
 	last_scene = ""
 	music_player.stop()
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
