@@ -30,12 +30,6 @@ func _ready() -> void:
 		hands.flip_v = true
 		bg.modulate = Color("#231942")
 		return
-		
-	if globals.incresing_speed:
-		text.text = "Go go go!"
-		hands.texture = up_hand_sprite
-		$speed.play()
-		return
 	
 	if globals.has_lost_life:
 		text.text = messages_bad[randf_range(0, messages_bad.size())]
@@ -44,6 +38,28 @@ func _ready() -> void:
 	else:
 		text.text = messages_good[randf_range(0, messages_good.size())]
 		$good.play()
+	
+	await get_tree().create_timer(2).timeout
+	
+	if globals.incresing_speed:
+		hands.flip_v = false
+		decorations.visible = false
+		original_positions.clear()
+		decorations = decorations_list[randf_range(0, decorations_list.size())]
+		for deco: Sprite2D in decorations.get_children():
+			original_positions[deco] = deco.global_position
+			deco.modulate = Color(colors[randf_range(0, colors.size())])
+		decorations.visible = true
+
+		text.text = "Go go go!"
+		hands.texture = up_hand_sprite
+		$speed.play()
+		await get_tree().create_timer(2).timeout
+	
+	globals.is_on_transition = false
+	globals.has_lost_life = false
+	globals.incresing_speed = false
+	get_tree().change_scene_to_file(globals.last_scene)
 
 func _process(delta: float) -> void:
 	timer += delta

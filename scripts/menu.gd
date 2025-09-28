@@ -11,14 +11,13 @@ var message_timer = 0
 @onready var palm = $PalmHand
 
 func _ready() -> void:
+	
+	if $AnimationPlayer2 != null:
+		$AnimationPlayer2.play("arrow_back")
+	
 	if $AnimationPlayer != null:
 		$AnimationPlayer.seek(0, true)
 		$AnimationPlayer.play("mainmenu")
-
-	if first_time == false:
-		if $ColorRect != null: $ColorRect.color.a = 1
-		var tween = create_tween()
-		tween.tween_property($ColorRect, "color:a", 0.0, 1.0)
 	
 	if globals.pending_menu_messages.size() > 0:
 		_show_pending_message()
@@ -104,3 +103,13 @@ func _close_message():
 	showing_messages = false
 	$ColorRect.modulate.a = 0
 	$Message.visible = false
+
+
+func _on_buttonback_mouse_entered() -> void:
+	if $buttonback != null:
+		$buttonback.scale = Vector2(1.15,1.15)
+
+
+func _on_buttonback_mouse_exited() -> void:
+	if $buttonback != null:
+		$buttonback.scale = Vector2(1,1)

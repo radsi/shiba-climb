@@ -1,9 +1,9 @@
 extends Node
 
 var pending_menu_messages = []
-var pending_next_scene = ""
 
 var is_on_transition = false
+var is_playing_minigame_anim = false
 
 var game_score: int = -1
 var game_speed: float = 200
@@ -27,7 +27,9 @@ var clapped_texture = preload("res://hand sprites/palm hand_clapped.png")
 var all_unlocked_scenes := [
 	"res://scenes/minigames/apples.tscn",
 	"res://scenes/minigames/clean.tscn",
-	"res://scenes/minigames/climb long.tscn"
+	"res://scenes/minigames/climb long.tscn",
+	"res://scenes/minigames/toast.tscn",
+	"res://scenes/minigames/rope.tscn"
 ]
 var pool := []
 var last_scene := ""
@@ -37,6 +39,8 @@ var audio_player: AudioStreamPlayer2D
 var music_player: AudioStreamPlayer2D
 var whistle_audio = preload("res://sounds/90743__pablo-f__referee-whistle.wav")
 var lose_audio = preload("res://sounds/350985__cabled_mess__lose_c_02.wav")
+var menu_audio = preload("res://sounds/628445__davo32__level-music-brackground.mp3")
+var music_audio = preload("res://sounds/404717__djevilj__nu-break-july-2017-drum-track.wav")
 
 func _ready():
 	audio_player = AudioStreamPlayer2D.new()
@@ -46,10 +50,11 @@ func _ready():
 	audio_player.volume_db = -5
 	
 	music_player = AudioStreamPlayer2D.new()
-	music_player.stream = preload("res://sounds/404717__djevilj__nu-break-july-2017-drum-track.wav")
+	music_player.stream = menu_audio
 	add_child(music_player)
 	music_player.bus = "Master"
 	music_player.volume_db = -5
+	music_player.play()
 
 func _process(delta: float) -> void:
 	if is_single_minigame and is_long:
@@ -57,7 +62,7 @@ func _process(delta: float) -> void:
 		hands_drain_rate += delta / 2
 		return
 	
-	if (not roll_started and not is_single_minigame) or is_on_transition:
+	if (not roll_started and not is_single_minigame) or is_on_transition or is_playing_minigame_anim:
 		return
 	
 	if not is_single_minigame and life == 0:
@@ -75,6 +80,7 @@ func _process(delta: float) -> void:
 		roll_pending = false
 
 func start_single_minigame(minigame):
+	music_player.stream = music_audio
 	is_single_minigame = true
 	music_player.play()
 	audio_player.play()
@@ -92,6 +98,7 @@ func start_single_minigame(minigame):
 	_start_roll()
 
 func start_roll_from_menu():
+	music_player.stream = music_audio
 	music_player.play()
 	audio_player.play()
 	game_speed = 200
@@ -108,11 +115,12 @@ func start_roll_from_menu():
 	_start_roll()
 
 func _start_roll():
-	if is_single_minigame and has_lost_life:
+	if is_single_minigame and (has_lost_life or time_left <= 0):
 		has_lost_life = false
 		roll_started = false
 		_game_over()
 		return
+
 
 	if pool.is_empty():
 		pool = []
@@ -120,12 +128,6 @@ func _start_roll():
 			if s != last_scene:
 				pool.append(s)
 		incresing_speed = true
-		game_speed += 50
-		game_time -= 1
-		game_time_long += 5
-		hands_drain_rate += 2.5
-
-	if is_single_minigame:
 		game_speed += 50
 		game_time -= 1
 		game_time_long += 5
@@ -156,17 +158,10 @@ func _start_roll():
 	if game_score >= 0 and not is_single_minigame and life > 0:
 		is_on_transition = true
 		get_tree().change_scene_to_file("res://scenes/transition.tscn")
-		await get_tree().create_timer(3).timeout
-		is_on_transition = false
-		has_lost_life = false
-		incresing_speed = false
+	
+	if game_score == -1: get_tree().change_scene_to_file(scene_path)
+	
 	game_score += 1
-	get_tree().change_scene_to_file(scene_path)
-
-
-func play_whistle():
-	audio_player.stream = whistle_audio
-	audio_player.play()
 	
 func _unlock_minigame(minigame: String):
 	var scene_path = "res://scenes/minigames/"+minigame.to_lower()+".tscn"
@@ -205,5 +200,6 @@ func _game_over():
 	game_time_long = 15
 	pool = []
 	last_scene = ""
-	music_player.stop()
+	music_player.stream = menu_audio
+	music_player.play()
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")

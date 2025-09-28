@@ -20,15 +20,15 @@ func _input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	super._process(delta)
 
-	var changed := false
-	changed = increase_transparency_under_hand(hand_left, last_pos_left) or changed
-	changed = increase_transparency_under_hand(hand_right, last_pos_right) or changed
-	
 	if dragging_left:
 		last_pos_left = get_viewport().get_mouse_position()
 	if dragging_right:
 		last_pos_right = get_viewport().get_mouse_position()
-
+	
+	var changed := false
+	changed = increase_transparency_under_hand(hand_left, last_pos_left) or changed
+	changed = increase_transparency_under_hand(hand_right, last_pos_right) or changed
+	
 	if changed and not scrub_sound.playing:
 		scrub_sound.play()
 
@@ -45,7 +45,6 @@ func increase_transparency_under_hand(hand: Node2D, last_pos: Vector2) -> bool:
 
 			if rect.has_point(local_pos):
 				var c: Color = obj.modulate
-				if c.a > 25: return false
 				var new_alpha: float = clamp(c.a - transparency_step, 0.0, 1.0)
 
 				if new_alpha < c.a:

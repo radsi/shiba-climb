@@ -6,6 +6,10 @@ extends Node
 var smooch_played = false
 var timer = 0
 var hearts_original_positions = {}
+var rope_original_pos
+
+func _ready() -> void:
+	rope_original_pos = rope.global_position
 
 func _process(delta: float) -> void:
 	timer += delta
@@ -16,9 +20,17 @@ func _process(delta: float) -> void:
 			_apply_random_transform(heart)
 	
 	if girl_hand.global_position.y >= 180: 
+		globals.minigame_completed = true
 		if not smooch_played: 
 			$smooch.play() 
 			smooch_played = true
+			if globals.is_single_minigame:
+				globals.is_playing_minigame_anim = true
+				globals.time_left = globals.game_time
+				await get_tree().create_timer(1.5).timeout
+				globals.is_playing_minigame_anim = false
+				rope.global_position = rope_original_pos
+				smooch_played = false
 		return
 	rope.global_position.y -= globals.game_speed / 100
 
