@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://uosl6edrkgle"]
+[gd_scene load_steps=21 format=3 uid="uid://uosl6edrkgle"]
 
 [ext_resource type="Script" uid="uid://b8d4qfheifn3y" path="res://scripts/managers/gallery_manager.gd" id="1_543d2"]
 [ext_resource type="Texture2D" uid="uid://l2atiswygex0" path="res://transitions/bg.jpg" id="1_lg6hf"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://balhamsanka73" path="res://mini games sprites/toast.png" id="9_u7mkv"]
 [ext_resource type="Texture2D" uid="uid://cgx4juqgdoc6p" path="res://mini games sprites/girl hand.png" id="10_fdfcg"]
 [ext_resource type="Texture2D" uid="uid://cw64dvnkk3oqm" path="res://arrow.png" id="11_mtg1g"]
+[ext_resource type="Texture2D" uid="uid://ctg81sh5c2by3" path="res://woodicon.png" id="11_vmxya"]
 [ext_resource type="Texture2D" uid="uid://b1a546gu0sy1e" path="res://arrow_green.png" id="12_fgpkw"]
 [ext_resource type="Texture2D" uid="uid://c2isxy3781r0g" path="res://arrow_green2.png" id="13_vtsty"]
 [ext_resource type="Texture2D" uid="uid://bh3rusuqfqwpi" path="res://arrow2.png" id="14_li7wd"]
@@ -227,6 +228,11 @@ texture_filter = 1
 position = Vector2(215, 392)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_mdy1u")
+
+[node name="bonfire" type="Sprite2D" parent="page2/GalleryItem"]
+texture_filter = 1
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("11_vmxya")
 
 [node name="GalleryItem2" type="Sprite2D" parent="page2"]
 texture_filter = 1

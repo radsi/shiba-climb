@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cgdo2j6k8m6ku"
+path="res://.godot/imported/bonfire extinguish.wav-d09f8d6d4500bf713c829f9369f7792c.sample"
+
+[deps]
+
+source_file="res://sounds/bonfire extinguish.wav"
+dest_files=["res://.godot/imported/bonfire extinguish.wav-d09f8d6d4500bf713c829f9369f7792c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

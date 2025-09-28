@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://re18gkg4sw4r"]
+[gd_scene load_steps=16 format=3 uid="uid://re18gkg4sw4r"]
 
 [ext_resource type="Script" uid="uid://dykhujf08cqwk" path="res://scripts/menu.gd" id="1_vjb58"]
 [ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="1_yqeox"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://balhamsanka73" path="res://mini games sprites/toast.png" id="8_i6lef"]
 [ext_resource type="Texture2D" uid="uid://cgx4juqgdoc6p" path="res://mini games sprites/girl hand.png" id="9_mj5lg"]
 [ext_resource type="AudioStream" uid="uid://hcne7nxxgd22" path="res://sounds/clapping-hands.mp3" id="10_70i5f"]
+[ext_resource type="Texture2D" uid="uid://ctg81sh5c2by3" path="res://woodicon.png" id="10_ufwb2"]
 
 [sub_resource type="Animation" id="Animation_mhnvy"]
 length = 0.001
@@ -263,6 +264,13 @@ visible = false
 position = Vector2(0, 82)
 scale = Vector2(3, 3.84)
 texture = ExtResource("9_mj5lg")
+
+[node name="Bonfire" type="Sprite2D" parent="Message/Icons"]
+visible = false
+texture_filter = 1
+position = Vector2(0, 77)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("10_ufwb2")
 
 [node name="Bg" type="Sprite2D" parent="."]
 modulate = Color(0.23110586, 0.40934858, 0.4403412, 1)

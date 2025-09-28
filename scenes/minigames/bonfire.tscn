@@ -1,0 +1,168 @@
+[gd_scene load_steps=17 format=3 uid="uid://bbi4kxb2c00lw"]
+
+[ext_resource type="Script" uid="uid://cgh5utwddmow4" path="res://scripts/managers/fire_manager.gd" id="1_045ua"]
+[ext_resource type="Script" uid="uid://dj0vwwkcqrglt" path="res://scripts/player/player_hands_FIRE.gd" id="2_wajfn"]
+[ext_resource type="Texture2D" uid="uid://cb0v8wmpwl7nl" path="res://hand sprites/open hand.png" id="3_cffij"]
+[ext_resource type="Texture2D" uid="uid://bv5npu7s4w5wp" path="res://intro sprites/TextBG7.png" id="4_wn4ak"]
+[ext_resource type="Script" uid="uid://cujlduaqdkpvi" path="res://scripts/managers/mgIntro_manager.gd" id="5_1nk64"]
+[ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="6_fo1ei"]
+[ext_resource type="Texture2D" uid="uid://ddxgo2saijcvr" path="res://footer.png" id="7_edppi"]
+[ext_resource type="Script" uid="uid://ho5oyn8p3ner" path="res://scripts/managers/footer_manager.gd" id="8_o1ygq"]
+[ext_resource type="Texture2D" uid="uid://bbsvjnu6h384i" path="res://hand sprites/heart hand.png" id="9_scwee"]
+[ext_resource type="Texture2D" uid="uid://bptvtgxhawegg" path="res://footer-timer-background.png" id="10_jv3qr"]
+[ext_resource type="Texture2D" uid="uid://bwex4tit2aiyt" path="res://footer-timer.png" id="11_n4k0e"]
+[ext_resource type="Texture2D" uid="uid://cym2ls1o5qm2b" path="res://mini games sprites/fire/fan.png" id="12_d80tj"]
+[ext_resource type="Texture2D" uid="uid://x7g3xrf1jx0g" path="res://mini games sprites/fire/wood.png" id="13_atwlu"]
+[ext_resource type="Texture2D" uid="uid://coecmf0iy3kft" path="res://mini games sprites/fire/fire1.png" id="14_pabhc"]
+[ext_resource type="AudioStream" uid="uid://5shsal0nf15d" path="res://sounds/bonfire.wav" id="15_7mgu3"]
+[ext_resource type="AudioStream" uid="uid://cgdo2j6k8m6ku" path="res://sounds/bonfire extinguish.wav" id="16_l5dto"]
+
+[node name="Fire" type="Node2D"]
+script = ExtResource("1_045ua")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+position = Vector2(540, 540)
+script = ExtResource("2_wajfn")
+
+[node name="Hand1" type="Sprite2D" parent="CanvasGroup"]
+z_index = 10
+texture_filter = 1
+position = Vector2(-50, 100)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_cffij")
+
+[node name="Hand2" type="Sprite2D" parent="CanvasGroup"]
+z_index = 10
+texture_filter = 1
+position = Vector2(50, 100)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_cffij")
+flip_h = true
+
+[node name="TextBg1" type="Sprite2D" parent="."]
+z_index = 15
+texture_filter = 1
+position = Vector2(530, 400)
+scale = Vector2(3, 2)
+texture = ExtResource("4_wn4ak")
+script = ExtResource("5_1nk64")
+
+[node name="Label" type="Label" parent="TextBg1"]
+z_index = 15
+anchors_preset = -1
+anchor_left = 0.17228465
+anchor_top = 0.22580644
+anchor_right = 1.0599251
+anchor_bottom = 0.7741935
+offset_left = -75.333336
+offset_top = -58.5
+offset_right = -75.33333
+offset_bottom = -58.5
+scale = Vector2(0.6, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_fo1ei")
+theme_override_font_sizes/font_size = 64
+text = "FAN"
+metadata/_edit_use_anchors_ = true
+
+[node name="Footer" type="Sprite2D" parent="."]
+z_index = 10
+texture_filter = 1
+position = Vector2(536, 1024)
+scale = Vector2(1.1, 1.06)
+texture = ExtResource("7_edppi")
+script = ExtResource("8_o1ygq")
+
+[node name="HeartHand" type="Sprite2D" parent="Footer"]
+modulate = Color(0.8891468, 0.8891468, 0.88914675, 1)
+z_index = 2
+texture_filter = 1
+position = Vector2(368.46835, -13.207642)
+scale = Vector2(0.7, 0.733)
+texture = ExtResource("9_scwee")
+
+[node name="Label" type="Label" parent="Footer"]
+anchors_preset = -1
+anchor_left = 0.71171165
+anchor_top = 0.33262315
+anchor_right = 0.8057116
+anchor_bottom = 1.018107
+offset_left = -500.00003
+offset_top = -62.0
+offset_right = -500.0
+offset_bottom = -62.000008
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_fo1ei")
+theme_override_font_sizes/font_size = 64
+text = "X"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Footer"]
+anchors_preset = -1
+anchor_left = 0.6657657
+anchor_top = 0.19567865
+anchor_right = 0.7597657
+anchor_bottom = 0.8811625
+offset_left = -500.0
+offset_top = -62.0
+offset_right = -500.0
+offset_bottom = -62.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_fo1ei")
+theme_override_font_sizes/font_size = 80
+text = "3"
+metadata/_edit_use_anchors_ = true
+
+[node name="TimerColor" type="ColorRect" parent="Footer"]
+z_index = 1
+offset_left = -361.26123
+offset_top = -38.67926
+offset_right = -321.26123
+offset_bottom = 1.3207397
+scale = Vector2(11.25, 1.85)
+color = Color(1, 0, 0, 1)
+
+[node name="FooterTimerBackground" type="Sprite2D" parent="Footer"]
+position = Vector2(-60.36035, 0)
+scale = Vector2(0.9009008, 0.94339615)
+texture = ExtResource("10_jv3qr")
+
+[node name="FooterTimer" type="Sprite2D" parent="Footer"]
+z_index = 1
+position = Vector2(-60.36035, 9.536743e-05)
+scale = Vector2(0.90090084, 0.9433962)
+texture = ExtResource("11_n4k0e")
+
+[node name="Fan" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(540, 789)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("12_d80tj")
+
+[node name="bonfire" type="CanvasGroup" parent="."]
+position = Vector2(540, 577)
+
+[node name="Wood" type="Sprite2D" parent="bonfire"]
+texture_filter = 1
+rotation = 0.46959803
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_atwlu")
+
+[node name="Wood2" type="Sprite2D" parent="bonfire"]
+texture_filter = 1
+rotation = -0.4970326
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_atwlu")
+flip_h = true
+
+[node name="fire" type="Sprite2D" parent="bonfire"]
+position = Vector2(2, -12)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("14_pabhc")
+offset = Vector2(-25, -235)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_7mgu3")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_l5dto")

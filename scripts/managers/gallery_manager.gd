@@ -10,29 +10,30 @@ func _ready() -> void:
 	max_page = get_tree().get_nodes_in_group("pages").size()
 	$AnimationPlayer.play("arrow_green")
 	$AnimationPlayer2.play("arrow_back")
-	for item in get_node("page"+str(page)).get_children():
-		var item_icon = null
-		if item.get_child_count() > 0:
-			item_icon = item.get_child(0)
+	for page in get_tree().get_nodes_in_group("pages"):
+		for item in page.get_children():
+			var item_icon = null
+			if item.get_child_count() > 0:
+				item_icon = item.get_child(0)
 
-		if item_icon == null:
-			if item is Sprite2D:
+			if item_icon == null:
+				if item is Sprite2D:
+					item.texture = gallery_locked_sprite
+				item.set_meta("unlocked", false)
+				continue
+
+			var unlocked = false
+			var icon_name = item_icon.name
+			for minigame in globals.all_unlocked_scenes:
+				if minigame.split("/")[-1].contains(icon_name):
+					unlocked = true
+					break
+
+			item_icon.visible = unlocked
+			if not unlocked and item is Sprite2D:
 				item.texture = gallery_locked_sprite
-			item.set_meta("unlocked", false)
-			continue
 
-		var unlocked = false
-		var icon_name = item_icon.name
-		for minigame in globals.all_unlocked_scenes:
-			if minigame.split("/")[-1].contains(icon_name):
-				unlocked = true
-				break
-
-		item_icon.visible = unlocked
-		if not unlocked and item is Sprite2D:
-			item.texture = gallery_locked_sprite
-
-		item.set_meta("unlocked", unlocked)
+			item.set_meta("unlocked", unlocked)
 
 
 func _process(delta: float) -> void:

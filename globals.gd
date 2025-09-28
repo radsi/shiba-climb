@@ -27,9 +27,7 @@ var clapped_texture = preload("res://hand sprites/palm hand_clapped.png")
 var all_unlocked_scenes := [
 	"res://scenes/minigames/apples.tscn",
 	"res://scenes/minigames/clean.tscn",
-	"res://scenes/minigames/climb long.tscn",
-	"res://scenes/minigames/toast.tscn",
-	"res://scenes/minigames/rope.tscn"
+	"res://scenes/minigames/climb long.tscn"
 ]
 var pool := []
 var last_scene := ""
@@ -178,6 +176,9 @@ func _game_over():
 	
 	if game_score >= 16:
 		_unlock_minigame("Rope")
+		
+	if game_score >= 24:
+		_unlock_minigame("Bonfire")
 	
 	roll_started = false
 	is_on_transition = false
