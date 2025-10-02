@@ -275,7 +275,7 @@ position = Vector2(540, 732)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_mdy1u")
 
-[node name="pingpong" type="Sprite2D" parent="page2/GalleryItem5"]
+[node name="pingpong long" type="Sprite2D" parent="page2/GalleryItem5"]
 scale = Vector2(0.13, 0.13)
 texture = ExtResource("15_dtrjb")
 

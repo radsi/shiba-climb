@@ -12,6 +12,8 @@ var fire
 	$Candle3/Tip
 ]
 
+var lighted_tips = {"Candle": false, "Candle2": false, "Candle3":false}
+
 var candle_played_flags = []
 
 var timer = 0.0
@@ -81,6 +83,9 @@ func _process(delta: float) -> void:
 			if fire.global_position.distance_to(tip.global_position) < 12:
 				var candle_fire = tip.get_parent().get_child(1)
 				candle_fire.show()
+				lighted_tips[tip.get_parent().name] = true
+				if lighted_tips["Candle"] != true or lighted_tips["Candle2"] != true or lighted_tips["Candle3"] != true:
+					return
 				globals.minigame_completed = true
 				
 				if not candle_played_flags[i]:
@@ -100,4 +105,8 @@ func _process(delta: float) -> void:
 					_match.z_index = -1
 					_match.global_position = original_match_transform[0]
 					_match.rotation_degrees = original_match_transform[1]
+					lighted_tips = {"Candle": false, "Candle2": false, "Candle3":false}
+					
+					for x in range(candle_tips.size()):
+						candle_tips[x].get_parent().get_child(1).hide()
 				break

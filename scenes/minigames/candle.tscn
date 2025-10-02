@@ -1,43 +1,43 @@
 [gd_scene load_steps=18 format=3 uid="uid://cy6wgkvcwj00y"]
 
-[ext_resource type="Script" uid="uid://bl712wdy5hjtv" path="res://scripts/managers/smoke_manager.gd" id="1_7dni8"]
-[ext_resource type="Script" uid="uid://okjjnmcdlcnk" path="res://scripts/player/player_hands_SMOKE.gd" id="1_umn7l"]
-[ext_resource type="Texture2D" uid="uid://cb0v8wmpwl7nl" path="res://hand sprites/open hand.png" id="2_4h7qm"]
-[ext_resource type="Texture2D" uid="uid://dd1uxcrghspfr" path="res://intro sprites/TextBG6.png" id="3_umn7l"]
-[ext_resource type="Script" uid="uid://cujlduaqdkpvi" path="res://scripts/managers/mgIntro_manager.gd" id="4_jfsjb"]
-[ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="5_lcyy4"]
-[ext_resource type="Texture2D" uid="uid://ddxgo2saijcvr" path="res://footer.png" id="6_7dni8"]
-[ext_resource type="Script" uid="uid://ho5oyn8p3ner" path="res://scripts/managers/footer_manager.gd" id="7_ciar3"]
-[ext_resource type="Texture2D" uid="uid://bbsvjnu6h384i" path="res://hand sprites/heart hand.png" id="8_vpdab"]
-[ext_resource type="Texture2D" uid="uid://bptvtgxhawegg" path="res://footer-timer-background.png" id="9_svlyv"]
-[ext_resource type="Texture2D" uid="uid://bwex4tit2aiyt" path="res://footer-timer.png" id="10_ddfj8"]
-[ext_resource type="Texture2D" uid="uid://vhfh3sg8lwi7" path="res://mini games sprites/candle.png" id="11_lcyy4"]
-[ext_resource type="Texture2D" uid="uid://cc05lcipl65ul" path="res://mini games sprites/matches.png" id="12_7dni8"]
-[ext_resource type="Texture2D" uid="uid://cpjk5qkrqqq7v" path="res://mini games sprites/smoke/fire1.png" id="13_ciar3"]
-[ext_resource type="PackedScene" uid="uid://dxqiqoa3du4nx" path="res://prefabs/match/match.tscn" id="13_jfsjb"]
-[ext_resource type="AudioStream" uid="uid://d2b1whc4i54ts" path="res://sounds/fosforo.wav" id="14_lcyy4"]
-[ext_resource type="AudioStream" uid="uid://du4orv0gpo3pc" path="res://sounds/398448__brachern__match-ignite-no-strike.wav" id="17_vpdab"]
+[ext_resource type="Script" uid="uid://bl712wdy5hjtv" path="res://scripts/managers/smoke_manager.gd" id="1_r6h6a"]
+[ext_resource type="Script" uid="uid://okjjnmcdlcnk" path="res://scripts/player/player_hands_SMOKE.gd" id="2_jl4vb"]
+[ext_resource type="Texture2D" uid="uid://cb0v8wmpwl7nl" path="res://hand sprites/open hand.png" id="3_kh67q"]
+[ext_resource type="Texture2D" uid="uid://dd1uxcrghspfr" path="res://intro sprites/TextBG6.png" id="4_vm4dp"]
+[ext_resource type="Script" uid="uid://cujlduaqdkpvi" path="res://scripts/managers/mgIntro_manager.gd" id="5_mmhu4"]
+[ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="6_iuxab"]
+[ext_resource type="Texture2D" uid="uid://ddxgo2saijcvr" path="res://footer.png" id="7_j8e6x"]
+[ext_resource type="Script" uid="uid://ho5oyn8p3ner" path="res://scripts/managers/footer_manager.gd" id="8_k8153"]
+[ext_resource type="Texture2D" uid="uid://bbsvjnu6h384i" path="res://hand sprites/heart hand.png" id="9_apiwl"]
+[ext_resource type="Texture2D" uid="uid://bptvtgxhawegg" path="res://footer-timer-background.png" id="10_r4j5x"]
+[ext_resource type="Texture2D" uid="uid://bwex4tit2aiyt" path="res://footer-timer.png" id="11_bmekm"]
+[ext_resource type="Texture2D" uid="uid://vhfh3sg8lwi7" path="res://mini games sprites/candle.png" id="12_gk4ta"]
+[ext_resource type="Texture2D" uid="uid://cpjk5qkrqqq7v" path="res://mini games sprites/smoke/fire1.png" id="13_2b3pw"]
+[ext_resource type="Texture2D" uid="uid://cc05lcipl65ul" path="res://mini games sprites/matches.png" id="14_yr1un"]
+[ext_resource type="PackedScene" uid="uid://dxqiqoa3du4nx" path="res://prefabs/match/match.tscn" id="15_psf13"]
+[ext_resource type="AudioStream" uid="uid://d2b1whc4i54ts" path="res://sounds/fosforo.wav" id="16_jyxwl"]
+[ext_resource type="AudioStream" uid="uid://du4orv0gpo3pc" path="res://sounds/398448__brachern__match-ignite-no-strike.wav" id="17_4xnau"]
 
 [node name="Smoke" type="Node2D"]
-script = ExtResource("1_7dni8")
+script = ExtResource("1_r6h6a")
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
 position = Vector2(540, 540)
-script = ExtResource("1_umn7l")
+script = ExtResource("2_jl4vb")
 
 [node name="Hand1" type="Sprite2D" parent="CanvasGroup"]
 z_index = 10
 texture_filter = 1
 position = Vector2(-50, 100)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_4h7qm")
+texture = ExtResource("3_kh67q")
 
 [node name="Hand2" type="Sprite2D" parent="CanvasGroup"]
 z_index = 10
 texture_filter = 1
 position = Vector2(50, 100)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_4h7qm")
+texture = ExtResource("3_kh67q")
 flip_h = true
 
 [node name="TextBg1" type="Sprite2D" parent="."]
@@ -45,8 +45,8 @@ z_index = 15
 texture_filter = 1
 position = Vector2(530, 400)
 scale = Vector2(3, 2)
-texture = ExtResource("3_umn7l")
-script = ExtResource("4_jfsjb")
+texture = ExtResource("4_vm4dp")
+script = ExtResource("5_mmhu4")
 
 [node name="Label" type="Label" parent="TextBg1"]
 z_index = 15
@@ -61,7 +61,7 @@ offset_right = -99.0
 offset_bottom = -58.5
 scale = Vector2(0.6, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("5_lcyy4")
+theme_override_fonts/font = ExtResource("6_iuxab")
 theme_override_font_sizes/font_size = 64
 text = "LIGHT"
 metadata/_edit_use_anchors_ = true
@@ -71,8 +71,8 @@ z_index = 10
 texture_filter = 1
 position = Vector2(536, 1024)
 scale = Vector2(1.1, 1.06)
-texture = ExtResource("6_7dni8")
-script = ExtResource("7_ciar3")
+texture = ExtResource("7_j8e6x")
+script = ExtResource("8_k8153")
 
 [node name="HeartHand" type="Sprite2D" parent="Footer"]
 modulate = Color(0.8891468, 0.8891468, 0.88914675, 1)
@@ -80,7 +80,7 @@ z_index = 2
 texture_filter = 1
 position = Vector2(368.46835, -13.207642)
 scale = Vector2(0.7, 0.733)
-texture = ExtResource("8_vpdab")
+texture = ExtResource("9_apiwl")
 
 [node name="Label" type="Label" parent="Footer"]
 anchors_preset = -1
@@ -93,7 +93,7 @@ offset_top = -62.0
 offset_right = -500.0
 offset_bottom = -62.000008
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("5_lcyy4")
+theme_override_fonts/font = ExtResource("6_iuxab")
 theme_override_font_sizes/font_size = 64
 text = "X"
 metadata/_edit_use_anchors_ = true
@@ -109,7 +109,7 @@ offset_top = -62.0
 offset_right = -500.0
 offset_bottom = -62.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("5_lcyy4")
+theme_override_fonts/font = ExtResource("6_iuxab")
 theme_override_font_sizes/font_size = 80
 text = "3"
 metadata/_edit_use_anchors_ = true
@@ -126,17 +126,17 @@ color = Color(1, 0, 0, 1)
 [node name="FooterTimerBackground" type="Sprite2D" parent="Footer"]
 position = Vector2(-60.36035, 0)
 scale = Vector2(0.9009008, 0.94339615)
-texture = ExtResource("9_svlyv")
+texture = ExtResource("10_r4j5x")
 
 [node name="FooterTimer" type="Sprite2D" parent="Footer"]
 z_index = 1
 position = Vector2(-60.36035, 9.536743e-05)
 scale = Vector2(0.90090084, 0.9433962)
-texture = ExtResource("10_ddfj8")
+texture = ExtResource("11_bmekm")
 
 [node name="Candle" type="Sprite2D" parent="."]
 position = Vector2(768, 832)
-texture = ExtResource("11_lcyy4")
+texture = ExtResource("12_gk4ta")
 
 [node name="Tip" type="Node2D" parent="Candle"]
 position = Vector2(1, -114)
@@ -145,15 +145,15 @@ position = Vector2(1, -114)
 visible = false
 position = Vector2(0, -97.999985)
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("13_ciar3")
+texture = ExtResource("13_2b3pw")
 offset = Vector2(50, -235)
 
 [node name="Matches" type="Sprite2D" parent="."]
 position = Vector2(331, 797)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("12_7dni8")
+texture = ExtResource("14_yr1un")
 
-[node name="Match" parent="Matches" instance=ExtResource("13_jfsjb")]
+[node name="Match" parent="Matches" instance=ExtResource("15_psf13")]
 z_index = -1
 z_as_relative = false
 position = Vector2(96, -22)
@@ -161,14 +161,14 @@ rotation = 0.0
 scale = Vector2(0.2, 0.2)
 
 [node name="slide" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("14_lcyy4")
+stream = ExtResource("16_jyxwl")
 
 [node name="candle" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("17_vpdab")
+stream = ExtResource("17_4xnau")
 
 [node name="Candle2" type="Sprite2D" parent="."]
 position = Vector2(823, 957)
-texture = ExtResource("11_lcyy4")
+texture = ExtResource("12_gk4ta")
 
 [node name="Tip" type="Node2D" parent="Candle2"]
 position = Vector2(1, -114)
@@ -177,12 +177,12 @@ position = Vector2(1, -114)
 visible = false
 position = Vector2(0, -97.999985)
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("13_ciar3")
+texture = ExtResource("13_2b3pw")
 offset = Vector2(50, -235)
 
 [node name="Candle3" type="Sprite2D" parent="."]
 position = Vector2(707, 923)
-texture = ExtResource("11_lcyy4")
+texture = ExtResource("12_gk4ta")
 
 [node name="Tip" type="Node2D" parent="Candle3"]
 position = Vector2(1, -114)
@@ -191,5 +191,5 @@ position = Vector2(1, -114)
 visible = false
 position = Vector2(0, -97.999985)
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("13_ciar3")
+texture = ExtResource("13_2b3pw")
 offset = Vector2(50, -235)

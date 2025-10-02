@@ -23,7 +23,7 @@ func _ready() -> void:
 				continue
 
 			var unlocked = false
-			var icon_name = item_icon.name
+			var icon_name = item_icon.name.replace(" long", "")
 			for minigame in globals.all_unlocked_scenes:
 				if minigame.split("/")[-1].contains(icon_name):
 					unlocked = true
