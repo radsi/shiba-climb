@@ -11,7 +11,7 @@ var stars_original_pos = {}
 
 var all_max_transparent := true
 
-@onready var max_shirt = round(str(globals.game_speed)[0].to_int() * 1.5)
+var max_shirt = 3
 var shirt_count = 0
 var shirt_counted := false
 
@@ -54,7 +54,6 @@ func _process(delta: float) -> void:
 				return
 			else:
 				shirt_count = 0
-				max_shirt = round(str(globals.game_speed)[0].to_int() * 1.5)
 				globals.time_left = globals.game_time
 		
 		globals.is_playing_minigame_anim = true

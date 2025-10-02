@@ -41,14 +41,10 @@ func _process(delta: float) -> void:
 	item_under_mouse = null
 
 	for item in get_node("page"+str(page)).get_children():
-		if not item.get_meta("unlocked"):
-			item.scale = Vector2(1.5, 1.5)
-			continue
-
 		var scale_target = Vector2(1.5, 1.5)
 		if is_mouse_over_item(item, mouse_pos):
-			item_under_mouse = item
 			scale_target = Vector2(1.75, 1.75)
+			if item.get_meta("unlocked"): item_under_mouse = item
 		item.scale = scale_target
 
 

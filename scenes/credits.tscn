@@ -128,6 +128,7 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Label2" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0032407406
@@ -189,6 +190,33 @@ texture = ExtResource("3_0ctdu")
 libraries = {
 &"": SubResource("AnimationLibrary_7r7o8")
 }
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_top = 278.0
+offset_right = 1080.0
+offset_bottom = 1078.0
+theme_override_fonts/normal_font = ExtResource("2_u3bib")
+theme_override_font_sizes/normal_font_size = 48
+text = "Text font: 1001Fonts
+Whistle SFX: Pablo-F - freesound.org
+Arcade assets: comp3interactive - itch.io
+Increase sfx: michael_kur95 - freesound.org
+Oscilation sfx: GuilhermeCayeiro - freesound.org
+Toast: pngall.com
+Jam: pluspng.com
+Rope sfx: FullStackSound - freesound.org
+Rope sfx 2: MPierluissi - freesound.org
+Retro explosion: Mrthenoronha - freesound.org
+Knocking wall - Taira Komori on freesound.org
+Jail background: freepik.es
+Box break sfx: vibinchillin - freesound.org
+Apple sfx: BerduSmith - freesound.org
+Pencil sfx: ani_music - freesound.org
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 162
 
 [connection signal="mouse_entered" from="buttonback" to="." method="_on_buttonback_mouse_entered"]
 [connection signal="mouse_exited" from="buttonback" to="." method="_on_buttonback_mouse_exited"]

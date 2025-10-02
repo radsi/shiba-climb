@@ -12,6 +12,7 @@ var initial_scale := Vector2.ONE
 var timer := 0.0
 
 func _ready() -> void:
+	globals.is_playing_minigame_anim = false
 	if globals.is_single_minigame:
 		if globals.is_long: self.visible = false
 		globals.life = 1
@@ -27,8 +28,6 @@ func _process(delta: float) -> void:
 	var t = clamp(globals.time_left / max_time, 0.0, 1.0)
 
 	var idx := int(floor((1.0 - t) * (timer_colors.size() - 1)))
-	if globals.is_long:
-		idx = timer_colors.size() - 1 - idx
 	timer_color.color = Color(timer_colors[idx])
 
 	timer_color.scale.x = initial_scale.x * t

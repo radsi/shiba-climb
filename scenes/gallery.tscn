@@ -156,7 +156,6 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="page1" type="CanvasGroup" parent="." groups=["pages"]]
-visible = false
 
 [node name="GalleryItem" type="Sprite2D" parent="page1"]
 texture_filter = 1
@@ -225,6 +224,7 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("10_fdfcg")
 
 [node name="page2" type="CanvasGroup" parent="." groups=["pages"]]
+visible = false
 
 [node name="GalleryItem" type="Sprite2D" parent="page2"]
 texture_filter = 1
@@ -265,7 +265,6 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_mdy1u")
 
 [node name="candle" type="Sprite2D" parent="page2/GalleryItem4"]
-position = Vector2(2, 0)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("14_rlvu6")
 
@@ -276,6 +275,45 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_mdy1u")
 
 [node name="GalleryItem6" type="Sprite2D" parent="page2"]
+texture_filter = 1
+position = Vector2(865, 732)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_mdy1u")
+
+[node name="page3" type="CanvasGroup" parent="." groups=["pages"]]
+visible = false
+
+[node name="GalleryItem" type="Sprite2D" parent="page3"]
+texture_filter = 1
+position = Vector2(215, 392)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_mdy1u")
+
+[node name="GalleryItem2" type="Sprite2D" parent="page3"]
+texture_filter = 1
+position = Vector2(540, 392)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_mdy1u")
+
+[node name="GalleryItem3" type="Sprite2D" parent="page3"]
+texture_filter = 1
+position = Vector2(865, 392)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_mdy1u")
+
+[node name="GalleryItem4" type="Sprite2D" parent="page3"]
+texture_filter = 1
+position = Vector2(215, 732)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_mdy1u")
+
+[node name="GalleryItem5" type="Sprite2D" parent="page3"]
+texture_filter = 1
+position = Vector2(540, 732)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_mdy1u")
+
+[node name="GalleryItem6" type="Sprite2D" parent="page3"]
 texture_filter = 1
 position = Vector2(865, 732)
 scale = Vector2(1.5, 1.5)
