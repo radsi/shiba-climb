@@ -52,11 +52,14 @@ func _process(delta):
 		if accuracy >= 80:
 			ink_deco.show()
 			globals.minigame_completed = true
+			label.hide()
 			$"../pencil".play()
 			if not globals.is_single_minigame:
 				globals.is_playing_minigame_anim = true
+				globals.time_left = globals.game_time
 				await get_tree().create_timer(2).timeout
 				$".."._ready()
+				label.show()
 				globals.is_playing_minigame_anim = false
 				ink_deco.hide()
 				subvp.render_target_update_mode = SubViewport.UPDATE_ALWAYS
@@ -65,6 +68,7 @@ func _process(delta):
 
 				kanji_image = subvp.get_texture().get_image()
 				draw_image.fill(Color(1,1,1,0))
+				draw_tex.update(draw_image)
 
 	_update_wrong_pixels(delta)
 
@@ -141,7 +145,7 @@ func _update_wrong_pixels(delta: float) -> void:
 	var needs_update = false
 	for i in range(wrong_pixels.size() - 1, -1, -1):
 		wrong_pixels[i]["time"] += delta
-		if wrong_pixels[i]["time"] >= 3.0:
+		if wrong_pixels[i]["time"] >= 1.0:
 			var pos = wrong_pixels[i]["pos"]
 			if pos.x >= 0 and pos.y >= 0 and pos.x < draw_image.get_width() and pos.y < draw_image.get_height():
 				draw_image.set_pixelv(pos, Color(1,1,1,0))
