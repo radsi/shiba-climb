@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://uosl6edrkgle"]
+[gd_scene load_steps=24 format=3 uid="uid://uosl6edrkgle"]
 
 [ext_resource type="Script" uid="uid://b8d4qfheifn3y" path="res://scripts/managers/gallery_manager.gd" id="1_543d2"]
 [ext_resource type="Texture2D" uid="uid://l2atiswygex0" path="res://transitions/bg.jpg" id="1_lg6hf"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dtl5akw64uc4" path="res://mini games sprites/ink bottle.png" id="13_vrutb"]
 [ext_resource type="Texture2D" uid="uid://c2isxy3781r0g" path="res://arrow_green2.png" id="13_vtsty"]
 [ext_resource type="Texture2D" uid="uid://bh3rusuqfqwpi" path="res://arrow2.png" id="14_li7wd"]
+[ext_resource type="Texture2D" uid="uid://vhfh3sg8lwi7" path="res://mini games sprites/candle.png" id="14_rlvu6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fgpkw"]
 
@@ -155,6 +156,7 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="page1" type="CanvasGroup" parent="." groups=["pages"]]
+visible = false
 
 [node name="GalleryItem" type="Sprite2D" parent="page1"]
 texture_filter = 1
@@ -223,7 +225,6 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("10_fdfcg")
 
 [node name="page2" type="CanvasGroup" parent="." groups=["pages"]]
-visible = false
 
 [node name="GalleryItem" type="Sprite2D" parent="page2"]
 texture_filter = 1
@@ -262,6 +263,11 @@ texture_filter = 1
 position = Vector2(215, 732)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_mdy1u")
+
+[node name="candle" type="Sprite2D" parent="page2/GalleryItem4"]
+position = Vector2(2, 0)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("14_rlvu6")
 
 [node name="GalleryItem5" type="Sprite2D" parent="page2"]
 texture_filter = 1

@@ -1,18 +1,11 @@
 extends HANDS
 
-@onready var fire_sprites = [
-	preload("res://mini games sprites/fire/fire1.png"),
-	preload("res://mini games sprites/fire/fire2.png"),
-	preload("res://mini games sprites/fire/fire3.png")
-]
-
 @onready var fan: Sprite2D = $"../Fan"
 @onready var fire: Sprite2D = $"../bonfire/fire"
 var attached_left: Sprite2D = null
 var attached_right: Sprite2D = null
 
 var last_fan_pos: Vector2
-var timer := 0.0
 var movement_threshold := 5.0
 var max_fire_scale := 0.6
 
@@ -24,16 +17,7 @@ func _ready():
 
 func _process(delta):
 	super._process(delta)
-
-	timer += delta
-	if timer >= 0.5:
-		fire.texture = fire_sprites[0]
-	if timer >= 1:
-		fire.texture = fire_sprites[1]
-	if timer >= 1.5:
-		fire.texture = fire_sprites[2]
-		timer = 0
-
+	
 	update_attached_hand(attached_left, hand_left, true, last_pos_left)
 	update_attached_hand(attached_right, hand_right, false, last_pos_right)
 

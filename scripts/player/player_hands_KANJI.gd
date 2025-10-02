@@ -18,6 +18,9 @@ var brush_size := 12
 var can_calculate = false
 var wrong_pixels: Array = []
 
+var kanjis_done = 0
+var can_add_kanji = true
+
 func _ready() -> void:
 	super._ready()
 
@@ -54,7 +57,11 @@ func _process(delta):
 			globals.minigame_completed = true
 			label.hide()
 			$"../pencil".play()
-			if not globals.is_single_minigame:
+			if globals.is_single_minigame:
+				if can_add_kanji: 
+					kanjis_done += 1
+					can_add_kanji = false
+				if kanjis_done >= 8: globals._unlock_minigame("Candle")
 				globals.is_playing_minigame_anim = true
 				globals.time_left = globals.game_time
 				await get_tree().create_timer(2).timeout
@@ -69,6 +76,8 @@ func _process(delta):
 				kanji_image = subvp.get_texture().get_image()
 				draw_image.fill(Color(1,1,1,0))
 				draw_tex.update(draw_image)
+				
+				can_add_kanji = true
 
 	_update_wrong_pixels(delta)
 

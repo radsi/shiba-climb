@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxqiqoa3du4nx"]
+
+[ext_resource type="Texture2D" uid="uid://bfspur8cn2tyq" path="res://mini games sprites/match.png" id="1_5y07l"]
+[ext_resource type="Texture2D" uid="uid://cpjk5qkrqqq7v" path="res://mini games sprites/smoke/fire1.png" id="2_5y07l"]
+
+[node name="Match" type="Sprite2D"]
+rotation = -1.3962634
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_5y07l")
+
+[node name="fire" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(592.0263, 17.460955)
+rotation = 1.5707964
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_5y07l")
+offset = Vector2(50, -235)

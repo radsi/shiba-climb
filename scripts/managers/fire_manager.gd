@@ -1,9 +1,25 @@
 extends Node
 
 @onready var fire = $bonfire/fire
+@onready var fire_sprites = [
+	preload("res://mini games sprites/fire/fire1.png"),
+	preload("res://mini games sprites/fire/fire2.png"),
+	preload("res://mini games sprites/fire/fire3.png")
+]
+
 var played_audio = false
+var timer := 0
 
 func _process(delta: float) -> void:
+	timer += delta
+	if timer >= 0.5:
+		fire.texture = fire_sprites[0]
+	if timer >= 1:
+		fire.texture = fire_sprites[1]
+	if timer >= 1.5:
+		fire.texture = fire_sprites[2]
+		timer = 0
+		
 	if fire.scale.x >= 0.6:
 		if not played_audio:
 			globals.minigame_completed = true
