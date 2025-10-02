@@ -31,10 +31,7 @@ func _process(delta: float) -> void:
 		idx = timer_colors.size() - 1 - idx
 	timer_color.color = Color(timer_colors[idx])
 
-	if not globals.is_long:
-		timer_color.scale.x = initial_scale.x * t
-	else:
-		timer_color.scale.x = initial_scale.x * (1.0 - t)
+	timer_color.scale.x = initial_scale.x * t
 	
 	if timer >= 1:
 		timer = 0

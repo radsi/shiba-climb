@@ -10,36 +10,6 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2fbfq"]
 
-[sub_resource type="Animation" id="Animation_li7wd"]
-resource_name = "arrow_green"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("left:icon")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("5_kyhnv"), ExtResource("6_ooihk")]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimationPlayer")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [0.0, false, false],
-"method": &"seek"
-}]
-}
-
 [sub_resource type="Animation" id="Animation_vmxya"]
 length = 0.001
 tracks/0/type = "value"
@@ -97,6 +67,36 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_li7wd"]
+resource_name = "arrow_green"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("left:icon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("5_kyhnv"), ExtResource("6_ooihk")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0, false, false],
+"method": &"seek"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7r7o8"]
 _data = {
 &"RESET": SubResource("Animation_vmxya"),
@@ -129,12 +129,12 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -34.0
-offset_bottom = 34.0
+anchors_preset = -1
+anchor_left = 0.0032407406
+anchor_top = 0.25138888
+anchor_right = 0.99675924
+anchor_bottom = 0.9986111
+offset_bottom = -6.1035156e-05
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_u3bib")
@@ -147,9 +147,16 @@ Oscilation sfx: GuilhermeCayeiro - freesound.org
 Toast: pngall.com
 Jam: pluspng.com
 Rope sfx: FullStackSound - freesound.org
-Rope sfx 2: MPierluissi - freesound.org"
+Rope sfx 2: MPierluissi - freesound.org
+Retro explosion: Mrthenoronha - freesound.org
+Knocking wall - Taira Komori on freesound.org
+Jail background: freepik.es
+Box break sfx: vibinchillin - freesound.org
+Apple sfx: BerduSmith - freesound.org
+Pencil sfx: ani_music - freesound.org"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="buttonback" type="Button" parent="."]
 layout_mode = 1

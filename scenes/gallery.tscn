@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://uosl6edrkgle"]
+[gd_scene load_steps=23 format=3 uid="uid://uosl6edrkgle"]
 
 [ext_resource type="Script" uid="uid://b8d4qfheifn3y" path="res://scripts/managers/gallery_manager.gd" id="1_543d2"]
 [ext_resource type="Texture2D" uid="uid://l2atiswygex0" path="res://transitions/bg.jpg" id="1_lg6hf"]
@@ -12,53 +12,13 @@
 [ext_resource type="Texture2D" uid="uid://cgx4juqgdoc6p" path="res://mini games sprites/girl hand.png" id="10_fdfcg"]
 [ext_resource type="Texture2D" uid="uid://cw64dvnkk3oqm" path="res://arrow.png" id="11_mtg1g"]
 [ext_resource type="Texture2D" uid="uid://ctg81sh5c2by3" path="res://woodicon.png" id="11_vmxya"]
+[ext_resource type="Texture2D" uid="uid://d1fhevnjk7d0e" path="res://mini games sprites/jail door.png" id="12_7r7o8"]
 [ext_resource type="Texture2D" uid="uid://b1a546gu0sy1e" path="res://arrow_green.png" id="12_fgpkw"]
+[ext_resource type="Texture2D" uid="uid://dtl5akw64uc4" path="res://mini games sprites/ink bottle.png" id="13_vrutb"]
 [ext_resource type="Texture2D" uid="uid://c2isxy3781r0g" path="res://arrow_green2.png" id="13_vtsty"]
 [ext_resource type="Texture2D" uid="uid://bh3rusuqfqwpi" path="res://arrow2.png" id="14_li7wd"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fgpkw"]
-
-[sub_resource type="Animation" id="Animation_li7wd"]
-resource_name = "arrow_green"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("left:icon")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("12_fgpkw"), ExtResource("13_vtsty")]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimationPlayer")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [0.0, false, false],
-"method": &"seek"
-}]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("right:icon")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("12_fgpkw"), ExtResource("13_vtsty")]
-}
 
 [sub_resource type="Animation" id="Animation_vmxya"]
 length = 0.001
@@ -115,6 +75,48 @@ tracks/1/keys = {
 "args": [0.0, false, false],
 "method": &"seek"
 }]
+}
+
+[sub_resource type="Animation" id="Animation_li7wd"]
+resource_name = "arrow_green"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("left:icon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("12_fgpkw"), ExtResource("13_vtsty")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0, false, false],
+"method": &"seek"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("right:icon")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("12_fgpkw"), ExtResource("13_vtsty")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7r7o8"]
@@ -240,11 +242,20 @@ position = Vector2(540, 392)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_mdy1u")
 
+[node name="jail" type="Sprite2D" parent="page2/GalleryItem2"]
+scale = Vector2(0.26, 0.26)
+texture = ExtResource("12_7r7o8")
+
 [node name="GalleryItem3" type="Sprite2D" parent="page2"]
 texture_filter = 1
 position = Vector2(865, 392)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_mdy1u")
+
+[node name="kanji" type="Sprite2D" parent="page2/GalleryItem3"]
+texture_filter = 1
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("13_vrutb")
 
 [node name="GalleryItem4" type="Sprite2D" parent="page2"]
 texture_filter = 1
@@ -339,6 +350,17 @@ libraries = {
 &"": SubResource("AnimationLibrary_7r7o8")
 }
 
+[node name="unlockall" type="Button" parent="."]
+layout_mode = 0
+offset_left = 390.0
+offset_top = 952.0
+offset_right = 696.0
+offset_bottom = 1028.0
+pivot_offset = Vector2(153, 37)
+theme_override_fonts/font = ExtResource("2_6rhrw")
+theme_override_font_sizes/font_size = 64
+text = "Unlock all"
+
 [connection signal="mouse_entered" from="buttonback" to="." method="_on_buttonback_2_mouse_entered"]
 [connection signal="mouse_exited" from="buttonback" to="." method="_on_buttonback_mouse_exited"]
 [connection signal="pressed" from="buttonback" to="." method="_on_buttonback_pressed"]
@@ -348,3 +370,4 @@ libraries = {
 [connection signal="mouse_entered" from="right" to="." method="_on_right_mouse_entered"]
 [connection signal="mouse_exited" from="right" to="." method="_on_right_mouse_exited"]
 [connection signal="pressed" from="right" to="." method="_on_right_pressed"]
+[connection signal="pressed" from="unlockall" to="." method="_on_unlockall_pressed"]

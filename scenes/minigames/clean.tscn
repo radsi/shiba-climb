@@ -38,79 +38,106 @@ texture = ExtResource("2_y0wth")
 flip_h = true
 
 [node name="BlackTshirt" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 1)
 position = Vector2(540, 540)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_uxn8f")
 
-[node name="Dirty" type="CanvasGroup" parent="."]
-position = Vector2(-15, 47)
+[node name="Dirty" type="CanvasGroup" parent="BlackTshirt"]
+position = Vector2(-1850, -1643.3334)
+scale = Vector2(3.3333333, 3.3333333)
 script = ExtResource("4_x8gsu")
 
-[node name="Dirt" type="Sprite2D" parent="Dirty"]
+[node name="Dirt" type="Sprite2D" parent="BlackTshirt/Dirty"]
 texture_filter = 1
 position = Vector2(482, 440)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_rwsbi")
 
-[node name="Dirt2" type="Sprite2D" parent="Dirty"]
+[node name="Dirt2" type="Sprite2D" parent="BlackTshirt/Dirty"]
 texture_filter = 1
 position = Vector2(627, 588)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_rwsbi")
 
-[node name="Dirt3" type="Sprite2D" parent="Dirty"]
+[node name="Dirt3" type="Sprite2D" parent="BlackTshirt/Dirty"]
 texture_filter = 1
 position = Vector2(473, 522)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_rwsbi")
 
-[node name="Dirt4" type="Sprite2D" parent="Dirty"]
+[node name="Dirt4" type="Sprite2D" parent="BlackTshirt/Dirty"]
 texture_filter = 1
 position = Vector2(471, 616)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_rwsbi")
 
-[node name="Dirt5" type="Sprite2D" parent="Dirty"]
+[node name="Dirt5" type="Sprite2D" parent="BlackTshirt/Dirty"]
 texture_filter = 1
 position = Vector2(558, 687)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_rwsbi")
 
-[node name="Dirt6" type="Sprite2D" parent="Dirty"]
+[node name="Dirt6" type="Sprite2D" parent="BlackTshirt/Dirty"]
 texture_filter = 1
 position = Vector2(660, 692)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_rwsbi")
 
-[node name="Dirt7" type="Sprite2D" parent="Dirty"]
+[node name="Dirt7" type="Sprite2D" parent="BlackTshirt/Dirty"]
 texture_filter = 1
 position = Vector2(567, 509)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_rwsbi")
 
-[node name="Dirt8" type="Sprite2D" parent="Dirty"]
+[node name="Dirt8" type="Sprite2D" parent="BlackTshirt/Dirty"]
 texture_filter = 1
 position = Vector2(652, 421)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_rwsbi")
 
-[node name="Dirt9" type="Sprite2D" parent="Dirty"]
+[node name="Dirt9" type="Sprite2D" parent="BlackTshirt/Dirty"]
 texture_filter = 1
 position = Vector2(541, 337)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_rwsbi")
 
-[node name="Dirt10" type="Sprite2D" parent="Dirty"]
+[node name="Dirt10" type="Sprite2D" parent="BlackTshirt/Dirty"]
 texture_filter = 1
 position = Vector2(431, 341)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_rwsbi")
 
-[node name="Dirt11" type="Sprite2D" parent="Dirty"]
+[node name="Dirt11" type="Sprite2D" parent="BlackTshirt/Dirty"]
 texture_filter = 1
 position = Vector2(657, 325)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_rwsbi")
+
+[node name="Stars" type="CanvasGroup" parent="BlackTshirt"]
+visible = false
+position = Vector2(-1800, -1800)
+scale = Vector2(3.3333333, 3.3333333)
+
+[node name="Star" type="Sprite2D" parent="BlackTshirt/Stars"]
+position = Vector2(336, 778)
+scale = Vector2(2, 2)
+texture = ExtResource("15_jly5d")
+
+[node name="Star2" type="Sprite2D" parent="BlackTshirt/Stars"]
+position = Vector2(717, 693)
+scale = Vector2(2, 2)
+texture = ExtResource("15_jly5d")
+
+[node name="Star3" type="Sprite2D" parent="BlackTshirt/Stars"]
+position = Vector2(302, 364)
+scale = Vector2(2, 2)
+texture = ExtResource("15_jly5d")
+
+[node name="Star4" type="Sprite2D" parent="BlackTshirt/Stars"]
+position = Vector2(791, 433)
+scale = Vector2(2, 2)
+texture = ExtResource("15_jly5d")
 
 [node name="TextBg1" type="Sprite2D" parent="."]
 z_index = 15
@@ -209,26 +236,3 @@ texture = ExtResource("13_rwsbi")
 stream = ExtResource("14_rwsbi")
 volume_db = 5.0
 pitch_scale = 2.0
-
-[node name="Stars" type="CanvasGroup" parent="."]
-visible = false
-
-[node name="Star" type="Sprite2D" parent="Stars"]
-position = Vector2(336, 778)
-scale = Vector2(2, 2)
-texture = ExtResource("15_jly5d")
-
-[node name="Star2" type="Sprite2D" parent="Stars"]
-position = Vector2(717, 693)
-scale = Vector2(2, 2)
-texture = ExtResource("15_jly5d")
-
-[node name="Star3" type="Sprite2D" parent="Stars"]
-position = Vector2(302, 364)
-scale = Vector2(2, 2)
-texture = ExtResource("15_jly5d")
-
-[node name="Star4" type="Sprite2D" parent="Stars"]
-position = Vector2(791, 433)
-scale = Vector2(2, 2)
-texture = ExtResource("15_jly5d")

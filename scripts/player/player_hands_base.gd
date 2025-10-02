@@ -14,6 +14,9 @@ var grappling = false
 var last_pos_left = Vector2.ZERO
 var last_pos_right = Vector2.ZERO
 
+var block_left_hand_movement = false
+var block_right_hand_movement = false
+
 func _ready():
 	hand_left.modulate = Color(1,1,1)
 	hand_right.modulate = Color(1,1,1)
@@ -62,11 +65,8 @@ func _process(delta):
 	var mouse_pos = get_viewport().get_mouse_position()
 	var screen_half = get_viewport().get_visible_rect().size.x / 2
 
-	process_hand(hand_left, dragging_left, true, delta, mouse_pos, screen_half)
-	process_hand(hand_right, dragging_right, false, delta, mouse_pos, screen_half)
-	
-	last_pos_left = hand_left.global_position
-	last_pos_right = hand_right.global_position
+	if not block_left_hand_movement: process_hand(hand_left, dragging_left, true, delta, mouse_pos, screen_half)
+	if not block_right_hand_movement: process_hand(hand_right, dragging_right, false, delta, mouse_pos, screen_half)
 
 func process_hand(hand: Node2D, dragging: bool, is_left: bool, delta: float, mouse_pos: Vector2, screen_half: float):
 	if hand == null:
@@ -90,21 +90,18 @@ func process_hand(hand: Node2D, dragging: bool, is_left: bool, delta: float, mou
 	durability = clamp(durability, 0, globals.hands_max_durability)
 	hand.modulate = Color(1, durability / globals.hands_max_durability, durability / globals.hands_max_durability)
 
+	if durability_left <= 0 or durability_right <= 0:
+		hand.texture = globals.closehand_texture
+		globals.life -= 1
+		globals.has_lost_life = true
+		globals._start_roll()
+		hand.queue_free()
+		
 	if is_left:
 		durability_left = durability
 		if durability_left <= 0:
 			dragging_left = false
-			hand.texture = globals.closehand_texture
-			globals.life -= 1
-			globals.has_lost_life = true
-			globals._start_roll()
-			hand.queue_free()
 	else:
 		durability_right = durability
 		if durability_right <= 0:
 			dragging_right = false
-			hand.texture = globals.closehand_texture
-			globals.life -= 1
-			globals.has_lost_life = true
-			globals._start_roll()
-			hand.queue_free()

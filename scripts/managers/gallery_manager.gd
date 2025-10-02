@@ -105,3 +105,13 @@ func _on_right_pressed() -> void:
 	get_node("page"+str(page)).visible = true
 	if page == max_page: $right.hide()
 	$left.visible = true
+
+
+func _on_unlockall_pressed() -> void:
+	globals._unlock_minigame("Arcade")
+	globals._unlock_minigame("Toast")
+	globals._unlock_minigame("Rope")
+	globals._unlock_minigame("Bonfire")
+	globals._unlock_minigame("Jail")
+	globals._unlock_minigame("Kanji")
+	get_tree().change_scene_to_file("res://scenes/menu.tscn")

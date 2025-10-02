@@ -1,6 +1,6 @@
 extends HANDS
 
-@onready var dirty_objects: Node = $"../Dirty"
+@onready var dirty_objects: Node = $"../BlackTshirt/Dirty"
 @onready var scrub_sound: AudioStreamPlayer2D = $"../AudioStreamPlayer2D"
 
 var transparency_step: float = 0.05
@@ -20,20 +20,27 @@ func _input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	super._process(delta)
 
-	if dragging_left:
-		last_pos_left = get_viewport().get_mouse_position()
-	if dragging_right:
-		last_pos_right = get_viewport().get_mouse_position()
-	
+	if globals.is_playing_minigame_anim: return
+
 	var changed := false
 	changed = increase_transparency_under_hand(hand_left, last_pos_left) or changed
 	changed = increase_transparency_under_hand(hand_right, last_pos_right) or changed
-	
+
+	if dragging_left:
+		last_pos_left = hand_left.global_position
+	if dragging_right:
+		last_pos_right = hand_right.global_position
+
 	if changed and not scrub_sound.playing:
 		scrub_sound.play()
 
 func increase_transparency_under_hand(hand: Node2D, last_pos: Vector2) -> bool:
-	if hand == null or hand.global_position == last_pos:
+	if hand == null:
+		return false
+
+	var delta_pos = hand.global_position - last_pos
+	var movement_threshold = 1.0
+	if delta_pos.length() < movement_threshold:
 		return false
 
 	var any_changed := false
@@ -50,8 +57,6 @@ func increase_transparency_under_hand(hand: Node2D, last_pos: Vector2) -> bool:
 				if new_alpha < c.a:
 					c.a = new_alpha
 					obj.modulate = c
-
-					if abs(old_transparency.get(obj, 1.0) - new_alpha) > 0.001:
-						any_changed = true
 					old_transparency[obj] = new_alpha
+					any_changed = true
 	return any_changed

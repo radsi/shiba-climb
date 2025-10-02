@@ -32,7 +32,7 @@ func _input(event) -> void:
 	if event is InputEventMouseButton:
 		if showing_messages and message_timer >= 2: _close_message()
 	
-	if showing_messages: return
+	if showing_messages or message_timer < 1: return
 	
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		var mouse_pos = get_viewport().get_mouse_position()
@@ -65,7 +65,6 @@ func _on_button_3_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/gallery.tscn")
 
 func _show_pending_message():
-	print("showing message")
 	showing_messages = true
 	var message = $Message
 	var icons = $Message/Icons

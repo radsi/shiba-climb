@@ -180,6 +180,9 @@ func _game_over():
 	if game_score >= 24:
 		_unlock_minigame("Bonfire")
 	
+	if game_score >= 32:
+		_unlock_minigame("Kanji")
+	
 	roll_started = false
 	is_on_transition = false
 	roll_pending = false
@@ -199,6 +202,7 @@ func _game_over():
 	game_speed = 200
 	game_time = 10
 	game_time_long = 15
+	hands_drain_rate = 5
 	pool = []
 	last_scene = ""
 	music_player.stream = menu_audio

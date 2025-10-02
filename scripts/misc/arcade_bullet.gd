@@ -3,6 +3,7 @@ extends Sprite2D
 @onready var arcade_script = get_parent().get_parent()
 
 func _ready() -> void:
+	get_node("/root/Arcade/pew").play()
 	await get_tree().create_timer(2.25).timeout
 	queue_free()
 

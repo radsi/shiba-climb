@@ -16,6 +16,7 @@ func _process(delta):
 		if not original_positions.has(apple.name): original_positions[apple.name] = apple.global_position
 		if apple is Node2D and apple.is_inside_tree():
 			if apple.global_position.distance_to(basket.global_position) < 64:
+				$"../basket".play()
 				apple.visible = false
 				apple.global_position = original_positions[apple.name]
 

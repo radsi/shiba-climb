@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c73lq0ln0yrv"]
+[gd_scene load_steps=21 format=3 uid="uid://c73lq0ln0yrv"]
 
 [ext_resource type="Texture2D" uid="uid://buays2o7k4ueg" path="res://button base.png" id="1_eobic"]
 [ext_resource type="Texture2D" uid="uid://cw7k78gsoutx6" path="res://joystick base.png" id="1_ice4p"]
@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://bwex4tit2aiyt" path="res://footer-timer.png" id="12_c81br"]
 [ext_resource type="Texture2D" uid="uid://dwqm5laa2uilq" path="res://SpaceInvaders.png" id="16_jepv5"]
 [ext_resource type="Texture2D" uid="uid://44ikvt76apyf" path="res://mini games sprites/arcade machine.png" id="17_n1bbd"]
+[ext_resource type="AudioStream" uid="uid://c4eyvnc2q4brw" path="res://sounds/pew-shot.wav" id="18_behgj"]
+[ext_resource type="AudioStream" uid="uid://7twjgn6xrt74" path="res://sounds/explosion retro.wav" id="19_jxsqg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jepv5"]
 size = Vector2(8, 8)
@@ -1400,3 +1402,11 @@ offset_bottom = 24.0
 scale = Vector2(37.639996, 3.0400012)
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
+
+[node name="pew" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_behgj")
+volume_db = -5.0
+
+[node name="boom" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_jxsqg")
+volume_db = -5.0

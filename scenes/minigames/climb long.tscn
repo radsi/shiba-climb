@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cixrflpp0hrhq"]
+[gd_scene load_steps=16 format=3 uid="uid://cixrflpp0hrhq"]
 
 [ext_resource type="Script" uid="uid://cypa4ubl63rl0" path="res://scripts/player/player_hands_CLIMB.gd" id="1_uiju8"]
 [ext_resource type="Texture2D" uid="uid://cb0v8wmpwl7nl" path="res://hand sprites/open hand.png" id="2_pdsk5"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bwex4tit2aiyt" path="res://footer-timer.png" id="12_wuhc3"]
 [ext_resource type="AudioStream" uid="uid://c4ivpwbt2y7yy" path="res://sounds/655621__hankof__brick-falling-on-floor.wav" id="13_p6ifb"]
 [ext_resource type="AudioStream" uid="uid://vy4pwnbb7ank" path="res://sounds/733234__profoundsounds__brickhit.mp3" id="14_foe3e"]
+[ext_resource type="Texture2D" uid="uid://8f50r1thmine" path="res://cdn.textures4photoshop.png" id="15_foe3e"]
 
 [node name="climb" type="Node2D"]
 
@@ -142,3 +143,10 @@ stream = ExtResource("13_p6ifb")
 
 [node name="brick2" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_foe3e")
+
+[node name="bg1" type="Sprite2D" parent="."]
+modulate = Color(0.7750634, 0.7750634, 0.7750634, 1)
+z_index = -1
+position = Vector2(520, 540)
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("15_foe3e")

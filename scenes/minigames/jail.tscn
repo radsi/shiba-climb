@@ -1,0 +1,226 @@
+[gd_scene load_steps=18 format=3 uid="uid://b6itmulu6mtqc"]
+
+[ext_resource type="Script" uid="uid://c5o55f1lo8gr6" path="res://scripts/player/player_hands_BOX.gd" id="1_p13uc"]
+[ext_resource type="Texture2D" uid="uid://cb0v8wmpwl7nl" path="res://hand sprites/open hand.png" id="2_plvxg"]
+[ext_resource type="Texture2D" uid="uid://dd1uxcrghspfr" path="res://intro sprites/TextBG6.png" id="3_b7mpa"]
+[ext_resource type="Script" uid="uid://cujlduaqdkpvi" path="res://scripts/managers/mgIntro_manager.gd" id="4_8ogti"]
+[ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="5_7s2g0"]
+[ext_resource type="Texture2D" uid="uid://ddxgo2saijcvr" path="res://footer.png" id="6_4v308"]
+[ext_resource type="Script" uid="uid://ho5oyn8p3ner" path="res://scripts/managers/footer_manager.gd" id="7_vlaok"]
+[ext_resource type="Texture2D" uid="uid://bbsvjnu6h384i" path="res://hand sprites/heart hand.png" id="8_t7srv"]
+[ext_resource type="Texture2D" uid="uid://bptvtgxhawegg" path="res://footer-timer-background.png" id="9_wnu5k"]
+[ext_resource type="Texture2D" uid="uid://bwex4tit2aiyt" path="res://footer-timer.png" id="10_0pg0c"]
+[ext_resource type="Texture2D" uid="uid://b1bpfijsavwva" path="res://jail bg.jpg" id="11_n23tt"]
+[ext_resource type="Texture2D" uid="uid://cky3def6mdq2m" path="res://mini games sprites/line.png" id="12_7d6n5"]
+[ext_resource type="Texture2D" uid="uid://d1fhevnjk7d0e" path="res://mini games sprites/jail door.png" id="13_tcgvw"]
+[ext_resource type="AudioStream" uid="uid://du3xly14smoxw" path="res://sounds/knocking_wall.mp3" id="14_le3s1"]
+[ext_resource type="AudioStream" uid="uid://bbsw6yob15oq" path="res://sounds/_box-break_mixdown.wav" id="15_o0ouw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vliad"]
+size = Vector2(50, 92.66666)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvhrw"]
+size = Vector2(529, 35.000015)
+
+[node name="Box" type="Node2D"]
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+position = Vector2(540, 493)
+script = ExtResource("1_p13uc")
+
+[node name="Hand1" type="Sprite2D" parent="CanvasGroup"]
+z_index = 10
+texture_filter = 1
+position = Vector2(-50, 100)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_plvxg")
+
+[node name="Area2D" type="Area2D" parent="CanvasGroup/Hand1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup/Hand1/Area2D"]
+position = Vector2(-3.3333435, 0.3333435)
+shape = SubResource("RectangleShape2D_vliad")
+
+[node name="Hand2" type="Sprite2D" parent="CanvasGroup"]
+z_index = 10
+texture_filter = 1
+position = Vector2(50, 100)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_plvxg")
+flip_h = true
+
+[node name="Area2D_right" type="Area2D" parent="CanvasGroup/Hand2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup/Hand2/Area2D_right"]
+position = Vector2(-3.3333435, 0.3333435)
+shape = SubResource("RectangleShape2D_vliad")
+
+[node name="TextBg1" type="Sprite2D" parent="."]
+z_index = 100
+texture_filter = 1
+position = Vector2(540, 400)
+scale = Vector2(3, 2)
+texture = ExtResource("3_b7mpa")
+script = ExtResource("4_8ogti")
+
+[node name="Label" type="Label" parent="TextBg1"]
+z_index = 15
+anchors_preset = -1
+anchor_left = 0.17228465
+anchor_top = 0.22580644
+anchor_right = 1.0599251
+anchor_bottom = 0.7741935
+offset_left = -135.66666
+offset_top = -68.0
+offset_right = -69.66666
+offset_bottom = -51.0
+scale = Vector2(0.6, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_7s2g0")
+theme_override_font_sizes/font_size = 80
+text = "ESCAPE"
+metadata/_edit_use_anchors_ = true
+
+[node name="Footer" type="Sprite2D" parent="."]
+z_index = 10
+texture_filter = 1
+position = Vector2(536, 1024)
+scale = Vector2(1.1, 1.06)
+texture = ExtResource("6_4v308")
+script = ExtResource("7_vlaok")
+
+[node name="HeartHand" type="Sprite2D" parent="Footer"]
+modulate = Color(0.8891468, 0.8891468, 0.88914675, 1)
+z_index = 2
+texture_filter = 1
+position = Vector2(368.46835, -13.207642)
+scale = Vector2(0.7, 0.733)
+texture = ExtResource("8_t7srv")
+
+[node name="Label" type="Label" parent="Footer"]
+anchors_preset = -1
+anchor_left = 0.71171165
+anchor_top = 0.33262315
+anchor_right = 0.8057116
+anchor_bottom = 1.018107
+offset_left = -500.00003
+offset_top = -62.0
+offset_right = -500.0
+offset_bottom = -62.000008
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_7s2g0")
+theme_override_font_sizes/font_size = 64
+text = "X"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Footer"]
+anchors_preset = -1
+anchor_left = 0.6657657
+anchor_top = 0.19567865
+anchor_right = 0.7597657
+anchor_bottom = 0.8811625
+offset_left = -500.0
+offset_top = -62.0
+offset_right = -500.0
+offset_bottom = -62.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_7s2g0")
+theme_override_font_sizes/font_size = 80
+text = "3"
+metadata/_edit_use_anchors_ = true
+
+[node name="TimerColor" type="ColorRect" parent="Footer"]
+z_index = 1
+offset_left = -361.26123
+offset_top = -38.67926
+offset_right = -321.26123
+offset_bottom = 1.3207397
+scale = Vector2(11.25, 1.85)
+color = Color(1, 0, 0, 1)
+
+[node name="FooterTimerBackground" type="Sprite2D" parent="Footer"]
+position = Vector2(-60.36035, 0)
+scale = Vector2(0.9009008, 0.94339615)
+texture = ExtResource("9_wnu5k")
+
+[node name="FooterTimer" type="Sprite2D" parent="Footer"]
+z_index = 1
+position = Vector2(-60.36035, 9.536743e-05)
+scale = Vector2(0.90090084, 0.9433962)
+texture = ExtResource("10_0pg0c")
+
+[node name="JailBg" type="Sprite2D" parent="."]
+z_index = -999
+position = Vector2(542, 526)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("11_n23tt")
+
+[node name="jail" type="CanvasGroup" parent="."]
+
+[node name="Line" type="Sprite2D" parent="jail" groups=["wall"]]
+z_index = 99
+position = Vector2(327, 481)
+rotation = 1.5707964
+texture = ExtResource("12_7d6n5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="jail/Line"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="jail/Line/StaticBody2D"]
+position = Vector2(2.5, 1.5)
+shape = SubResource("RectangleShape2D_yvhrw")
+
+[node name="Line2" type="Sprite2D" parent="jail" groups=["wall"]]
+z_index = 99
+position = Vector2(751, 481)
+rotation = 1.5707964
+texture = ExtResource("12_7d6n5")
+flip_h = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="jail/Line2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="jail/Line2/StaticBody2D"]
+position = Vector2(2.5, 1.5)
+shape = SubResource("RectangleShape2D_yvhrw")
+
+[node name="Line3" type="Sprite2D" parent="jail" groups=["wall"]]
+z_index = 99
+position = Vector2(538, 236)
+scale = Vector2(0.9, 1)
+texture = ExtResource("12_7d6n5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="jail/Line3"]
+position = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="jail/Line3/StaticBody2D"]
+position = Vector2(2.5, 1.5)
+shape = SubResource("RectangleShape2D_yvhrw")
+
+[node name="Line4" type="Sprite2D" parent="jail" groups=["wall"]]
+z_index = 99
+position = Vector2(538, 727)
+scale = Vector2(0.9, 1)
+texture = ExtResource("12_7d6n5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="jail/Line4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="jail/Line4/StaticBody2D"]
+position = Vector2(2.5, 1.5)
+shape = SubResource("RectangleShape2D_yvhrw")
+
+[node name="JailDoor" type="Sprite2D" parent="jail"]
+z_index = 99
+position = Vector2(542, 473)
+scale = Vector2(0.86, 0.86)
+texture = ExtResource("13_tcgvw")
+
+[node name="knock" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_le3s1")
+
+[node name="break" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_o0ouw")
+volume_db = 5.0
+
+[connection signal="body_shape_entered" from="CanvasGroup/Hand1/Area2D" to="CanvasGroup" method="_on_area_2d_body_shape_entered"]
+[connection signal="body_shape_exited" from="CanvasGroup/Hand1/Area2D" to="CanvasGroup" method="_on_area_2d_body_shape_exited"]
+[connection signal="body_shape_entered" from="CanvasGroup/Hand2/Area2D_right" to="CanvasGroup" method="_on_area_2d_right_body_shape_entered"]
+[connection signal="body_shape_exited" from="CanvasGroup/Hand2/Area2D_right" to="CanvasGroup" method="_on_area_2d_right_body_shape_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://re18gkg4sw4r"]
+[gd_scene load_steps=18 format=3 uid="uid://re18gkg4sw4r"]
 
 [ext_resource type="Script" uid="uid://dykhujf08cqwk" path="res://scripts/menu.gd" id="1_vjb58"]
 [ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="1_yqeox"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://cgx4juqgdoc6p" path="res://mini games sprites/girl hand.png" id="9_mj5lg"]
 [ext_resource type="AudioStream" uid="uid://hcne7nxxgd22" path="res://sounds/clapping-hands.mp3" id="10_70i5f"]
 [ext_resource type="Texture2D" uid="uid://ctg81sh5c2by3" path="res://woodicon.png" id="10_ufwb2"]
+[ext_resource type="Texture2D" uid="uid://d1fhevnjk7d0e" path="res://mini games sprites/jail door.png" id="11_6cdou"]
+[ext_resource type="Texture2D" uid="uid://dtl5akw64uc4" path="res://mini games sprites/ink bottle.png" id="12_i42df"]
 
 [sub_resource type="Animation" id="Animation_mhnvy"]
 length = 0.001
@@ -271,6 +273,18 @@ texture_filter = 1
 position = Vector2(0, 77)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("10_ufwb2")
+
+[node name="Jail" type="Sprite2D" parent="Message/Icons"]
+visible = false
+position = Vector2(-6.25, 86)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("11_6cdou")
+
+[node name="Kanji" type="Sprite2D" parent="Message/Icons"]
+visible = false
+position = Vector2(-6.25, 107)
+scale = Vector2(0.7, 0.896)
+texture = ExtResource("12_i42df")
 
 [node name="Bg" type="Sprite2D" parent="."]
 modulate = Color(0.23110586, 0.40934858, 0.4403412, 1)

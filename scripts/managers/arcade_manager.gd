@@ -10,23 +10,20 @@ var timer = 0.0
 var active_enemies: Array = []
 var dead_enemies_count = 0
 
+var enemies_tweens = {}
+var enemies_original_positions = {}
+var can_restart = false
+
 func _ready() -> void:
 	_set_enemies()
 
 func _process(delta: float) -> void:
-	
-	if active_enemies.size() <= 0:
+	if globals.is_single_minigame and can_restart and enemies_tweens.size() == 0:
+		can_restart = false
+		globals.is_playing_minigame_anim = false
+		globals.time_left = globals.game_time
+		enemies_tweens.clear()
 		_set_enemies()
-		return
-	
-	if dead_enemies_count >= 4:
-		globals.minigame_completed = true
-		
-		if not globals.is_single_minigame:
-			for enemy: Sprite2D in active_enemies:
-				var tween := get_tree().create_tween()
-				tween.tween_property(enemy, "position:y", enemy.position.y - 20, 0.15)
-		return
 	
 	timer += delta
 	if timer < frame_interval:
@@ -42,7 +39,21 @@ func _process(delta: float) -> void:
 func _kill_enemy(enemy: Sprite2D) -> void:
 	active_enemies.erase(enemy)
 	dead_enemies_count += 1
+	if globals.is_single_minigame and dead_enemies_count == 20:
+		globals._unlock_minigame("Jail")
+	if dead_enemies_count % 4 == 1:
+		globals.minigame_completed = true
+		
+		for _enemy: Sprite2D in active_enemies:
+			if globals.is_single_minigame: globals.is_playing_minigame_anim = true
+			var tween := get_tree().create_tween()
+			enemies_tweens[tween.get_instance_id()] = tween
+			tween.tween_property(_enemy, "position:y", -20, globals.game_speed / 150)
+			tween.finished.connect(func():
+				enemies_tweens.erase(tween.get_instance_id())
+			)
 	enemy.frame = 23
+	$boom.play()
 	await get_tree().create_timer(0.3).timeout
 	enemy.frame = 30
 	enemy.hide()
@@ -54,13 +65,10 @@ func _set_enemies() -> void:
 	var children = enemies.get_children()
 	children.shuffle()
 
-	active_enemies.clear()
-	
 	for i in range(children.size()):
 		var child = children[i]
-		if child is Node2D or child is Control:
-			child.visible = true
-			if i < 55:
-				child.hide()
-			else:
-				active_enemies.append(child)
+		if i < 58:
+			child.hide()
+		else:
+			active_enemies.append(child)
+			child.show()

@@ -21,14 +21,6 @@ func update_attached_hand(attached, hand: Node2D, is_left: bool, delta: float) -
 	if attached != null:
 		if attached.is_inside_tree():
 			attached.global_position = hand.global_position
-			if is_left:
-				durability_left -= globals.hands_drain_rate * delta
-				durability_left = clamp(durability_left, 0, globals.hands_max_durability)
-				hand.modulate = Color(1, durability_left/globals.hands_max_durability, durability_left/globals.hands_max_durability)
-			else:
-				durability_right -= globals.hands_drain_rate * delta
-				durability_right = clamp(durability_right, 0, globals.hands_max_durability)
-				hand.modulate = Color(1, durability_right/globals.hands_max_durability, durability_right/globals.hands_max_durability)
 			hand.texture = globals.closehand_texture
 		
 			if attached.visible == false:
