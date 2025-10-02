@@ -10,6 +10,8 @@ func _ready():
 	_start_shake()
 	await get_tree().create_timer(1.0).timeout
 	_start_shrink()
+	await get_tree().create_timer(1.0).timeout
+	if $"../Ball" != null: $"../Ball".gravity_scale = 1
 
 func _start_shrink():
 	var tween = create_tween()

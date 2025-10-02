@@ -111,4 +111,5 @@ func _on_unlockall_pressed() -> void:
 	globals._unlock_minigame("Jail")
 	globals._unlock_minigame("Kanji")
 	globals._unlock_minigame("Candle")
+	globals._unlock_minigame("PingPong")
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")

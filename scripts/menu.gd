@@ -12,8 +12,8 @@ var message_timer = 0
 
 func _ready() -> void:
 	
-	if first_time:
-		if $VSplitContainer/Button3: $VSplitContainer/Button3.hide()
+	#if first_time:
+	#	if $VSplitContainer/Button3: $VSplitContainer/Button3.hide()
 	
 	if $AnimationPlayer2 != null:
 		$AnimationPlayer2.play("arrow_back")

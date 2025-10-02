@@ -8,14 +8,20 @@ var brick_scenes := [
 
 var spawn_interval = 0.8
 var brick_lifetime = 20.0
-var timer = 0.0
+var timer_spawn = 0.0
+var timer = 0
 var min_distance = 50.0
 var max_attempts = 10
 
 func _ready():
-	timer = spawn_interval
+	timer_spawn = spawn_interval
 
 func _process(delta):
+	if globals.is_single_minigame: 
+		timer += delta
+		if timer >= 60:
+			globals._unlock_minigame("PingPong")
+	
 	spawn_interval = max(0.2, 0.8 * 200 / globals.game_speed)
 
 	for brick in get_children():
@@ -26,9 +32,9 @@ func _process(delta):
 		if brick.get_meta("age") >= brick_lifetime:
 			brick.queue_free()
 
-	timer -= delta
-	if timer <= 0:
-		timer = spawn_interval
+	timer_spawn -= delta
+	if timer_spawn <= 0:
+		timer_spawn = spawn_interval
 		spawn_brick()
 
 func spawn_brick():

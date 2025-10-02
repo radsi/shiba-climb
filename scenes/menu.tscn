@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://re18gkg4sw4r"]
+[gd_scene load_steps=20 format=3 uid="uid://re18gkg4sw4r"]
 
 [ext_resource type="Script" uid="uid://dykhujf08cqwk" path="res://scripts/menu.gd" id="1_vjb58"]
 [ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="1_yqeox"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://d1fhevnjk7d0e" path="res://mini games sprites/jail door.png" id="11_6cdou"]
 [ext_resource type="Texture2D" uid="uid://dtl5akw64uc4" path="res://mini games sprites/ink bottle.png" id="12_i42df"]
 [ext_resource type="Texture2D" uid="uid://vhfh3sg8lwi7" path="res://mini games sprites/candle.png" id="13_7jp70"]
+[ext_resource type="Texture2D" uid="uid://c0x4hvphvr4t1" path="res://ping_pong_PNG10372.png" id="14_mxgkd"]
 
 [sub_resource type="Animation" id="Animation_mhnvy"]
 length = 0.001
@@ -292,6 +293,12 @@ visible = false
 position = Vector2(-5.4687505, 81)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("13_7jp70")
+
+[node name="PingPong" type="Sprite2D" parent="Message/Icons"]
+visible = false
+position = Vector2(0, 102)
+scale = Vector2(0.235, 0.3)
+texture = ExtResource("14_mxgkd")
 
 [node name="Bg" type="Sprite2D" parent="."]
 modulate = Color(0.23110586, 0.40934858, 0.4403412, 1)
