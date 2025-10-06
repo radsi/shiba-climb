@@ -5,6 +5,8 @@ extends Node
 @onready var bg = $Bg
 @onready var decorations_list = [$decorations1, $decorations2, $decorations3, $decorations4]
 @onready var decorations = decorations_list[randf_range(0, decorations_list.size())]
+@onready var bg1 = $Bg
+@onready var bg2 = $Bg2
 var timer = 0
 var original_positions := {}
 
@@ -61,6 +63,15 @@ func _ready() -> void:
 	get_tree().change_scene_to_file(globals.last_scene)
 
 func _process(delta: float) -> void:
+	
+	bg1.global_position.y += 5
+	bg2.global_position.y += 5
+	
+	if bg1.global_position.y > 2156:
+		bg1.global_position.y = -2156
+	if bg2.global_position.y > 2156:
+		bg2.global_position.y = -2156
+	
 	timer += delta
 	
 	if timer >= 0.5:

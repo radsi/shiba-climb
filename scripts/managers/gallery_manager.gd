@@ -4,8 +4,12 @@ extends Node
 var item_under_mouse: Sprite2D = null
 var max_page = 1
 var page = 1
+@onready var bg1 = $Bg
+@onready var bg2 = $Bg2
 
 func _ready() -> void:
+	bg1.global_position.y = globals.current_menu_bg_pos[0]
+	bg2.global_position.y = globals.current_menu_bg_pos[1]
 	max_page = get_tree().get_nodes_in_group("pages").size()
 	$AnimationPlayer.play("arrow_green")
 	$AnimationPlayer2.play("arrow_back")
@@ -36,6 +40,17 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	bg1.global_position.y += 5
+	bg2.global_position.y += 5
+	
+	globals.current_menu_bg_pos[0] = bg1.global_position.y
+	globals.current_menu_bg_pos[1] = bg2.global_position.y
+	
+	if bg1.global_position.y > 2156:
+		bg1.global_position.y = -2156
+	if bg2.global_position.y > 2156:
+		bg2.global_position.y = -2156
+		
 	var mouse_pos = get_viewport().get_mouse_position()
 	item_under_mouse = null
 
@@ -107,6 +122,7 @@ func _on_right_pressed() -> void:
 
 func _on_unlockall_pressed() -> void:
 	globals._play_pop()
+	globals._unlock_hands("camo")
 	globals._unlock_minigame("Arcade")
 	globals._unlock_minigame("Toast")
 	globals._unlock_minigame("Rope")

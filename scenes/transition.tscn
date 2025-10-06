@@ -139,11 +139,6 @@ position = Vector2(280, 272)
 [node name="Decoration6" parent="decorations4" instance=ExtResource("4_xmi56")]
 position = Vector2(120, 688)
 
-[node name="Bg" type="Sprite2D" parent="."]
-z_index = -2
-position = Vector2(540, 540)
-texture = ExtResource("5_hi828")
-
 [node name="speed" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_50nbv")
 
@@ -152,3 +147,13 @@ stream = ExtResource("7_6ancn")
 
 [node name="good" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_lvx3c")
+
+[node name="Bg" type="Sprite2D" parent="."]
+z_index = -3
+position = Vector2(540, 0)
+texture = ExtResource("5_hi828")
+
+[node name="Bg2" type="Sprite2D" parent="."]
+z_index = -3
+position = Vector2(540, -2156)
+texture = ExtResource("5_hi828")

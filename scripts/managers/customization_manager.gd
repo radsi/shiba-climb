@@ -6,6 +6,9 @@ var item_under_mouse: Sprite2D = null
 var max_page = 1
 var page = 1
 
+@onready var bg1 = $Bg
+@onready var bg2 = $Bg2
+
 func _ready() -> void:
 	max_page = get_tree().get_nodes_in_group("pages").size()
 	$AnimationPlayer.play("arrow_green")
@@ -23,6 +26,18 @@ func _ready() -> void:
 				item.texture = gallery_locked_sprite
 
 func _process(delta: float) -> void:
+	
+	bg1.global_position.y += 5
+	bg2.global_position.y += 5
+	
+	if bg1.global_position.y > 2156:
+		bg1.global_position.y = -2156
+	if bg2.global_position.y > 2156:
+		bg2.global_position.y = -2156
+	
+	globals.current_menu_bg_pos[0] = bg1.global_position.y
+	globals.current_menu_bg_pos[1] = bg2.global_position.y
+	
 	item_under_mouse = null
 	for item in get_node("page"+str(page)).get_children():
 		var scale_target = Vector2(1.5, 1.5)

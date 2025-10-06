@@ -186,12 +186,6 @@ flat = true
 icon_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Bg" type="Sprite2D" parent="."]
-modulate = Color(0.23110586, 0.40934858, 0.4403412, 1)
-z_index = -3
-position = Vector2(540, 540)
-texture = ExtResource("3_0ctdu")
-
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_7r7o8")
@@ -223,6 +217,18 @@ Racket image - pngimg.com"
 horizontal_alignment = 1
 vertical_alignment = 1
 justification_flags = 162
+
+[node name="Bg" type="Sprite2D" parent="."]
+modulate = Color(0.23110586, 0.40934858, 0.4403412, 1)
+z_index = -3
+position = Vector2(540, 0)
+texture = ExtResource("3_0ctdu")
+
+[node name="Bg2" type="Sprite2D" parent="."]
+modulate = Color(0.23110586, 0.40934858, 0.4403412, 1)
+z_index = -3
+position = Vector2(540, -2156)
+texture = ExtResource("3_0ctdu")
 
 [connection signal="mouse_entered" from="buttonback" to="." method="_on_buttonback_mouse_entered"]
 [connection signal="mouse_exited" from="buttonback" to="." method="_on_buttonback_mouse_exited"]

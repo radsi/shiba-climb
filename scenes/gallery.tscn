@@ -138,12 +138,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_543d2")
 
-[node name="Bg" type="Sprite2D" parent="."]
-modulate = Color(0.23110586, 0.40934858, 0.4403412, 1)
-z_index = -3
-position = Vector2(540, 540)
-texture = ExtResource("1_lg6hf")
-
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -415,6 +409,18 @@ pivot_offset = Vector2(153, 37)
 theme_override_fonts/font = ExtResource("2_6rhrw")
 theme_override_font_sizes/font_size = 64
 text = "Unlock all"
+
+[node name="Bg" type="Sprite2D" parent="."]
+modulate = Color(0.23110586, 0.40934858, 0.4403412, 1)
+z_index = -3
+position = Vector2(540, 0)
+texture = ExtResource("1_lg6hf")
+
+[node name="Bg2" type="Sprite2D" parent="."]
+modulate = Color(0.23110586, 0.40934858, 0.4403412, 1)
+z_index = -3
+position = Vector2(540, -2156)
+texture = ExtResource("1_lg6hf")
 
 [connection signal="mouse_entered" from="buttonback" to="." method="_on_buttonback_2_mouse_entered"]
 [connection signal="mouse_exited" from="buttonback" to="." method="_on_buttonback_mouse_exited"]

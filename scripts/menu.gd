@@ -11,11 +11,14 @@ var message_timer = 0
 @onready var palm = $PalmHand
 @onready var custom_button = $CustomIcon
 @onready var gallery_button = $GalleryIcon
+@onready var bg1 = $Bg
+@onready var bg2 = $Bg2
 
 func _ready() -> void:
 	
-	#if first_time:
-	#	if $VSplitContainer/Button3: $VSplitContainer/Button3.hide()
+	if globals.current_menu_bg_pos[0] > 0:
+		bg1.global_position.y = globals.current_menu_bg_pos[0]
+		bg2.global_position.y = globals.current_menu_bg_pos[1]
 	
 	if $AnimationPlayer2 != null:
 		$AnimationPlayer2.play("arrow_back")
@@ -31,6 +34,17 @@ func _ready() -> void:
 		_show_pending_message()
 
 func _process(delta: float) -> void:
+	
+	bg1.global_position.y += 5
+	bg2.global_position.y += 5
+	
+	if bg1.global_position.y > 2156:
+		bg1.global_position.y = -2156
+	if bg2.global_position.y > 2156:
+		bg2.global_position.y = -2156
+	
+	globals.current_menu_bg_pos[0] = bg1.global_position.y
+	globals.current_menu_bg_pos[1] = bg2.global_position.y
 	
 	if is_mouse_over_item(custom_button, get_viewport().get_mouse_position()):
 		custom_button.scale = Vector2(1.25, 1.25)

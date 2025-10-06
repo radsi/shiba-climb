@@ -3,6 +3,7 @@ extends Node
 var hands_color = Color(1,1,1)
 
 var pending_menu_messages = []
+var current_menu_bg_pos = [0.0, 0.0]
 
 var is_on_transition = false
 var is_playing_minigame_anim = false
