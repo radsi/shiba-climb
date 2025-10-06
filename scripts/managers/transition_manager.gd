@@ -1,7 +1,5 @@
 extends Node
 
-@onready var up_hand_sprite = preload("res://hand sprites/up hand.png")
-
 @onready var text = $CanvasGroup/message
 @onready var hands = $CanvasGroup/hands
 @onready var bg = $Bg
@@ -20,6 +18,7 @@ func _ready() -> void:
 	text.rotation_degrees = 6
 	hands.rotation_degrees = -6
 	decorations.visible = true
+	hands.texture = globals.winhand_texture
 	for deco: Sprite2D in decorations.get_children():
 		original_positions[deco] = deco.global_position
 		deco.modulate = Color(colors[randf_range(0, colors.size())])
@@ -52,7 +51,7 @@ func _ready() -> void:
 		decorations.visible = true
 
 		text.text = "Go go go!"
-		hands.texture = up_hand_sprite
+		hands.texture = globals.gohand_texture
 		$speed.play()
 		await get_tree().create_timer(2).timeout
 	

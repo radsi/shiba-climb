@@ -16,6 +16,9 @@ var shirt_count = 0
 var shirt_counted := false
 
 func _ready() -> void:
+	var rng := RandomNumberGenerator.new()
+	rng.randomize()
+	shirt.self_modulate = Color(rng.randf(), rng.randf(), rng.randf(), 1.0)
 	_set_dirt()
 
 func _process(delta: float) -> void:

@@ -10,3 +10,6 @@ func _process(delta: float) -> void:
 		globals.life -= 1
 		globals.has_lost_life = true
 		globals._start_roll()
+
+	if delta >= 15:
+		globals._unlock_minigame("Vendor")

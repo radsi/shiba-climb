@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bbi4kxb2c00lw"]
+[gd_scene load_steps=18 format=3 uid="uid://bbi4kxb2c00lw"]
 
 [ext_resource type="Script" uid="uid://cgh5utwddmow4" path="res://scripts/managers/fire_manager.gd" id="1_045ua"]
 [ext_resource type="Script" uid="uid://dj0vwwkcqrglt" path="res://scripts/player/player_hands_FIRE.gd" id="2_wajfn"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://coecmf0iy3kft" path="res://mini games sprites/fire/fire1.png" id="14_pabhc"]
 [ext_resource type="AudioStream" uid="uid://5shsal0nf15d" path="res://sounds/bonfire.wav" id="15_7mgu3"]
 [ext_resource type="AudioStream" uid="uid://cgdo2j6k8m6ku" path="res://sounds/bonfire extinguish.wav" id="16_l5dto"]
+[ext_resource type="Texture2D" uid="uid://cqii6tyvvtou5" path="res://camping bg.jpg" id="17_wajfn"]
 
 [node name="Fire" type="Node2D"]
 script = ExtResource("1_045ua")
@@ -166,3 +167,17 @@ stream = ExtResource("15_7mgu3")
 
 [node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("16_l5dto")
+
+[node name="CampingBg" type="Sprite2D" parent="."]
+modulate = Color(0.52906674, 0.5290667, 0.5290667, 1)
+z_index = -3
+position = Vector2(521, 474)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("17_wajfn")
+
+[node name="CampingBg2" type="Sprite2D" parent="."]
+modulate = Color(0.52906674, 0.5290667, 0.5290667, 1)
+z_index = -3
+position = Vector2(521, 474)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("17_wajfn")

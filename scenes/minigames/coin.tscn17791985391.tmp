@@ -1,0 +1,238 @@
+[gd_scene load_steps=18 format=3 uid="uid://d02k3u107pvo3"]
+
+[ext_resource type="Texture2D" uid="uid://catke2m4m2e7w" path="res://mini games sprites/keypad.png" id="1_6ldu3"]
+[ext_resource type="Texture2D" uid="uid://u3lwql5l6lus" path="res://mini games sprites/coin.png" id="1_30khu"]
+[ext_resource type="Script" uid="uid://ber35f63524c1" path="res://scripts/managers/coin_manager.gd" id="1_hjxu6"]
+[ext_resource type="Texture2D" uid="uid://cb0v8wmpwl7nl" path="res://hand sprites/open hand.png" id="3_lpegy"]
+[ext_resource type="Texture2D" uid="uid://dd1uxcrghspfr" path="res://intro sprites/TextBG6.png" id="4_30khu"]
+[ext_resource type="Script" uid="uid://cnokcqd6kldel" path="res://scripts/player/player_hands_COIN.gd" id="4_nwvgh"]
+[ext_resource type="Script" uid="uid://cujlduaqdkpvi" path="res://scripts/managers/mgIntro_manager.gd" id="5_0nqcj"]
+[ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="6_hjxu6"]
+[ext_resource type="Texture2D" uid="uid://ddxgo2saijcvr" path="res://footer.png" id="7_nwvgh"]
+[ext_resource type="Script" uid="uid://ho5oyn8p3ner" path="res://scripts/managers/footer_manager.gd" id="8_7hy1b"]
+[ext_resource type="Texture2D" uid="uid://bbsvjnu6h384i" path="res://hand sprites/heart hand.png" id="9_72jbu"]
+[ext_resource type="Texture2D" uid="uid://bptvtgxhawegg" path="res://footer-timer-background.png" id="10_5c333"]
+[ext_resource type="Texture2D" uid="uid://bwex4tit2aiyt" path="res://footer-timer.png" id="11_w6no2"]
+[ext_resource type="Texture2D" uid="uid://cwhxeerl0ay7j" path="res://mini games sprites/vendor machine.png" id="12_g2vnb"]
+[ext_resource type="Texture2D" uid="uid://b15foodtc52ba" path="res://mini games sprites/crystal.png" id="13_lpegy"]
+[ext_resource type="Texture2D" uid="uid://d3mf1ysxi7nnj" path="res://mini games sprites/wallet.png" id="15_0nqcj"]
+[ext_resource type="AudioStream" uid="uid://b0l7xlk8k8n7" path="res://sounds/quarter-inserted-falls-into-coin-return.wav" id="17_nwvgh"]
+
+[node name="Coin" type="Node2D"]
+script = ExtResource("1_hjxu6")
+
+[node name="Coin" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(207, 849)
+scale = Vector2(2, 2)
+texture = ExtResource("1_30khu")
+
+[node name="Keypad" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(930.00006, 737)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("1_6ldu3")
+
+[node name="1" type="Node2D" parent="Keypad"]
+position = Vector2(-184.4446, -175.55556)
+
+[node name="2" type="Node2D" parent="Keypad"]
+position = Vector2(-60.000137, -168.8889)
+
+[node name="3" type="Node2D" parent="Keypad"]
+position = Vector2(66.666534, -168.8889)
+
+[node name="4" type="Node2D" parent="Keypad"]
+position = Vector2(-186.66681, -55.555565)
+
+[node name="5" type="Node2D" parent="Keypad"]
+position = Vector2(-60.000137, -53.333344)
+
+[node name="6" type="Node2D" parent="Keypad"]
+position = Vector2(59.99987, -53.333344)
+
+[node name="7" type="Node2D" parent="Keypad"]
+position = Vector2(-191.11125, 60)
+
+[node name="8" type="Node2D" parent="Keypad"]
+position = Vector2(-62.22236, 60)
+
+[node name="9" type="Node2D" parent="Keypad"]
+position = Vector2(59.99987, 62.222214)
+
+[node name="10" type="Node2D" parent="Keypad"]
+position = Vector2(-64.44458, 173.33333)
+
+[node name="clear" type="Node2D" parent="Keypad"]
+position = Vector2(-188.88904, 173.33333)
+
+[node name="A" type="Node2D" parent="Keypad"]
+position = Vector2(186.66653, -168.8889)
+
+[node name="B" type="Node2D" parent="Keypad"]
+position = Vector2(186.66653, -55.555565)
+
+[node name="C" type="Node2D" parent="Keypad"]
+position = Vector2(184.44432, 62.222214)
+
+[node name="D" type="Node2D" parent="Keypad"]
+position = Vector2(184.44432, 177.77779)
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+position = Vector2(540, 540)
+script = ExtResource("4_nwvgh")
+
+[node name="Hand1" type="Sprite2D" parent="CanvasGroup"]
+z_index = 10
+texture_filter = 1
+position = Vector2(-50, 100)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_lpegy")
+
+[node name="finger tip" type="Node2D" parent="CanvasGroup/Hand1"]
+position = Vector2(7.3333335, -38)
+
+[node name="Hand2" type="Sprite2D" parent="CanvasGroup"]
+z_index = 10
+texture_filter = 1
+position = Vector2(50, 100)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_lpegy")
+flip_h = true
+
+[node name="finger tip" type="Node2D" parent="CanvasGroup/Hand2"]
+position = Vector2(-7.3333335, -38)
+
+[node name="TextBg1" type="Sprite2D" parent="."]
+visible = false
+z_index = 15
+texture_filter = 1
+position = Vector2(530, 400)
+scale = Vector2(3, 2)
+texture = ExtResource("4_30khu")
+script = ExtResource("5_0nqcj")
+
+[node name="Label" type="Label" parent="TextBg1"]
+z_index = 15
+anchors_preset = -1
+anchor_left = 0.17228465
+anchor_top = 0.22580644
+anchor_right = 1.0599251
+anchor_bottom = 0.7741935
+offset_left = -81.0
+offset_top = -58.5
+offset_right = -81.0
+offset_bottom = -58.5
+scale = Vector2(0.6, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_hjxu6")
+theme_override_font_sizes/font_size = 64
+text = "BUY"
+metadata/_edit_use_anchors_ = true
+
+[node name="Footer" type="Sprite2D" parent="."]
+z_index = 10
+texture_filter = 1
+position = Vector2(536, 1024)
+scale = Vector2(1.1, 1.06)
+texture = ExtResource("7_nwvgh")
+script = ExtResource("8_7hy1b")
+
+[node name="HeartHand" type="Sprite2D" parent="Footer"]
+modulate = Color(0.8891468, 0.8891468, 0.88914675, 1)
+z_index = 2
+texture_filter = 1
+position = Vector2(368.46835, -13.207642)
+scale = Vector2(0.7, 0.733)
+texture = ExtResource("9_72jbu")
+
+[node name="Label" type="Label" parent="Footer"]
+anchors_preset = -1
+anchor_left = 0.71171165
+anchor_top = 0.33262315
+anchor_right = 0.8057116
+anchor_bottom = 1.018107
+offset_left = -500.00003
+offset_top = -62.0
+offset_right = -500.0
+offset_bottom = -62.000008
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_hjxu6")
+theme_override_font_sizes/font_size = 64
+text = "X"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Footer"]
+anchors_preset = -1
+anchor_left = 0.6657657
+anchor_top = 0.19567865
+anchor_right = 0.7597657
+anchor_bottom = 0.8811625
+offset_left = -500.0
+offset_top = -62.0
+offset_right = -500.0
+offset_bottom = -62.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_hjxu6")
+theme_override_font_sizes/font_size = 80
+text = "3"
+metadata/_edit_use_anchors_ = true
+
+[node name="TimerColor" type="ColorRect" parent="Footer"]
+z_index = 1
+offset_left = -361.26123
+offset_top = -38.67926
+offset_right = -321.26123
+offset_bottom = 1.3207397
+scale = Vector2(11.25, 1.85)
+color = Color(1, 0, 0, 1)
+
+[node name="FooterTimerBackground" type="Sprite2D" parent="Footer"]
+position = Vector2(-60.36035, 0)
+scale = Vector2(0.9009008, 0.94339615)
+texture = ExtResource("10_5c333")
+
+[node name="FooterTimer" type="Sprite2D" parent="Footer"]
+z_index = 1
+position = Vector2(-60.36035, 9.536743e-05)
+scale = Vector2(0.90090084, 0.9433962)
+texture = ExtResource("11_w6no2")
+
+[node name="VendorMachine" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(540, 525)
+scale = Vector2(0.725, 0.85)
+texture = ExtResource("12_g2vnb")
+
+[node name="Crystal" type="Sprite2D" parent="VendorMachine"]
+modulate = Color(1, 1, 1, 0.44705883)
+z_index = -1
+position = Vector2(88.27585, -29.411793)
+scale = Vector2(1.172, 1)
+texture = ExtResource("13_lpegy")
+
+[node name="Label" type="Label" parent="VendorMachine"]
+offset_left = 470.34485
+offset_top = -252.94115
+offset_right = 593.34485
+offset_bottom = -112.94115
+theme_override_colors/font_color = Color(0, 18.892157, 0, 1)
+theme_override_fonts/font = ExtResource("6_hjxu6")
+theme_override_font_sizes/font_size = 102
+text = "3C"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="slot" type="Node2D" parent="VendorMachine"]
+position = Vector2(550.3448, -5.8823624)
+
+[node name="items" type="CanvasGroup" parent="."]
+
+[node name="Wallet" type="Sprite2D" parent="."]
+z_index = 3
+position = Vector2(215.00002, 866)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("15_0nqcj")
+
+[node name="insert" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_nwvgh")

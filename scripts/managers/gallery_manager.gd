@@ -1,6 +1,5 @@
 extends Node
 
-@onready var gallery_items = $items
 @onready var gallery_locked_sprite = preload("res://gallery item locked.png")
 var item_under_mouse: Sprite2D = null
 var max_page = 1
@@ -63,6 +62,7 @@ func is_mouse_over_item(item: Sprite2D, mouse_pos: Vector2) -> bool:
 	return rect.has_point(local_pos)
 
 func _on_buttonback_pressed() -> void:
+	globals._play_pop()
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
 
@@ -93,6 +93,7 @@ func _on_left_pressed() -> void:
 	get_node("page"+str(page)).visible = true
 	if page == 1: $left.hide()
 	$right.visible = true
+	globals._play_pop()
 
 func _on_right_pressed() -> void:
 	if page == max_page: return
@@ -101,9 +102,11 @@ func _on_right_pressed() -> void:
 	get_node("page"+str(page)).visible = true
 	if page == max_page: $right.hide()
 	$left.visible = true
+	globals._play_pop()
 
 
 func _on_unlockall_pressed() -> void:
+	globals._play_pop()
 	globals._unlock_minigame("Arcade")
 	globals._unlock_minigame("Toast")
 	globals._unlock_minigame("Rope")
@@ -112,4 +115,7 @@ func _on_unlockall_pressed() -> void:
 	globals._unlock_minigame("Kanji")
 	globals._unlock_minigame("Candle")
 	globals._unlock_minigame("PingPong")
+	globals._unlock_minigame("Vendor")
+	globals._unlock_hands("eyes")
+	globals._unlock_hands("fire")
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")

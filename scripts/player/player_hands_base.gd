@@ -21,6 +21,8 @@ func _ready():
 	hand_left.modulate = Color(1,1,1)
 	hand_right.modulate = Color(1,1,1)
 
+	modulate = globals.hands_color
+
 	if grappling:
 		hand_left.texture = globals.closehand_texture
 		hand_right.texture = globals.closehand_texture

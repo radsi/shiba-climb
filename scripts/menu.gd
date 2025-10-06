@@ -9,6 +9,8 @@ var clapped = false
 var message_timer = 0
 
 @onready var palm = $PalmHand
+@onready var custom_button = $CustomIcon
+@onready var gallery_button = $GalleryIcon
 
 func _ready() -> void:
 	
@@ -21,11 +23,30 @@ func _ready() -> void:
 	if $AnimationPlayer != null:
 		$AnimationPlayer.seek(0, true)
 		$AnimationPlayer.play("mainmenu")
+		
+	if $"animation custom button" != null:
+		$"animation custom button".play("custom_button")
 	
 	if globals.pending_menu_messages.size() > 0:
 		_show_pending_message()
 
 func _process(delta: float) -> void:
+	
+	if is_mouse_over_item(custom_button, get_viewport().get_mouse_position()):
+		custom_button.scale = Vector2(1.25, 1.25)
+	else:
+		if custom_button != null: custom_button.scale = Vector2(1, 1)
+	
+	if is_mouse_over_item(palm, get_viewport().get_mouse_position()):
+		palm.scale = Vector2(3.5, 3.5)
+	else:
+		if palm != null: palm.scale = Vector2(3, 3)
+	
+	if is_mouse_over_item(gallery_button, get_viewport().get_mouse_position()):
+		gallery_button.scale = Vector2(1.25, 1.25)
+	else:
+		if gallery_button != null: gallery_button.scale = Vector2(1, 1)
+	
 	if message_timer >= 2:
 		return
 	
@@ -35,11 +56,10 @@ func _input(event) -> void:
 	if event is InputEventMouseButton:
 		if showing_messages and message_timer >= 2: _close_message()
 	
-	if showing_messages or message_timer < 1: return
+	if showing_messages or message_timer < 0.5: return
 	
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		var mouse_pos = get_viewport().get_mouse_position()
-		if _is_mouse_over_palm(mouse_pos) and clapped == false:
+		if is_mouse_over_item(palm, get_viewport().get_mouse_position()) and clapped == false:
 			$AudioStreamPlayer2D.play()
 			palm.texture = globals.clapped_texture
 			var tween = create_tween()
@@ -47,27 +67,32 @@ func _input(event) -> void:
 			tween.tween_callback(Callable(self, "_on_fade_complete"))
 			first_time = false
 			clapped = true
+		elif is_mouse_over_item(custom_button, get_viewport().get_mouse_position()) and clapped == false:
+			globals._play_pop()
+			get_tree().change_scene_to_file("res://scenes/customization.tscn")
+		elif is_mouse_over_item(gallery_button, get_viewport().get_mouse_position()) and clapped == false:
+			globals._play_pop()
+			get_tree().change_scene_to_file("res://scenes/gallery.tscn")
 
-func _is_mouse_over_palm(pos: Vector2) -> bool:
-	if palm is Sprite2D and palm.texture != null:
-		var size = palm.texture.get_size() * palm.scale
-		var rect = Rect2(palm.global_position - size * 0.5, size)
-		return rect.has_point(pos)
-	return false
+func is_mouse_over_item(item: Sprite2D, mouse_pos: Vector2) -> bool:
+	if item == null:
+		return false
+	var local_pos = item.to_local(mouse_pos)
+	var size = item.texture.get_size()
+	var rect = Rect2(-size * 0.5, size)
+	return rect.has_point(local_pos)
 
 func _on_fade_complete() -> void:
 	get_tree().change_scene_to_file("res://scenes/countdown.tscn")
 
 func _on_button_2_pressed() -> void:
 	if showing_messages or message_timer < 1: return
+	globals._play_pop()
 	get_tree().change_scene_to_file("res://scenes/credits.tscn")
 
 func _on_buttonback_pressed() -> void:
+	globals._play_pop()
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
-
-func _on_button_3_pressed() -> void:
-	if showing_messages or message_timer < 1: return
-	get_tree().change_scene_to_file("res://scenes/gallery.tscn")
 
 func _show_pending_message():
 	showing_messages = true

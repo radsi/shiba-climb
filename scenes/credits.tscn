@@ -11,7 +11,6 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2fbfq"]
 
 [sub_resource type="Animation" id="Animation_vmxya"]
-length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -154,7 +153,14 @@ Knocking wall - Taira Komori on freesound.org
 Jail background: freepik.es
 Box break sfx: vibinchillin - freesound.org
 Apple sfx: BerduSmith - freesound.org
-Pencil sfx: ani_music - freesound.org"
+Pencil sfx: ani_music - freesound.org
+Ping pong sfx: ryusa - freesound.org
+Pop sfx: CrazyBeatsINC - freesound.org
+Wallet: pngimg.es
+Soda: vecteezy.com
+Chips bag: stavr0 - Wallpapers.com
+Cookies: freepik.com
+Camping bg: wallpapercave.com"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true

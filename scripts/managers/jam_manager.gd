@@ -27,10 +27,13 @@ func _handle_bites_async() -> void:
 			$bite.play()
 			toast.texture = load("res://mini games sprites/toasts/bite"+str(bite_count)+".png")
 	
-	if not burp_played: $burp.play()
+	if not burp_played: 
+		$burp.play()
+		globals.minigame_completed = false
 	burp_played = true
 	await get_tree().create_timer(BURP_WAIT).timeout
 	globals.is_playing_minigame_anim = false
+	globals._start_roll()
 	toast.visible = false
 
 	if globals.is_single_minigame:

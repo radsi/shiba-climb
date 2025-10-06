@@ -1,5 +1,7 @@
 extends Node
 
+var hands_color = Color(1,1,1)
+
 var pending_menu_messages = []
 
 var is_on_transition = false
@@ -22,13 +24,21 @@ var hands_max_durability = 20
 var hands_drain_rate: float = 5
 var openhand_texture = preload("res://hand sprites/open hand.png")
 var closehand_texture = preload("res://hand sprites/fist hand.png")
+var fingerhand_texture = preload("res://hand sprites/finger hand.png")
 var clapped_texture = preload("res://hand sprites/palm hand_clapped.png")
+var winhand_texture = preload("res://hand sprites/win hands.png")
+var gohand_texture = preload("res://hand sprites/up hand.png")
 
 var all_unlocked_scenes := [
 	"res://scenes/minigames/apples.tscn",
 	"res://scenes/minigames/clean.tscn",
 	"res://scenes/minigames/climb long.tscn"
 ]
+
+var all_unlocked_hands := [
+	"default",
+]
+
 var pool := []
 var last_scene := ""
 var is_single_minigame = false
@@ -39,6 +49,11 @@ var whistle_audio = preload("res://sounds/90743__pablo-f__referee-whistle.wav")
 var lose_audio = preload("res://sounds/350985__cabled_mess__lose_c_02.wav")
 var menu_audio = preload("res://sounds/628445__davo32__level-music-brackground.mp3")
 var music_audio = preload("res://sounds/404717__djevilj__nu-break-july-2017-drum-track.wav")
+var pop_audio = preload("res://sounds/pop-sound-effect.wav")
+
+func _play_pop():
+	audio_player.stream = pop_audio
+	audio_player.play()
 
 func _ready():
 	audio_player = AudioStreamPlayer2D.new()
@@ -79,6 +94,7 @@ func _process(delta: float) -> void:
 
 func start_single_minigame(minigame):
 	music_player.stream = music_audio
+	audio_player.stream = whistle_audio
 	is_single_minigame = true
 	music_player.play()
 	audio_player.play()
@@ -97,6 +113,7 @@ func start_single_minigame(minigame):
 
 func start_roll_from_menu():
 	music_player.stream = music_audio
+	audio_player.stream = whistle_audio
 	music_player.play()
 	audio_player.play()
 	game_speed = 200
@@ -110,6 +127,7 @@ func start_roll_from_menu():
 	is_long = false
 	pool = all_unlocked_scenes.duplicate()
 	last_scene = ""
+	game_score = -1
 	_start_roll()
 
 func _start_roll():
@@ -143,9 +161,11 @@ func _start_roll():
 	var scene_path: String = pool[index]
 
 	last_scene = scene_path
+	if last_scene == "res://scenes/minigames/pingpong.tscn":
+		last_scene = "res://scenes/minigames/pingpong long.tscn"
 	pool.remove_at(index)
 
-	if scene_path.contains("long"):
+	if last_scene.contains("long"):
 		is_long = true
 		minigame_completed = true
 		time_left = game_time_long
@@ -166,10 +186,16 @@ func _unlock_minigame(minigame: String):
 	if all_unlocked_scenes.has(scene_path): return
 	all_unlocked_scenes.push_back(scene_path)
 	pending_menu_messages.push_back("Unlocked new .minigame: "+minigame+"!")
+	
+func _unlock_hands(hands: String):
+	if all_unlocked_hands.has(hands): return
+	all_unlocked_hands.push_back(hands)
+	pending_menu_messages.push_back("Unlocked new .hands: "+hands+"!")
 
 func _game_over():
 	if game_score >= 4:
 		_unlock_minigame("Arcade")
+		_unlock_hands("eyes")
 	
 	if game_score >= 8:
 		_unlock_minigame("Toast")
@@ -179,6 +205,7 @@ func _game_over():
 		
 	if game_score >= 24:
 		_unlock_minigame("Bonfire")
+		_unlock_hands("fire")
 	
 	if game_score >= 32:
 		_unlock_minigame("Kanji")

@@ -8,7 +8,7 @@ extends Node
 ]
 
 var played_audio = false
-var timer := 0
+var timer: float = 0
 
 func _process(delta: float) -> void:
 	timer += delta
