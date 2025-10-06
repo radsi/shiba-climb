@@ -202,6 +202,7 @@ func _game_over():
 	
 	if game_score >= 16:
 		_unlock_minigame("Rope")
+		_unlock_hands("camo")
 		
 	if game_score >= 24:
 		_unlock_minigame("Bonfire")

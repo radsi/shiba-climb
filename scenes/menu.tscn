@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://re18gkg4sw4r"]
+[gd_scene load_steps=34 format=3 uid="uid://re18gkg4sw4r"]
 
 [ext_resource type="Script" uid="uid://dykhujf08cqwk" path="res://scripts/menu.gd" id="1_vjb58"]
 [ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="1_yqeox"]
@@ -23,6 +23,8 @@
 [ext_resource type="Texture2D" uid="uid://3ocnp3qxwir2" path="res://custom icon2.png" id="18_81l6r"]
 [ext_resource type="Texture2D" uid="uid://cfnw2a1umf03s" path="res://hand sprites/fist hand_fire.png" id="18_lnf0i"]
 [ext_resource type="Texture2D" uid="uid://u3lwql5l6lus" path="res://mini games sprites/coin.png" id="19_x16fv"]
+[ext_resource type="Texture2D" uid="uid://lwj1fhr7k277" path="res://hand sprites/open hand_camo.png" id="20_g54pe"]
+[ext_resource type="Texture2D" uid="uid://dhu0gxyygt15l" path="res://hand sprites/fist hand_camo.png" id="21_48ryc"]
 [ext_resource type="Texture2D" uid="uid://cwiwonq1sjm2n" path="res://gallery icon 2.png" id="22_ffqrc"]
 [ext_resource type="Texture2D" uid="uid://54gg58vr4y2" path="res://gallery icon.png" id="24_x16fv"]
 
@@ -393,6 +395,24 @@ texture_filter = 1
 position = Vector2(-2.3437462, 130)
 scale = Vector2(5, 6)
 texture = ExtResource("19_x16fv")
+
+[node name="camo" type="CanvasGroup" parent="Message/Icons"]
+visible = false
+
+[node name="OpenHand" type="Sprite2D" parent="Message/Icons/camo"]
+z_index = 1
+texture_filter = 1
+position = Vector2(-80, 73)
+scale = Vector2(2.499, 3)
+texture = ExtResource("20_g54pe")
+
+[node name="FistHand" type="Sprite2D" parent="Message/Icons/camo"]
+z_index = 1
+texture_filter = 1
+position = Vector2(80, 73)
+scale = Vector2(2.499, 3)
+texture = ExtResource("21_48ryc")
+flip_h = true
 
 [node name="Bg" type="Sprite2D" parent="."]
 modulate = Color(0.23110586, 0.40934858, 0.4403412, 1)

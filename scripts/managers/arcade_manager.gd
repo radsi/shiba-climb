@@ -8,7 +8,7 @@ var current_frame = 7
 var timer = 0.0
 
 var active_enemies: Array = []
-var dead_enemies_count = 0
+var dead_enemies_count = 1
 
 var enemies_tweens = {}
 var enemies_original_positions = {}
