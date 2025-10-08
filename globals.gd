@@ -1,5 +1,6 @@
 extends Node
 
+var using_gamepad = false
 var hands_color = Color(1,1,1)
 
 var pending_menu_messages = []
@@ -55,6 +56,12 @@ var pop_audio = preload("res://sounds/pop-sound-effect.wav")
 func _play_pop():
 	audio_player.stream = pop_audio
 	audio_player.play()
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventJoypadButton or event is InputEventJoypadMotion:
+		using_gamepad = true
+	else:
+		using_gamepad = false
 
 func _ready():
 	audio_player = AudioStreamPlayer2D.new()
@@ -200,10 +207,11 @@ func _game_over():
 	
 	if game_score >= 8:
 		_unlock_minigame("Toast")
-	
+		_unlock_hands("camo")
+		
 	if game_score >= 16:
 		_unlock_minigame("Rope")
-		_unlock_hands("camo")
+		_unlock_hands("caution")
 		
 	if game_score >= 24:
 		_unlock_minigame("Bonfire")

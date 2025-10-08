@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 	var move_left = hand_left.global_position - last_pos_left
 	var move_right = hand_right.global_position - last_pos_right
 
-	if wall_hitted_left:
+	if wall_hitted_left and dragging_left:
 		match wall_hitted_left.name:
 			"Line":
 				if move_left.x < 0:
@@ -55,7 +55,7 @@ func _process(delta: float) -> void:
 					if wall_hitted_left == weak_wall:
 						_shake_jail(Vector2.DOWN)
 
-	if wall_hitted_right:
+	if wall_hitted_right and dragging_right:
 		match wall_hitted_right.name:
 			"Line":
 				if move_right.x < 0:
@@ -121,7 +121,7 @@ func _shake_jail(direction: Vector2) -> void:
 
 func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if body == null: return
-	if weak_wall == body.get_parent():
+	if weak_wall == body.get_parent() and dragging_left:
 		knock.play()
 		wall_hp -= 1
 		if wall_hp <= 0:
@@ -137,7 +137,7 @@ func _on_area_2d_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index
 
 func _on_area_2d_right_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if body == null: return
-	if weak_wall == body.get_parent():
+	if weak_wall == body.get_parent() and dragging_right:
 		knock.play()
 		wall_hp -= 1
 		if wall_hp <= 0:

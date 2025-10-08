@@ -14,8 +14,8 @@ var was_fingerhand_right := false
 
 func _ready():
 	super._ready()
-	last_pos_left = get_viewport().get_mouse_position()
-	last_pos_right = get_viewport().get_mouse_position()
+	last_pos_left = hand_left.global_position
+	last_pos_right = hand_right.global_position
 
 func _process(delta):
 	was_dragging_left = dragging_left
@@ -25,9 +25,11 @@ func _process(delta):
 
 	super._process(delta)
 
-	if is_mouse_over_item(keypad, get_viewport().get_mouse_position()):
+	if is_mouse_over_item(keypad, hand_left.global_position):
 		if dragging_left:
 			hand_left.texture = globals.fingerhand_texture
+
+	if is_mouse_over_item(keypad, hand_right.global_position):
 		if dragging_right:
 			hand_right.texture = globals.fingerhand_texture
 
@@ -42,9 +44,9 @@ func update_attached_hand(attached, hand: Node2D, is_left: bool) -> void:
 		return
 
 	if is_left and dragging_left and attached_left == null:
-		attach_hand_to_fan(hand, true)
+		attach_hand_to_coin(hand, true)
 	elif not is_left and dragging_right and attached_right == null:
-		attach_hand_to_fan(hand, false)
+		attach_hand_to_coin(hand, false)
 
 	var dragging = dragging_left if is_left else dragging_right
 	if not dragging and ((is_left and attached_left != null) or (not is_left and attached_right != null)):
@@ -53,7 +55,7 @@ func update_attached_hand(attached, hand: Node2D, is_left: bool) -> void:
 	if attached != null and attached.is_inside_tree():
 		attached.global_position = Vector2(hand.global_position.x - [30, -30][int(is_left)], hand.global_position.y - 30)
 
-func attach_hand_to_fan(hand: Node2D, is_left: bool) -> void:
+func attach_hand_to_coin(hand: Node2D, is_left: bool) -> void:
 	var local_pos = coin.to_local(hand.global_position)
 	var size = coin.texture.get_size()
 	var rect = Rect2(-size * 0.5, size)
@@ -104,18 +106,36 @@ func is_mouse_over_item(item: Sprite2D, mouse_pos: Vector2) -> bool:
 func _input(event):
 	super._input(event)
 
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
-		if was_dragging_left and was_fingerhand_left:
-			var tip = _get_finger_tip(hand_left)
-			var nearest = _get_closest_keypad_child(tip)
-			if nearest:
-				manager.hand_input += str(nearest.name)
-				beep.play()
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
+			if was_dragging_left and was_fingerhand_left:
+				var tip = _get_finger_tip(hand_left)
+				var nearest = _get_closest_keypad_child(tip)
+				if nearest:
+					manager.hand_input += str(nearest.name)
+					beep.play()
 
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and not event.pressed:
-		if was_dragging_right and was_fingerhand_right:
-			var tip = _get_finger_tip(hand_right)
-			var nearest = _get_closest_keypad_child(tip)
-			if nearest:
-				manager.hand_input += str(nearest.name)
-				beep.play()
+		if event.button_index == MOUSE_BUTTON_RIGHT and not event.pressed:
+			if was_dragging_right and was_fingerhand_right:
+				var tip = _get_finger_tip(hand_right)
+				var nearest = _get_closest_keypad_child(tip)
+				if nearest:
+					manager.hand_input += str(nearest.name)
+					beep.play()
+
+	if event is InputEventJoypadButton and globals.using_gamepad:
+		if event.button_index == JOY_BUTTON_LEFT_SHOULDER and not event.pressed:
+			if was_dragging_left and was_fingerhand_left:
+				var tip = _get_finger_tip(hand_left)
+				var nearest = _get_closest_keypad_child(tip)
+				if nearest:
+					manager.hand_input += str(nearest.name)
+					beep.play()
+
+		if event.button_index == JOY_BUTTON_RIGHT_SHOULDER and not event.pressed:
+			if was_dragging_right and was_fingerhand_right:
+				var tip = _get_finger_tip(hand_right)
+				var nearest = _get_closest_keypad_child(tip)
+				if nearest:
+					manager.hand_input += str(nearest.name)
+					beep.play()

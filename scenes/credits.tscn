@@ -126,19 +126,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Label2" type="Label" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.0032407406
-anchor_top = 0.25138888
-anchor_right = 0.99675924
-anchor_bottom = 0.9986111
-offset_bottom = -6.1035156e-05
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_u3bib")
-theme_override_font_sizes/font_size = 48
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_top = 278.0
+offset_right = 1080.0
+offset_bottom = 1078.0
+theme_override_fonts/normal_font = ExtResource("2_u3bib")
+theme_override_font_sizes/normal_font_size = 48
 text = "Text font: 1001Fonts
 Whistle SFX: Pablo-F - freesound.org
 Arcade assets: comp3interactive - itch.io
@@ -160,10 +154,13 @@ Wallet: pngimg.es
 Soda: vecteezy.com
 Chips bag: stavr0 - Wallpapers.com
 Cookies: freepik.com
-Camping bg: wallpapercave.com"
+Camping bg: wallpapercave.com
+Racket image: pngimg.com
+Gamepad icon: pngimg.com
+Caution tape: vecteezy.com"
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
+justification_flags = 162
 
 [node name="buttonback" type="Button" parent="."]
 layout_mode = 1
@@ -190,33 +187,6 @@ metadata/_edit_use_anchors_ = true
 libraries = {
 &"": SubResource("AnimationLibrary_7r7o8")
 }
-
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_top = 278.0
-offset_right = 1080.0
-offset_bottom = 1078.0
-theme_override_fonts/normal_font = ExtResource("2_u3bib")
-theme_override_font_sizes/normal_font_size = 48
-text = "Text font: 1001Fonts
-Whistle SFX: Pablo-F - freesound.org
-Arcade assets: comp3interactive - itch.io
-Increase sfx: michael_kur95 - freesound.org
-Oscilation sfx: GuilhermeCayeiro - freesound.org
-Toast: pngall.com
-Jam: pluspng.com
-Rope sfx: FullStackSound - freesound.org
-Rope sfx 2: MPierluissi - freesound.org
-Retro explosion: Mrthenoronha - freesound.org
-Knocking wall - Taira Komori on freesound.org
-Jail background: freepik.es
-Box break sfx: vibinchillin - freesound.org
-Apple sfx: BerduSmith - freesound.org
-Pencil sfx: ani_music - freesound.org
-Racket image - pngimg.com"
-horizontal_alignment = 1
-vertical_alignment = 1
-justification_flags = 162
 
 [node name="Bg" type="Sprite2D" parent="."]
 modulate = Color(0.23110586, 0.40934858, 0.4403412, 1)

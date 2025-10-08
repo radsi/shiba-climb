@@ -34,8 +34,8 @@ func _process(delta: float) -> void:
 	if changed and not scrub_sound.playing:
 		scrub_sound.play()
 
-func increase_transparency_under_hand(hand: Node2D, last_pos: Vector2) -> bool:
-	if hand == null:
+func increase_transparency_under_hand(hand: Sprite2D, last_pos: Vector2) -> bool:
+	if hand == null or hand.texture != globals.openhand_texture:
 		return false
 
 	var delta_pos = hand.global_position - last_pos

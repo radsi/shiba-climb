@@ -14,8 +14,14 @@ var message_timer = 0
 @onready var bg1 = $Bg
 @onready var bg2 = $Bg2
 
+var prev_dpad_left := false
+var prev_dpad_right := false
+var prev_axis_x := 0.0
+
+@onready var buttons = [gallery_button, palm, custom_button]
+var current_button = 1
+
 func _ready() -> void:
-	
 	if globals.current_menu_bg_pos[0] > 0:
 		bg1.global_position.y = globals.current_menu_bg_pos[0]
 		bg2.global_position.y = globals.current_menu_bg_pos[1]
@@ -35,6 +41,27 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	
+	# --- D-PAD ---
+	var dpad_left = Input.is_joy_button_pressed(0, JOY_BUTTON_DPAD_LEFT)
+	var dpad_right = Input.is_joy_button_pressed(0, JOY_BUTTON_DPAD_RIGHT)
+	
+	if dpad_left and not prev_dpad_left:
+		current_button = clamp(current_button + 1, 0, 2)
+	elif dpad_right and not prev_dpad_right:
+		current_button = clamp(current_button - 1, 0, 2)
+	
+	prev_dpad_left = dpad_left
+	prev_dpad_right = dpad_right
+
+	# --- JOYSTICK IZQUIERDO ---
+	var x_axis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
+	if x_axis < -0.5 and prev_axis_x >= -0.5:
+		current_button = clamp(current_button + 1, 0, 2)
+	elif x_axis > 0.5 and prev_axis_x <= 0.5:
+		current_button = clamp(current_button - 1, 0, 2)
+	
+	prev_axis_x = x_axis
+	
 	bg1.global_position.y += 5
 	bg2.global_position.y += 5
 	
@@ -46,17 +73,17 @@ func _process(delta: float) -> void:
 	globals.current_menu_bg_pos[0] = bg1.global_position.y
 	globals.current_menu_bg_pos[1] = bg2.global_position.y
 	
-	if is_mouse_over_item(custom_button, get_viewport().get_mouse_position()):
+	if is_mouse_over_item(custom_button, get_viewport().get_mouse_position()) or current_button == 0:
 		custom_button.scale = Vector2(1.25, 1.25)
 	else:
 		if custom_button != null: custom_button.scale = Vector2(1, 1)
 	
-	if is_mouse_over_item(palm, get_viewport().get_mouse_position()):
+	if is_mouse_over_item(palm, get_viewport().get_mouse_position()) or current_button == 1:
 		palm.scale = Vector2(3.5, 3.5)
 	else:
 		if palm != null: palm.scale = Vector2(3, 3)
 	
-	if is_mouse_over_item(gallery_button, get_viewport().get_mouse_position()):
+	if is_mouse_over_item(gallery_button, get_viewport().get_mouse_position()) or current_button == 2:
 		gallery_button.scale = Vector2(1.25, 1.25)
 	else:
 		if gallery_button != null: gallery_button.scale = Vector2(1, 1)
@@ -72,8 +99,12 @@ func _input(event) -> void:
 	
 	if showing_messages or message_timer < 0.5: return
 	
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		if is_mouse_over_item(palm, get_viewport().get_mouse_position()) and clapped == false:
+	if event is InputEventJoypadButton and event.button_index == JOY_BUTTON_B and get_tree().current_scene.name != "Menu":
+		get_tree().change_scene_to_file("res://scenes/menu.tscn")
+		return
+	
+	if ((event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT) or (event is InputEventJoypadButton and event.button_index == JOY_BUTTON_A)) and event.pressed:
+		if (is_mouse_over_item(palm, get_viewport().get_mouse_position()) or (current_button == 1 and globals.using_gamepad)) and clapped == false:
 			$AudioStreamPlayer2D.play()
 			palm.texture = globals.clapped_texture
 			var tween = create_tween()
@@ -81,10 +112,10 @@ func _input(event) -> void:
 			tween.tween_callback(Callable(self, "_on_fade_complete"))
 			first_time = false
 			clapped = true
-		elif is_mouse_over_item(custom_button, get_viewport().get_mouse_position()) and clapped == false:
+		elif (is_mouse_over_item(custom_button, get_viewport().get_mouse_position()) or (current_button == 0 and globals.using_gamepad)) and clapped == false:
 			globals._play_pop()
 			get_tree().change_scene_to_file("res://scenes/customization.tscn")
-		elif is_mouse_over_item(gallery_button, get_viewport().get_mouse_position()) and clapped == false:
+		elif (is_mouse_over_item(gallery_button, get_viewport().get_mouse_position()) or (current_button == 2 and globals.using_gamepad)) and clapped == false:
 			globals._play_pop()
 			get_tree().change_scene_to_file("res://scenes/gallery.tscn")
 

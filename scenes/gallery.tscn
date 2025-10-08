@@ -285,7 +285,7 @@ texture = ExtResource("4_mdy1u")
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("16_kk4fg")
 
-[node name="page3" type="CanvasGroup" parent="." groups=["pages"]]
+[node name="page3" type="CanvasGroup" parent="."]
 visible = false
 
 [node name="GalleryItem" type="Sprite2D" parent="page3"]
@@ -324,7 +324,7 @@ position = Vector2(865, 732)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_mdy1u")
 
-[node name="buttonback" type="Button" parent="."]
+[node name="buttonback" type="Button" parent="." groups=["uibutton"]]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.026851851
@@ -345,7 +345,7 @@ flat = true
 icon_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="left" type="Button" parent="."]
+[node name="left" type="Button" parent="." groups=["uibutton"]]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -367,7 +367,7 @@ flat = true
 icon_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="right" type="Button" parent="."]
+[node name="right" type="Button" parent="." groups=["uibutton"]]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.73703706

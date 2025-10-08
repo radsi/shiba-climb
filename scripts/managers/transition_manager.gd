@@ -2,7 +2,6 @@ extends Node
 
 @onready var text = $CanvasGroup/message
 @onready var hands = $CanvasGroup/hands
-@onready var bg = $Bg
 @onready var decorations_list = [$decorations1, $decorations2, $decorations3, $decorations4]
 @onready var decorations = decorations_list[randf_range(0, decorations_list.size())]
 @onready var bg1 = $Bg
@@ -16,7 +15,9 @@ var messages_bad = ["Too bad!", "You can do better", "Oh..."]
 var messages_good = ["Nice!", "Very good!", "Good hand play"] 
 
 func _ready() -> void:
-	bg.modulate = Color(bg_colors[randf_range(0, bg_colors.size())])
+	var color = Color(bg_colors[randf_range(0, bg_colors.size())])
+	bg1.modulate = color
+	bg2.modulate = color
 	text.rotation_degrees = 6
 	hands.rotation_degrees = -6
 	decorations.visible = true
@@ -29,7 +30,8 @@ func _ready() -> void:
 	if not globals.roll_started:
 		text.text = "Game over"
 		hands.flip_v = true
-		bg.modulate = Color("#231942")
+		bg1.modulate = Color("#231942")
+		bg2.modulate = Color("#231942")
 		return
 	
 	if globals.has_lost_life:

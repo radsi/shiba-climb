@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://re18gkg4sw4r"]
+[gd_scene load_steps=38 format=3 uid="uid://re18gkg4sw4r"]
 
 [ext_resource type="Script" uid="uid://dykhujf08cqwk" path="res://scripts/menu.gd" id="1_vjb58"]
 [ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="1_yqeox"]
@@ -26,7 +26,11 @@
 [ext_resource type="Texture2D" uid="uid://lwj1fhr7k277" path="res://hand sprites/open hand_camo.png" id="20_g54pe"]
 [ext_resource type="Texture2D" uid="uid://dhu0gxyygt15l" path="res://hand sprites/fist hand_camo.png" id="21_48ryc"]
 [ext_resource type="Texture2D" uid="uid://cwiwonq1sjm2n" path="res://gallery icon 2.png" id="22_ffqrc"]
+[ext_resource type="Texture2D" uid="uid://67m3bcjsttlv" path="res://hand sprites/open hand_caution.png" id="22_vhsb5"]
+[ext_resource type="Texture2D" uid="uid://dif2866ktpwx8" path="res://hand sprites/fist hand_caution.png" id="23_hwfsl"]
+[ext_resource type="Texture2D" uid="uid://dq2p27jerg1lf" path="res://hand sprites/open hand_real.png" id="24_a04p5"]
 [ext_resource type="Texture2D" uid="uid://54gg58vr4y2" path="res://gallery icon.png" id="24_x16fv"]
+[ext_resource type="Texture2D" uid="uid://dyk1idfs6okm" path="res://hand sprites/fist hand_real.png" id="25_b5gwo"]
 
 [sub_resource type="Animation" id="Animation_mhnvy"]
 length = 0.001
@@ -412,6 +416,42 @@ texture_filter = 1
 position = Vector2(80, 73)
 scale = Vector2(2.499, 3)
 texture = ExtResource("21_48ryc")
+flip_h = true
+
+[node name="caution" type="CanvasGroup" parent="Message/Icons"]
+visible = false
+
+[node name="OpenHand" type="Sprite2D" parent="Message/Icons/caution"]
+z_index = 1
+texture_filter = 1
+position = Vector2(-80, 73)
+scale = Vector2(2.499, 3)
+texture = ExtResource("22_vhsb5")
+
+[node name="FistHand" type="Sprite2D" parent="Message/Icons/caution"]
+z_index = 1
+texture_filter = 1
+position = Vector2(80, 73)
+scale = Vector2(2.499, 3)
+texture = ExtResource("23_hwfsl")
+flip_h = true
+
+[node name="real" type="CanvasGroup" parent="Message/Icons"]
+visible = false
+
+[node name="OpenHand" type="Sprite2D" parent="Message/Icons/real"]
+z_index = 1
+texture_filter = 1
+position = Vector2(-80, 73)
+scale = Vector2(2.499, 3)
+texture = ExtResource("24_a04p5")
+
+[node name="FistHand" type="Sprite2D" parent="Message/Icons/real"]
+z_index = 1
+texture_filter = 1
+position = Vector2(80, 73)
+scale = Vector2(2.499, 3)
+texture = ExtResource("25_b5gwo")
 flip_h = true
 
 [node name="Bg" type="Sprite2D" parent="."]

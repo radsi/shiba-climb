@@ -5,6 +5,8 @@ var start_count := 4
 
 @onready var mouse_left_click_sprite = preload("res://left click.png")
 @onready var mouse_right_click_sprite = preload("res://right click.png")
+@onready var joystick_left_sprite = preload("res://left joystick.png")
+@onready var joystick_right_sprite = preload("res://right joystick.png")
 @onready var mouse = $mouse
 @onready var hand_left = $OpenHand
 @onready var hand_right = $OpenHand2
@@ -14,6 +16,13 @@ var timer = 0
 var index = 0
 
 func _ready():
+	
+	if globals.using_gamepad:
+		mouse_left_click_sprite = load("res://left joystick.png")
+		mouse_right_click_sprite = load("res://right joystick.png")
+	
+	mouse.texture = mouse_left_click_sprite
+	
 	$ColorRect2.color.a = 1
 	var tween = create_tween()
 	tween.tween_property($ColorRect2, "color:a", 0.0, 1.0)

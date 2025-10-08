@@ -3,6 +3,7 @@ extends Sprite2D
 @onready var size = texture.get_size()
 @onready var rect = Rect2(-size * 0.5, size)
 @onready var id = str(get_parent().name)[get_parent().name.length() - 1]
+@onready var manager = $"../../.."
 
 var min_pos : float
 var max_pos : float
@@ -33,6 +34,16 @@ func _ready() -> void:
 	global_position.x = lerp(min_pos, max_pos, t)
 
 func _input(event: InputEvent) -> void:
+	if event is InputEventJoypadButton and event.pressed:
+		if event.button_index == JOY_BUTTON_DPAD_LEFT:
+			if manager.buttons[manager.current_button] == self:
+				_change_value(5)
+		elif event.button_index == JOY_BUTTON_DPAD_RIGHT:
+			if manager.buttons[manager.current_button] == self:
+				_change_value(-5)
+		
+		return
+	
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
@@ -52,3 +63,9 @@ func _process(delta: float) -> void:
 		mapped_value = int(round(t * 255))
 
 		emit_signal("color_changed", mapped_value, id)
+
+func _change_value(amount: int) -> void:
+	mapped_value = clamp(mapped_value + amount, 0, 255)
+	var t = 1.0 - float(mapped_value) / 255.0
+	global_position.x = lerp(min_pos, max_pos, t)
+	emit_signal("color_changed", mapped_value, id)

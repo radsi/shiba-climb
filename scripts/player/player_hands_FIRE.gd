@@ -12,19 +12,19 @@ var max_fire_scale := 0.6
 func _ready():
 	super._ready()
 	last_fan_pos = fan.global_position
-	last_pos_left = get_viewport().get_mouse_position()
-	last_pos_right = get_viewport().get_mouse_position()
+	last_pos_left = hand_left.global_position
+	last_pos_right = hand_right.global_position
 
 func _process(delta):
 	super._process(delta)
-	
+
 	update_attached_hand(attached_left, hand_left, true, last_pos_left)
 	update_attached_hand(attached_right, hand_right, false, last_pos_right)
 
 	if dragging_left:
-		last_pos_left = get_viewport().get_mouse_position()
+		last_pos_left = hand_left.global_position
 	if dragging_right:
-		last_pos_right = get_viewport().get_mouse_position()
+		last_pos_right = hand_right.global_position
 
 	last_fan_pos = fan.global_position
 
@@ -46,7 +46,7 @@ func update_attached_hand(attached, hand: Node2D, is_left: bool, prev_pos: Vecto
 		attached.global_position = Vector2(hand.global_position.x - [30, -30][int(is_left)], hand.global_position.y - 30)
 		hand.texture = globals.closehand_texture
 
-		var dy = get_viewport().get_mouse_position().y - prev_pos.y
+		var dy = hand.global_position.y - prev_pos.y
 		if abs(dy) > movement_threshold:
 			if fire.scale.x < max_fire_scale and fire.scale.x > 0:
 				var grow = (globals.game_speed / 100000.0) + 0.003

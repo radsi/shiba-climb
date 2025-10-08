@@ -10,8 +10,8 @@ var attached_right: Sprite2D = null
 
 func _ready() -> void:
 	super._ready()
-	last_pos_left = get_viewport().get_mouse_position()
-	last_pos_right = get_viewport().get_mouse_position()
+	last_pos_left = hand_left.global_position
+	last_pos_right = hand_right.global_position
 
 func _input(event: InputEvent) -> void:
 	super._input(event)
@@ -23,9 +23,9 @@ func _process(delta: float) -> void:
 	update_attached_hand(attached_right, hand_right, false, last_pos_right)
 
 	if dragging_left:
-		last_pos_left = get_viewport().get_mouse_position()
+		last_pos_left = hand_left.global_position
 	if dragging_right:
-		last_pos_right = get_viewport().get_mouse_position()
+		last_pos_right = hand_right.global_position
 
 func update_attached_hand(attached, hand: Node2D, is_left: bool, prev_pos: Vector2) -> void:
 	if hand == null or not hand.is_inside_tree():
@@ -47,6 +47,10 @@ func update_attached_hand(attached, hand: Node2D, is_left: bool, prev_pos: Vecto
 			hand.global_position.y - 30
 		)
 		hand.texture = globals.closehand_texture
+
+		var dy = hand.global_position.y - prev_pos.y
+		if abs(dy) > 10.0:
+			racket_character.rotation_degrees = clamp(racket_character.rotation_degrees + sign(dy) * 2, -30, 30)
 	else:
 		hand.texture = globals.openhand_texture
 
@@ -70,7 +74,6 @@ func detach_hand(hand: Node2D, is_left: bool) -> void:
 		attached_right = null
 	if hand != null and hand.is_inside_tree():
 		hand.texture = globals.openhand_texture
-
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	impact.play()

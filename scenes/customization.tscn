@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dwew7bmnff2t7"]
+[gd_scene load_steps=35 format=3 uid="uid://dwew7bmnff2t7"]
 
 [ext_resource type="Script" uid="uid://cfvjtfhf1skt3" path="res://scripts/managers/customization_manager.gd" id="1_73iet"]
 [ext_resource type="Texture2D" uid="uid://l2atiswygex0" path="res://transitions/bg.jpg" id="1_e40qk"]
@@ -20,6 +20,10 @@
 [ext_resource type="Texture2D" uid="uid://cfnw2a1umf03s" path="res://hand sprites/fist hand_fire.png" id="19_6xu0c"]
 [ext_resource type="Texture2D" uid="uid://lwj1fhr7k277" path="res://hand sprites/open hand_camo.png" id="19_w3cap"]
 [ext_resource type="Texture2D" uid="uid://dhu0gxyygt15l" path="res://hand sprites/fist hand_camo.png" id="20_4q6wm"]
+[ext_resource type="Texture2D" uid="uid://67m3bcjsttlv" path="res://hand sprites/open hand_caution.png" id="20_6xu0c"]
+[ext_resource type="Texture2D" uid="uid://dif2866ktpwx8" path="res://hand sprites/fist hand_caution.png" id="21_d0b0o"]
+[ext_resource type="Texture2D" uid="uid://dq2p27jerg1lf" path="res://hand sprites/open hand_real.png" id="22_8gnxe"]
+[ext_resource type="Texture2D" uid="uid://dyk1idfs6okm" path="res://hand sprites/fist hand_real.png" id="23_uocac"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ppfrd"]
 
@@ -252,22 +256,6 @@ scale = Vector2(1.1111112, 1)
 texture = ExtResource("14_ww0q7")
 script = ExtResource("15_redts")
 
-[node name="SliderB" type="Sprite2D" parent="sliders"]
-position = Vector2(0, 154)
-texture = ExtResource("12_5esjd")
-
-[node name="SliderBg" type="Sprite2D" parent="sliders/SliderB"]
-modulate = Color(0, 0, 1, 1)
-z_index = -1
-position = Vector2(0, -2)
-texture = ExtResource("13_5esjd")
-
-[node name="Marker" type="Sprite2D" parent="sliders/SliderB"]
-position = Vector2(0, -5)
-scale = Vector2(1.1111112, 1)
-texture = ExtResource("14_ww0q7")
-script = ExtResource("15_redts")
-
 [node name="SliderG" type="Sprite2D" parent="sliders"]
 position = Vector2(0, 79)
 texture = ExtResource("12_5esjd")
@@ -279,6 +267,22 @@ position = Vector2(0, -2)
 texture = ExtResource("13_5esjd")
 
 [node name="Marker" type="Sprite2D" parent="sliders/SliderG"]
+position = Vector2(0, -5)
+scale = Vector2(1.1111112, 1)
+texture = ExtResource("14_ww0q7")
+script = ExtResource("15_redts")
+
+[node name="SliderB" type="Sprite2D" parent="sliders"]
+position = Vector2(0, 154)
+texture = ExtResource("12_5esjd")
+
+[node name="SliderBg" type="Sprite2D" parent="sliders/SliderB"]
+modulate = Color(0, 0, 1, 1)
+z_index = -1
+position = Vector2(0, -2)
+texture = ExtResource("13_5esjd")
+
+[node name="Marker" type="Sprite2D" parent="sliders/SliderB"]
 position = Vector2(0, -5)
 scale = Vector2(1.1111112, 1)
 texture = ExtResource("14_ww0q7")
@@ -299,7 +303,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("4_ppfrd")
 flip_h = true
 
-[node name="buttonback" type="Button" parent="."]
+[node name="buttonback" type="Button" parent="." groups=["uibutton"]]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.026851851
@@ -325,7 +329,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_7r7o8")
 }
 
-[node name="left" type="Button" parent="."]
+[node name="left" type="Button" parent="." groups=["uibutton"]]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -347,7 +351,7 @@ flat = true
 icon_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="right" type="Button" parent="."]
+[node name="right" type="Button" parent="." groups=["uibutton"]]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.73703706
@@ -459,19 +463,45 @@ scale = Vector2(1.25, 1.25)
 texture = ExtResource("20_4q6wm")
 flip_h = true
 
-[node name="aa" type="Sprite2D" parent="page2"]
+[node name="caution" type="Sprite2D" parent="page2"]
 self_modulate = Color(0.70980394, 0.70980394, 0.70980394, 1)
 texture_filter = 1
 position = Vector2(540, 732)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("9_kx870")
 
-[node name="ss" type="Sprite2D" parent="page2"]
+[node name="OpenHand" type="Sprite2D" parent="page2/caution"]
+texture_filter = 1
+position = Vector2(-32, 0)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("20_6xu0c")
+
+[node name="FistHand" type="Sprite2D" parent="page2/caution"]
+texture_filter = 1
+position = Vector2(36, 0)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("21_d0b0o")
+flip_h = true
+
+[node name="real" type="Sprite2D" parent="page2"]
 self_modulate = Color(0.70980394, 0.70980394, 0.70980394, 1)
 texture_filter = 1
 position = Vector2(865, 732)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("9_kx870")
+
+[node name="OpenHand" type="Sprite2D" parent="page2/real"]
+texture_filter = 1
+position = Vector2(-32, 0)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("22_8gnxe")
+
+[node name="FistHand" type="Sprite2D" parent="page2/real"]
+texture_filter = 1
+position = Vector2(36, 0)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("23_uocac")
+flip_h = true
 
 [node name="Bg" type="Sprite2D" parent="."]
 modulate = Color(0.23110586, 0.40934858, 0.4403412, 1)
@@ -486,8 +516,8 @@ position = Vector2(540, -2156)
 texture = ExtResource("1_e40qk")
 
 [connection signal="color_changed" from="sliders/SliderR/Marker" to="." method="_on_marker_color_changed"]
-[connection signal="color_changed" from="sliders/SliderB/Marker" to="." method="_on_marker_color_changed"]
 [connection signal="color_changed" from="sliders/SliderG/Marker" to="." method="_on_marker_color_changed"]
+[connection signal="color_changed" from="sliders/SliderB/Marker" to="." method="_on_marker_color_changed"]
 [connection signal="mouse_entered" from="buttonback" to="." method="_on_buttonback_mouse_entered"]
 [connection signal="mouse_exited" from="buttonback" to="." method="_on_buttonback_mouse_exited"]
 [connection signal="pressed" from="buttonback" to="." method="_on_buttonback_pressed"]

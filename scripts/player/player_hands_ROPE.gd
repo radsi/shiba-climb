@@ -9,6 +9,8 @@ var sound_played: bool = false
 
 func _ready() -> void:
 	super._ready()
+	last_pos_left = hand_left.global_position
+	last_pos_right = hand_right.global_position
 
 func _process(delta: float) -> void:
 	super._process(delta)
@@ -25,16 +27,20 @@ func _process(delta: float) -> void:
 		sound_played = false
 
 	if dragging_left:
-		last_pos_left = get_viewport().get_mouse_position()
+		last_pos_left = hand_left.global_position
 	if dragging_right:
-		last_pos_right = get_viewport().get_mouse_position()
+		last_pos_right = hand_right.global_position
 
 func _handle_hand_move_over_rope(hand: Node2D, prev_pos: Vector2) -> void:
-	if rope == null: return
-	var dy = get_viewport().get_mouse_position().y - prev_pos.y
-	if dy <= 0: return
+	if rope == null:
+		return
+
+	var dy = hand.global_position.y - prev_pos.y
+	if dy <= 0:
+		return
+
 	rope.global_position.y += dy * rope_move_factor
 
 	if not sound_played:
-		get_node("../rope"+str(randi() % 2 + 1)).play()
+		get_node("../rope" + str(randi() % 2 + 1)).play()
 		sound_played = true

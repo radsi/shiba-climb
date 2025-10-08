@@ -13,3 +13,4 @@ func _process(delta: float) -> void:
 
 	if delta >= 15:
 		globals._unlock_minigame("Vendor")
+		globals._unlock_hands("real")
