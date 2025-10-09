@@ -239,7 +239,7 @@ func _on_unlockall_pressed():
 	globals._play_pop()
 	for hand in ["camo", "eyes", "fire", "caution", "real"]:
 		globals._unlock_hands(hand)
-	for game in ["Arcade","Toast","Rope","Bonfire","Jail","Kanji","Candle","PingPong","Vendor"]:
+	for game in ["Soccer"]:
 		globals._unlock_minigame(game)
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 

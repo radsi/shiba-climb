@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://re18gkg4sw4r"]
+[gd_scene load_steps=44 format=3 uid="uid://re18gkg4sw4r"]
 
 [ext_resource type="Script" uid="uid://dykhujf08cqwk" path="res://scripts/menu.gd" id="1_vjb58"]
 [ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="1_yqeox"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dtl5akw64uc4" path="res://mini games sprites/ink bottle.png" id="12_i42df"]
 [ext_resource type="Texture2D" uid="uid://vhfh3sg8lwi7" path="res://mini games sprites/candle.png" id="13_7jp70"]
 [ext_resource type="Texture2D" uid="uid://c0x4hvphvr4t1" path="res://ping_pong_PNG10372.png" id="14_mxgkd"]
+[ext_resource type="Texture2D" uid="uid://dvywnga1sjvia" path="res://mini games sprites/soccer ball.png" id="15_b5gwo"]
 [ext_resource type="Texture2D" uid="uid://bhctgd6x4a0k1" path="res://hand sprites/open hand_eyes.png" id="15_oi1it"]
 [ext_resource type="Texture2D" uid="uid://brujs4e13uioe" path="res://hand sprites/fist hand_eyes.png" id="16_fy8yy"]
 [ext_resource type="Texture2D" uid="uid://wq0pmoorqcpw" path="res://custom icon.png" id="17_3dmrc"]
@@ -31,6 +32,10 @@
 [ext_resource type="Texture2D" uid="uid://dq2p27jerg1lf" path="res://hand sprites/open hand_real.png" id="24_a04p5"]
 [ext_resource type="Texture2D" uid="uid://54gg58vr4y2" path="res://gallery icon.png" id="24_x16fv"]
 [ext_resource type="Texture2D" uid="uid://dyk1idfs6okm" path="res://hand sprites/fist hand_real.png" id="25_b5gwo"]
+[ext_resource type="Texture2D" uid="uid://c5egsxqp6yhiq" path="res://gallery item.png" id="27_mhjd8"]
+[ext_resource type="Texture2D" uid="uid://db8d8v8unsll7" path="res://hand sprites/like hand.png" id="28_d3h35"]
+[ext_resource type="Texture2D" uid="uid://bc1se3nye7tc" path="res://leaderboard icon.png" id="31_0qewb"]
+[ext_resource type="Texture2D" uid="uid://cyfudot7pfgu6" path="res://leaderboard icon 2.png" id="34_mhjd8"]
 
 [sub_resource type="Animation" id="Animation_mhnvy"]
 length = 0.001
@@ -132,8 +137,25 @@ _data = {
 &"mainmenu": SubResource("Animation_con2f")
 }
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d3h35"]
+texture = ExtResource("27_mhjd8")
+texture_margin_left = 25.0
+modulate_color = Color(0, 0, 0, 0.78039217)
+
 [sub_resource type="Animation" id="Animation_oi1it"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeaderboardIcon:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("31_0qewb")]
+}
 
 [sub_resource type="Animation" id="Animation_rsfmq"]
 resource_name = "custom_button"
@@ -174,6 +196,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [ExtResource("24_x16fv"), ExtResource("22_ffqrc")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LeaderboardIcon:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("31_0qewb"), ExtResource("34_mhjd8")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fy8yy"]
@@ -281,6 +315,7 @@ scale = Vector2(1.28, 1)
 texture = ExtResource("6_g3eks")
 
 [node name="Label" type="Label" parent="Message"]
+texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -356,6 +391,12 @@ visible = false
 position = Vector2(0, 102)
 scale = Vector2(0.235, 0.3)
 texture = ExtResource("14_mxgkd")
+
+[node name="Soccer" type="Sprite2D" parent="Message/Icons"]
+visible = false
+position = Vector2(0, 101)
+scale = Vector2(0.05, 0.065)
+texture = ExtResource("15_b5gwo")
 
 [node name="eyes" type="CanvasGroup" parent="Message/Icons"]
 visible = false
@@ -454,6 +495,37 @@ scale = Vector2(2.499, 3)
 texture = ExtResource("25_b5gwo")
 flip_h = true
 
+[node name="CanvasGroup" type="CanvasGroup" parent="Message"]
+visible = false
+
+[node name="Username" type="TextEdit" parent="Message/CanvasGroup"]
+z_index = 3
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -30.0
+offset_right = 250.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxTexture_d3h35")
+placeholder_text = "username"
+
+[node name="LikeHand" type="Sprite2D" parent="Message/CanvasGroup"]
+modulate = Color(0.9064933, 0.9064934, 0.9064934, 1)
+position = Vector2(217.1875, 211)
+scale = Vector2(2, 2)
+texture = ExtResource("28_d3h35")
+flip_h = true
+
 [node name="Bg" type="Sprite2D" parent="."]
 modulate = Color(0.23110586, 0.40934858, 0.4403412, 1)
 z_index = -3
@@ -467,13 +539,13 @@ stream = ExtResource("10_70i5f")
 z_index = -1
 texture_filter = 1
 position = Vector2(866, 540)
-texture = ExtResource("17_3dmrc")
+texture = ExtResource("18_81l6r")
 
 [node name="GalleryIcon" type="Sprite2D" parent="."]
 z_index = -1
 texture_filter = 1
 position = Vector2(214, 540)
-texture = ExtResource("24_x16fv")
+texture = ExtResource("22_ffqrc")
 
 [node name="animation custom button" type="AnimationPlayer" parent="."]
 libraries = {
@@ -486,4 +558,11 @@ z_index = -3
 position = Vector2(540, -2156)
 texture = ExtResource("8_13sgg")
 
+[node name="LeaderboardIcon" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(214, 865)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("31_0qewb")
+
 [connection signal="pressed" from="VSplitContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="text_changed" from="Message/CanvasGroup/Username" to="." method="_on_username_text_changed"]

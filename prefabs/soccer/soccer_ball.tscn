@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dp06e53n3tnf3"]
+
+[ext_resource type="Texture2D" uid="uid://dvywnga1sjvia" path="res://mini games sprites/soccer ball.png" id="1_octa2"]
+
+[node name="SoccerBall" type="Sprite2D"]
+scale = Vector2(0.01, 0.01)
+texture = ExtResource("1_octa2")

@@ -1,5 +1,7 @@
 extends Node
 
+var username = ""
+
 var using_gamepad = false
 var hands_color = Color(1,1,1)
 
@@ -201,6 +203,12 @@ func _unlock_hands(hands: String):
 	pending_menu_messages.push_back("Unlocked new .hands: "+hands+"!")
 
 func _game_over():
+	var skin = openhand_texture.get_file().get_basename().replace("open hand_", "")
+	await Talo.players.identify("username", username)
+	await Talo.leaderboards.add_entry("handware-leaderboard", game_score, {
+		"skin": skin
+	})
+	
 	if game_score >= 4:
 		_unlock_minigame("Arcade")
 		_unlock_hands("eyes")
@@ -219,6 +227,9 @@ func _game_over():
 	
 	if game_score >= 32:
 		_unlock_minigame("Kanji")
+	
+	if game_score >= 64:
+		_unlock_minigame("Soccer")
 	
 	roll_started = false
 	is_on_transition = false
