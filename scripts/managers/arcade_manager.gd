@@ -51,6 +51,7 @@ func _kill_enemy(enemy: Sprite2D) -> void:
 			tween.tween_property(_enemy, "position:y", -20, globals.game_speed / 150)
 			tween.finished.connect(func():
 				enemies_tweens.erase(tween.get_instance_id())
+				can_restart = true
 			)
 	enemy.frame = 23
 	$boom.play()

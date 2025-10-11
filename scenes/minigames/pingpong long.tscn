@@ -169,17 +169,22 @@ texture = ExtResource("13_4pmfr")
 [node name="Racket2" type="Sprite2D" parent="."]
 position = Vector2(540, 754)
 rotation = 1.0223284
-scale = Vector2(0.33, 0.318)
+scale = Vector2(0.32999998, 0.318)
 texture = ExtResource("11_gw2tx")
 
 [node name="Racket" type="CharacterBody2D" parent="Racket2"]
 position = Vector2(-1636.3636, -2371.0693)
 scale = Vector2(3.030303, 3.1446543)
+platform_floor_layers = 4294967293
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Racket2/Racket"]
 position = Vector2(539.5, 725)
 scale = Vector2(0.33, 0.318)
 shape = SubResource("RectangleShape2D_72wja")
+
+[node name="ColorRect" type="ColorRect" parent="Racket2/Racket/CollisionShape2D"]
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Area2D" type="Area2D" parent="Racket2/Racket"]
 collision_layer = 2

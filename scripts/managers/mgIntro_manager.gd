@@ -30,6 +30,7 @@ func _shake_loop() -> void:
 	rotation = angle
 	
 	shake_direction *= -1
-	
+	if get_tree() == null:
+		return
 	await get_tree().create_timer(shake_speed).timeout
 	_shake_loop()

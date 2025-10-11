@@ -34,25 +34,24 @@ func _ready():
 	last_pos_right = hand_right.global_position
 
 func _input(event):
-	if globals.using_gamepad:
-		if event is InputEventJoypadButton:
-			if hand_left != null and durability_left > 0:
-				if event.button_index == JOY_BUTTON_LEFT_SHOULDER:
-					if event.pressed:
-						dragging_left = true
-						hand_left.texture = globals.closehand_texture if not grappling else globals.openhand_texture
-					else:
-						dragging_left = false
-						hand_left.texture = globals.openhand_texture if not grappling else globals.closehand_texture
+	if event is InputEventJoypadButton:
+		if hand_left != null and durability_left > 0:
+			if event.button_index == JOY_BUTTON_LEFT_SHOULDER:
+				if event.pressed:
+					dragging_left = true
+					hand_left.texture = globals.closehand_texture if not grappling else globals.openhand_texture
+				else:
+					dragging_left = false
+					hand_left.texture = globals.openhand_texture if not grappling else globals.closehand_texture
 
-			if hand_right != null and durability_right > 0:
-				if event.button_index == JOY_BUTTON_RIGHT_SHOULDER:
-					if event.pressed:
-						dragging_right = true
-						hand_right.texture = globals.closehand_texture if not grappling else globals.openhand_texture
-					else:
-						dragging_right = false
-						hand_right.texture = globals.openhand_texture if not grappling else globals.closehand_texture
+		if hand_right != null and durability_right > 0:
+			if event.button_index == JOY_BUTTON_RIGHT_SHOULDER:
+				if event.pressed:
+					dragging_right = true
+					hand_right.texture = globals.closehand_texture if not grappling else globals.openhand_texture
+				else:
+					dragging_right = false
+					hand_right.texture = globals.openhand_texture if not grappling else globals.closehand_texture
 
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and hand_left != null:
@@ -72,7 +71,6 @@ func _input(event):
 				hand_right.texture = globals.openhand_texture if not grappling else globals.closehand_texture
 
 func _process(delta):
-	var mouse_pos = get_viewport().get_mouse_position()
 	var screen_half = get_viewport().get_visible_rect().size.x / 2
 
 	var move_left = Vector2.ZERO
@@ -86,15 +84,17 @@ func _process(delta):
 		if move_left.length() > 0.1:
 			var factor = 1 if hand_left.global_position.x <= screen_half else 0.5
 			var target_pos = hand_left.global_position + move_left * 700 * delta
+			if globals.using_gamepad and not dragging_left: factor = 0.3
 			hand_left.global_position = hand_left.global_position.lerp(target_pos, factor)
-		process_hand(hand_left, dragging_left, true, delta, mouse_pos, screen_half)
+		process_hand(hand_left, dragging_left, true, delta, hand_left.global_position if globals.using_gamepad else get_viewport().get_mouse_position(), screen_half)
 
 	if hand_right != null and not block_right_hand_movement:
 		if move_right.length() > 0.1:
 			var factor = 1 if hand_right.global_position.x >= screen_half else 0.5
 			var target_pos = hand_right.global_position + move_right * 700 * delta
+			if globals.using_gamepad and not dragging_right: factor = 0.3
 			hand_right.global_position = hand_right.global_position.lerp(target_pos, factor)
-		process_hand(hand_right, dragging_right, false, delta, mouse_pos, screen_half)
+		process_hand(hand_right, dragging_right, false, delta, hand_right.global_position if globals.using_gamepad else get_viewport().get_mouse_position(), screen_half)
 
 
 func process_hand(hand: Node2D, dragging: bool, is_left: bool, delta: float, mouse_pos: Vector2, screen_half: float):
@@ -122,9 +122,12 @@ func process_hand(hand: Node2D, dragging: bool, is_left: bool, delta: float, mou
 
 	if durability_left <= 0 or durability_right <= 0:
 		hand.texture = globals.closehand_texture
-		globals.life -= 1
-		globals.has_lost_life = true
-		globals._start_roll()
+		if globals.is_single_minigame:
+			globals._game_over()
+		else:
+			if globals.has_lost_life == false: globals.life -= 1
+			globals.has_lost_life = true
+			globals._start_roll()
 		hand.queue_free()
 
 	if is_left:

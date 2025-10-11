@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c8mjt0n4v7ssp"]
+[gd_scene load_steps=12 format=3 uid="uid://c8mjt0n4v7ssp"]
 
 [ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="1_rerct"]
 [ext_resource type="Script" uid="uid://dye0n8x0c2xiu" path="res://scripts/managers/transition_manager.gd" id="1_xmi56"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://cgyjnns6hgagw" path="res://sounds/342744__michael_kur95__increase-01.wav" id="6_50nbv"]
 [ext_resource type="AudioStream" uid="uid://c83g17qi2rdd6" path="res://sounds/650585__guilhermecayeiro__powerup-oscilation.wav" id="7_6ancn"]
 [ext_resource type="AudioStream" uid="uid://bwrklanebukt8" path="res://sounds/good.wav" id="8_lvx3c"]
+[ext_resource type="AudioStream" uid="uid://bolgkoad1nrjs" path="res://sounds/sad-trombone.wav" id="9_kejnv"]
 
 [sub_resource type="Animation" id="Animation_50nbv"]
 resource_name = "transition"
@@ -157,3 +158,7 @@ texture = ExtResource("5_hi828")
 z_index = -3
 position = Vector2(540, -2156)
 texture = ExtResource("5_hi828")
+
+[node name="over" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_kejnv")
+volume_db = -5.0

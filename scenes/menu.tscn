@@ -274,13 +274,15 @@ libraries = {
 stream = ExtResource("5_4ytvr")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 10
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0)
+color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="VSplitContainer" type="VSplitContainer" parent="."]
@@ -309,7 +311,6 @@ metadata/_edit_use_anchors_ = true
 layer = -1
 
 [node name="Message" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(540, 540)
 scale = Vector2(1.28, 1)
 texture = ExtResource("6_g3eks")
@@ -496,7 +497,6 @@ texture = ExtResource("25_b5gwo")
 flip_h = true
 
 [node name="CanvasGroup" type="CanvasGroup" parent="Message"]
-visible = false
 
 [node name="Username" type="TextEdit" parent="Message/CanvasGroup"]
 z_index = 3

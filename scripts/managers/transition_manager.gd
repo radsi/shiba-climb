@@ -32,6 +32,7 @@ func _ready() -> void:
 		hands.flip_v = true
 		bg1.modulate = Color("#231942")
 		bg2.modulate = Color("#231942")
+		$over.play()
 		return
 	
 	if globals.has_lost_life:

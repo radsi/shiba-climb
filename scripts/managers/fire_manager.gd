@@ -37,6 +37,9 @@ func _process(delta: float) -> void:
 		if not played_audio:
 			$AudioStreamPlayer2D2.play()
 			played_audio = true
+			globals.life -= 1
+			globals.has_lost_life = true
+			globals._start_roll()
 		return
 		
 	fire.scale.x -= globals.game_speed / 100000

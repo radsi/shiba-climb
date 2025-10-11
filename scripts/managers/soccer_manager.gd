@@ -48,6 +48,9 @@ func _update_ball(delta: float) -> void:
 	var speed = balls_speed * (1 + scale_factor * 2)
 	ball.scale += Vector2.ONE * speed * delta
 
+	ball.rotation_degrees += 360 * delta
+	ball.rotation_degrees = fmod(ball.rotation_degrees, 360)
+
 	if ball.scale.x >= target_scale.x:
 		ball.scale = target_scale
 		if _is_hand_over_ball(ball):

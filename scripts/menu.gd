@@ -32,12 +32,13 @@ var current_button = 2
 
 func _ready() -> void:
 	
-	if globals.username == "":
+	if globals.username == "" and globals.pending_score:
 		colorrect.color.a = 0.75
 		editing_username = true
 		message.show()
 		message.get_child(2).show()
 		message.get_child(0).text = "What's your name??"
+	
 	
 	if globals.current_menu_bg_pos[0] > 0:
 		bg1.global_position.y = globals.current_menu_bg_pos[0]
@@ -53,10 +54,17 @@ func _ready() -> void:
 	if $"animation custom button" != null:
 		$"animation custom button".play("custom_button")
 	
-	if globals.pending_menu_messages.size() > 0:
+	if globals.pending_menu_messages.size() > 0 and not globals.pending_score:
 		_show_pending_message()
 
 func _process(delta: float) -> void:
+	if globals.username != "" and globals.pending_score:
+		globals.pending_score = false
+		await Talo.players.identify("username", globals.username)
+		await Talo.leaderboards.add_entry("handware-leaderboard", globals.game_score, {
+			"skin": globals.skin
+		})
+	
 	# --- D-PAD ---
 	var dpad_left = Input.is_joy_button_pressed(0, JOY_BUTTON_DPAD_LEFT)
 	var dpad_right = Input.is_joy_button_pressed(0, JOY_BUTTON_DPAD_RIGHT)
@@ -117,7 +125,7 @@ func _process(delta: float) -> void:
 		if gallery_button != null: gallery_button.scale = Vector2(1, 1)
 	
 	if is_mouse_over_item(leaderboard_button, get_viewport().get_mouse_position()) or (current_button == 0 and globals.using_gamepad):
-		leaderboard_button.scale = Vector2(1, 1)
+		leaderboard_button.scale = Vector2(1.05, 1.05)
 	else:
 		if leaderboard_button != null: leaderboard_button.scale = Vector2(0.8, 0.8)
 	
@@ -140,7 +148,8 @@ func _input(event) -> void:
 		return
 	
 	if ((event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT) or (event is InputEventJoypadButton and event.button_index == JOY_BUTTON_A)) and event.pressed:
-		if (is_mouse_over_item(ok, get_viewport().get_mouse_position()) or (current_button == 2 and globals.using_gamepad)):
+		if (is_mouse_over_item(ok, get_viewport().get_mouse_position()) or (current_button == 2 and globals.using_gamepad)) and editing_username:
+			globals.pending_score = false
 			var text_node = message.get_child(2).get_child(0)
 			var text = text_node.text.strip_edges().replace("\n", "")
 			if text == "":
@@ -148,24 +157,25 @@ func _input(event) -> void:
 			globals._play_pop()
 			globals.username = text
 			_close_message()
+			if globals.pending_menu_messages.size() > 0 and not globals.pending_score: _show_pending_message()
+	
+		if showing_messages or message_timer < 0.5 or editing_username or clapped: return
 		
-		if showing_messages or message_timer < 0.5 or editing_username: return
-		
-		if (is_mouse_over_item(palm, get_viewport().get_mouse_position()) or (current_button == 2 and globals.using_gamepad)) and clapped == false:
+		if (is_mouse_over_item(palm, get_viewport().get_mouse_position()) or (current_button == 2 and globals.using_gamepad)):
 			$AudioStreamPlayer2D.play()
 			palm.texture = globals.clapped_texture
 			var tween = create_tween()
-			tween.tween_property($ColorRect, "color:a", 1.0, 1.0)
+			tween.tween_property(colorrect, "modulate:a", 1.0, 1.0)
 			tween.tween_callback(Callable(self, "_on_fade_complete"))
 			first_time = false
 			clapped = true
-		elif (is_mouse_over_item(custom_button, get_viewport().get_mouse_position()) or (current_button == 1 and globals.using_gamepad)) and clapped == false:
+		elif (is_mouse_over_item(custom_button, get_viewport().get_mouse_position()) or (current_button == 1 and globals.using_gamepad)):
 			globals._play_pop()
 			get_tree().change_scene_to_file("res://scenes/customization.tscn")
-		elif (is_mouse_over_item(gallery_button, get_viewport().get_mouse_position()) or (current_button == 3 and globals.using_gamepad)) and clapped == false:
+		elif (is_mouse_over_item(gallery_button, get_viewport().get_mouse_position()) or (current_button == 3 and globals.using_gamepad)):
 			globals._play_pop()
 			get_tree().change_scene_to_file("res://scenes/gallery.tscn")
-		elif (is_mouse_over_item(leaderboard_button, get_viewport().get_mouse_position()) or (current_button == 0 and globals.using_gamepad)) and clapped == false:
+		elif (is_mouse_over_item(leaderboard_button, get_viewport().get_mouse_position()) or (current_button == 0 and globals.using_gamepad)):
 			globals._play_pop()
 			get_tree().change_scene_to_file("res://scenes/leaderboard.tscn")
 
@@ -173,19 +183,20 @@ func is_mouse_over_item(item: Sprite2D, mouse_pos: Vector2) -> bool:
 	if item == null:
 		return false
 	var local_pos = item.to_local(mouse_pos)
-	var size = item.texture.get_size()
-	var rect = Rect2(-size * 0.5, size)
+	var _size = item.texture.get_size()
+	var rect = Rect2(-_size * 0.5, _size)
 	return rect.has_point(local_pos)
 
 func _on_fade_complete() -> void:
 	get_tree().change_scene_to_file("res://scenes/countdown.tscn")
 
 func _on_button_2_pressed() -> void:
-	if showing_messages or message_timer < 1: return
+	if showing_messages or message_timer < 1 or editing_username: return
 	globals._play_pop()
 	get_tree().change_scene_to_file("res://scenes/credits.tscn")
 
 func _show_pending_message():
+	return
 	showing_messages = true
 	
 	$clapping.play()
@@ -219,7 +230,7 @@ func _close_message():
 	
 	showing_messages = false
 	editing_username = false
-	$ColorRect.modulate.a = 0
+	colorrect.modulate.a = 0
 	$Message.visible = false
 
 func _on_buttonback_pressed() -> void:

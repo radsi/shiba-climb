@@ -23,6 +23,7 @@ func _process(delta: float) -> void:
 	if globals.is_playing_minigame_anim: return
 
 	var changed := false
+	if hand_left == null or hand_right == null: return
 	changed = increase_transparency_under_hand(hand_left, last_pos_left) or changed
 	changed = increase_transparency_under_hand(hand_right, last_pos_right) or changed
 

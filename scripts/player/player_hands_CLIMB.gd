@@ -22,22 +22,41 @@ func _ready() -> void:
 	last_attached_right = attached_right
 
 func _input(event):
-	if not (event is InputEventMouseButton):
+	if not (event is InputEventMouseButton or event is InputEventJoypadButton):
 		super._input(event)
 		return
+
+	var left_release = false
+	var right_release = false
+
+	if event is InputEventMouseButton and not event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			left_release = true
+		elif event.button_index == MOUSE_BUTTON_RIGHT:
+			right_release = true
+
+	elif event is InputEventJoypadButton and not event.pressed:
+		if event.button_index == JOY_BUTTON_LEFT_SHOULDER:
+			left_release = true
+		elif event.button_index == JOY_BUTTON_RIGHT_SHOULDER:
+			right_release = true
+
 	if event.pressed:
 		super._input(event)
 		return
+
 	var was_dragging_left = dragging_left
 	var was_dragging_right = dragging_right
 	super._input(event)
-	if was_dragging_left:
+
+	if left_release and was_dragging_left:
 		var g = get_grabable_under_hand(hand_left)
 		if g != null:
 			attach_hand(true, g)
 		else:
 			return_hand(true)
-	if was_dragging_right:
+
+	if right_release and was_dragging_right:
 		var g2 = get_grabable_under_hand(hand_right)
 		if g2 != null:
 			attach_hand(false, g2)
@@ -46,6 +65,7 @@ func _input(event):
 
 func _process(delta):
 	super._process(delta)
+	if get_viewport() == null: return
 	var viewport_height = get_viewport().get_visible_rect().size.y
 	process_hand_climb(true, delta, viewport_height)
 	process_hand_climb(false, delta, viewport_height)
@@ -68,9 +88,12 @@ func process_hand_climb(is_left: bool, delta: float, viewport_height: float):
 				hand.global_position.y = attached.global_position.y
 	var durability = durability_left if is_left else durability_right
 	if hand_screen_pos.y > viewport_height or durability <= 0:
-		globals.life -= 1
-		globals.has_lost_life = true
-		globals._start_roll()
+		if globals.is_single_minigame:
+			globals._game_over()
+		else:
+			globals.life -= 1
+			globals.has_lost_life = true
+			globals._start_roll()
 		if is_left:
 			hand_left = null
 			attached_left = null

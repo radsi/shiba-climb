@@ -33,7 +33,7 @@ func _handle_bites_async() -> void:
 	burp_played = true
 	await get_tree().create_timer(BURP_WAIT).timeout
 	globals.is_playing_minigame_anim = false
-	globals._start_roll()
+	if not globals.is_single_minigame: globals._start_roll()
 	toast.visible = false
 
 	if globals.is_single_minigame:

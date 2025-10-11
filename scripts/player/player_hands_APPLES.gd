@@ -10,7 +10,8 @@ func _ready():
 
 func _process(delta):
 	super._process(delta)
-
+	
+	if hand_left == null or hand_right == null: return
 	update_attached_hand(attached_left, hand_left, true, delta)
 	update_attached_hand(attached_right, hand_right, false, delta)
 

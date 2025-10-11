@@ -405,6 +405,7 @@ libraries = {
 }
 
 [node name="unlockall" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 390.0
 offset_top = 952.0

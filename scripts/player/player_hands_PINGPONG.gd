@@ -50,7 +50,7 @@ func update_attached_hand(attached, hand: Node2D, is_left: bool, prev_pos: Vecto
 
 		var dy = hand.global_position.y - prev_pos.y
 		if abs(dy) > 10.0:
-			racket_character.rotation_degrees = clamp(racket_character.rotation_degrees + sign(dy) * 2, -30, 30)
+			racket.rotation_degrees = clamp(racket.rotation_degrees + sign(dy) * 2, -30, 30)
 	else:
 		hand.texture = globals.openhand_texture
 

@@ -3,9 +3,14 @@ extends Node
 @onready var bg1 = $Bg
 @onready var bg2 = $Bg2
 @onready var entries_container = $MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer
+@onready var scroll_container = $MarginContainer/VBoxContainer/ScrollContainer
 var entry = preload("res://prefabs/leaderboard/label.tscn")
 
 func _ready() -> void:
+	
+	if globals.using_gamepad:
+		$buttonback.scale = Vector2(1.15,1.15)
+	
 	$AnimationPlayer.play("arrow_back")
 	bg1.global_position.y = globals.current_menu_bg_pos[0]
 	bg2.global_position.y = globals.current_menu_bg_pos[1]
@@ -22,6 +27,29 @@ func _process(delta: float) -> void:
 	
 	globals.current_menu_bg_pos[0] = bg1.global_position.y
 	globals.current_menu_bg_pos[1] = bg2.global_position.y
+	
+	
+	
+	var dpad_up = Input.is_joy_button_pressed(0, JOY_BUTTON_DPAD_UP)
+	var dpad_down = Input.is_joy_button_pressed(0, JOY_BUTTON_DPAD_DOWN)
+	
+	if dpad_up:
+		scroll_container.scroll_vertical -= 300 * delta
+	elif dpad_down:
+		scroll_container.scroll_vertical += 300 * delta
+	
+		
+	var y_axis = Input.get_joy_axis(0, JOY_AXIS_LEFT_Y)
+	if y_axis < -0.5:
+		scroll_container.scroll_vertical -= 300 * delta
+	elif y_axis > 0.5:
+		scroll_container.scroll_vertical += 300 * delta
+	
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventJoypadButton and event.button_index == JOY_BUTTON_B:
+		get_tree().change_scene_to_file("res://scenes/menu.tscn")
+		return
 
 func _create_entry(_entry: TaloLeaderboardEntry) -> void:
 	var entry_instance = entry.instantiate()
@@ -66,9 +94,7 @@ func _on_buttonback_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
 func _on_buttonback_mouse_entered() -> void:
-	if $buttonback != null:
-		$buttonback.scale = Vector2(1.15,1.15)
+	$buttonback.scale = Vector2(1.15,1.15)
 
 func _on_buttonback_mouse_exited() -> void:
-	if $buttonback != null:
-		$buttonback.scale = Vector2(1,1)
+	$buttonback.scale = Vector2(1,1)

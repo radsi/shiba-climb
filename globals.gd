@@ -1,6 +1,7 @@
 extends Node
 
 var username = ""
+var pending_score = false
 
 var using_gamepad = false
 var hands_color = Color(1,1,1)
@@ -32,6 +33,7 @@ var fingerhand_texture = preload("res://hand sprites/finger hand.png")
 var clapped_texture = preload("res://hand sprites/palm hand_clapped.png")
 var winhand_texture = preload("res://hand sprites/win hands.png")
 var gohand_texture = preload("res://hand sprites/up hand.png")
+var skin = ""
 
 var all_unlocked_scenes := [
 	"res://scenes/minigames/apples.tscn",
@@ -85,22 +87,18 @@ func _process(delta: float) -> void:
 		hands_drain_rate += delta / 2
 		return
 	
+	print("roll_started: "+str(roll_started)+"| is_on_transition: "+str(is_on_transition))
 	if (not roll_started and not is_single_minigame) or is_on_transition or is_playing_minigame_anim:
 		return
+		
+	if time_left <= 0 and not is_single_minigame:
+		_start_roll()
 	
-	if not is_single_minigame and life == 0:
+	if (life == 0 and has_lost_life) or (time_left <= 0 and is_single_minigame):
 		_game_over()
 		return
 
 	time_left -= delta
-
-	if time_left <= 0 or (has_lost_life and not roll_pending):
-		if not minigame_completed and not has_lost_life:
-			has_lost_life = true
-			life -= 1
-		roll_pending = true
-		call_deferred("_start_roll")
-		roll_pending = false
 
 func start_single_minigame(minigame):
 	music_player.stream = music_audio
@@ -141,13 +139,6 @@ func start_roll_from_menu():
 	_start_roll()
 
 func _start_roll():
-	if is_single_minigame and (has_lost_life or time_left <= 0):
-		has_lost_life = false
-		roll_started = false
-		_game_over()
-		return
-
-
 	if pool.is_empty():
 		pool = []
 		for s in all_unlocked_scenes:
@@ -203,11 +194,10 @@ func _unlock_hands(hands: String):
 	pending_menu_messages.push_back("Unlocked new .hands: "+hands+"!")
 
 func _game_over():
-	var skin = openhand_texture.get_file().get_basename().replace("open hand_", "")
-	await Talo.players.identify("username", username)
-	await Talo.leaderboards.add_entry("handware-leaderboard", game_score, {
-		"skin": skin
-	})
+	has_lost_life = false
+	
+	if is_single_minigame == false:
+		pending_score = true
 	
 	if game_score >= 4:
 		_unlock_minigame("Arcade")
@@ -239,7 +229,9 @@ func _game_over():
 	is_single_minigame = false
 	
 	life = 3
+	
 	get_tree().change_scene_to_file("res://scenes/transition.tscn")
+	
 	await get_tree().create_timer(3).timeout
 	
 	audio_player.stream = lose_audio

@@ -62,6 +62,10 @@ func _input(event: InputEvent) -> void:
 				_on_right_pressed()
 			elif item_under_mouse:
 				_select_mouse_item()
+		elif event.button_index == JOY_BUTTON_LEFT_SHOULDER:
+			_on_left_pressed()
+		elif event.button_index == JOY_BUTTON_RIGHT_SHOULDER:
+			_on_right_pressed()
 				
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed and item_under_mouse != null:
@@ -196,10 +200,12 @@ func _apply_skin_textures(texture_name: String):
 		globals.fingerhand_texture = load("res://hand sprites/finger hand_" + skin)
 		globals.winhand_texture = load("res://hand sprites/win hands_" + skin)
 		globals.gohand_texture = load("res://hand sprites/up hand_" + skin)
+		globals.skin = skin.replace(".png", "")
 	else:
 		globals.fingerhand_texture = load("res://hand sprites/finger hand.png")
 		globals.winhand_texture = load("res://hand sprites/win hands.png")
 		globals.gohand_texture = load("res://hand sprites/up hand.png")
+		globals.skin = ""
 
 func is_mouse_over_item(item: Sprite2D, mouse_pos: Vector2) -> bool:
 	if item.texture == null: return false

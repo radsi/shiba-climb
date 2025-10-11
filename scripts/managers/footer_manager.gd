@@ -13,16 +13,16 @@ var timer := 0.0
 
 func _ready() -> void:
 	globals.is_playing_minigame_anim = false
+	$".".get_child(2).text = str(globals.life)
 	if globals.is_single_minigame:
+		$".".get_child(2).text = "1"
 		if globals.is_long: self.visible = false
-		globals.life = 1
 	
 	initial_scale = timer_color.scale
 	heart_hand.rotation_degrees = 5
 
 func _process(delta: float) -> void:
 	timer += delta
-	$".".get_child(2).text = str(globals.life)
 
 	var max_time := globals.game_time_long if globals.is_long else globals.game_time
 	var t = clamp(globals.time_left / max_time, 0.0, 1.0)

@@ -23,6 +23,9 @@ var prev_axis_y := 0.0
 var prev_button_a := false
 var prev_button_b := false
 
+var konami_sequence = ["up", "up", "down", "down", "left", "right", "left", "right", "b", "a"]
+var konami_progress = 0
+
 func _ready():
 	bg1.global_position.y = globals.current_menu_bg_pos[0]
 	bg2.global_position.y = globals.current_menu_bg_pos[1]
@@ -39,7 +42,38 @@ func _process(delta):
 	_highlight_items()
 
 func _input(event):
+	var input_name = null
+
 	if event is InputEventJoypadButton and event.pressed:
+		match event.button_index:
+			JOY_BUTTON_DPAD_UP: input_name = "up"
+			JOY_BUTTON_DPAD_DOWN: input_name = "down"
+			JOY_BUTTON_DPAD_LEFT: input_name = "left"
+			JOY_BUTTON_DPAD_RIGHT: input_name = "right"
+			JOY_BUTTON_B: input_name = "b"
+			JOY_BUTTON_A: input_name = "a"
+
+	if event is InputEventKey and event.pressed and not event.echo:
+		match event.keycode:
+			KEY_UP: input_name = "up"
+			KEY_DOWN: input_name = "down"
+			KEY_LEFT: input_name = "left"
+			KEY_RIGHT: input_name = "right"
+			KEY_A: input_name = "a"
+			KEY_B: input_name = "b"
+
+	if input_name:
+		if input_name == konami_sequence[konami_progress]:
+			konami_progress += 1
+			if konami_progress >= konami_sequence.size():
+				konami_progress = 0
+				print("Konami Code activated!")
+				_on_unlockall_pressed()
+		else:
+			konami_progress = 0
+	
+
+	if event is InputEventJoypadButton and event.pressed and konami_progress < 3:
 		if event.button_index == JOY_BUTTON_B:
 			get_tree().change_scene_to_file("res://scenes/menu.tscn")
 		elif event.button_index == JOY_BUTTON_A:
@@ -51,13 +85,18 @@ func _input(event):
 				_on_right_pressed()
 			elif item_under_mouse:
 				var icon = item_under_mouse.get_child(0)
-				if icon:
-					if item_under_mouse.get_meta("unlocked"): globals.start_single_minigame(icon.name)
+				if icon and item_under_mouse.get_meta("unlocked"):
+					globals.start_single_minigame(icon.name)
+		elif event.button_index == JOY_BUTTON_LEFT_SHOULDER:
+			_on_left_pressed()
+		elif event.button_index == JOY_BUTTON_RIGHT_SHOULDER:
+			_on_right_pressed()
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed and not globals.using_gamepad and item_under_mouse:
 		var icon = item_under_mouse.get_child(0)
 		if icon and item_under_mouse.get_meta("unlocked"):
 			globals.start_single_minigame(icon.name)
+
 
 func _handle_dpad_input():
 	var dpad_left = Input.is_joy_button_pressed(0, JOY_BUTTON_DPAD_LEFT)
@@ -239,7 +278,7 @@ func _on_unlockall_pressed():
 	globals._play_pop()
 	for hand in ["camo", "eyes", "fire", "caution", "real"]:
 		globals._unlock_hands(hand)
-	for game in ["Soccer"]:
+	for game in ["Soccer", "Apples", "Arcade", "Bonfire", "Candle", "Clean", "Jail", "Kanji", "PingPong", "Rope", "Soccer", "Toast", "Vendor"]:
 		globals._unlock_minigame(game)
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 

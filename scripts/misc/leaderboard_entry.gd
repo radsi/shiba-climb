@@ -13,7 +13,10 @@ func _set_score(score: int) -> void:
 	text = text.replace("{score}", str(int(score)))
 
 func _set_skin(skin: String) -> void:
-	text = text.replace("{skin}", "[img]res://hand sprites/open hand_" + skin + ".png[/img]")
+	if skin == "":
+		text = text.replace("{skin}", "[img]res://hand sprites/open hand.png[/img]")
+	else:
+		text = text.replace("{skin}", "[img]res://hand sprites/open hand_" + skin + ".png[/img]")
 
 func set_data(pos: int, username: String, score: int, skin: String) -> void:
 	_set_pos(pos)
