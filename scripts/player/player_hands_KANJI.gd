@@ -24,6 +24,9 @@ var can_add_kanji = true
 func _ready() -> void:
 	super._ready()
 
+	if globals.using_gamepad:
+		brush_size = 16
+
 	brush_original_transform[0] = brush.global_position
 	brush_original_transform[1] = brush.rotation_degrees
 
@@ -53,6 +56,14 @@ func _process(delta):
 		var accuracy = calculate_accuracy()
 		print(accuracy)
 		if accuracy >= 80:
+			for i in range(wrong_pixels.size() - 1, -1, -1):
+				var pos = wrong_pixels[i]["pos"]
+				if pos.x >= 0 and pos.y >= 0 and pos.x < draw_image.get_width() and pos.y < draw_image.get_height():
+					draw_image.set_pixelv(pos, Color(1,1,1,0))
+				wrong_pixels.remove_at(i)
+			
+			draw_tex.update(draw_image)
+			
 			ink_deco.show()
 			globals.minigame_completed = true
 			label.hide()
@@ -79,7 +90,7 @@ func _process(delta):
 				
 				can_add_kanji = true
 
-	_update_wrong_pixels(delta)
+#	_update_wrong_pixels(delta)
 
 func update_attached_hand(attached, hand: Node2D, is_left: bool, delta: float) -> void:
 	if not dragging_left and attached_left != null:

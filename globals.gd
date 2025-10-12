@@ -87,11 +87,13 @@ func _process(delta: float) -> void:
 		hands_drain_rate += delta / 2
 		return
 	
-	print("roll_started: "+str(roll_started)+"| is_on_transition: "+str(is_on_transition))
 	if (not roll_started and not is_single_minigame) or is_on_transition or is_playing_minigame_anim:
 		return
 		
 	if time_left <= 0 and not is_single_minigame:
+		if has_lost_life == false and is_long == false: 
+			life -= 1
+			has_lost_life = true
 		_start_roll()
 	
 	if (life == 0 and has_lost_life) or (time_left <= 0 and is_single_minigame):
@@ -182,16 +184,16 @@ func _start_roll():
 	
 	game_score += 1
 	
-func _unlock_minigame(minigame: String):
+func _unlock_minigame(minigame: String, with_message = true):
 	var scene_path = "res://scenes/minigames/"+minigame.to_lower()+".tscn"
 	if all_unlocked_scenes.has(scene_path): return
 	all_unlocked_scenes.push_back(scene_path)
-	pending_menu_messages.push_back("Unlocked new .minigame: "+minigame+"!")
+	if with_message: pending_menu_messages.push_back("Unlocked new .minigame: "+minigame+"!")
 	
-func _unlock_hands(hands: String):
+func _unlock_hands(hands: String, with_message = true):
 	if all_unlocked_hands.has(hands): return
 	all_unlocked_hands.push_back(hands)
-	pending_menu_messages.push_back("Unlocked new .hands: "+hands+"!")
+	if with_message: pending_menu_messages.push_back("Unlocked new .hands: "+hands+"!")
 
 func _game_over():
 	has_lost_life = false
@@ -224,7 +226,6 @@ func _game_over():
 	roll_started = false
 	is_on_transition = false
 	roll_pending = false
-	has_lost_life = false
 	minigame_completed = false
 	is_single_minigame = false
 	

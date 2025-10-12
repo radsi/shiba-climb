@@ -10,6 +10,9 @@ extends Node
 var played_audio = false
 var timer: float = 0
 
+func _ready() -> void:
+	globals.is_playing_minigame_anim = true
+
 func _process(delta: float) -> void:
 	timer += delta
 	if timer >= 0.5:

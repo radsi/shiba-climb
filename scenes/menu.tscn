@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://re18gkg4sw4r"]
+[gd_scene load_steps=50 format=3 uid="uid://re18gkg4sw4r"]
 
 [ext_resource type="Script" uid="uid://dykhujf08cqwk" path="res://scripts/menu.gd" id="1_vjb58"]
 [ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="1_yqeox"]
@@ -33,8 +33,14 @@
 [ext_resource type="Texture2D" uid="uid://54gg58vr4y2" path="res://gallery icon.png" id="24_x16fv"]
 [ext_resource type="Texture2D" uid="uid://dyk1idfs6okm" path="res://hand sprites/fist hand_real.png" id="25_b5gwo"]
 [ext_resource type="Texture2D" uid="uid://c5egsxqp6yhiq" path="res://gallery item.png" id="27_mhjd8"]
+[ext_resource type="Texture2D" uid="uid://v6k8ihhvp02k" path="res://hand sprites/open hand_striped.png" id="27_ruys5"]
 [ext_resource type="Texture2D" uid="uid://db8d8v8unsll7" path="res://hand sprites/like hand.png" id="28_d3h35"]
+[ext_resource type="Texture2D" uid="uid://bi6k5y5xsvmvh" path="res://hand sprites/fist hand_striped.png" id="28_jlmas"]
+[ext_resource type="Texture2D" uid="uid://bhfjwa827leh5" path="res://hand sprites/open hand_dalmata.png" id="29_qfcyc"]
+[ext_resource type="Texture2D" uid="uid://tghgj6km07yq" path="res://hand sprites/fist hand_dalmata.png" id="30_spe5f"]
 [ext_resource type="Texture2D" uid="uid://bc1se3nye7tc" path="res://leaderboard icon.png" id="31_0qewb"]
+[ext_resource type="Texture2D" uid="uid://b1lsk1k184epd" path="res://hand sprites/open hand_hearts.png" id="31_jcbs5"]
+[ext_resource type="Texture2D" uid="uid://cp34ei74jek0o" path="res://hand sprites/fist hand_heats.png" id="32_jamij"]
 [ext_resource type="Texture2D" uid="uid://cyfudot7pfgu6" path="res://leaderboard icon 2.png" id="34_mhjd8"]
 
 [sub_resource type="Animation" id="Animation_mhnvy"]
@@ -311,6 +317,7 @@ metadata/_edit_use_anchors_ = true
 layer = -1
 
 [node name="Message" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(540, 540)
 scale = Vector2(1.28, 1)
 texture = ExtResource("6_g3eks")
@@ -496,7 +503,62 @@ scale = Vector2(2.499, 3)
 texture = ExtResource("25_b5gwo")
 flip_h = true
 
+[node name="striped" type="CanvasGroup" parent="Message/Icons"]
+visible = false
+
+[node name="OpenHand" type="Sprite2D" parent="Message/Icons/striped"]
+z_index = 1
+texture_filter = 1
+position = Vector2(-80, 73)
+scale = Vector2(2.499, 3)
+texture = ExtResource("27_ruys5")
+
+[node name="FistHand" type="Sprite2D" parent="Message/Icons/striped"]
+z_index = 1
+texture_filter = 1
+position = Vector2(80, 73)
+scale = Vector2(2.499, 3)
+texture = ExtResource("28_jlmas")
+flip_h = true
+
+[node name="dalmata" type="CanvasGroup" parent="Message/Icons"]
+visible = false
+
+[node name="OpenHand" type="Sprite2D" parent="Message/Icons/dalmata"]
+z_index = 1
+texture_filter = 1
+position = Vector2(-80, 73)
+scale = Vector2(2.499, 3)
+texture = ExtResource("29_qfcyc")
+
+[node name="FistHand" type="Sprite2D" parent="Message/Icons/dalmata"]
+z_index = 1
+texture_filter = 1
+position = Vector2(80, 73)
+scale = Vector2(2.499, 3)
+texture = ExtResource("30_spe5f")
+flip_h = true
+
+[node name="hearts" type="CanvasGroup" parent="Message/Icons"]
+visible = false
+
+[node name="OpenHand" type="Sprite2D" parent="Message/Icons/hearts"]
+z_index = 1
+texture_filter = 1
+position = Vector2(-80, 73)
+scale = Vector2(2.499, 3)
+texture = ExtResource("31_jcbs5")
+
+[node name="FistHand" type="Sprite2D" parent="Message/Icons/hearts"]
+z_index = 1
+texture_filter = 1
+position = Vector2(80, 73)
+scale = Vector2(2.499, 3)
+texture = ExtResource("32_jamij")
+flip_h = true
+
 [node name="CanvasGroup" type="CanvasGroup" parent="Message"]
+visible = false
 
 [node name="Username" type="TextEdit" parent="Message/CanvasGroup"]
 z_index = 3
@@ -517,7 +579,8 @@ size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("1_yqeox")
 theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxTexture_d3h35")
-placeholder_text = "username"
+placeholder_text = "nickname"
+emoji_menu_enabled = false
 
 [node name="LikeHand" type="Sprite2D" parent="Message/CanvasGroup"]
 modulate = Color(0.9064933, 0.9064934, 0.9064934, 1)
@@ -563,6 +626,29 @@ z_index = -1
 position = Vector2(214, 865)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("31_0qewb")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.69249207
+anchor_top = 0.734372
+anchor_right = 0.9483089
+anchor_bottom = 0.875052
+offset_left = -24.891357
+offset_top = 80.878296
+offset_right = -9.173584
+offset_bottom = 49.94391
+grow_horizontal = 2
+rotation = 0.1501732
+pivot_offset = Vector2(550, 125)
+theme_override_colors/font_color = Color(1, 0.32410014, 0.25894427, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 56
+text = "controller 
+support"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="VSplitContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="text_changed" from="Message/CanvasGroup/Username" to="." method="_on_username_text_changed"]

@@ -4,7 +4,7 @@ extends HANDS
 @onready var girl_hand = $"../Rope/GirlHand"
 
 var grab_margin: float = 20.0
-var rope_move_factor: float = 1
+var rope_move_factor: float = 1.2
 var sound_played: bool = false
 
 func _ready() -> void:

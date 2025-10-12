@@ -85,7 +85,12 @@ func _process(delta):
 			var factor = 1 if hand_left.global_position.x <= screen_half else 0.5
 			var target_pos = hand_left.global_position + move_left * 700 * delta
 			if globals.using_gamepad and not dragging_left: factor = 0.3
+			if target_pos.y <= 0:
+				target_pos.y = 0
+			if target_pos.y >= 1000:
+				target_pos.y = 1000
 			hand_left.global_position = hand_left.global_position.lerp(target_pos, factor)
+		if get_viewport() == null: return
 		process_hand(hand_left, dragging_left, true, delta, hand_left.global_position if globals.using_gamepad else get_viewport().get_mouse_position(), screen_half)
 
 	if hand_right != null and not block_right_hand_movement:
@@ -93,7 +98,12 @@ func _process(delta):
 			var factor = 1 if hand_right.global_position.x >= screen_half else 0.5
 			var target_pos = hand_right.global_position + move_right * 700 * delta
 			if globals.using_gamepad and not dragging_right: factor = 0.3
+			if target_pos.y <= 0:
+				target_pos.y = 0
+			if target_pos.y >= 1000:
+				target_pos.y = 1000
 			hand_right.global_position = hand_right.global_position.lerp(target_pos, factor)
+		if get_viewport() == null: return
 		process_hand(hand_right, dragging_right, false, delta, hand_right.global_position if globals.using_gamepad else get_viewport().get_mouse_position(), screen_half)
 
 

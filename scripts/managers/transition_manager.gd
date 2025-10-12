@@ -1,6 +1,7 @@
 extends Node
 
 @onready var text = $CanvasGroup/message
+@onready var score = $CanvasGroup/message2
 @onready var hands = $CanvasGroup/hands
 @onready var decorations_list = [$decorations1, $decorations2, $decorations3, $decorations4]
 @onready var decorations = decorations_list[randf_range(0, decorations_list.size())]
@@ -11,10 +12,12 @@ var original_positions := {}
 
 var colors = ["#F8FAB4", "#91ADC8", "#D9E9CF", "#A376A2"]
 var bg_colors = ["#8FA31E", "#003161", "#D1D3D4"]
-var messages_bad = ["Too bad!", "You can do better", "Oh..."] 
-var messages_good = ["Nice!", "Very good!", "Good hand play"] 
+var messages_bad = ["Too bad!", "You can do better", "Oh...", "Uhmm..."]
+var messages_good = ["Nice!", "Very good!", "Good work!", "GG EZ", "Wario Ware"]
 
 func _ready() -> void:
+	score.text = "Score: " + str(globals.game_score)
+	hands.modulate = globals.hands_color
 	var color = Color(bg_colors[randf_range(0, bg_colors.size())])
 	bg1.modulate = color
 	bg2.modulate = color
@@ -36,6 +39,7 @@ func _ready() -> void:
 		return
 	
 	if globals.has_lost_life:
+		globals.has_lost_life = false
 		text.text = messages_bad[randf_range(0, messages_bad.size())]
 		hands.flip_v = true
 		$bad.play()
@@ -61,7 +65,6 @@ func _ready() -> void:
 		await get_tree().create_timer(2).timeout
 	
 	globals.is_on_transition = false
-	globals.has_lost_life = false
 	globals.incresing_speed = false
 	get_tree().change_scene_to_file(globals.last_scene)
 

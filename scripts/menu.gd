@@ -38,6 +38,8 @@ func _ready() -> void:
 		message.show()
 		message.get_child(2).show()
 		message.get_child(0).text = "What's your name??"
+	elif globals.pending_menu_messages.size() > 0:
+		_show_pending_message()
 	
 	
 	if globals.current_menu_bg_pos[0] > 0:
@@ -53,9 +55,6 @@ func _ready() -> void:
 		
 	if $"animation custom button" != null:
 		$"animation custom button".play("custom_button")
-	
-	if globals.pending_menu_messages.size() > 0 and not globals.pending_score:
-		_show_pending_message()
 
 func _process(delta: float) -> void:
 	if globals.username != "" and globals.pending_score:
@@ -154,10 +153,11 @@ func _input(event) -> void:
 			var text = text_node.text.strip_edges().replace("\n", "")
 			if text == "":
 				return
+			ok.get_parent().hide()
 			globals._play_pop()
 			globals.username = text
-			_close_message()
 			if globals.pending_menu_messages.size() > 0 and not globals.pending_score: _show_pending_message()
+			else: _close_message()
 	
 		if showing_messages or message_timer < 0.5 or editing_username or clapped: return
 		
@@ -196,7 +196,6 @@ func _on_button_2_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/credits.tscn")
 
 func _show_pending_message():
-	return
 	showing_messages = true
 	
 	$clapping.play()

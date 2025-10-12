@@ -26,7 +26,6 @@ var original_match_transform = {}
 var last_match_pos: Vector2
 var move_timer := 0.0
 var slide_played := false
-var slide_count = 0
 
 func _ready() -> void:
 	fire = $Matches/Match.get_child(0)
@@ -58,13 +57,13 @@ func _process(delta: float) -> void:
 		var rect = Rect2(-size * 0.5, size)
 		if _match.global_position != last_match_pos and rect.has_point(local_pos):
 			move_timer += delta
-			if move_timer >= 0.3 and not slide_played and slide_count < 3:
+			if move_timer >= 0.3 and not slide_played:
 				slide_sfx.play()
 				slide_played = true
-				slide_count += 1
 				await get_tree().create_timer(0.2).timeout
 				move_timer = 0
 				slide_played = false
+				_match.get_child(0).show()
 		else:
 			move_timer = 0.0
 			slide_played = false
@@ -72,15 +71,13 @@ func _process(delta: float) -> void:
 		move_timer = 0.0
 		slide_played = false
 	
-	if slide_count >= 3:
-		_match.get_child(0).show()
 
 	last_match_pos = _match.global_position
 
 	if fire.visible:
 		for i in range(candle_tips.size()):
 			var tip = candle_tips[i]
-			if fire.global_position.distance_to(tip.global_position) < 12:
+			if fire.global_position.distance_to(tip.global_position) < 20:
 				var candle_fire = tip.get_parent().get_child(1)
 				candle_fire.show()
 				lighted_tips[tip.get_parent().name] = true
@@ -96,7 +93,6 @@ func _process(delta: float) -> void:
 					globals.is_playing_minigame_anim = true
 					await get_tree().create_timer(1.5).timeout
 					move_timer = 0
-					slide_count = 0
 					slide_played = false
 					globals.is_playing_minigame_anim = false
 					globals.time_left = globals.game_time

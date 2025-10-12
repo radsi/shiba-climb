@@ -14,6 +14,7 @@ func _ready():
 	if $"../Ball" != null: $"../Ball".gravity_scale = 1
 
 func _start_shrink():
+	globals.is_playing_minigame_anim = false
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector2.ZERO, shrink_time).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 

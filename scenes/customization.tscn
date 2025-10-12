@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dwew7bmnff2t7"]
+[gd_scene load_steps=41 format=3 uid="uid://dwew7bmnff2t7"]
 
 [ext_resource type="Script" uid="uid://cfvjtfhf1skt3" path="res://scripts/managers/customization_manager.gd" id="1_73iet"]
 [ext_resource type="Texture2D" uid="uid://l2atiswygex0" path="res://transitions/bg.jpg" id="1_e40qk"]
@@ -24,6 +24,12 @@
 [ext_resource type="Texture2D" uid="uid://dif2866ktpwx8" path="res://hand sprites/fist hand_caution.png" id="21_d0b0o"]
 [ext_resource type="Texture2D" uid="uid://dq2p27jerg1lf" path="res://hand sprites/open hand_real.png" id="22_8gnxe"]
 [ext_resource type="Texture2D" uid="uid://dyk1idfs6okm" path="res://hand sprites/fist hand_real.png" id="23_uocac"]
+[ext_resource type="Texture2D" uid="uid://v6k8ihhvp02k" path="res://hand sprites/open hand_striped.png" id="24_ewwti"]
+[ext_resource type="Texture2D" uid="uid://bi6k5y5xsvmvh" path="res://hand sprites/fist hand_striped.png" id="25_bd3ap"]
+[ext_resource type="Texture2D" uid="uid://bhfjwa827leh5" path="res://hand sprites/open hand_dalmata.png" id="26_j1g68"]
+[ext_resource type="Texture2D" uid="uid://tghgj6km07yq" path="res://hand sprites/fist hand_dalmata.png" id="27_60j1w"]
+[ext_resource type="Texture2D" uid="uid://b1lsk1k184epd" path="res://hand sprites/open hand_hearts.png" id="28_a1myt"]
+[ext_resource type="Texture2D" uid="uid://cp34ei74jek0o" path="res://hand sprites/fist hand_heats.png" id="29_m6itl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ppfrd"]
 
@@ -501,6 +507,69 @@ texture_filter = 1
 position = Vector2(36, 0)
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("23_uocac")
+flip_h = true
+
+[node name="page3" type="CanvasGroup" parent="." groups=["pages"]]
+visible = false
+
+[node name="striped" type="Sprite2D" parent="page3"]
+self_modulate = Color(0.7107411, 0.71074116, 0.7107411, 1)
+texture_filter = 1
+position = Vector2(215, 732)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("9_kx870")
+
+[node name="OpenHand" type="Sprite2D" parent="page3/striped"]
+texture_filter = 1
+position = Vector2(-32, 0)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("24_ewwti")
+
+[node name="FistHand" type="Sprite2D" parent="page3/striped"]
+texture_filter = 1
+position = Vector2(36, 0)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("25_bd3ap")
+flip_h = true
+
+[node name="dalmata" type="Sprite2D" parent="page3"]
+self_modulate = Color(0.70980394, 0.70980394, 0.70980394, 1)
+texture_filter = 1
+position = Vector2(540, 732)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("9_kx870")
+
+[node name="OpenHand" type="Sprite2D" parent="page3/dalmata"]
+texture_filter = 1
+position = Vector2(-32, 0)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("26_j1g68")
+
+[node name="FistHand" type="Sprite2D" parent="page3/dalmata"]
+texture_filter = 1
+position = Vector2(36, 0)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("27_60j1w")
+flip_h = true
+
+[node name="hearts" type="Sprite2D" parent="page3"]
+self_modulate = Color(0.70980394, 0.70980394, 0.70980394, 1)
+texture_filter = 1
+position = Vector2(865, 732)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("9_kx870")
+
+[node name="OpenHand" type="Sprite2D" parent="page3/hearts"]
+texture_filter = 1
+position = Vector2(-32, 0)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("28_a1myt")
+
+[node name="FistHand" type="Sprite2D" parent="page3/hearts"]
+texture_filter = 1
+position = Vector2(36, 0)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("29_m6itl")
 flip_h = true
 
 [node name="Bg" type="Sprite2D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://u6b87wyymavv"]
+[gd_scene load_steps=20 format=3 uid="uid://u6b87wyymavv"]
 
 [ext_resource type="Script" uid="uid://bnoykmuyjw0a6" path="res://scripts/managers/kanji_manager.gd" id="1_u58il"]
 [ext_resource type="Texture2D" uid="uid://5p8dd0ic5083" path="res://free-paper-background-1-897075787.jpg" id="1_xk8cc"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bptvtgxhawegg" path="res://footer-timer-background.png" id="11_0evvd"]
 [ext_resource type="Texture2D" uid="uid://bwex4tit2aiyt" path="res://footer-timer.png" id="12_5740h"]
 [ext_resource type="Texture2D" uid="uid://dm14g7mimuh55" path="res://mini games sprites/ink bottle back.png" id="13_bykoj"]
+[ext_resource type="FontFile" uid="uid://cj44ycu3swdbn" path="res://NotoSansJP-Regular.ttf" id="13_np1hd"]
 [ext_resource type="Texture2D" uid="uid://pn402f6cmcfh" path="res://mini games sprites/ink bottle front.png" id="14_52a6r"]
 [ext_resource type="Texture2D" uid="uid://b32lqu37vsfby" path="res://mini games sprites/brush.png" id="15_k1nlf"]
 [ext_resource type="Texture2D" uid="uid://rbkhxcq58hdi" path="res://mini games sprites/ink/ink1.png" id="16_k1nlf"]
@@ -159,14 +160,15 @@ render_target_update_mode = 4
 [node name="Label" type="Label" parent="SubViewportContainer/SubViewport"]
 anchors_preset = -1
 anchor_right = 0.08
-offset_left = 447.0
-offset_top = 73.0
-offset_right = 614.04
-offset_bottom = 497.0
+offset_left = 402.0
+offset_top = 151.0
+offset_right = 623.6
+offset_bottom = 598.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(80, 160)
-theme_override_font_sizes/font_size = 308
+pivot_offset = Vector2(154, 223)
+theme_override_fonts/font = ExtResource("13_np1hd")
+theme_override_font_sizes/font_size = 288
 text = "う"
 
 [node name="bottle" type="CanvasGroup" parent="."]

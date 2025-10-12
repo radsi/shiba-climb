@@ -53,6 +53,18 @@ func _input(event):
 			JOY_BUTTON_B: input_name = "b"
 			JOY_BUTTON_A: input_name = "a"
 
+	if event is InputEventJoypadMotion:
+		if event.axis == JOY_AXIS_LEFT_Y:
+			if event.axis_value < -0.5 and prev_axis_y > -0.5:
+				input_name = "up"
+			elif event.axis_value > 0.5 and prev_axis_y < 0.5:
+				input_name = "down"
+		elif event.axis == JOY_AXIS_LEFT_X:
+			if event.axis_value < -0.5 and prev_axis_x > -0.5:
+				input_name = "left"
+			elif event.axis_value > 0.5 and prev_axis_x < 0.5:
+				input_name = "right"
+
 	if event is InputEventKey and event.pressed and not event.echo:
 		match event.keycode:
 			KEY_UP: input_name = "up"
@@ -71,7 +83,6 @@ func _input(event):
 				_on_unlockall_pressed()
 		else:
 			konami_progress = 0
-	
 
 	if event is InputEventJoypadButton and event.pressed and konami_progress < 3:
 		if event.button_index == JOY_BUTTON_B:
@@ -137,7 +148,7 @@ func _handle_joystick_input():
 	elif x_axis > 0.5 and prev_axis_x <= 0.5:
 		current_button = clamp(current_button + 1, 0, buttons.size() - 1)
 		_clamp_visible_button(1)
-
+		
 	# Vertical
 	elif y_axis < -0.5 and prev_axis_y >= -0.5:
 		current_button -= 3
@@ -276,10 +287,10 @@ func _on_right_pressed():
 
 func _on_unlockall_pressed():
 	globals._play_pop()
-	for hand in ["camo", "eyes", "fire", "caution", "real"]:
-		globals._unlock_hands(hand)
-	for game in ["Soccer", "Apples", "Arcade", "Bonfire", "Candle", "Clean", "Jail", "Kanji", "PingPong", "Rope", "Soccer", "Toast", "Vendor"]:
-		globals._unlock_minigame(game)
+	for hand in ["camo", "eyes", "fire", "caution", "real", "striped", "dalmata", "hearts"]:
+		globals._unlock_hands(hand, false)
+	for game in ["Soccer", "Arcade", "Bonfire", "Candle", "Clean", "Jail", "Kanji", "PingPong", "Rope", "Soccer", "Toast", "Vendor"]:
+		globals._unlock_minigame(game, false)
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
 func _on_buttonback_2_mouse_entered() -> void: $buttonback.scale = Vector2(1.15,1.15) 

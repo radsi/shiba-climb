@@ -4,6 +4,7 @@ extends HANDS
 
 var attached_left: Sprite2D = null
 var attached_right: Sprite2D = null
+var anchored_rotation: float = 10
 
 @onready var racket_character = $"../Racket2/Racket"
 @onready var impact = $"../impact"
@@ -47,10 +48,6 @@ func update_attached_hand(attached, hand: Node2D, is_left: bool, prev_pos: Vecto
 			hand.global_position.y - 30
 		)
 		hand.texture = globals.closehand_texture
-
-		var dy = hand.global_position.y - prev_pos.y
-		if abs(dy) > 10.0:
-			racket.rotation_degrees = clamp(racket.rotation_degrees + sign(dy) * 2, -30, 30)
 	else:
 		hand.texture = globals.openhand_texture
 
@@ -61,10 +58,11 @@ func attach_hand_to_racket(hand: Node2D, is_left: bool) -> void:
 	if rect.has_point(local_pos):
 		if is_left:
 			attached_left = racket
-			racket.rotation_degrees = 10
+			anchored_rotation = 10
 		else:
 			attached_right = racket
-			racket.rotation_degrees = -10
+			anchored_rotation = -10
+		racket.rotation_degrees = anchored_rotation
 		hand.texture = globals.closehand_texture
 
 func detach_hand(hand: Node2D, is_left: bool) -> void:

@@ -5,6 +5,7 @@ extends Node
 @onready var kick = $kick
 @onready var net = $net
 @onready var cup = $SoccerCup
+@onready var horn = $horn
 
 var balls = []
 var ball_started = {}
@@ -87,6 +88,7 @@ func _handle_cup_animation(delta: float) -> void:
 		cup.visible = true
 		cup.rotation_degrees *= -1
 		cup_animation_count += 1
+		if cup_animation_count == 1: horn.play()
 
 	if cup_animation_count >= 4:
 		if globals.is_single_minigame:

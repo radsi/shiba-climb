@@ -56,6 +56,26 @@ position = Vector2(540, 540)
 scale = Vector2(2, 2)
 texture = ExtResource("2_f0i4t")
 
+[node name="message2" type="Label" parent="CanvasGroup"]
+z_index = 1
+anchors_preset = -1
+anchor_left = 0.36296296
+anchor_top = 0.11851852
+anchor_right = 0.765
+anchor_bottom = 0.24074075
+offset_left = 392.0
+offset_top = 928.0
+offset_right = 686.0
+offset_bottom = 1060.0
+grow_horizontal = 2
+pivot_offset = Vector2(150, 50)
+theme_override_fonts/font = ExtResource("1_rerct")
+theme_override_font_sizes/font_size = 80
+text = "Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../CanvasGroup/message")
 libraries = {
