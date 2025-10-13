@@ -41,6 +41,7 @@ func _kill_enemy(enemy: Sprite2D) -> void:
 	dead_enemies_count += 1
 	if globals.is_single_minigame and dead_enemies_count == 20:
 		globals._unlock_minigame("Jail")
+		globals._unlock_hands("striped")
 	if dead_enemies_count % 4 == 1:
 		globals.minigame_completed = true
 		

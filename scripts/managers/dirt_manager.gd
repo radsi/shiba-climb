@@ -52,12 +52,11 @@ func _process(delta: float) -> void:
 		stars.visible = true
 		
 		if shirt_count == max_shirt:
-			if not globals.is_single_minigame:
-				globals.minigame_completed = true
-				return
-			else:
+			if globals.is_single_minigame:
 				shirt_count = 0
 				globals.time_left = globals.game_time
+			globals.minigame_completed = true
+			return
 		
 		globals.is_playing_minigame_anim = true
 		await get_tree().create_timer(0.85).timeout

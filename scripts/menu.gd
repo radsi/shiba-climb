@@ -156,7 +156,9 @@ func _input(event) -> void:
 			ok.get_parent().hide()
 			globals._play_pop()
 			globals.username = text
-			if globals.pending_menu_messages.size() > 0 and not globals.pending_score: _show_pending_message()
+			if globals.pending_menu_messages.size() > 0 and not globals.pending_score:
+				message_timer = 0
+				_show_pending_message()
 			else: _close_message()
 	
 		if showing_messages or message_timer < 0.5 or editing_username or clapped: return

@@ -628,6 +628,7 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("31_0qewb")
 
 [node name="Label2" type="Label" parent="."]
+z_index = -3
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.69249207

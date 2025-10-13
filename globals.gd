@@ -91,7 +91,7 @@ func _process(delta: float) -> void:
 		return
 		
 	if time_left <= 0 and not is_single_minigame:
-		if has_lost_life == false and is_long == false: 
+		if has_lost_life == false and is_long == false and minigame_completed == false: 
 			life -= 1
 			has_lost_life = true
 		_start_roll()
@@ -203,24 +203,25 @@ func _game_over():
 	
 	if game_score >= 4:
 		_unlock_minigame("Arcade")
+		_unlock_minigame("Toast")
 		_unlock_hands("eyes")
 	
 	if game_score >= 8:
-		_unlock_minigame("Toast")
 		_unlock_hands("camo")
 		
-	if game_score >= 16:
+	if game_score >= 10:
 		_unlock_minigame("Rope")
 		_unlock_hands("caution")
 		
-	if game_score >= 24:
+	if game_score >= 15:
 		_unlock_minigame("Bonfire")
 		_unlock_hands("fire")
 	
-	if game_score >= 32:
+	if game_score >= 20:
 		_unlock_minigame("Kanji")
+		_unlock_hands("dalmata")
 	
-	if game_score >= 64:
+	if game_score >= 30:
 		_unlock_minigame("Soccer")
 	
 	roll_started = false
