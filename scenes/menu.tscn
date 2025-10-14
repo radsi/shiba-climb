@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://re18gkg4sw4r"]
+[gd_scene load_steps=53 format=3 uid="uid://re18gkg4sw4r"]
 
 [ext_resource type="Script" uid="uid://dykhujf08cqwk" path="res://scripts/menu.gd" id="1_vjb58"]
 [ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="1_yqeox"]
@@ -43,6 +43,8 @@
 [ext_resource type="Texture2D" uid="uid://b1lsk1k184epd" path="res://hand sprites/open hand_hearts.png" id="31_jcbs5"]
 [ext_resource type="Texture2D" uid="uid://cp34ei74jek0o" path="res://hand sprites/fist hand_heats.png" id="32_jamij"]
 [ext_resource type="Texture2D" uid="uid://cyfudot7pfgu6" path="res://leaderboard icon 2.png" id="34_mhjd8"]
+[ext_resource type="Texture2D" uid="uid://c8cwxvrd665w1" path="res://diff icon.png" id="41_qwtqu"]
+[ext_resource type="Texture2D" uid="uid://cst7kqfiolupl" path="res://diff icon 2.png" id="45_dg0of"]
 
 [sub_resource type="Animation" id="Animation_mhnvy"]
 length = 0.001
@@ -163,6 +165,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ExtResource("31_0qewb")]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DiffIcon:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("41_qwtqu")]
+}
 
 [sub_resource type="Animation" id="Animation_rsfmq"]
 resource_name = "custom_button"
@@ -215,6 +229,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [ExtResource("31_0qewb"), ExtResource("34_mhjd8")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DiffIcon:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("41_qwtqu"), ExtResource("45_dg0of")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fy8yy"]
@@ -295,14 +321,17 @@ metadata/_edit_use_anchors_ = true
 [node name="VSplitContainer" type="VSplitContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.39166668
-anchor_top = 0.7398148
-anchor_right = 0.60833335
-anchor_bottom = 0.89166665
-offset_top = -32.0
-offset_bottom = 4.0
+anchor_left = 0.8425926
+anchor_top = 0.08796296
+anchor_right = 1.0592593
+anchor_bottom = 0.23981482
+offset_left = -10.0
+offset_top = -15.0
+offset_right = -10.0
+offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(0.5, 0.5)
 theme_override_constants/separation = 48
 metadata/_edit_use_anchors_ = true
 
@@ -658,6 +687,12 @@ support"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="DiffIcon" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(540, 865)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("41_qwtqu")
 
 [connection signal="pressed" from="VSplitContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="text_changed" from="Message/CanvasGroup/Username" to="." method="_on_username_text_changed"]

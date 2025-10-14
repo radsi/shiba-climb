@@ -1,5 +1,7 @@
 extends Node
 
+var difficult_tier = 1
+
 var username = ""
 var pending_score = false
 

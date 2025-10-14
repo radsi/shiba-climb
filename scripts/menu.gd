@@ -13,6 +13,7 @@ var message_timer = 0
 @onready var custom_button = $CustomIcon
 @onready var gallery_button = $GalleryIcon
 @onready var leaderboard_button = $LeaderboardIcon
+@onready var difficulty_button = $DiffIcon
 @onready var bg1 = $Bg
 @onready var bg2 = $Bg2
 @onready var message = $Message
@@ -27,8 +28,8 @@ var prev_axis_x := 0.0
 var prev_axis_y := 0.0
 var editing_username = false
 
-@onready var buttons = [leaderboard_button, gallery_button, palm, custom_button]
-var current_button = 2
+@onready var buttons = [leaderboard_button, difficulty_button, gallery_button, palm, custom_button,]
+var current_button = 1
 
 func _ready() -> void:
 	
@@ -75,9 +76,9 @@ func _process(delta: float) -> void:
 	elif dpad_right and not prev_dpad_right and not editing_username:
 		current_button = clamp(current_button - 1, 0, buttons.size()-1)
 	elif dpad_up and not prev_dpad_up and not editing_username:
-		current_button = 2
+		current_button = clamp(current_button + 3, 0, buttons.size()-1)
 	elif dpad_down and not prev_dpad_down and not editing_username:
-		current_button = 0
+		current_button = clamp(current_button - 3, 0, buttons.size()-1)
 	
 	prev_dpad_left = dpad_left
 	prev_dpad_right = dpad_right
@@ -90,9 +91,9 @@ func _process(delta: float) -> void:
 		current_button = clamp(current_button - 1, 0, buttons.size()-1)
 	var y_axis = Input.get_joy_axis(0, JOY_AXIS_LEFT_Y)
 	if y_axis < -0.5 and prev_axis_y >= -0.5 and not editing_username:
-		current_button = 2
+		current_button = clamp(current_button + 3, 0, buttons.size()-1)
 	elif y_axis > 0.5 and prev_axis_y <= 0.5 and not editing_username:
-		current_button = 0
+		current_button = clamp(current_button - 3, 0, buttons.size()-1)
 	
 	prev_axis_x = x_axis
 	prev_axis_y = y_axis
@@ -108,27 +109,32 @@ func _process(delta: float) -> void:
 	globals.current_menu_bg_pos[0] = bg1.global_position.y
 	globals.current_menu_bg_pos[1] = bg2.global_position.y
 	
-	if is_mouse_over_item(custom_button, get_viewport().get_mouse_position()) or (current_button == 1 and globals.using_gamepad):
+	if is_mouse_over_item(custom_button, get_viewport().get_mouse_position()) or (current_button == 2 and globals.using_gamepad):
 		custom_button.scale = Vector2(1.25, 1.25)
 	else:
 		if custom_button != null: custom_button.scale = Vector2(1, 1)
 	
-	if is_mouse_over_item(palm, get_viewport().get_mouse_position()) or (current_button == 2 and globals.using_gamepad):
+	if is_mouse_over_item(palm, get_viewport().get_mouse_position()) or (current_button == 1 and globals.using_gamepad):
 		palm.scale = Vector2(3.5, 3.5)
 	else:
 		if palm != null: palm.scale = Vector2(3, 3)
 	
-	if is_mouse_over_item(gallery_button, get_viewport().get_mouse_position()) or (current_button == 3 and globals.using_gamepad):
+	if is_mouse_over_item(gallery_button, get_viewport().get_mouse_position()) or (current_button == 0 and globals.using_gamepad):
 		gallery_button.scale = Vector2(1.25, 1.25)
 	else:
 		if gallery_button != null: gallery_button.scale = Vector2(1, 1)
 	
-	if is_mouse_over_item(leaderboard_button, get_viewport().get_mouse_position()) or (current_button == 0 and globals.using_gamepad):
+	if is_mouse_over_item(leaderboard_button, get_viewport().get_mouse_position()) or (current_button == 3 and globals.using_gamepad):
 		leaderboard_button.scale = Vector2(1.05, 1.05)
 	else:
 		if leaderboard_button != null: leaderboard_button.scale = Vector2(0.8, 0.8)
 	
-	if (is_mouse_over_item(ok, get_viewport().get_mouse_position()) or (current_button == 2 and globals.using_gamepad)):
+	if is_mouse_over_item(difficulty_button, get_viewport().get_mouse_position()) or (current_button == 4 and globals.using_gamepad):
+		difficulty_button.scale = Vector2(1.05, 1.05)
+	else:
+		if difficulty_button != null: difficulty_button.scale = Vector2(0.8, 0.8)
+	
+	if (is_mouse_over_item(ok, get_viewport().get_mouse_position()) or (current_button == 1 and globals.using_gamepad)):
 		ok.scale = Vector2(2.25, 2.25)
 	else:
 		if ok != null: ok.scale = Vector2(2, 2)
@@ -163,7 +169,7 @@ func _input(event) -> void:
 	
 		if showing_messages or message_timer < 0.5 or editing_username or clapped: return
 		
-		if (is_mouse_over_item(palm, get_viewport().get_mouse_position()) or (current_button == 2 and globals.using_gamepad)):
+		if (is_mouse_over_item(palm, get_viewport().get_mouse_position()) or (current_button == 1 and globals.using_gamepad)):
 			$AudioStreamPlayer2D.play()
 			palm.texture = globals.clapped_texture
 			var tween = create_tween()
@@ -171,15 +177,18 @@ func _input(event) -> void:
 			tween.tween_callback(Callable(self, "_on_fade_complete"))
 			first_time = false
 			clapped = true
-		elif (is_mouse_over_item(custom_button, get_viewport().get_mouse_position()) or (current_button == 1 and globals.using_gamepad)):
+		elif (is_mouse_over_item(custom_button, get_viewport().get_mouse_position()) or (current_button == 2 and globals.using_gamepad)):
 			globals._play_pop()
 			get_tree().change_scene_to_file("res://scenes/customization.tscn")
-		elif (is_mouse_over_item(gallery_button, get_viewport().get_mouse_position()) or (current_button == 3 and globals.using_gamepad)):
+		elif (is_mouse_over_item(gallery_button, get_viewport().get_mouse_position()) or (current_button == 0 and globals.using_gamepad)):
 			globals._play_pop()
 			get_tree().change_scene_to_file("res://scenes/gallery.tscn")
-		elif (is_mouse_over_item(leaderboard_button, get_viewport().get_mouse_position()) or (current_button == 0 and globals.using_gamepad)):
+		elif (is_mouse_over_item(leaderboard_button, get_viewport().get_mouse_position()) or (current_button == 3 and globals.using_gamepad)):
 			globals._play_pop()
 			get_tree().change_scene_to_file("res://scenes/leaderboard.tscn")
+		elif (is_mouse_over_item(difficulty_button, get_viewport().get_mouse_position()) or (current_button == 4 and globals.using_gamepad)):
+			globals._play_pop()
+			get_tree().change_scene_to_file("res://scenes/difficulty.tscn")
 
 func is_mouse_over_item(item: Sprite2D, mouse_pos: Vector2) -> bool:
 	if item == null:

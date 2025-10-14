@@ -17,7 +17,23 @@ var last_pos_right = Vector2.ZERO
 var block_left_hand_movement = false
 var block_right_hand_movement = false
 
+var loose_grip = 0
+var ambidextrous = -1
+
 func _ready():
+	
+	if globals.difficult_tier == 2:
+		randomize()
+		loose_grip = randi() % 21
+	
+	if globals.difficult_tier == 3:
+		randomize()
+		ambidextrous = randi() % 2
+		if ambidextrous == 0:
+			hand_left.hide()
+		else:
+			hand_right.hide()
+	
 	hand_left.modulate = Color(1,1,1)
 	hand_right.modulate = Color(1,1,1)
 
@@ -84,7 +100,7 @@ func _process(delta):
 		if move_left.length() > 0.1:
 			var factor = 1 if hand_left.global_position.x <= screen_half else 0.5
 			var target_pos = hand_left.global_position + move_left * 700 * delta
-			if globals.using_gamepad and not dragging_left: factor = 0.3
+			if (globals.using_gamepad and not dragging_left) or loose_grip == 10: factor = 0.3
 			if target_pos.y <= 0:
 				target_pos.y = 0
 			if target_pos.y >= 1000:
@@ -97,7 +113,7 @@ func _process(delta):
 		if move_right.length() > 0.1:
 			var factor = 1 if hand_right.global_position.x >= screen_half else 0.5
 			var target_pos = hand_right.global_position + move_right * 700 * delta
-			if globals.using_gamepad and not dragging_right: factor = 0.3
+			if (globals.using_gamepad and not dragging_right) or loose_grip == 20: factor = 0.3
 			if target_pos.y <= 0:
 				target_pos.y = 0
 			if target_pos.y >= 1000:
@@ -114,21 +130,35 @@ func process_hand(hand: Node2D, dragging: bool, is_left: bool, delta: float, mou
 	var durability = durability_left if is_left else durability_right
 	var factor = slow_factor
 
-	if is_left and mouse_pos.x <= screen_half:
+	if (is_left and mouse_pos.x <= screen_half) or loose_grip == 10:
 		factor = 0.5
-	elif not is_left and mouse_pos.x >= screen_half:
+	elif (not is_left and mouse_pos.x >= screen_half) or loose_grip == 20:
 		factor = 0.5
 
 	if dragging and durability > 0:
 		if not globals.using_gamepad:
 			var target_pos = mouse_pos
 			hand.global_position = hand.global_position.lerp(target_pos, factor)
-		durability -= globals.hands_drain_rate * delta
+		if globals.difficult_tier != 2:
+			durability -= globals.hands_drain_rate * delta
+		else:
+			durability_left -= globals.hands_drain_rate * delta
+			durability_right -= globals.hands_drain_rate * delta
 	else:
-		durability += globals.hands_drain_rate / 3 * delta
+		if globals.difficult_tier != 2:
+			durability += globals.hands_drain_rate / 3 * delta
+		else:
+			durability_left += globals.hands_drain_rate / 3 * delta
+			durability_right += globals.hands_drain_rate / 3 * delta
 
-	durability = clamp(durability, 0, globals.hands_max_durability)
-	hand.modulate = Color(1, durability / globals.hands_max_durability, durability / globals.hands_max_durability)
+	if globals.difficult_tier != 2:
+		durability = clamp(durability, 0, globals.hands_max_durability)
+		hand.modulate = Color(1, durability / globals.hands_max_durability, durability / globals.hands_max_durability)
+	else:
+		durability_left = clamp(durability, 0, globals.hands_max_durability)
+		durability_right = clamp(durability, 0, globals.hands_max_durability)
+		hand_left.modulate = Color(1, durability_left / globals.hands_max_durability, durability_left / globals.hands_max_durability)
+		hand_right.modulate = Color(1, durability_right / globals.hands_max_durability, durability_right / globals.hands_max_durability)
 
 	if durability_left <= 0 or durability_right <= 0:
 		hand.texture = globals.closehand_texture
