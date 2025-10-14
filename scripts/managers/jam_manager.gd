@@ -6,8 +6,13 @@ extends Node
 var bite_count = 0
 var burp_played = false
 const BURP_WAIT := 0.5
+var timer = 0
 
 func _process(delta: float) -> void:
+	timer += delta
+	if delta == 60:
+		globals._unlock_minigame("Ham")
+	
 	if toast_jam == null:
 		return
 

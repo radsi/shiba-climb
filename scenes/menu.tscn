@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://re18gkg4sw4r"]
+[gd_scene load_steps=51 format=3 uid="uid://re18gkg4sw4r"]
 
 [ext_resource type="Script" uid="uid://dykhujf08cqwk" path="res://scripts/menu.gd" id="1_vjb58"]
 [ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="1_yqeox"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://d1fhevnjk7d0e" path="res://mini games sprites/jail door.png" id="11_6cdou"]
 [ext_resource type="Texture2D" uid="uid://dtl5akw64uc4" path="res://mini games sprites/ink bottle.png" id="12_i42df"]
 [ext_resource type="Texture2D" uid="uid://vhfh3sg8lwi7" path="res://mini games sprites/candle.png" id="13_7jp70"]
+[ext_resource type="Texture2D" uid="uid://sr84nqefysh3" path="res://mini games sprites/ham.png" id="13_jamij"]
 [ext_resource type="Texture2D" uid="uid://c0x4hvphvr4t1" path="res://ping_pong_PNG10372.png" id="14_mxgkd"]
 [ext_resource type="Texture2D" uid="uid://dvywnga1sjvia" path="res://mini games sprites/soccer ball.png" id="15_b5gwo"]
 [ext_resource type="Texture2D" uid="uid://bhctgd6x4a0k1" path="res://hand sprites/open hand_eyes.png" id="15_oi1it"]
@@ -387,6 +388,13 @@ visible = false
 position = Vector2(-6.25, 107)
 scale = Vector2(0.7, 0.896)
 texture = ExtResource("12_i42df")
+
+[node name="Ham" type="Sprite2D" parent="Message/Icons"]
+visible = false
+texture_filter = 1
+position = Vector2(0, 88)
+scale = Vector2(0.8, 0.997)
+texture = ExtResource("13_jamij")
 
 [node name="Candle" type="Sprite2D" parent="Message/Icons"]
 visible = false
