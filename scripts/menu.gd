@@ -41,6 +41,7 @@ func _ready() -> void:
 		
 		for key in keyboard.get_children():
 			keyboard_buttons.append(key)
+		keyboard_buttons.append(ok)
 		
 		colorrect.color.a = 0.75
 		editing_username = true
@@ -69,134 +70,94 @@ func _process(delta: float) -> void:
 	if globals.username != "" and globals.pending_score:
 		globals.pending_score = false
 		await Talo.players.identify("username", globals.username)
-		await Talo.leaderboards.add_entry("handware-leaderboard", globals.game_score, {"skin": globals.skin})
-
+		await Talo.leaderboards.add_entry("handware-leaderboard", globals.game_score, {
+			"skin": globals.skin
+		})
+	
+	# --- D-PAD ---
 	var dpad_left = Input.is_joy_button_pressed(0, JOY_BUTTON_DPAD_LEFT)
 	var dpad_right = Input.is_joy_button_pressed(0, JOY_BUTTON_DPAD_RIGHT)
 	var dpad_up = Input.is_joy_button_pressed(0, JOY_BUTTON_DPAD_UP)
 	var dpad_down = Input.is_joy_button_pressed(0, JOY_BUTTON_DPAD_DOWN)
-
-	if editing_username and keyboard_buttons.size() > 0:
-		var row_lengths = [9, 9, 8]
-		var index_to_row_col = func(i):
-			var start = 0
-			for r in range(row_lengths.size()):
-				var l = row_lengths[r]
-				if i < start + l:
-					return [r, i - start]
-				start += l
-			return [row_lengths.size() - 1, row_lengths[row_lengths.size() - 1] - 1]
-		var row_col_to_index = func(r, c):
-			var start = 0
-			for i in range(r):
-				start += row_lengths[i]
-			return start + c
-
-		if dpad_left and not prev_dpad_left:
-			var rc = index_to_row_col.call(current_button)
-			if rc[1] > 0:
-				current_button = row_col_to_index.call(rc[0], rc[1] - 1)
-		elif dpad_right and not prev_dpad_right:
-			var rc = index_to_row_col.call(current_button)
-			if rc[1] < row_lengths[rc[0]] - 1:
-				current_button = row_col_to_index.call(rc[0], rc[1] + 1)
-		elif dpad_up and not prev_dpad_up:
-			var rc = index_to_row_col.call(current_button)
-			if rc[0] > 0:
-				var target_row = rc[0] - 1
-				var new_col = min(rc[1], row_lengths[target_row] - 1)
-				current_button = row_col_to_index.call(target_row, new_col)
-		elif dpad_down and not prev_dpad_down:
-			var rc = index_to_row_col.call(current_button)
-			if rc[0] < row_lengths.size() - 1:
-				var target_row = rc[0] + 1
-				var new_col = min(rc[1], row_lengths[target_row] - 1)
-				current_button = row_col_to_index.call(target_row, new_col)
-
-		var x_axis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
-		var y_axis = Input.get_joy_axis(0, JOY_AXIS_LEFT_Y)
-		if x_axis < -0.5 and prev_axis_x >= -0.5:
-			var rc = index_to_row_col.call(current_button)
-			if rc[1] > 0:
-				current_button = row_col_to_index.call(rc[0], rc[1] - 1)
-		elif x_axis > 0.5 and prev_axis_x <= 0.5:
-			var rc = index_to_row_col.call(current_button)
-			if rc[1] < row_lengths[rc[0]] - 1:
-				current_button = row_col_to_index.call(rc[0], rc[1] + 1)
-		if y_axis < -0.5 and prev_axis_y >= -0.5:
-			var rc = index_to_row_col.call(current_button)
-			if rc[0] > 0:
-				var target_row = rc[0] - 1
-				var new_col = min(rc[1], row_lengths[target_row] - 1)
-				current_button = row_col_to_index.call(target_row, new_col)
-		elif y_axis > 0.5 and prev_axis_y <= 0.5:
-			var rc = index_to_row_col.call(current_button)
-			if rc[0] < row_lengths.size() - 1:
-				var target_row = rc[0] + 1
-				var new_col = min(rc[1], row_lengths[target_row] - 1)
-				current_button = row_col_to_index.call(target_row, new_col)
-		prev_axis_x = x_axis
-		prev_axis_y = y_axis
-	else:
-		if dpad_left and not prev_dpad_left:
-			current_button = clamp(current_button + 1, 0, buttons.size() - 1)
-		elif dpad_right and not prev_dpad_right:
-			current_button = clamp(current_button - 1, 0, buttons.size() - 1)
-		elif dpad_up and not prev_dpad_up:
-			current_button = clamp(current_button + 3, 0, buttons.size() - 1)
-		elif dpad_down and not prev_dpad_down:
-			current_button = clamp(current_button - 3, 0, buttons.size() - 1)
-
+	
+	if dpad_left and not prev_dpad_left:
+		current_button = clamp(current_button + 1, 0, buttons.size()-1) if not editing_username else clamp(keyboard_buttons + 1, 0, keyboard_buttons.size()-1)
+	elif dpad_right and not prev_dpad_right:
+		current_button = clamp(current_button - 1, 0, buttons.size()-1) if not editing_username else clamp(keyboard_buttons - 1, 0, keyboard_buttons.size()-1)
+	elif dpad_up and not prev_dpad_up:
+		current_button = clamp(current_button + 3, 0, buttons.size()-1) if not editing_username else clamp(keyboard_buttons + 9, 0, keyboard_buttons.size()-1)
+	elif dpad_down and not prev_dpad_down:
+		current_button = clamp(current_button - 3, 0, buttons.size()-1) if not editing_username else clamp(keyboard_buttons - 9, 0, keyboard_buttons.size()-1)
+	
 	prev_dpad_left = dpad_left
 	prev_dpad_right = dpad_right
 
+	# --- JOYSTICK IZQUIERDO ---
+	var x_axis = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
+	if x_axis < -0.5 and prev_axis_x >= -0.5:
+		current_button = clamp(current_button + 1, 0, buttons.size()-1) if not editing_username else clamp(keyboard_buttons + 1, 0, keyboard_buttons.size()-1)
+	elif x_axis > 0.5 and prev_axis_x <= 0.5:
+		current_button = clamp(current_button - 1, 0, buttons.size()-1) if not editing_username else clamp(keyboard_buttons - 1, 0, keyboard_buttons.size()-1)
+	var y_axis = Input.get_joy_axis(0, JOY_AXIS_LEFT_Y)
+	if y_axis < -0.5 and prev_axis_y >= -0.5:
+		current_button = clamp(current_button + 3, 0, buttons.size()-1) if not editing_username else clamp(keyboard_buttons + 9, 0, keyboard_buttons.size()-1)
+	elif y_axis > 0.5 and prev_axis_y <= 0.5:
+		current_button = clamp(current_button - 3, 0, buttons.size()-1) if not editing_username else clamp(keyboard_buttons - 9, 0, keyboard_buttons.size()-1)
+	
+	prev_axis_x = x_axis
+	prev_axis_y = y_axis
+	
 	bg1.global_position.y += 5
 	bg2.global_position.y += 5
+	
 	if bg1.global_position.y > 2156:
 		bg1.global_position.y = -2156
 	if bg2.global_position.y > 2156:
 		bg2.global_position.y = -2156
+	
 	globals.current_menu_bg_pos[0] = bg1.global_position.y
 	globals.current_menu_bg_pos[1] = bg2.global_position.y
-
+	
 	if keyboard_buttons.size() > 0:
 		for key in keyboard_buttons:
 			if is_mouse_over_item(key, get_viewport().get_mouse_position()) or (current_button == keyboard_buttons.find(key) and globals.using_gamepad):
 				key.scale = Vector2(0.3, 0.376)
 			else:
 				if key != null: key.scale = Vector2(0.25, 0.313)
-
+	
 	if is_mouse_over_item(custom_button, get_viewport().get_mouse_position()) or (current_button == 2 and globals.using_gamepad):
 		custom_button.scale = Vector2(1.25, 1.25)
 	else:
 		if custom_button != null: custom_button.scale = Vector2(1, 1)
+	
 	if is_mouse_over_item(palm, get_viewport().get_mouse_position()) or (current_button == 1 and globals.using_gamepad):
 		palm.scale = Vector2(3.5, 3.5)
 	else:
 		if palm != null: palm.scale = Vector2(3, 3)
+	
 	if is_mouse_over_item(gallery_button, get_viewport().get_mouse_position()) or (current_button == 0 and globals.using_gamepad):
 		gallery_button.scale = Vector2(1.25, 1.25)
 	else:
 		if gallery_button != null: gallery_button.scale = Vector2(1, 1)
+	
 	if is_mouse_over_item(leaderboard_button, get_viewport().get_mouse_position()) or (current_button == 3 and globals.using_gamepad):
 		leaderboard_button.scale = Vector2(1.05, 1.05)
 	else:
 		if leaderboard_button != null: leaderboard_button.scale = Vector2(0.8, 0.8)
+	
 	if is_mouse_over_item(difficulty_button, get_viewport().get_mouse_position()) or (current_button == 4 and globals.using_gamepad):
 		difficulty_button.scale = Vector2(1.05, 1.05)
 	else:
 		if difficulty_button != null: difficulty_button.scale = Vector2(0.8, 0.8)
-	if is_mouse_over_item(info_buton, get_viewport().get_mouse_position()) or (current_button == 5 and globals.using_gamepad):
-		info_buton.scale = Vector2(1.05, 1.05)
-	else:
-		if info_buton != null: info_buton.scale = Vector2(0.8, 0.8)
+	
 	if (is_mouse_over_item(ok, get_viewport().get_mouse_position()) or (current_button == 1 and globals.using_gamepad)):
 		ok.scale = Vector2(2, 2)
 	else:
 		if ok != null: ok.scale = Vector2(1.85, 1.85)
-
+	
 	if message_timer >= 2:
 		return
+	
 	message_timer += delta
 
 func _input(event) -> void:
@@ -214,22 +175,22 @@ func _input(event) -> void:
 	if ((event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT) or (event is InputEventJoypadButton and event.button_index == JOY_BUTTON_A)) and event.pressed:
 		if keyboard_buttons.size() > 0:
 			for key in keyboard_buttons:
-				if is_mouse_over_item(key, get_viewport().get_mouse_position()) or (current_button == keyboard_buttons.find(key) and globals.using_gamepad):
+				if is_mouse_over_item(key, get_viewport().get_mouse_position()) or (current_button == keyboard_buttons.find(key) and globals.using_gamepad) and editing_username:
+					if key.name == "LikeHand":
+						globals.pending_score = false
+						var text_node = message.get_child(2).get_child(0)
+						var text = text_node.text.strip_edges().replace("\n", "")
+						if text == "":
+							return
+						ok.get_parent().hide()
+						globals._play_pop()
+						globals.username = text
+						if globals.pending_menu_messages.size() > 0 and not globals.pending_score:
+							message_timer = 0
+							_show_pending_message()
+						else: _close_message()
+						return
 					username_prompt.text += key.name
-		
-			if (is_mouse_over_item(ok, get_viewport().get_mouse_position()) or (current_button == keyboard_buttons.size() - 1 and globals.using_gamepad)) and editing_username:
-				globals.pending_score = false
-				var text_node = message.get_child(2).get_child(0)
-				var text = text_node.text.strip_edges().replace("\n", "")
-				if text == "":
-					return
-				ok.get_parent().hide()
-				globals._play_pop()
-				globals.username = text
-				if globals.pending_menu_messages.size() > 0 and not globals.pending_score:
-					message_timer = 0
-					_show_pending_message()
-				else: _close_message()
 	
 		if showing_messages or message_timer < 0.5 or editing_username or clapped: return
 		

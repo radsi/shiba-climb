@@ -70,9 +70,6 @@ position = Vector2(59.99987, 62.222214)
 [node name="0" type="Node2D" parent="Keypad"]
 position = Vector2(-64.44458, 173.33333)
 
-[node name="clear" type="Node2D" parent="Keypad"]
-position = Vector2(-188.88904, 173.33333)
-
 [node name="A" type="Node2D" parent="Keypad"]
 position = Vector2(186.66653, -168.8889)
 

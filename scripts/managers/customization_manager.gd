@@ -243,7 +243,6 @@ func _on_right_pressed() -> void:
 	globals._play_pop()
 	_refresh_buttons()
 
-
 func _on_buttonback_pressed() -> void:
 	globals._play_pop()
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
@@ -252,11 +251,9 @@ func _on_buttonback_mouse_entered() -> void:
 	if $buttonback != null:
 		$buttonback.scale = Vector2(1.15,1.15)
 
-
 func _on_buttonback_mouse_exited() -> void:
 	if $buttonback != null:
 		$buttonback.scale = Vector2(1,1)
-
 
 func _on_left_mouse_entered() -> void: $left.scale = Vector2(1.15,1.15) 
 func _on_left_mouse_exited() -> void: $left.scale = Vector2(1,1) 

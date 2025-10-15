@@ -64,6 +64,9 @@ func _ready() -> void:
 		$speed.play()
 		await get_tree().create_timer(2).timeout
 	
+	_next_minigame()
+
+func _next_minigame():
 	globals.is_on_transition = false
 	globals.incresing_speed = false
 	get_tree().change_scene_to_file(globals.last_scene)

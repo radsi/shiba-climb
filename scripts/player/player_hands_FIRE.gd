@@ -47,7 +47,7 @@ func update_attached_hand(attached, hand: Node2D, is_left: bool, prev_pos: Vecto
 		hand.texture = globals.closehand_texture
 
 		var dy = hand.global_position.y - prev_pos.y
-		if abs(dy) > movement_threshold:
+		if abs(dy) > movement_threshold and globals.is_playing_minigame_anim == false:
 			if fire.scale.x < max_fire_scale and fire.scale.x > 0:
 				var grow = (globals.game_speed / 100000.0) + 0.003
 				fire.scale += Vector2(grow, grow)

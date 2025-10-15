@@ -143,16 +143,19 @@ func start_roll_from_menu():
 	_start_roll()
 
 func _start_roll():
-	if pool.is_empty():
-		pool = []
-		for s in all_unlocked_scenes:
-			if s != last_scene:
-				pool.append(s)
+	
+	if game_score % 4 == 0:
 		incresing_speed = true
 		game_speed += 50
 		game_time -= 1
 		game_time_long += 5
 		hands_drain_rate += 2.5
+	
+	if pool.is_empty():
+		pool = []
+		for s in all_unlocked_scenes:
+			if s != last_scene:
+				pool.append(s)
 
 	if pool.is_empty():
 		print("No scenes to load!")

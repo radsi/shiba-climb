@@ -2,6 +2,7 @@ extends Node
 
 @onready var basket_full_sprite = preload("res://mini games sprites/basket full.png")
 @onready var basket = $"../Basket"
+@onready var apple_sprites = [preload("res://mini games sprites/apple.png"), preload("res://mini games sprites/apple 2.png")]
 
 var all_invisible = false
 
@@ -39,6 +40,7 @@ func _set_apples():
 	children.shuffle()
 	
 	for child in children:
+		child.texture = apple_sprites[randi() % 2]
 		child.visible = true
 	
 	for i in range(4):

@@ -39,6 +39,7 @@ texture = ExtResource("2_mgt7l")
 flip_h = true
 
 [node name="Tree" type="Sprite2D" parent="."]
+modulate = Color(0.7441813, 0.7441813, 0.7441813, 1)
 position = Vector2(600.00006, 538.12006)
 scale = Vector2(1.25, 1.7183751)
 texture = ExtResource("3_jscof")

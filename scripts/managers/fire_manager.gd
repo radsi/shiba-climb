@@ -23,6 +23,8 @@ func _process(delta: float) -> void:
 		fire.texture = fire_sprites[2]
 		timer = 0
 		
+	if globals.is_playing_minigame_anim: return
+	
 	if fire.scale.x >= 0.6:
 		if not played_audio:
 			globals.minigame_completed = true
