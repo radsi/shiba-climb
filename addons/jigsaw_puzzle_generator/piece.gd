@@ -20,7 +20,8 @@ var top_neighbor:Piece = null
 var right_neighbor:Piece = null
 var bottom_neighbor:Piece = null
 var left_neighbor:Piece = null
-	
+var target_node = null
+
 func _ready() -> void:
 	region_enabled = true
 	#$Area2D/CollisionShape2D.shape.size = Vector2(region.size.x, region.size.y)

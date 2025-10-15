@@ -14,14 +14,25 @@ var outset:Texture2D = load("res://addons/jigsaw_puzzle_generator/outset.png")
 var straight:Texture2D = load("res://addons/jigsaw_puzzle_generator/straight.png")
 var masks:Dictionary
 
-#Piece movement
 var dragging := false
 var dragged_piece:Piece = null
 var dragged_offset := Vector2.ZERO
-var match_whole_piece := false # Do we have to line up sides or will just plopping a neighbor piece on on neighbor piece work?
+var match_whole_piece := false
+
+var puzzle_pictures = [preload("res://mini games sprites/puzzles/monalisa.png"), preload("res://mini games sprites/puzzles/hackclub.png"), preload("res://mini games sprites/puzzles/toilet.png")]
+
+func restart():
+	randomize()
+	puzzle = puzzle_pictures[randi() % puzzle_pictures.size() - 1]
+	for piece in pieces:
+		piece.queue_free()
+	
+	_ready()
 
 func _ready():
-	# Calculate piece size
+	randomize()
+	puzzle = puzzle_pictures[randi() % puzzle_pictures.size() - 1]
+	
 	piece_size = calculate_piece_size()
 	var margin = piece_size * piece_margin
 	var x_num = int(puzzle.get_width()/piece_size)
@@ -40,7 +51,6 @@ func _ready():
 	generate_masks()
 	
 	var p = load("res://addons/jigsaw_puzzle_generator/piece.tscn")
-	# Iterate rows then next column
 	for y in y_num:
 		for x in x_num:
 			var rect = Rect2(x*piece_size-margin, y*piece_size-margin, piece_size+(2*margin), piece_size+(2*margin))
@@ -55,13 +65,18 @@ func _ready():
 			piece.region_rect = rect
 			piece.sides = sds
 			piece.mask = masks[sds[Piece.SIDE.TOP]][sds[Piece.SIDE.RIGHT]][sds[Piece.SIDE.BOTTOM]][sds[Piece.SIDE.LEFT]]
-			piece.position.x = x*piece_size
-			piece.position.y = y*piece_size
+			var min = Vector2(130, 130)
+			var max = Vector2(942.0, 824.0)
+
+			var random_pos = Vector2(
+				randf_range(min.x, max.x),
+				randf_range(min.y, max.y)
+			)
+			piece.position = random_pos
 			pieces.append(piece)
+			piece.target_node = pieces.size()-1
 			add_child(piece)
-		
-	# Iterate through width x height spaces, passing texture, rectangle size, rectangle xy to new piece.
-	# Add to pieces
+
 func calculate_piece_size() -> int:
 	var w = puzzle.get_width()
 	var h = puzzle.get_height()
@@ -69,6 +84,38 @@ func calculate_piece_size() -> int:
 	var y = sqrt(((h*number_of_pieces)/w))
 	
 	return int(h/y)
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton or event is InputEventJoypadButton:
+		if event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT or event.button_index == JOY_BUTTON_RIGHT_SHOULDER or event.button_index == JOY_BUTTON_LEFT_SHOULDER:
+			if event.pressed:
+				dragging = true
+			else:
+				if dragged_piece != null:
+					var neighbor = dragged_piece.next_to_neighbor(match_whole_piece)
+					
+					if neighbor != null:
+						var group_adjust := Vector2.ZERO
+						match neighbor:
+							dragged_piece.left_neighbor:
+								group_adjust = dragged_piece.position - Vector2(dragged_piece.left_neighbor.position.x + piece_size, dragged_piece.left_neighbor.position.y)
+							dragged_piece.top_neighbor: 
+								group_adjust = dragged_piece.position - Vector2(dragged_piece.top_neighbor.position.x, dragged_piece.top_neighbor.position.y + piece_size)
+							dragged_piece.right_neighbor: 
+								group_adjust = dragged_piece.position - Vector2(dragged_piece.right_neighbor.position.x - piece_size, dragged_piece.right_neighbor.position.y)
+							dragged_piece.bottom_neighbor:
+								group_adjust = dragged_piece.position - Vector2(dragged_piece.bottom_neighbor.position.x, dragged_piece.bottom_neighbor.position.y - piece_size)
+					
+						if neighbor.group != dragged_piece.group:
+							for g in dragged_piece.group:
+								g.position -= group_adjust
+								
+							for np in neighbor.group:
+								dragged_piece.group.append(np)
+								np.group = dragged_piece.group
+						
+				dragging = false
+				dragged_piece = null
 
 func generate_masks():
 	for top_style in Piece.STYLE.values():
@@ -90,7 +137,7 @@ func generate_masks():
 						im.save_png(path)
 
 func build_mask(sides) -> Texture2D:
-	var mask_image = Image.create(256, 256, false, Image.FORMAT_RGBA8) # Create a 256x256 RGBA8 image
+	var mask_image = Image.create(256, 256, false, Image.FORMAT_RGBA8)
 	mask_image.fill(Color.BLACK)
 	
 	var inset_left = inset.get_image()

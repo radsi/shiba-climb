@@ -133,7 +133,7 @@ texture = ExtResource("10_ewrqy")
 [node name="Frame" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(540, 471)
-scale = Vector2(1, 1.177)
+scale = Vector2(0.85, 1)
 texture = ExtResource("11_i3uks")
 
 [node name="Puzzle" parent="." instance=ExtResource("12_vdjg2")]
@@ -142,13 +142,13 @@ puzzle = ExtResource("13_brbr5")
 [node name="pieces_pos" type="CanvasGroup" parent="."]
 
 [node name="top_left" type="Node2D" parent="pieces_pos"]
-position = Vector2(392, 320)
+position = Vector2(404, 336)
 
 [node name="top_right" type="Node2D" parent="pieces_pos"]
-position = Vector2(688, 320)
+position = Vector2(672, 332)
 
 [node name="bottom_left" type="Node2D" parent="pieces_pos"]
-position = Vector2(392, 624)
+position = Vector2(412, 608)
 
 [node name="bottom_right" type="Node2D" parent="pieces_pos"]
-position = Vector2(688, 624)
+position = Vector2(672, 608)

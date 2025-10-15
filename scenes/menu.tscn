@@ -629,8 +629,8 @@ emoji_menu_enabled = false
 
 [node name="LikeHand" type="Sprite2D" parent="Message/CanvasGroup"]
 modulate = Color(0.9064933, 0.9064934, 0.9064934, 1)
-position = Vector2(235.9375, 211)
-scale = Vector2(1.85, 1.85)
+position = Vector2(243.75, 237)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("28_d3h35")
 flip_h = true
 
