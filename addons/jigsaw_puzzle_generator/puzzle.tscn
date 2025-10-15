@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://kfbukst600ke"]
+
+[ext_resource type="Script" uid="uid://ddsw7bhevfxqq" path="res://addons/jigsaw_puzzle_generator/puzzle.gd" id="1_03ub4"]
+[ext_resource type="Texture2D" uid="uid://kh14bigo68br" path="res://cat.jpg" id="2_77j1r"]
+
+[node name="Puzzle" type="Node2D"]
+script = ExtResource("1_03ub4")
+puzzle = ExtResource("2_77j1r")

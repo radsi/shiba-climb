@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://cmbdx2emyr86i"]
+
+[ext_resource type="Script" uid="uid://b4wckcltbcidb" path="res://addons/jigsaw_puzzle_generator/piece.gd" id="1_3makh"]
+[ext_resource type="Material" uid="uid://ohjvhwrxc088" path="res://addons/jigsaw_puzzle_generator/piece.tres" id="1_hisf2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hisf2"]
+size = Vector2(256, 256)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sk825"]
+size = Vector2(64, 256)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y1xrd"]
+size = Vector2(256, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g8yu5"]
+size = Vector2(64, 256)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lq8ja"]
+size = Vector2(256, 64)
+
+[node name="Piece" type="Sprite2D"]
+material = ExtResource("1_hisf2")
+script = ExtResource("1_3makh")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="all" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_hisf2")
+
+[node name="left" type="Area2D" parent="."]
+
+[node name="left" type="CollisionShape2D" parent="left"]
+shape = SubResource("RectangleShape2D_sk825")
+
+[node name="top" type="Area2D" parent="."]
+
+[node name="top" type="CollisionShape2D" parent="top"]
+shape = SubResource("RectangleShape2D_y1xrd")
+
+[node name="right" type="Area2D" parent="."]
+
+[node name="right" type="CollisionShape2D" parent="right"]
+shape = SubResource("RectangleShape2D_g8yu5")
+
+[node name="bottom" type="Area2D" parent="."]
+
+[node name="bottom" type="CollisionShape2D" parent="bottom"]
+shape = SubResource("RectangleShape2D_lq8ja")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="left" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="left" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="top" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="top" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="right" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="right" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="bottom" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="bottom" to="." method="_on_area_2d_mouse_exited"]

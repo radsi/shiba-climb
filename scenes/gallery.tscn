@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://uosl6edrkgle"]
+[gd_scene load_steps=29 format=3 uid="uid://uosl6edrkgle"]
 
 [ext_resource type="Script" uid="uid://b8d4qfheifn3y" path="res://scripts/managers/gallery_manager.gd" id="1_543d2"]
 [ext_resource type="Texture2D" uid="uid://l2atiswygex0" path="res://transitions/bg.jpg" id="1_lg6hf"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://u3lwql5l6lus" path="res://mini games sprites/coin.png" id="16_kk4fg"]
 [ext_resource type="Texture2D" uid="uid://dvywnga1sjvia" path="res://mini games sprites/soccer ball.png" id="16_n7qvi"]
 [ext_resource type="Texture2D" uid="uid://sr84nqefysh3" path="res://mini games sprites/ham.png" id="17_n7qvi"]
+[ext_resource type="Texture2D" uid="uid://cjkhxdksdf54p" path="res://puzzle icon.png" id="18_mcjoy"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fgpkw"]
 
@@ -288,6 +289,7 @@ scale = Vector2(2.5, 2.5)
 texture = ExtResource("16_kk4fg")
 
 [node name="page3" type="CanvasGroup" parent="." groups=["pages"]]
+visible = false
 
 [node name="GalleryItem" type="Sprite2D" parent="page3"]
 texture_filter = 1
@@ -305,7 +307,7 @@ position = Vector2(540, 392)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_mdy1u")
 
-[node name="soccer" type="Sprite2D" parent="page3/GalleryItem2"]
+[node name="ham" type="Sprite2D" parent="page3/GalleryItem2"]
 texture_filter = 1
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("17_n7qvi")
@@ -315,6 +317,11 @@ texture_filter = 1
 position = Vector2(865, 392)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_mdy1u")
+
+[node name="puzzle" type="Sprite2D" parent="page3/GalleryItem3"]
+texture_filter = 1
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("18_mcjoy")
 
 [node name="GalleryItem4" type="Sprite2D" parent="page3"]
 texture_filter = 1

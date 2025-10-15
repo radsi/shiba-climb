@@ -1,6 +1,6 @@
 extends Node
 
-var posible_kanjis = ["う", "ロ", "ミ", "ウ", "ア", "ド", "ら", "ん", "ム"]
+var posible_kanjis = ["う", "ロ", "ミ", "二", "ウ", "ア", "ド", "人", "ら", "ん", "ム", "⭐"]
 
 func _ready() -> void:
 	globals.is_playing_minigame_anim = true

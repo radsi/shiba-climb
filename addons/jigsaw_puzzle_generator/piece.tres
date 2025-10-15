@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ohjvhwrxc088"]
+
+[ext_resource type="Shader" uid="uid://8cuy2to07645" path="res://addons/jigsaw_puzzle_generator/puzzle_mask_shader.gdshader" id="1_jsk5v"]
+
+[resource]
+shader = ExtResource("1_jsk5v")
+shader_parameter/region_rect_uv_data = Vector4(0, 0, 0, 0)
