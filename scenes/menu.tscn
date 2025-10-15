@@ -924,8 +924,29 @@ theme_override_fonts/font = ExtResource("1_yqeox")
 theme_override_font_sizes/font_size = 200
 text = "N"
 
-[node name="P" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+[node name="O" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
 position = Vector2(59, 161)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/O"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "O"
+
+[node name="P" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(113, 161)
 scale = Vector2(0.25, 0.313)
 texture = ExtResource("27_mhjd8")
 
@@ -946,7 +967,7 @@ theme_override_font_sizes/font_size = 200
 text = "P"
 
 [node name="Q" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
-position = Vector2(113, 161)
+position = Vector2(167, 161)
 scale = Vector2(0.25, 0.313)
 texture = ExtResource("27_mhjd8")
 
@@ -967,7 +988,7 @@ theme_override_font_sizes/font_size = 200
 text = "Q"
 
 [node name="R" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
-position = Vector2(167, 161)
+position = Vector2(221, 161)
 scale = Vector2(0.25, 0.313)
 texture = ExtResource("27_mhjd8")
 
