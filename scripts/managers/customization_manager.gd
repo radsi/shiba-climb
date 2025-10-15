@@ -221,10 +221,6 @@ func _scroll_background():
 	globals.current_menu_bg_pos[0] = bg1.global_position.y
 	globals.current_menu_bg_pos[1] = bg2.global_position.y
 
-func _on_buttonback_pressed() -> void:
-	globals._play_pop()
-	get_tree().change_scene_to_file("res://scenes/menu.tscn")
-
 func _on_left_pressed() -> void:
 	if page == 1: return
 	get_node("page"+str(page)).visible = false
@@ -246,3 +242,23 @@ func _on_right_pressed() -> void:
 	$left.visible = true
 	globals._play_pop()
 	_refresh_buttons()
+
+
+func _on_buttonback_pressed() -> void:
+	globals._play_pop()
+	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+
+func _on_buttonback_mouse_entered() -> void:
+	if $buttonback != null:
+		$buttonback.scale = Vector2(1.15,1.15)
+
+
+func _on_buttonback_mouse_exited() -> void:
+	if $buttonback != null:
+		$buttonback.scale = Vector2(1,1)
+
+
+func _on_left_mouse_entered() -> void: $left.scale = Vector2(1.15,1.15) 
+func _on_left_mouse_exited() -> void: $left.scale = Vector2(1,1) 
+func _on_right_mouse_entered() -> void: $right.scale = Vector2(1.15,1.15)
+func _on_right_mouse_exited() -> void: $right.scale = Vector2(1,1)

@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfwpf55ajjtv1"]
+[gd_scene load_steps=13 format=3 uid="uid://dfwpf55ajjtv1"]
 
 [ext_resource type="Script" uid="uid://dykhujf08cqwk" path="res://scripts/menu.gd" id="1_lj6h2"]
 [ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="2_u3bib"]
 [ext_resource type="Texture2D" uid="uid://l2atiswygex0" path="res://transitions/bg.jpg" id="3_0ctdu"]
 [ext_resource type="Texture2D" uid="uid://cw64dvnkk3oqm" path="res://arrow.png" id="3_2fbfq"]
 [ext_resource type="Texture2D" uid="uid://b1a546gu0sy1e" path="res://arrow_green.png" id="5_kyhnv"]
+[ext_resource type="Texture2D" uid="uid://bh3rusuqfqwpi" path="res://arrow2.png" id="5_ooihk"]
 [ext_resource type="Texture2D" uid="uid://c2isxy3781r0g" path="res://arrow_green2.png" id="6_ooihk"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2fbfq"]
@@ -22,17 +23,41 @@ tracks/0/keys = {
 "update": 1,
 "values": [ExtResource("5_kyhnv")]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("buttonback:icon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_2fbfq")]
+}
 
 [sub_resource type="Animation" id="Animation_7r7o8"]
 resource_name = "arrow_back"
 loop_mode = 1
-tracks/0/type = "method"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../../AnimationPlayer2")
+tracks/0/path = NodePath("buttonback:icon")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("3_2fbfq"), ExtResource("5_ooihk")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer2")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "values": [{

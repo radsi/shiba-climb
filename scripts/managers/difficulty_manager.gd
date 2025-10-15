@@ -86,11 +86,6 @@ func _process(delta: float) -> void:
 				button.scale = Vector2(1.05, 1.05)
 			else:
 				button.scale = Vector2(1, 1)
-	
-	if current_button == 0 and globals.using_gamepad:
-		$buttonback.scale = Vector2(1.15,1.15)
-	else:
-		$buttonback.scale = Vector2(1,1)
 
 func _input(event) -> void:
 	if event is InputEventJoypadButton and event.button_index == JOY_BUTTON_B and event.pressed:
