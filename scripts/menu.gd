@@ -19,6 +19,8 @@ var message_timer = 0
 @onready var message = $Message
 @onready var icons = $Message/Icons
 @onready var colorrect = $ColorRect
+@onready var keyboard = $Message/CanvasGroup/keyboard
+@onready var username_prompt = $Message/CanvasGroup/Username
 
 var prev_dpad_left := false
 var prev_dpad_right := false
@@ -28,12 +30,17 @@ var prev_axis_x := 0.0
 var prev_axis_y := 0.0
 var editing_username = false
 
-@onready var buttons = [leaderboard_button, difficulty_button, gallery_button, palm, custom_button,]
+@onready var buttons = [leaderboard_button, difficulty_button, gallery_button, palm, custom_button]
+var keyboard_buttons = []
 var current_button = 1
 
 func _ready() -> void:
 	
 	if globals.username == "" and globals.pending_score:
+		
+		for key in keyboard.get_children():
+			keyboard_buttons.append(key)
+		
 		colorrect.color.a = 0.75
 		editing_username = true
 		message.show()
@@ -109,6 +116,13 @@ func _process(delta: float) -> void:
 	globals.current_menu_bg_pos[0] = bg1.global_position.y
 	globals.current_menu_bg_pos[1] = bg2.global_position.y
 	
+	if keyboard_buttons.size() > 0:
+		for key in keyboard_buttons:
+			if is_mouse_over_item(key, get_viewport().get_mouse_position()) or (current_button == keyboard_buttons.find(key) and globals.using_gamepad):
+				key.scale = Vector2(0.3, 0.376)
+			else:
+				if key != null: key.scale = Vector2(0.25, 0.313)
+	
 	if is_mouse_over_item(custom_button, get_viewport().get_mouse_position()) or (current_button == 2 and globals.using_gamepad):
 		custom_button.scale = Vector2(1.25, 1.25)
 	else:
@@ -135,9 +149,9 @@ func _process(delta: float) -> void:
 		if difficulty_button != null: difficulty_button.scale = Vector2(0.8, 0.8)
 	
 	if (is_mouse_over_item(ok, get_viewport().get_mouse_position()) or (current_button == 1 and globals.using_gamepad)):
-		ok.scale = Vector2(2.25, 2.25)
+		ok.scale = Vector2(2, 2)
 	else:
-		if ok != null: ok.scale = Vector2(2, 2)
+		if ok != null: ok.scale = Vector2(1.85, 1.85)
 	
 	if message_timer >= 2:
 		return
@@ -148,24 +162,33 @@ func _input(event) -> void:
 	if event is InputEventMouseButton:
 		if showing_messages and message_timer >= 2: _close_message()
 	
-	if event is InputEventJoypadButton and event.button_index == JOY_BUTTON_B and get_tree().current_scene.name != "Menu":
-		get_tree().change_scene_to_file("res://scenes/menu.tscn")
+	if event is InputEventJoypadButton and event.button_index == JOY_BUTTON_B:
+		if get_tree().current_scene.name != "Menu": get_tree().change_scene_to_file("res://scenes/menu.tscn")
+		else:
+			if keyboard_buttons.size() > 0:
+				username_prompt.text = username_prompt.text.substr(0, username_prompt.text.size() - 1)
+				username_prompt.set_caret_column(username_prompt.text.length())
 		return
 	
 	if ((event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT) or (event is InputEventJoypadButton and event.button_index == JOY_BUTTON_A)) and event.pressed:
-		if (is_mouse_over_item(ok, get_viewport().get_mouse_position()) or (current_button == 2 and globals.using_gamepad)) and editing_username:
-			globals.pending_score = false
-			var text_node = message.get_child(2).get_child(0)
-			var text = text_node.text.strip_edges().replace("\n", "")
-			if text == "":
-				return
-			ok.get_parent().hide()
-			globals._play_pop()
-			globals.username = text
-			if globals.pending_menu_messages.size() > 0 and not globals.pending_score:
-				message_timer = 0
-				_show_pending_message()
-			else: _close_message()
+		if keyboard_buttons.size() > 0:
+			for key in keyboard_buttons:
+				if is_mouse_over_item(key, get_viewport().get_mouse_position()) or (current_button == keyboard_buttons.find(key) and globals.using_gamepad):
+					username_prompt.text += key.name
+		
+			if (is_mouse_over_item(ok, get_viewport().get_mouse_position()) or (current_button == keyboard_buttons.size() - 1 and globals.using_gamepad)) and editing_username:
+				globals.pending_score = false
+				var text_node = message.get_child(2).get_child(0)
+				var text = text_node.text.strip_edges().replace("\n", "")
+				if text == "":
+					return
+				ok.get_parent().hide()
+				globals._play_pop()
+				globals.username = text
+				if globals.pending_menu_messages.size() > 0 and not globals.pending_score:
+					message_timer = 0
+					_show_pending_message()
+				else: _close_message()
 	
 		if showing_messages or message_timer < 0.5 or editing_username or clapped: return
 		
@@ -258,7 +281,6 @@ func _on_buttonback_mouse_exited() -> void:
 
 
 func _on_username_text_changed() -> void:
-	var t = message.get_child(2).get_child(0)
-	if t.text.length() > 17:
-		t.text = t.text.substr(0, 17)
-		t.set_caret_column(t.text.length())
+	if username_prompt.text.length() > 17:
+		username_prompt.text = username_prompt.text.substr(0, 17)
+		username_prompt.set_caret_column(username_prompt.text.length())

@@ -621,10 +621,560 @@ emoji_menu_enabled = false
 
 [node name="LikeHand" type="Sprite2D" parent="Message/CanvasGroup"]
 modulate = Color(0.9064933, 0.9064934, 0.9064934, 1)
-position = Vector2(217.1875, 211)
-scale = Vector2(2, 2)
+position = Vector2(235.9375, 211)
+scale = Vector2(1.85, 1.85)
 texture = ExtResource("28_d3h35")
 flip_h = true
+
+[node name="keyboard" type="CanvasGroup" parent="Message/CanvasGroup"]
+z_index = 1
+position = Vector2(-42.96875, 0)
+
+[node name="A" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(-211, 91)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/A"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "A"
+
+[node name="B" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(-157, 91)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/B"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "B"
+
+[node name="C" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(-103, 91)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/C"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "C"
+
+[node name="D" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(-49, 91)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/D"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "D"
+
+[node name="E" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(5, 91)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/E"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "E"
+
+[node name="F" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(59, 91)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/F"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "F"
+
+[node name="G" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(113, 91)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/G"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "G"
+
+[node name="H" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(167, 91)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/H"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "H"
+
+[node name="I" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(221, 91)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/I"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "I"
+
+[node name="J" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(-211, 161)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/J"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "J"
+
+[node name="K" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(-157, 161)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/K"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "K"
+
+[node name="L" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(-103, 161)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/L"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "L"
+
+[node name="M" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(-49, 161)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/M"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "M"
+
+[node name="N" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(5, 161)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/N"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "N"
+
+[node name="P" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(59, 161)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/P"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "P"
+
+[node name="Q" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(113, 161)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/Q"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "Q"
+
+[node name="R" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(167, 161)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/R"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "R"
+
+[node name="S" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(-211, 232)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/S"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "S"
+
+[node name="T" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(-157, 232)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/T"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "T"
+
+[node name="U" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(-103, 232)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/U"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "U"
+
+[node name="V" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(-49, 232)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/V"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "V"
+
+[node name="W" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(5, 232)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/W"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "W"
+
+[node name="X" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(59, 232)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/X"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "X"
+
+[node name="Y" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(113, 232)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/Y"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "Y"
+
+[node name="Z" type="Sprite2D" parent="Message/CanvasGroup/keyboard"]
+position = Vector2(167, 232)
+scale = Vector2(0.25, 0.313)
+texture = ExtResource("27_mhjd8")
+
+[node name="Label" type="Label" parent="Message/CanvasGroup/keyboard/Z"]
+anchors_preset = -1
+anchor_left = 0.81700003
+anchor_top = 1.0220001
+anchor_right = 0.81700003
+anchor_bottom = 1.0220001
+offset_left = -223.29584
+offset_top = -303.06668
+offset_right = -96.29584
+offset_bottom = -94.06668
+pivot_offset = Vector2(62, 104)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 200
+text = "Z"
+
+[node name="Label2" type="Label" parent="Message/CanvasGroup"]
+anchors_preset = -1
+anchor_left = 0.69249207
+anchor_top = 0.734372
+anchor_right = 0.9483089
+anchor_bottom = 0.875052
+offset_left = -141.40625
+offset_top = -119.0
+offset_right = 156.59375
+offset_bottom = 2.0
+grow_horizontal = 2
+scale = Vector2(1, 1.3)
+pivot_offset = Vector2(550, 125)
+theme_override_colors/font_color = Color(1, 0.32410014, 0.25894427, 1)
+theme_override_fonts/font = ExtResource("1_yqeox")
+theme_override_font_sizes/font_size = 48
+text = "B -> return"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Bg" type="Sprite2D" parent="."]
 modulate = Color(0.23110586, 0.40934858, 0.4403412, 1)

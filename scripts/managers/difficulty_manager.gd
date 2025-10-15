@@ -112,8 +112,8 @@ func is_mouse_over_item(item: Sprite2D, mouse_pos: Vector2) -> bool:
 	if item == null or item.texture == null:
 		return false
 	var local_pos = item.to_local(mouse_pos)
-	var size = item.texture.get_size()
-	var rect = Rect2(-size * 0.5, size)
+	var _size = item.texture.get_size()
+	var rect = Rect2(-_size * 0.5, _size)
 	return rect.has_point(local_pos)
 
 func _on_fade_complete() -> void:
