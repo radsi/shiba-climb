@@ -14,6 +14,7 @@ var message_timer = 0
 @onready var gallery_button = $GalleryIcon
 @onready var leaderboard_button = $LeaderboardIcon
 @onready var difficulty_button = $DiffIcon
+@onready var info_buton = $InfoIcon
 @onready var bg1 = $Bg
 @onready var bg2 = $Bg2
 @onready var message = $Message
@@ -185,6 +186,10 @@ func _process(delta: float) -> void:
 		difficulty_button.scale = Vector2(1.05, 1.05)
 	else:
 		if difficulty_button != null: difficulty_button.scale = Vector2(0.8, 0.8)
+	if is_mouse_over_item(info_buton, get_viewport().get_mouse_position()) or (current_button == 5 and globals.using_gamepad):
+		info_buton.scale = Vector2(1.05, 1.05)
+	else:
+		if info_buton != null: info_buton.scale = Vector2(0.8, 0.8)
 	if (is_mouse_over_item(ok, get_viewport().get_mouse_position()) or (current_button == 1 and globals.using_gamepad)):
 		ok.scale = Vector2(2, 2)
 	else:
@@ -248,6 +253,9 @@ func _input(event) -> void:
 		elif (is_mouse_over_item(difficulty_button, get_viewport().get_mouse_position()) or (current_button == 4 and globals.using_gamepad)):
 			globals._play_pop()
 			get_tree().change_scene_to_file("res://scenes/difficulty.tscn")
+		elif (is_mouse_over_item(info_buton, get_viewport().get_mouse_position()) or (current_button == 5 and globals.using_gamepad)):
+			globals._play_pop()
+			get_tree().change_scene_to_file("res://scenes/credits.tscn")
 
 func is_mouse_over_item(item: Sprite2D, mouse_pos: Vector2) -> bool:
 	if item == null:
@@ -259,11 +267,6 @@ func is_mouse_over_item(item: Sprite2D, mouse_pos: Vector2) -> bool:
 
 func _on_fade_complete() -> void:
 	get_tree().change_scene_to_file("res://scenes/countdown.tscn")
-
-func _on_button_2_pressed() -> void:
-	if showing_messages or message_timer < 1 or editing_username: return
-	globals._play_pop()
-	get_tree().change_scene_to_file("res://scenes/credits.tscn")
 
 func _show_pending_message():
 	showing_messages = true

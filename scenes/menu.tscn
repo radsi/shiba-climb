@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://re18gkg4sw4r"]
+[gd_scene load_steps=55 format=3 uid="uid://re18gkg4sw4r"]
 
 [ext_resource type="Script" uid="uid://dykhujf08cqwk" path="res://scripts/menu.gd" id="1_vjb58"]
 [ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="1_yqeox"]
@@ -44,7 +44,9 @@
 [ext_resource type="Texture2D" uid="uid://cp34ei74jek0o" path="res://hand sprites/fist hand_heats.png" id="32_jamij"]
 [ext_resource type="Texture2D" uid="uid://cyfudot7pfgu6" path="res://leaderboard icon 2.png" id="34_mhjd8"]
 [ext_resource type="Texture2D" uid="uid://c8cwxvrd665w1" path="res://diff icon.png" id="41_qwtqu"]
+[ext_resource type="Texture2D" uid="uid://bpqft4rejn3s1" path="res://info icon.png" id="42_21umf"]
 [ext_resource type="Texture2D" uid="uid://cst7kqfiolupl" path="res://diff icon 2.png" id="45_dg0of"]
+[ext_resource type="Texture2D" uid="uid://b4cokfxheh5lw" path="res://info icon 2.png" id="47_bugl6"]
 
 [sub_resource type="Animation" id="Animation_mhnvy"]
 length = 0.001
@@ -177,6 +179,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [ExtResource("41_qwtqu")]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("InfoIcon:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("42_21umf")]
+}
 
 [sub_resource type="Animation" id="Animation_rsfmq"]
 resource_name = "custom_button"
@@ -241,6 +255,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [ExtResource("41_qwtqu"), ExtResource("45_dg0of")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("InfoIcon:texture")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("42_21umf"), ExtResource("47_bugl6")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fy8yy"]
@@ -316,31 +342,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="VSplitContainer" type="VSplitContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.8425926
-anchor_top = 0.08796296
-anchor_right = 1.0592593
-anchor_bottom = 0.23981482
-offset_left = -10.0
-offset_top = -15.0
-offset_right = -10.0
-offset_bottom = 21.0
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.5, 0.5)
-theme_override_constants/separation = 48
-metadata/_edit_use_anchors_ = true
-
-[node name="Button2" type="Button" parent="VSplitContainer"]
-z_index = -2
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_yqeox")
-theme_override_font_sizes/font_size = 64
-text = "Credits"
 metadata/_edit_use_anchors_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -1235,35 +1236,16 @@ position = Vector2(214, 865)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("31_0qewb")
 
-[node name="Label2" type="Label" parent="."]
-z_index = -3
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.69249207
-anchor_top = 0.734372
-anchor_right = 0.9483089
-anchor_bottom = 0.875052
-offset_left = -24.891357
-offset_top = 80.878296
-offset_right = -9.173584
-offset_bottom = 49.94391
-grow_horizontal = 2
-rotation = 0.1501732
-pivot_offset = Vector2(550, 125)
-theme_override_colors/font_color = Color(1, 0.32410014, 0.25894427, 1)
-theme_override_fonts/font = ExtResource("1_yqeox")
-theme_override_font_sizes/font_size = 56
-text = "controller 
-support"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
 [node name="DiffIcon" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(540, 865)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("41_qwtqu")
 
-[connection signal="pressed" from="VSplitContainer/Button2" to="." method="_on_button_2_pressed"]
+[node name="InfoIcon" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(866, 865)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("42_21umf")
+
 [connection signal="text_changed" from="Message/CanvasGroup/Username" to="." method="_on_username_text_changed"]
