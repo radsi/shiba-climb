@@ -21,8 +21,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if globals.is_playing_minigame_anim or globals.has_lost_life == true: return
 	
-	print(hand_can_die)
-
 	if slashing and hand_can_die and globals.has_lost_life == false:
 		$hit.play()
 		globals.has_lost_life = true

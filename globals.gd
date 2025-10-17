@@ -187,7 +187,7 @@ func _start_roll():
 		is_on_transition = true
 		get_tree().change_scene_to_file("res://scenes/transition.tscn")
 	
-	if game_score == -1: get_tree().change_scene_to_file(scene_path)
+	if game_score == -1: get_tree().change_scene_to_file(last_scene)
 	
 	game_score += 1
 	
