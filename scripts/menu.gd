@@ -38,7 +38,6 @@ var current_button = 1
 func _ready() -> void:
 	
 	if globals.username == "" and globals.pending_score:
-		
 		for key in keyboard.get_children():
 			keyboard_buttons.append(key)
 		keyboard_buttons.append(ok)
@@ -185,6 +184,7 @@ func _input(event) -> void:
 						ok.get_parent().hide()
 						globals._play_pop()
 						globals.username = text
+						globals._unlock_minigame("Valve")
 						if globals.pending_menu_messages.size() > 0 and not globals.pending_score:
 							message_timer = 0
 							_show_pending_message()

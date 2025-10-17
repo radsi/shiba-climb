@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://uosl6edrkgle"]
+[gd_scene load_steps=31 format=3 uid="uid://uosl6edrkgle"]
 
 [ext_resource type="Script" uid="uid://b8d4qfheifn3y" path="res://scripts/managers/gallery_manager.gd" id="1_543d2"]
 [ext_resource type="Texture2D" uid="uid://l2atiswygex0" path="res://transitions/bg.jpg" id="1_lg6hf"]
@@ -23,6 +23,8 @@
 [ext_resource type="Texture2D" uid="uid://dvywnga1sjvia" path="res://mini games sprites/soccer ball.png" id="16_n7qvi"]
 [ext_resource type="Texture2D" uid="uid://sr84nqefysh3" path="res://mini games sprites/ham.png" id="17_n7qvi"]
 [ext_resource type="Texture2D" uid="uid://cjkhxdksdf54p" path="res://puzzle icon.png" id="18_mcjoy"]
+[ext_resource type="Texture2D" uid="uid://4i1cf5x5j8lv" path="res://mini games sprites/valve.png" id="19_1osqm"]
+[ext_resource type="Texture2D" uid="uid://dw76vvrwbouh" path="res://mini games sprites/samurai 1.png" id="20_kr8uu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fgpkw"]
 
@@ -289,7 +291,6 @@ scale = Vector2(2.5, 2.5)
 texture = ExtResource("16_kk4fg")
 
 [node name="page3" type="CanvasGroup" parent="." groups=["pages"]]
-visible = false
 
 [node name="GalleryItem" type="Sprite2D" parent="page3"]
 texture_filter = 1
@@ -329,11 +330,21 @@ position = Vector2(215, 732)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_mdy1u")
 
+[node name="valve" type="Sprite2D" parent="page3/GalleryItem4"]
+texture_filter = 1
+texture = ExtResource("19_1osqm")
+
 [node name="GalleryItem5" type="Sprite2D" parent="page3"]
 texture_filter = 1
 position = Vector2(540, 732)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_mdy1u")
+
+[node name="samurai" type="Sprite2D" parent="page3/GalleryItem5"]
+texture_filter = 1
+position = Vector2(-3.3333337, 2.666667)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("20_kr8uu")
 
 [node name="GalleryItem6" type="Sprite2D" parent="page3"]
 texture_filter = 1

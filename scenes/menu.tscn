@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://re18gkg4sw4r"]
+[gd_scene load_steps=58 format=3 uid="uid://re18gkg4sw4r"]
 
 [ext_resource type="Script" uid="uid://dykhujf08cqwk" path="res://scripts/menu.gd" id="1_vjb58"]
 [ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="1_yqeox"]
@@ -24,7 +24,9 @@
 [ext_resource type="Texture2D" uid="uid://d1mrao3pdvet" path="res://hand sprites/open hand_fire.png" id="17_6wigr"]
 [ext_resource type="Texture2D" uid="uid://cjkhxdksdf54p" path="res://puzzle icon.png" id="17_bugl6"]
 [ext_resource type="Texture2D" uid="uid://3ocnp3qxwir2" path="res://custom icon2.png" id="18_81l6r"]
+[ext_resource type="Texture2D" uid="uid://4i1cf5x5j8lv" path="res://mini games sprites/valve.png" id="18_leckd"]
 [ext_resource type="Texture2D" uid="uid://cfnw2a1umf03s" path="res://hand sprites/fist hand_fire.png" id="18_lnf0i"]
+[ext_resource type="Texture2D" uid="uid://dw76vvrwbouh" path="res://mini games sprites/samurai 1.png" id="19_tg78l"]
 [ext_resource type="Texture2D" uid="uid://u3lwql5l6lus" path="res://mini games sprites/coin.png" id="19_x16fv"]
 [ext_resource type="Texture2D" uid="uid://lwj1fhr7k277" path="res://hand sprites/open hand_camo.png" id="20_g54pe"]
 [ext_resource type="Texture2D" uid="uid://dhu0gxyygt15l" path="res://hand sprites/fist hand_camo.png" id="21_48ryc"]
@@ -450,6 +452,18 @@ visible = false
 position = Vector2(0, 91)
 scale = Vector2(0.125, 0.16)
 texture = ExtResource("17_bugl6")
+
+[node name="Valve" type="Sprite2D" parent="Message/Icons"]
+visible = false
+position = Vector2(0, 91)
+scale = Vector2(2, 2.56)
+texture = ExtResource("18_leckd")
+
+[node name="Samurai" type="Sprite2D" parent="Message/Icons"]
+visible = false
+position = Vector2(-21.09375, 91)
+scale = Vector2(1.75, 2.24)
+texture = ExtResource("19_tg78l")
 
 [node name="eyes" type="CanvasGroup" parent="Message/Icons"]
 visible = false

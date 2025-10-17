@@ -171,6 +171,8 @@ func _start_roll():
 	last_scene = scene_path
 	if last_scene == "res://scenes/minigames/pingpong.tscn":
 		last_scene = "res://scenes/minigames/pingpong long.tscn"
+	elif last_scene == "res://scenes/minigames/samurai.tscn":
+		last_scene = "res://scenes/minigames/samurai long.tscn"
 	pool.remove_at(index)
 
 	if last_scene.contains("long"):

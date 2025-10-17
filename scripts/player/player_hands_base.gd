@@ -87,6 +87,8 @@ func _input(event):
 				hand_right.texture = globals.openhand_texture if not grappling else globals.closehand_texture
 
 func _process(delta):
+	last_pos_left = hand_left.global_position
+	last_pos_right = hand_right.global_position
 	var screen_half = get_viewport().get_visible_rect().size.x / 2
 
 	var move_left = Vector2.ZERO
