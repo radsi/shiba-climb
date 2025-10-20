@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://6vpbxoe7lyg4"
+path="res://.godot/imported/boss music.wav-368f92c3d91061da69be8ec7d06ef02c.sample"
+
+[deps]
+
+source_file="res://sounds/boss music.wav"
+dest_files=["res://.godot/imported/boss music.wav-368f92c3d91061da69be8ec7d06ef02c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

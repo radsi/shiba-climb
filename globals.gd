@@ -57,6 +57,7 @@ var whistle_audio = preload("res://sounds/90743__pablo-f__referee-whistle.wav")
 var lose_audio = preload("res://sounds/350985__cabled_mess__lose_c_02.wav")
 var menu_audio = preload("res://sounds/628445__davo32__level-music-brackground.mp3")
 var music_audio = preload("res://sounds/404717__djevilj__nu-break-july-2017-drum-track.wav")
+var boss_music_audio = preload("res://sounds/boss music.wav")
 var pop_audio = preload("res://sounds/pop-sound-effect.wav")
 
 func _play_pop():
@@ -174,6 +175,15 @@ func _start_roll():
 	elif last_scene == "res://scenes/minigames/samurai.tscn":
 		last_scene = "res://scenes/minigames/samurai long.tscn"
 	pool.remove_at(index)
+	
+	if last_scene.contains("boss"):
+		music_player.stop()
+		music_player.stream = boss_music_audio
+		music_player.play()
+	elif music_player.stream == boss_music_audio:
+		music_player.stop()
+		music_player.stream = music_audio
+		music_player.play()
 
 	if last_scene.contains("long"):
 		is_long = true

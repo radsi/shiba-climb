@@ -291,7 +291,6 @@ scale = Vector2(2.5, 2.5)
 texture = ExtResource("16_kk4fg")
 
 [node name="page3" type="CanvasGroup" parent="." groups=["pages"]]
-visible = false
 
 [node name="GalleryItem" type="Sprite2D" parent="page3"]
 texture_filter = 1
