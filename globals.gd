@@ -221,7 +221,7 @@ func _game_over():
 	if game_score >= 4:
 		_unlock_minigame("Arcade")
 		_unlock_minigame("Toast")
-		_unlock_hands("eyes")
+		_unlock_hands("hearts")
 	
 	if game_score >= 8:
 		_unlock_hands("camo")
@@ -240,6 +240,9 @@ func _game_over():
 	
 	if game_score >= 30:
 		_unlock_minigame("Soccer")
+	
+	if all_unlocked_scenes.size() >= 17:
+		_unlock_minigame("Boss")
 	
 	roll_started = false
 	is_on_transition = false

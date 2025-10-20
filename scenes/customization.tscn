@@ -406,24 +406,24 @@ scale = Vector2(1.25, 1.25)
 texture = ExtResource("4_ppfrd")
 flip_h = true
 
-[node name="eyes" type="Sprite2D" parent="page1"]
+[node name="hearts" type="Sprite2D" parent="page1"]
 self_modulate = Color(0.70980394, 0.70980394, 0.70980394, 1)
 texture_filter = 1
 position = Vector2(540, 732)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("9_kx870")
 
-[node name="OpenHand" type="Sprite2D" parent="page1/eyes"]
+[node name="OpenHand" type="Sprite2D" parent="page1/hearts"]
 texture_filter = 1
 position = Vector2(-32, 0)
 scale = Vector2(1.25, 1.25)
-texture = ExtResource("16_8qgph")
+texture = ExtResource("28_a1myt")
 
-[node name="FistHand" type="Sprite2D" parent="page1/eyes"]
+[node name="FistHand" type="Sprite2D" parent="page1/hearts"]
 texture_filter = 1
 position = Vector2(36, 0)
 scale = Vector2(1.25, 1.25)
-texture = ExtResource("17_w3cap")
+texture = ExtResource("29_m6itl")
 flip_h = true
 
 [node name="fire" type="Sprite2D" parent="page1"]
@@ -489,24 +489,24 @@ scale = Vector2(1.25, 1.25)
 texture = ExtResource("21_d0b0o")
 flip_h = true
 
-[node name="real" type="Sprite2D" parent="page2"]
+[node name="dalmata" type="Sprite2D" parent="page2"]
 self_modulate = Color(0.70980394, 0.70980394, 0.70980394, 1)
 texture_filter = 1
 position = Vector2(865, 732)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("9_kx870")
 
-[node name="OpenHand" type="Sprite2D" parent="page2/real"]
+[node name="OpenHand" type="Sprite2D" parent="page2/dalmata"]
 texture_filter = 1
 position = Vector2(-32, 0)
 scale = Vector2(1.25, 1.25)
-texture = ExtResource("22_8gnxe")
+texture = ExtResource("26_j1g68")
 
-[node name="FistHand" type="Sprite2D" parent="page2/real"]
+[node name="FistHand" type="Sprite2D" parent="page2/dalmata"]
 texture_filter = 1
 position = Vector2(36, 0)
 scale = Vector2(1.25, 1.25)
-texture = ExtResource("23_uocac")
+texture = ExtResource("27_60j1w")
 flip_h = true
 
 [node name="page3" type="CanvasGroup" parent="." groups=["pages"]]
@@ -532,44 +532,44 @@ scale = Vector2(1.25, 1.25)
 texture = ExtResource("25_bd3ap")
 flip_h = true
 
-[node name="dalmata" type="Sprite2D" parent="page3"]
+[node name="real" type="Sprite2D" parent="page3"]
 self_modulate = Color(0.70980394, 0.70980394, 0.70980394, 1)
 texture_filter = 1
 position = Vector2(540, 732)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("9_kx870")
 
-[node name="OpenHand" type="Sprite2D" parent="page3/dalmata"]
+[node name="OpenHand" type="Sprite2D" parent="page3/real"]
 texture_filter = 1
 position = Vector2(-32, 0)
 scale = Vector2(1.25, 1.25)
-texture = ExtResource("26_j1g68")
+texture = ExtResource("22_8gnxe")
 
-[node name="FistHand" type="Sprite2D" parent="page3/dalmata"]
+[node name="FistHand" type="Sprite2D" parent="page3/real"]
 texture_filter = 1
 position = Vector2(36, 0)
 scale = Vector2(1.25, 1.25)
-texture = ExtResource("27_60j1w")
+texture = ExtResource("23_uocac")
 flip_h = true
 
-[node name="hearts" type="Sprite2D" parent="page3"]
+[node name="eyes" type="Sprite2D" parent="page3"]
 self_modulate = Color(0.70980394, 0.70980394, 0.70980394, 1)
 texture_filter = 1
 position = Vector2(865, 732)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("9_kx870")
 
-[node name="OpenHand" type="Sprite2D" parent="page3/hearts"]
+[node name="OpenHand" type="Sprite2D" parent="page3/eyes"]
 texture_filter = 1
 position = Vector2(-32, 0)
 scale = Vector2(1.25, 1.25)
-texture = ExtResource("28_a1myt")
+texture = ExtResource("16_8qgph")
 
-[node name="FistHand" type="Sprite2D" parent="page3/hearts"]
+[node name="FistHand" type="Sprite2D" parent="page3/eyes"]
 texture_filter = 1
 position = Vector2(36, 0)
 scale = Vector2(1.25, 1.25)
-texture = ExtResource("29_m6itl")
+texture = ExtResource("17_w3cap")
 flip_h = true
 
 [node name="Bg" type="Sprite2D" parent="."]

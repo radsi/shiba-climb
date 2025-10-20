@@ -95,6 +95,7 @@ func _on_attack_tween_finished(slashes_group):
 	doing_attack = false
 
 func _kill_boss():
+	globals._unlock_hands("eyes")
 	for explosion in explosions.get_children():
 		await get_tree().create_timer(0.5).timeout
 		explosion_sfx.play()

@@ -21,7 +21,6 @@ func _process(delta):
 		timer += delta
 		if timer >= 60:
 			globals._unlock_minigame("PingPong")
-			globals._unlock_hands("hearts")
 	
 	spawn_interval = max(0.2, 0.8 * 200 / globals.game_speed)
 
