@@ -902,7 +902,6 @@ sprite_frames = SubResource("SpriteFrames_qkcpj")
 stream = ExtResource("26_6th6l")
 
 [node name="Vendor" type="CanvasGroup" parent="."]
-visible = false
 
 [node name="Keypad" type="Sprite2D" parent="Vendor"]
 z_index = -1

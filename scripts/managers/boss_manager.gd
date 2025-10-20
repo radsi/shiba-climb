@@ -2,31 +2,40 @@ extends Node
 
 var slash_color = Color("e25349ff")
 
+@onready var hands: HANDS = $CanvasGroup
+
 @onready var eyes = [$Gas/Eye, $Gas/Eye2]
 @onready var boss_sprite = $Gas
 var original_positions = [null, null, null]
 
+@onready var valve = $Valve
 @onready var valve_tube = $Valve/RedTube
 @onready var valve_object = $Valve/Valve
 @onready var valve_animation = $"Valve/AnimationPlayer"
 @onready var valve_anim: AnimationPlayer = $"Valve/AnimationPlayer"
 @onready var valve_smokes = [$"Valve/smoke1", $"Valve/smoke2", $"Valve/smoke3", $"Valve/smoke4"]
 
+@onready var vendor = $Vendor
+@onready var vendor_label = $Vendor/Label
+
 @onready var slash_sfx = $slash
 @onready var explosion_sfx = $explosionsfx
+@onready var wrong_sfx = $wrong
 
 @onready var explosions = $explosions
 @onready var explosion = $explosion
 
 @onready var slashes = [$Slash1, $Slash2, $Slash3, $Slash4]
-var random_events = [Callable(self, "enable_valve")]
+var random_events = [Callable(self, "enable_valve"), Callable(self, "enable_vendor")]
 
-var valve_active := false
 var can_hit_wall := true
 var doing_attack := false
 
 var wall_hp := 10
 var boss_hp := 2
+var old_boss_hp := 1
+
+var hand_input := ""
 
 var timer: float = 0
 
@@ -39,23 +48,34 @@ func _ready() -> void:
 	do_attacks()
 
 func _process(delta: float) -> void:
-	if valve_active:
+	
+	if hand_input == vendor_label.text:
+		disable_vendor()
+	elif hand_input.length() >= vendor_label.text.length():
+		hand_input = ""
+		wrong_sfx.play()
+	
+	if valve.visible == true or vendor.visible == true:
 		timer += delta
-		if timer >= 10 and globals.minigame_completed == true:
+		if ((timer >= 10 and valve.visible) or (timer >= 20 and vendor.visible)) and globals.minigame_completed == true:
+			globals.minigame_completed = false
 			explosion.show()
-			return
+			explosion.play()
+			explosion_sfx.play()
+			await get_tree().create_timer(2).timeout
+			globals.has_lost_life = true
+			globals.life -= 1
+			globals._start_roll()
+		return
 	
-	if can_hit_wall == false: return
-	
-	match(wall_hp):
-		5:
-			randomize()
-			can_hit_wall = false
-			var event = randi_range(0, random_events.size()-1)
-			random_events[event].call()
-
+	if wall_hp == 5 and can_hit_wall == true and old_boss_hp != boss_hp:
+		old_boss_hp = boss_hp
+		can_hit_wall = false
+		var event = randi_range(0, random_events.size()-1)
+		random_events[event].call()
 
 func _apply_random_transform() -> void:
+	if boss_hp <= 0: return
 	for i in range(eyes.size()):
 		var eye = eyes[i]
 		var base_pos = original_positions[1+i]
@@ -68,6 +88,7 @@ func _apply_random_transform() -> void:
 
 
 func do_attacks():
+	if boss_hp <= 0: return
 	await get_tree().create_timer(randf_range(3, 5)).timeout
 	var slashes_group = slashes[randi_range(0, slashes.size()-1)]
 	for slash in slashes_group.get_children():
@@ -83,7 +104,7 @@ func do_attacks():
 func _on_attack_tween_finished(slashes_group):
 	for slash in slashes_group.get_children():
 		for area in slash.get_child(0).get_overlapping_areas():
-			if area.name == "Areahand":
+			if area.name == "Areahand" and hands.block_left_hand_movement == false and hands.block_right_hand_movement == false:
 				print("hand die")
 	
 	slash_sfx.play()
@@ -96,35 +117,60 @@ func _on_attack_tween_finished(slashes_group):
 
 func _kill_boss():
 	globals._unlock_hands("eyes")
-	for explosion in explosions.get_children():
+	for _explosion: AnimatedSprite2D in explosions.get_children():
 		await get_tree().create_timer(0.5).timeout
 		explosion_sfx.play()
-		explosion.show()
-	
-	globals.minigame_completed = true
+		_explosion.show()
+		_explosion.play()
+	eyes[0].hide()
+	eyes[1].hide()
+	await get_tree().create_timer(2).timeout
+	globals._start_roll()
 
 func enable_valve():
+	valve.show()
 	var tween = create_tween()
 	var tween2 = create_tween()
 	tween2.tween_property(valve_object, "global_position", Vector2(540, 630), 1).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 	tween.tween_property(valve_tube, "global_position", Vector2(540, 1400), 1).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
-	tween.tween_callback(Callable(self, "_on_valve_moved"))
+	tween.tween_callback(Callable(self, "_on_valve_moved").bind(false))
 	
 func disable_valve():
 	can_hit_wall = true
-	valve_active = false
-	for i in range(4):
-		valve_smokes[i].hide()
-	valve_anim.stop()
-	valve_anim.seek(0)
-	
+	timer = 0
 	var tween = create_tween()
 	var tween2 = create_tween()
 	tween2.tween_property(valve_object, "position", Vector2(540, 899), 1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_property(valve_tube, "position", Vector2(540, 1669), 1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_callback(Callable(self, "_on_valve_moved").bind(true))
 
-func _on_valve_moved():
-	valve_active = true
-	for i in range(4):
-		valve_smokes[i].show()
+func _on_valve_moved(disable):
+	valve_anim.seek(0)
 	valve_anim.play("smoke")
+	for i in range(4):
+		if not disable:
+			valve_smokes[i].show()
+		else:
+			valve_smokes[i].hide()
+	if disable == true: valve_object.get_parent().hide()
+
+func enable_vendor():
+	vendor.show()
+	var chars = "0123456789ABCD"
+	vendor_label.text = ""
+	for i in range(5):
+		vendor_label.text += chars[randi_range(0, chars.length() - 1)]
+	var tween = create_tween()
+	tween.tween_property(vendor, "global_position", Vector2(0, -630), 1).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	tween.tween_callback(Callable(self, "_on_vendor_moved").bind(false))
+
+func disable_vendor():
+	hand_input = ""
+	can_hit_wall = true
+	timer = 0
+	var tween = create_tween()
+	tween.tween_property(vendor, "global_position", Vector2(0, 0), 1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_callback(Callable(self, "_on_valve_moved").bind(true))
+	
+func _on_vendor_moved(disable):
+	if disable == true: vendor.get_parent().hide()
