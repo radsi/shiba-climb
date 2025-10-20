@@ -26,9 +26,6 @@ func _ready():
 func _process(delta):
 	super._process(delta)
 	
-	if boss_manager.doing_attack and boss_manager.hand_can_die:
-		print("hand die")
-	
 	if valve_object.rotation_degrees >= 1500:
 		boss_manager.disable_valve()
 	
@@ -87,7 +84,6 @@ func hit_wall(body: Node2D):
 	wall_hitted = true
 
 func hit_boss(body: Node2D):
-	
 	if boss_manager.boss_hp <= 0: return
 	boss_manager.boss_hp -= 1
 	boss_hit.play()

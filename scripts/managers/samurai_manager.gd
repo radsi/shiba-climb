@@ -13,23 +13,12 @@ var min_rot = -200
 
 var slash_color = Color("e25349ff")
 var slashing = false
-var hand_can_die = false
 
 func _ready() -> void:
 	globals.is_playing_minigame_anim = true
 
 func _process(delta: float) -> void:
 	if globals.is_playing_minigame_anim or globals.has_lost_life == true: return
-	
-	if slashing and hand_can_die and globals.has_lost_life == false:
-		$hit.play()
-		globals.has_lost_life = true
-		await get_tree().create_timer(0.5).timeout
-		if globals.is_single_minigame:
-			globals._game_over()
-		else:
-			globals.life -= 1
-			globals._start_roll()
 
 	if doing_attacks == false:
 		do_attack()
@@ -77,6 +66,17 @@ func do_attack():
 func _on_samurai_tween_finished() -> void:
 	for i in range(2):
 		samurais[i].texture = samurai_sprites[1]
+		for area in slashes[i].get_child(0).get_overlapping_areas():
+			if area.name == "Areahand":
+				$hit.play()
+				globals.has_lost_life = true
+				await get_tree().create_timer(0.5).timeout
+				if globals.is_single_minigame:
+					globals._game_over()
+				else:
+					globals.life -= 1
+					globals._start_roll()
+	
 	$slash.play()
 	slashing = true
 	await get_tree().create_timer(0.5).timeout
@@ -86,15 +86,3 @@ func _on_samurai_tween_finished() -> void:
 		samurais[i].texture = samurai_sprites[0]
 
 	doing_attacks = false
-
-func _on_areahand_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	if area.name != "Areahand": hand_can_die = true
-
-func _on_areahand_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	if area.name != "Areahand": hand_can_die = false
-
-func _on_samurai_area_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	if area.name != "Area2D": hand_can_die = true
-
-func _on_samurai_area_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	if area.name != "Area2D": hand_can_die = false

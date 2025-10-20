@@ -24,7 +24,6 @@ var random_events = [Callable(self, "enable_valve")]
 var valve_active := false
 var can_hit_wall := true
 var doing_attack := false
-var hand_can_die := false
 
 var wall_hp := 10
 var boss_hp := 2
@@ -54,7 +53,6 @@ func _process(delta: float) -> void:
 			can_hit_wall = false
 			var event = randi_range(0, random_events.size()-1)
 			random_events[event].call()
-			random_events.remove_at(event)
 
 
 func _apply_random_transform() -> void:
@@ -83,6 +81,11 @@ func do_attacks():
 	do_attacks()
 
 func _on_attack_tween_finished(slashes_group):
+	for slash in slashes_group.get_children():
+		for area in slash.get_child(0).get_overlapping_areas():
+			if area.name == "Areahand":
+				print("hand die")
+	
 	slash_sfx.play()
 	doing_attack = true
 	await get_tree().create_timer(0.5).timeout
@@ -90,7 +93,6 @@ func _on_attack_tween_finished(slashes_group):
 		slash.modulate = Color(1, 1, 1, 0)
 
 	doing_attack = false
-	hand_can_die = false
 
 func _kill_boss():
 	for explosion in explosions.get_children():
@@ -125,9 +127,3 @@ func _on_valve_moved():
 	for i in range(4):
 		valve_smokes[i].show()
 	valve_anim.play("smoke")
-
-func _on_areahand_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	hand_can_die = true
-
-func _on_areahand_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	hand_can_die = false

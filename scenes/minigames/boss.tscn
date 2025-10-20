@@ -789,6 +789,7 @@ position = Vector2(2.5, 1.5)
 shape = SubResource("RectangleShape2D_2qa0m")
 
 [node name="Valve" type="CanvasGroup" parent="."]
+z_index = -1
 position = Vector2(0, 360)
 
 [node name="Valve" type="Sprite2D" parent="Valve"]
@@ -916,11 +917,7 @@ autoplay = "default"
 [node name="explosionsfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("26_6th6l")
 
-[connection signal="area_shape_entered" from="CanvasGroup/Hand1/Areahand" to="." method="_on_areahand_area_shape_entered"]
-[connection signal="area_shape_exited" from="CanvasGroup/Hand1/Areahand" to="." method="_on_areahand_area_shape_exited"]
 [connection signal="body_shape_entered" from="CanvasGroup/Hand1/Areahand" to="CanvasGroup" method="_on_areahand_body_shape_entered"]
 [connection signal="body_shape_exited" from="CanvasGroup/Hand1/Areahand" to="CanvasGroup" method="_on_areahand_body_shape_exited"]
-[connection signal="area_shape_entered" from="CanvasGroup/Hand2/Areahand" to="." method="_on_areahand_area_shape_entered"]
-[connection signal="area_shape_exited" from="CanvasGroup/Hand2/Areahand" to="." method="_on_areahand_area_shape_exited"]
 [connection signal="body_shape_entered" from="CanvasGroup/Hand2/Areahand" to="CanvasGroup" method="_on_areahand_body_shape_entered"]
 [connection signal="body_shape_exited" from="CanvasGroup/Hand2/Areahand" to="CanvasGroup" method="_on_areahand_body_shape_exited"]
