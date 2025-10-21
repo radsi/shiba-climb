@@ -4,6 +4,7 @@ var slash_color = Color("e25349ff")
 
 @onready var hands: HANDS = $CanvasGroup
 
+@onready var eye2_sprite = preload("res://mini games sprites/bosses/eye2.png")
 @onready var eyes = [$Gas/Eye, $Gas/Eye2]
 @onready var boss_sprite = $Gas
 var original_positions = [null, null, null]
@@ -31,9 +32,8 @@ var random_events = [Callable(self, "enable_valve"), Callable(self, "enable_vend
 var can_hit_wall := true
 var doing_attack := false
 
-var wall_hp := 10
+var wall_hp := 11
 var boss_hp := 2
-var old_boss_hp := 1
 
 var hand_input := ""
 
@@ -48,30 +48,20 @@ func _ready() -> void:
 	do_attacks()
 
 func _process(delta: float) -> void:
-	
 	if hand_input == vendor_label.text:
 		disable_vendor()
-	elif hand_input.length() >= vendor_label.text.length():
-		hand_input = ""
-		wrong_sfx.play()
+	elif not vendor_label.text.begins_with(hand_input):
+		blink_text()
 	
 	if valve.visible == true or vendor.visible == true:
 		timer += delta
-		if ((timer >= 10 and valve.visible) or (timer >= 20 and vendor.visible)) and globals.minigame_completed == true:
-			globals.minigame_completed = false
-			explosion.show()
-			explosion.play()
-			explosion_sfx.play()
-			await get_tree().create_timer(2).timeout
-			globals.has_lost_life = true
-			globals.life -= 1
-			globals._start_roll()
-		return
+		if ((timer >= 15 and valve.visible) or (timer >= 25 and vendor.visible)) and globals.minigame_completed == true:
+			die()
 	
-	if wall_hp == 5 and can_hit_wall == true and old_boss_hp != boss_hp:
-		old_boss_hp = boss_hp
+	if wall_hp == 6 and can_hit_wall == true:
+		wall_hp -= 1
 		can_hit_wall = false
-		var event = randi_range(0, random_events.size()-1)
+		var event = randi() % random_events.size()
 		random_events[event].call()
 
 func _apply_random_transform() -> void:
@@ -86,6 +76,16 @@ func _apply_random_transform() -> void:
 	await get_tree().create_timer(0.1).timeout
 	_apply_random_transform()
 
+func blink_text() -> void:
+	wrong_sfx.play()
+	vendor_label.hide()
+	await get_tree().create_timer(0.1).timeout
+	vendor_label.show()
+	await get_tree().create_timer(0.1).timeout
+	vendor_label.hide()
+	await get_tree().create_timer(0.1).timeout
+	vendor_label.show()
+	hand_input = ""
 
 func do_attacks():
 	if boss_hp <= 0: return
@@ -101,11 +101,21 @@ func do_attacks():
 		)
 	do_attacks()
 
+func die():
+	globals.minigame_completed = false
+	explosion.show()
+	explosion.play()
+	explosion_sfx.play()
+	await get_tree().create_timer(1).timeout
+	globals.has_lost_life = true
+	globals.life -= 1
+	globals._start_roll()
+
 func _on_attack_tween_finished(slashes_group):
 	for slash in slashes_group.get_children():
 		for area in slash.get_child(0).get_overlapping_areas():
 			if area.name == "Areahand" and hands.block_left_hand_movement == false and hands.block_right_hand_movement == false:
-				print("hand die")
+				die()
 	
 	slash_sfx.play()
 	doing_attack = true

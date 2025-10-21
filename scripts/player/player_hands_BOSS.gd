@@ -17,6 +17,8 @@ var wall_hitted = false
 var shaking := false
 var top_limit = -220
 var bottom_limit = 315
+var left_limit = -500
+var right_limit = 500
 
 var old_mouse_pos := Vector2.ZERO
 var original_hand_pos = []
@@ -53,7 +55,7 @@ func _process(delta):
 	var current_mouse_pos = get_local_mouse_position()
 
 	if wall_hitted and (dragging_left or dragging_right):
-		_shake_jail(Vector2.LEFT)
+		_shake_jail(Vector2.UP)
 	
 	if is_mouse_over_item(valve_object, hand_left.global_position) and dragging_left and boss_manager.valve.visible:
 		if (hand_left.global_position.x != last_pos_left.x and globals.using_gamepad) or (current_mouse_pos.x != old_mouse_pos.x and not globals.using_gamepad):
@@ -68,6 +70,8 @@ func _process(delta):
 	if boss_manager.wall_hp > 0:
 		hand_left.position.y = clamp(hand_left.position.y, top_limit, bottom_limit)
 		hand_right.position.y = clamp(hand_right.position.y, top_limit, bottom_limit)
+		hand_left.position.x = clamp(hand_left.position.x, left_limit, right_limit)
+		hand_right.position.x = clamp(hand_right.position.x, left_limit, right_limit)
 	
 	old_mouse_pos = current_mouse_pos
 
@@ -76,17 +80,16 @@ func _input(event):
 
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
-			if was_dragging_left and was_fingerhand_left:
-				var tip = _get_finger_tip(hand_left)
-				var nearest = _get_closest_keypad_child(tip)
+			if was_dragging_left and was_fingerhand_left and is_mouse_over_item(keypad, hand_right.get_child(1).global_position):
+				var nearest = _get_closest_keypad_child(hand_left.get_child(1))
 				if nearest:
+					print(nearest.name)
 					boss_manager.hand_input += str(nearest.name)
 					beep.play()
 
 		if event.button_index == MOUSE_BUTTON_RIGHT and not event.pressed:
-			if was_dragging_right and was_fingerhand_right:
-				var tip = _get_finger_tip(hand_right)
-				var nearest = _get_closest_keypad_child(tip)
+			if was_dragging_right and was_fingerhand_right and is_mouse_over_item(keypad, hand_right.get_child(1).global_position):
+				var nearest = _get_closest_keypad_child(hand_right.get_child(1))
 				if nearest:
 					print(nearest.name)
 					boss_manager.hand_input += str(nearest.name)
@@ -94,17 +97,15 @@ func _input(event):
 
 	if event is InputEventJoypadButton and globals.using_gamepad:
 		if event.button_index == JOY_BUTTON_LEFT_SHOULDER and not event.pressed:
-			if was_dragging_left and was_fingerhand_left:
-				var tip = _get_finger_tip(hand_left)
-				var nearest = _get_closest_keypad_child(tip)
+			if was_dragging_left and was_fingerhand_left and is_mouse_over_item(keypad, hand_right.get_child(1).global_position):
+				var nearest = _get_closest_keypad_child(hand_left.get_child(1))
 				if nearest:
 					boss_manager.hand_input += str(nearest.name)
 					beep.play()
 
 		if event.button_index == JOY_BUTTON_RIGHT_SHOULDER and not event.pressed:
-			if was_dragging_right and was_fingerhand_right:
-				var tip = _get_finger_tip(hand_right)
-				var nearest = _get_closest_keypad_child(tip)
+			if was_dragging_right and was_fingerhand_right and is_mouse_over_item(keypad, hand_right.get_child(1).global_position):
+				var nearest = _get_closest_keypad_child(hand_right.get_child(1))
 				if nearest:
 					boss_manager.hand_input += str(nearest.name)
 					beep.play()
@@ -120,11 +121,6 @@ func _shake_jail(direction: Vector2) -> void:
 	tween.tween_property(wall, "position", base_pos, 0.10)
 	await get_tree().create_timer(0.16).timeout
 	shaking = false
-
-func _get_finger_tip(hand: Node2D) -> Node2D:
-	if hand.get_child_count() > 0:
-		return hand.get_child(1)
-	return null
 
 func _get_closest_keypad_child(finger_tip: Node2D) -> Node2D:
 	if keypad == null or finger_tip == null:
@@ -162,6 +158,8 @@ func hit_wall(body: Node2D):
 
 func hit_boss(body: Node2D):
 	if wall.visible == true or boss_manager.boss_hp <= 0: return
+	boss_manager.eyes[0].texture = boss_manager.eye2_sprite
+	boss_manager.eyes[1	].texture = boss_manager.eye2_sprite
 	boss_manager.boss_hp -= 1
 	if boss_manager.boss_hp <= 0:
 		boss_manager._kill_boss()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://xalttcmbl3b5"]
+[gd_scene load_steps=68 format=3 uid="uid://xalttcmbl3b5"]
 
 [ext_resource type="Script" uid="uid://b5ca5q0w0qxkn" path="res://scripts/managers/boss_manager.gd" id="1_khkct"]
 [ext_resource type="Texture2D" uid="uid://cb0v8wmpwl7nl" path="res://hand sprites/open hand.png" id="2_khkct"]
@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://by2vvbf4nqgcc" path="res://sounds/valve.mp3" id="19_u53kq"]
 [ext_resource type="AudioStream" uid="uid://u24behjxd305" path="res://sounds/steam burst.wav" id="20_gw5ar"]
 [ext_resource type="AudioStream" uid="uid://du3xly14smoxw" path="res://sounds/knocking_wall.mp3" id="21_i4tsw"]
+[ext_resource type="Texture2D" uid="uid://cu0g2jr1jqfhf" path="res://mini games sprites/bosses/1307308-138172447.jpg" id="21_jphvc"]
 [ext_resource type="AudioStream" uid="uid://bbsw6yob15oq" path="res://sounds/_box-break_mixdown.wav" id="22_fnhdv"]
 [ext_resource type="Texture2D" uid="uid://v2177k3oixen" path="res://mini games sprites/explosion.png" id="23_fnhdv"]
 [ext_resource type="AudioStream" uid="uid://tgkv1q4qu4ro" path="res://sounds/hit_timer.wav" id="24_wnjow"]
@@ -418,7 +419,6 @@ shape = SubResource("RectangleShape2D_u53kq")
 position = Vector2(-7.3333335, -38)
 
 [node name="TextBg1" type="Sprite2D" parent="."]
-visible = false
 z_index = 999
 texture_filter = 1
 position = Vector2(530, 400)
@@ -628,6 +628,28 @@ position = Vector2(10.379395, 8.637124)
 scale = Vector2(0.9999998, 0.99999964)
 shape = SubResource("RectangleShape2D_7hsu1")
 
+[node name="Slash2" type="TextureRect" parent="Slash2"]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_ic5a2")
+offset_left = -23.0
+offset_top = 750.0
+offset_right = 17.0
+offset_bottom = 790.0
+rotation = 4.712389
+scale = Vector2(1, 30)
+pivot_offset = Vector2(20, 0)
+texture = ExtResource("14_gm162")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="Slash2/Slash2"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(10.10945, 9.971647)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slash2/Slash2/Area2D"]
+position = Vector2(10.379395, 8.637124)
+scale = Vector2(0.9999998, 0.99999964)
+shape = SubResource("RectangleShape2D_7hsu1")
+
 [node name="Slash3" type="TextureRect" parent="Slash2"]
 modulate = Color(1, 1, 1, 0)
 material = SubResource("ShaderMaterial_ic5a2")
@@ -742,6 +764,28 @@ position = Vector2(10.379395, 8.637124)
 scale = Vector2(0.9999998, 0.99999964)
 shape = SubResource("RectangleShape2D_7hsu1")
 
+[node name="Slash2" type="TextureRect" parent="Slash4"]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_ic5a2")
+offset_left = 521.0
+offset_top = 1334.0
+offset_right = 561.0
+offset_bottom = 1374.0
+rotation = 3.1415927
+scale = Vector2(1, 30)
+pivot_offset = Vector2(20, 0)
+texture = ExtResource("14_gm162")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="Slash4/Slash2"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(10.10945, 9.971647)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slash4/Slash2/Area2D"]
+position = Vector2(10.379395, 8.637124)
+scale = Vector2(0.9999998, 0.99999964)
+shape = SubResource("RectangleShape2D_7hsu1")
+
 [node name="Slash3" type="TextureRect" parent="Slash4"]
 modulate = Color(1, 1, 1, 0)
 material = SubResource("ShaderMaterial_ic5a2")
@@ -783,6 +827,7 @@ z_index = -1
 position = Vector2(0, 360)
 
 [node name="Valve" type="Sprite2D" parent="Valve"]
+modulate = Color(6.6697066e-05, 1.8106998, 2.2682278, 1)
 z_index = 1
 position = Vector2(544, 899)
 scale = Vector2(2.5, 2.5)
@@ -790,12 +835,14 @@ texture = ExtResource("17_ocr2n")
 offset = Vector2(0.80000305, -1.199997)
 
 [node name="RedTube" type="Sprite2D" parent="Valve"]
+modulate = Color(6.6697066e-05, 1.8106998, 2.2682278, 1)
 position = Vector2(540, 1669)
 scale = Vector2(0.2, 1)
 texture = ExtResource("16_po1nx")
 
 [node name="smoke1" type="Sprite2D" parent="Valve"]
 visible = false
+modulate = Color(0, 1, 0, 1)
 texture_filter = 1
 position = Vector2(950, 654)
 rotation = 1.9668946
@@ -812,6 +859,7 @@ libraries = {
 
 [node name="smoke2" type="Sprite2D" parent="Valve"]
 visible = false
+modulate = Color(0, 1, 0, 1)
 texture_filter = 1
 position = Vector2(97.99988, -247)
 rotation = -0.80022097
@@ -823,6 +871,7 @@ frame = 1
 
 [node name="smoke3" type="Sprite2D" parent="Valve"]
 visible = false
+modulate = Color(0, 1, 0, 1)
 texture_filter = 1
 position = Vector2(125.99997, 651)
 rotation = -2.1807606
@@ -841,6 +890,7 @@ volume_db = -5.0
 
 [node name="smoke4" type="Sprite2D" parent="Valve"]
 visible = false
+modulate = Color(0, 1, 0, 1)
 texture_filter = 1
 position = Vector2(977, -266.99997)
 rotation = 0.7993608
@@ -980,6 +1030,13 @@ stream = ExtResource("30_jphvc")
 
 [node name="correct" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("31_x30yr")
+
+[node name="1307308138172447" type="Sprite2D" parent="."]
+modulate = Color(0.61745477, 0.61745477, 0.6174547, 1)
+z_index = -10
+position = Vector2(583.00006, 540)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("21_jphvc")
 
 [connection signal="body_shape_entered" from="CanvasGroup/Hand1/Areahand" to="CanvasGroup" method="_on_areahand_body_shape_entered"]
 [connection signal="body_shape_exited" from="CanvasGroup/Hand1/Areahand" to="CanvasGroup" method="_on_areahand_body_shape_exited"]
