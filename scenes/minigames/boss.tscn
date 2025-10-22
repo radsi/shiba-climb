@@ -809,6 +809,7 @@ scale = Vector2(0.9999998, 0.99999964)
 shape = SubResource("RectangleShape2D_7hsu1")
 
 [node name="Wall" type="Sprite2D" parent="." groups=["wall"]]
+modulate = Color(18.892157, 18.892157, 18.892157, 1)
 z_index = 99
 position = Vector2(538, 410)
 scale = Vector2(2.0199997, 1)

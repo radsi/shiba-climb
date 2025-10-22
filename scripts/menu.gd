@@ -72,6 +72,7 @@ func _process(delta: float) -> void:
 		await Talo.leaderboards.add_entry("handware-leaderboard", globals.game_score, {
 			"skin": globals.skin
 		})
+		globals.game_score = -1
 	
 	# --- D-PAD ---
 	var dpad_left = Input.is_joy_button_pressed(0, JOY_BUTTON_DPAD_LEFT)

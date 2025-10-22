@@ -260,7 +260,6 @@ func _game_over():
 	audio_player.play()
 	audio_player.stream = whistle_audio
 	is_long = false
-	game_score = -1
 	game_speed = 200
 	game_time = 10
 	game_time_long = 15

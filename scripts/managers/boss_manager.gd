@@ -63,6 +63,7 @@ func _process(delta: float) -> void:
 		can_hit_wall = false
 		var event = randi() % random_events.size()
 		random_events[event].call()
+		random_events.remove_at(event)
 
 func _apply_random_transform() -> void:
 	if boss_hp <= 0: return
