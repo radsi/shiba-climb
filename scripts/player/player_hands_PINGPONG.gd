@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 		last_pos_right = hand_right.global_position
 
 func update_attached_hand(attached, hand: Node2D, is_left: bool, prev_pos: Vector2) -> void:
-	if hand == null or not hand.is_inside_tree():
+	if hand == null or hand.visible == false or not hand.is_inside_tree():
 		return
 
 	if dragging_left and attached_left == null and is_left:
@@ -47,9 +47,12 @@ func update_attached_hand(attached, hand: Node2D, is_left: bool, prev_pos: Vecto
 			hand.global_position.x - [30, -30][int(is_left)],
 			hand.global_position.y - 30
 		)
-		hand.texture = globals.closehand_texture
-	else:
-		hand.texture = globals.openhand_texture
+		if hand_left.visible == false or hand_right.visible == false:
+			if attached.global_position.x < 540:
+				anchored_rotation = 10
+			else:
+				anchored_rotation = -10
+			racket.rotation_degrees = anchored_rotation
 
 func attach_hand_to_racket(hand: Node2D, is_left: bool) -> void:
 	var local_pos = racket.to_local(hand.global_position)

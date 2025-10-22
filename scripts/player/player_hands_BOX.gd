@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 	var move_left = hand_left.global_position - last_pos_left
 	var move_right = hand_right.global_position - last_pos_right
 
-	if wall_hitted_left and dragging_left:
+	if wall_hitted_left and dragging_left and hand_left.visible == true:
 		match wall_hitted_left.name:
 			"Line":
 				if move_left.x < 0:
@@ -55,7 +55,7 @@ func _process(delta: float) -> void:
 					if wall_hitted_left == weak_wall:
 						_shake_jail(Vector2.DOWN)
 
-	if wall_hitted_right and dragging_right:
+	if wall_hitted_right and dragging_right and hand_right.visible == true:
 		match wall_hitted_right.name:
 			"Line":
 				if move_right.x < 0:

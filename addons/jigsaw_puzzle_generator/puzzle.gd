@@ -19,10 +19,9 @@ var dragged_piece:Piece = null
 var dragged_offset := Vector2.ZERO
 var match_whole_piece := false
 
-var puzzle_pictures = [preload("res://mini games sprites/puzzles/monalisa.png"), preload("res://mini games sprites/puzzles/hackclub.png"), preload("res://mini games sprites/puzzles/toilet.png")]
+var puzzle_pictures = [preload("res://mini games sprites/puzzles/japan.png"), preload("res://mini games sprites/puzzles/monalisa.png"), preload("res://mini games sprites/puzzles/hackclub.png"), preload("res://mini games sprites/puzzles/toilet.png")]
 
 func restart():
-	randomize()
 	puzzle = puzzle_pictures[randi() % puzzle_pictures.size() - 1]
 	for piece in pieces:
 		piece.queue_free()
@@ -30,7 +29,6 @@ func restart():
 	_ready()
 
 func _ready():
-	randomize()
 	puzzle = puzzle_pictures[randi() % puzzle_pictures.size() - 1]
 	
 	piece_size = calculate_piece_size()

@@ -29,7 +29,7 @@ func _process(delta):
 	last_fan_pos = fan.global_position
 
 func update_attached_hand(attached, hand: Node2D, is_left: bool, prev_pos: Vector2) -> void:
-	if hand == null or not hand.is_inside_tree():
+	if hand == null or hand.visible == false or not hand.is_inside_tree():
 		return
 
 	if dragging_left and attached_left == null and is_left:

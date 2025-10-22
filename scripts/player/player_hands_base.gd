@@ -18,18 +18,16 @@ var block_left_hand_movement = false
 var block_right_hand_movement = false
 
 var loose_grip = 0
-var ambidextrous = -1
+var one_hand = -1
 
 func _ready():
 	
 	if globals.difficult_tier == 2:
-		randomize()
 		loose_grip = randi() % 21
 	
-	if globals.difficult_tier == 3:
-		randomize()
-		ambidextrous = randi() % 2
-		if ambidextrous == 0:
+	if globals.difficult_tier == 4:
+		one_hand = randi() % 2
+		if one_hand == 0:
 			hand_left.hide()
 		else:
 			hand_right.hide()
@@ -141,26 +139,12 @@ func process_hand(hand: Node2D, dragging: bool, is_left: bool, delta: float, mou
 		if not globals.using_gamepad:
 			var target_pos = mouse_pos
 			hand.global_position = hand.global_position.lerp(target_pos, factor)
-		if globals.difficult_tier != 2:
-			durability -= globals.hands_drain_rate * delta
-		else:
-			durability_left -= globals.hands_drain_rate * delta
-			durability_right -= globals.hands_drain_rate * delta
+		durability -= globals.hands_drain_rate * delta
 	else:
-		if globals.difficult_tier != 2:
-			durability += globals.hands_drain_rate / 3 * delta
-		else:
-			durability_left += globals.hands_drain_rate / 3 * delta
-			durability_right += globals.hands_drain_rate / 3 * delta
+		durability += globals.hands_drain_rate / 3 * delta
 
-	if globals.difficult_tier != 2:
-		durability = clamp(durability, 0, globals.hands_max_durability)
-		hand.modulate = Color(1, durability / globals.hands_max_durability, durability / globals.hands_max_durability)
-	else:
-		durability_left = clamp(durability, 0, globals.hands_max_durability)
-		durability_right = clamp(durability, 0, globals.hands_max_durability)
-		hand_left.modulate = Color(1, durability_left / globals.hands_max_durability, durability_left / globals.hands_max_durability)
-		hand_right.modulate = Color(1, durability_right / globals.hands_max_durability, durability_right / globals.hands_max_durability)
+	durability = clamp(durability, 0, globals.hands_max_durability)
+	hand.modulate = Color(1, durability / globals.hands_max_durability, durability / globals.hands_max_durability)
 
 	if durability_left <= 0 or durability_right <= 0:
 		hand.texture = globals.closehand_texture
@@ -171,6 +155,17 @@ func process_hand(hand: Node2D, dragging: bool, is_left: bool, delta: float, mou
 			globals.has_lost_life = true
 			globals._start_roll()
 		hand.queue_free()
+		
+	if globals.difficult_tier == 3:
+		hand_left.modulate = Color(1, durability / globals.hands_max_durability, durability / globals.hands_max_durability)
+		hand_right.modulate = Color(1, durability / globals.hands_max_durability, durability / globals.hands_max_durability)
+		durability_left = durability
+		if durability_left <= 0:
+			dragging_left = false
+		durability_right = durability
+		if durability_right <= 0:
+			dragging_right = false
+		return
 
 	if is_left:
 		durability_left = durability

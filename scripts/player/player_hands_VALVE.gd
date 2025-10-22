@@ -31,12 +31,12 @@ func _process(delta):
 	
 	var current_mouse_pos = get_local_mouse_position()
 	
-	if is_mouse_over_item(valve, hand_left.global_position) and dragging_left:
+	if is_mouse_over_item(valve, hand_left.global_position) and dragging_left and hand_left.visible == true:
 		if (hand_left.global_position.x != last_pos_left.x and globals.using_gamepad) or (current_mouse_pos.x != old_mouse_pos.x and not globals.using_gamepad):
 			valve.rotate(0.1)
 			if $"../valve".is_playing() == false: $"../valve".play()
 
-	if is_mouse_over_item(valve, hand_right.global_position) and dragging_right:
+	if is_mouse_over_item(valve, hand_right.global_position) and dragging_right and hand_right.visible == true:
 		if (hand_right.global_position.x != last_pos_right.x and globals.using_gamepad) or (current_mouse_pos.x != old_mouse_pos.x and not globals.using_gamepad):
 			valve.rotate(0.1)
 			if $"../valve".is_playing() == false: $"../valve".play()

@@ -87,7 +87,7 @@ func process_hand_climb(is_left: bool, delta: float, viewport_height: float):
 			elif not returning:
 				hand.global_position.y = attached.global_position.y
 	var durability = durability_left if is_left else durability_right
-	if hand_screen_pos.y > viewport_height or durability <= 0:
+	if (hand_screen_pos.y > viewport_height or durability <= 0) and hand.visible == true:
 		if globals.is_single_minigame:
 			globals._game_over()
 		else:

@@ -32,13 +32,12 @@ func _process(delta):
 	last_knife_pos = knife_jam.global_position
 
 func update_attached_hand(attached, hand: Node2D, is_left: bool, delta: float) -> void:
-	
 	if not dragging_left and attached_left != null:
 		detach_hand(hand_left, true)
 	if not dragging_right and attached_right != null:
 		detach_hand(hand_right, false)
 	
-	if hand == null or not hand.is_inside_tree():
+	if hand == null or hand.visible == false or not hand.is_inside_tree():
 		return
 
 	if attached != null:

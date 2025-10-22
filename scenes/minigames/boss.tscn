@@ -392,7 +392,7 @@ position = Vector2(-50, 100)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_khkct")
 
-[node name="Areahand" type="Area2D" parent="CanvasGroup/Hand1"]
+[node name="Areahand" type="Area2D" parent="CanvasGroup/Hand1" groups=["hand_areas"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup/Hand1/Areahand"]
 position = Vector2(-1.5, 1)
@@ -409,7 +409,7 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_khkct")
 flip_h = true
 
-[node name="Areahand" type="Area2D" parent="CanvasGroup/Hand2"]
+[node name="Areahand" type="Area2D" parent="CanvasGroup/Hand2" groups=["hand_areas"]]
 position = Vector2(1.3333334, 2.6666667)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup/Hand2/Areahand"]

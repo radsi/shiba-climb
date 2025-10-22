@@ -17,7 +17,7 @@ func _ready():
 func _process(delta):
 	super._process(delta)
 	
-	if (_is_over_object(hand_left.global_position, button) and dragging_left) or (_is_over_object(hand_right.global_position, button) and dragging_right):
+	if (_is_over_object(hand_left.global_position, button) and dragging_left and hand_left.visible == true) or (_is_over_object(hand_right.global_position, button) and dragging_right and hand_right.visible == true):
 		_press_arcade_button(delta)
 	else:
 		_release_arcade_button()

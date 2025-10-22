@@ -19,9 +19,9 @@ func _process(delta: float) -> void:
 		globals.minigame_completed = true
 		return
 
-	if dragging_left:
+	if dragging_left and hand_left.visible == true:
 		_handle_hand_move_over_rope(hand_left, last_pos_left)
-	elif dragging_right:
+	elif dragging_right and hand_right.visible == true:
 		_handle_hand_move_over_rope(hand_right, last_pos_right)
 	else:
 		sound_played = false

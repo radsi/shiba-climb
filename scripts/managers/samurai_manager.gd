@@ -16,6 +16,11 @@ var slashing = false
 
 func _ready() -> void:
 	globals.is_playing_minigame_anim = true
+	
+	if $CanvasGroup.hand_right.visible == false:
+		samurais[1].hide()
+	elif $CanvasGroup.hand_left.visible == false:
+		samurais[0].hide()
 
 func _process(delta: float) -> void:
 	if globals.is_playing_minigame_anim or globals.has_lost_life == true: return
@@ -43,28 +48,32 @@ func do_attack():
 	var hand_left_pos = $CanvasGroup.hand_left.global_position
 	var hand_right_pos = $CanvasGroup.hand_right.global_position
 
-	var dir = hand_left_pos - samurais[0].global_position
-	slashes[0].rotation_degrees = rad_to_deg(dir.angle()) - 90
+	if samurais[0].visible == true:
+		var dir = hand_left_pos - samurais[0].global_position
+		slashes[0].rotation_degrees = rad_to_deg(dir.angle()) - 90
+		slashes[0].modulate = Color(1, 1, 1, 0)
 
-	var dir2 = hand_right_pos - samurais[1].global_position
-	slashes[1].rotation_degrees = rad_to_deg(dir2.angle()) - 90
-
-	slashes[0].modulate = Color(1, 1, 1, 0)
-	slashes[1].modulate = Color(1, 1, 1, 0)
+	if samurais[1].visible == true:
+		var dir2 = hand_right_pos - samurais[1].global_position
+		slashes[1].rotation_degrees = rad_to_deg(dir2.angle()) - 90
+		slashes[1].modulate = Color(1, 1, 1, 0)
 	
 	if get_tree() == null: return
 	
-	var tween1 = get_tree().create_tween()
-	tween1.tween_property(slashes[0], "modulate", slash_color, 1 / (globals.game_speed / 200))
-	var tween2 = get_tree().create_tween()
-	tween2.tween_property(slashes[1], "modulate", slash_color, 1 / (globals.game_speed / 200))
-
-	tween2.finished.connect(func():
-		await _on_samurai_tween_finished()
-	)
+	if samurais[1].visible == true:
+		var tween1 = get_tree().create_tween()
+		tween1.tween_property(slashes[0], "modulate", slash_color, 1 / (globals.game_speed / 200))
+		
+	if samurais[1].visible == true:
+		var tween2 = get_tree().create_tween()
+		tween2.tween_property(slashes[1], "modulate", slash_color, 1 / (globals.game_speed / 200))
+		tween2.finished.connect(func():
+			await _on_samurai_tween_finished()
+		)
 
 func _on_samurai_tween_finished() -> void:
 	for i in range(2):
+		if samurais[i].visible == false: continue
 		samurais[i].texture = samurai_sprites[1]
 		for area in slashes[i].get_child(0).get_overlapping_areas():
 			if area.name == "Areahand":
@@ -79,9 +88,11 @@ func _on_samurai_tween_finished() -> void:
 	
 	$slash.play()
 	slashing = true
+	if get_tree() == null: return
 	await get_tree().create_timer(0.5).timeout
 	slashing = false
 	for i in range(2):
+		if samurais[i].visible == false: continue
 		slashes[i].modulate = Color(1, 1, 1, 0)
 		samurais[i].texture = samurai_sprites[0]
 

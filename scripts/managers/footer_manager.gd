@@ -16,7 +16,7 @@ func _ready() -> void:
 	$".".get_child(2).text = str(globals.life)
 	if globals.is_single_minigame:
 		$".".get_child(2).text = "1"
-		if globals.is_long: self.visible = false
+		if globals.is_long and globals.is_single_minigame: self.visible = false
 	
 	initial_scale = timer_color.scale
 	heart_hand.rotation_degrees = 5

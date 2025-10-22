@@ -77,8 +77,10 @@ offset_bottom = -51.0
 scale = Vector2(0.6, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_7s2g0")
-theme_override_font_sizes/font_size = 80
+theme_override_font_sizes/font_size = 64
 text = "ESCAPE"
+horizontal_alignment = 1
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Footer" type="Sprite2D" parent="."]

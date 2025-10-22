@@ -108,7 +108,6 @@ flip_h = true
 position = Vector2(-7.3333335, -38)
 
 [node name="TextBg1" type="Sprite2D" parent="."]
-visible = false
 z_index = 15
 texture_filter = 1
 position = Vector2(530, 400)

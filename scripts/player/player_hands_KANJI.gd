@@ -98,7 +98,7 @@ func update_attached_hand(attached, hand: Node2D, is_left: bool, delta: float) -
 	if not dragging_right and attached_right != null:
 		detach_hand(hand_right, false)
 
-	if hand == null or not hand.is_inside_tree():
+	if hand == null or hand.visible == false or not hand.is_inside_tree():
 		return
 
 	if attached != null:

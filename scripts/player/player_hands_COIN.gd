@@ -40,7 +40,7 @@ func _process(delta):
 	update_attached_hand(attached_right, hand_right, false)
 
 func update_attached_hand(attached, hand: Node2D, is_left: bool) -> void:
-	if hand == null or not hand.is_inside_tree():
+	if hand == null or hand.visible == false or not hand.is_inside_tree():
 		return
 
 	if is_left and dragging_left and attached_left == null:
