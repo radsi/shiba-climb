@@ -1,10 +1,12 @@
-[gd_scene load_steps=32 format=3 uid="uid://uosl6edrkgle"]
+[gd_scene load_steps=34 format=3 uid="uid://uosl6edrkgle"]
 
 [ext_resource type="Script" uid="uid://b8d4qfheifn3y" path="res://scripts/managers/gallery_manager.gd" id="1_543d2"]
 [ext_resource type="Texture2D" uid="uid://l2atiswygex0" path="res://transitions/bg.jpg" id="1_lg6hf"]
 [ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="2_6rhrw"]
 [ext_resource type="Texture2D" uid="uid://c5egsxqp6yhiq" path="res://gallery item.png" id="4_mdy1u"]
+[ext_resource type="Texture2D" uid="uid://cnq0bjwloxgb0" path="res://tick.png" id="5_6yikm"]
 [ext_resource type="Texture2D" uid="uid://cibhdggbjj63a" path="res://prefabs/bricks/brick.png" id="5_r0fv4"]
+[ext_resource type="Texture2D" uid="uid://clyotxqqlbkwi" path="res://cross.png" id="6_o7kiw"]
 [ext_resource type="Texture2D" uid="uid://bmqksb87eemda" path="res://mini games sprites/apple.png" id="6_u7mkv"]
 [ext_resource type="Texture2D" uid="uid://10h5uo53bdx8" path="res://mini games sprites/black tshirt.png" id="7_fdfcg"]
 [ext_resource type="Texture2D" uid="uid://dwqm5laa2uilq" path="res://SpaceInvaders.png" id="8_mtg1g"]
@@ -170,6 +172,19 @@ texture_filter = 1
 scale = Vector2(2, 2)
 texture = ExtResource("5_r0fv4")
 
+[node name="checkbox" type="Sprite2D" parent="page1/GalleryItem"]
+visible = false
+position = Vector2(80, -80)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_mdy1u")
+
+[node name="Tick" type="Sprite2D" parent="page1/GalleryItem/checkbox"]
+texture = ExtResource("5_6yikm")
+
+[node name="Cross" type="Sprite2D" parent="page1/GalleryItem/checkbox"]
+visible = false
+texture = ExtResource("6_o7kiw")
+
 [node name="GalleryItem2" type="Sprite2D" parent="page1"]
 texture_filter = 1
 position = Vector2(540, 392)
@@ -181,6 +196,19 @@ texture_filter = 1
 scale = Vector2(0.050000004, 0.050000004)
 texture = ExtResource("6_u7mkv")
 
+[node name="checkbox" type="Sprite2D" parent="page1/GalleryItem2"]
+visible = false
+position = Vector2(80, -80)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_mdy1u")
+
+[node name="Tick" type="Sprite2D" parent="page1/GalleryItem2/checkbox"]
+texture = ExtResource("5_6yikm")
+
+[node name="Cross" type="Sprite2D" parent="page1/GalleryItem2/checkbox"]
+visible = false
+texture = ExtResource("6_o7kiw")
+
 [node name="GalleryItem3" type="Sprite2D" parent="page1"]
 texture_filter = 1
 position = Vector2(865, 392)
@@ -191,6 +219,19 @@ texture = ExtResource("4_mdy1u")
 modulate = Color(0.17880967, 0.17880964, 0.17880964, 1)
 scale = Vector2(0.075, 0.075)
 texture = ExtResource("7_fdfcg")
+
+[node name="checkbox" type="Sprite2D" parent="page1/GalleryItem3"]
+visible = false
+position = Vector2(80, -80)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_mdy1u")
+
+[node name="Tick" type="Sprite2D" parent="page1/GalleryItem3/checkbox"]
+texture = ExtResource("5_6yikm")
+
+[node name="Cross" type="Sprite2D" parent="page1/GalleryItem3/checkbox"]
+visible = false
+texture = ExtResource("6_o7kiw")
 
 [node name="GalleryItem4" type="Sprite2D" parent="page1"]
 texture_filter = 1
@@ -206,6 +247,19 @@ hframes = 7
 vframes = 5
 frame = 7
 
+[node name="checkbox" type="Sprite2D" parent="page1/GalleryItem4"]
+visible = false
+position = Vector2(80, -80)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_mdy1u")
+
+[node name="Tick" type="Sprite2D" parent="page1/GalleryItem4/checkbox"]
+texture = ExtResource("5_6yikm")
+
+[node name="Cross" type="Sprite2D" parent="page1/GalleryItem4/checkbox"]
+visible = false
+texture = ExtResource("6_o7kiw")
+
 [node name="GalleryItem5" type="Sprite2D" parent="page1"]
 texture_filter = 1
 position = Vector2(540, 732)
@@ -216,6 +270,19 @@ texture = ExtResource("4_mdy1u")
 scale = Vector2(0.18, 0.18)
 texture = ExtResource("9_u7mkv")
 
+[node name="checkbox" type="Sprite2D" parent="page1/GalleryItem5"]
+visible = false
+position = Vector2(80, -80)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_mdy1u")
+
+[node name="Tick" type="Sprite2D" parent="page1/GalleryItem5/checkbox"]
+texture = ExtResource("5_6yikm")
+
+[node name="Cross" type="Sprite2D" parent="page1/GalleryItem5/checkbox"]
+visible = false
+texture = ExtResource("6_o7kiw")
+
 [node name="GalleryItem6" type="Sprite2D" parent="page1"]
 texture_filter = 1
 position = Vector2(865, 732)
@@ -225,6 +292,19 @@ texture = ExtResource("4_mdy1u")
 [node name="rope" type="Sprite2D" parent="page1/GalleryItem6"]
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("10_fdfcg")
+
+[node name="checkbox" type="Sprite2D" parent="page1/GalleryItem6"]
+visible = false
+position = Vector2(80, -80)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_mdy1u")
+
+[node name="Tick" type="Sprite2D" parent="page1/GalleryItem6/checkbox"]
+texture = ExtResource("5_6yikm")
+
+[node name="Cross" type="Sprite2D" parent="page1/GalleryItem6/checkbox"]
+visible = false
+texture = ExtResource("6_o7kiw")
 
 [node name="page2" type="CanvasGroup" parent="." groups=["pages"]]
 visible = false
@@ -240,6 +320,19 @@ texture_filter = 1
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("11_vmxya")
 
+[node name="checkbox" type="Sprite2D" parent="page2/GalleryItem"]
+visible = false
+position = Vector2(80, -80)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_mdy1u")
+
+[node name="Tick" type="Sprite2D" parent="page2/GalleryItem/checkbox"]
+texture = ExtResource("5_6yikm")
+
+[node name="Cross" type="Sprite2D" parent="page2/GalleryItem/checkbox"]
+visible = false
+texture = ExtResource("6_o7kiw")
+
 [node name="GalleryItem2" type="Sprite2D" parent="page2"]
 texture_filter = 1
 position = Vector2(540, 392)
@@ -249,6 +342,19 @@ texture = ExtResource("4_mdy1u")
 [node name="jail" type="Sprite2D" parent="page2/GalleryItem2"]
 scale = Vector2(0.26, 0.26)
 texture = ExtResource("12_7r7o8")
+
+[node name="checkbox" type="Sprite2D" parent="page2/GalleryItem2"]
+visible = false
+position = Vector2(80, -80)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_mdy1u")
+
+[node name="Tick" type="Sprite2D" parent="page2/GalleryItem2/checkbox"]
+texture = ExtResource("5_6yikm")
+
+[node name="Cross" type="Sprite2D" parent="page2/GalleryItem2/checkbox"]
+visible = false
+texture = ExtResource("6_o7kiw")
 
 [node name="GalleryItem3" type="Sprite2D" parent="page2"]
 texture_filter = 1
@@ -261,6 +367,19 @@ texture_filter = 1
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("13_vrutb")
 
+[node name="checkbox" type="Sprite2D" parent="page2/GalleryItem3"]
+visible = false
+position = Vector2(80, -80)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_mdy1u")
+
+[node name="Tick" type="Sprite2D" parent="page2/GalleryItem3/checkbox"]
+texture = ExtResource("5_6yikm")
+
+[node name="Cross" type="Sprite2D" parent="page2/GalleryItem3/checkbox"]
+visible = false
+texture = ExtResource("6_o7kiw")
+
 [node name="GalleryItem4" type="Sprite2D" parent="page2"]
 texture_filter = 1
 position = Vector2(215, 732)
@@ -270,6 +389,19 @@ texture = ExtResource("4_mdy1u")
 [node name="candle" type="Sprite2D" parent="page2/GalleryItem4"]
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("14_rlvu6")
+
+[node name="checkbox" type="Sprite2D" parent="page2/GalleryItem4"]
+visible = false
+position = Vector2(80, -80)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_mdy1u")
+
+[node name="Tick" type="Sprite2D" parent="page2/GalleryItem4/checkbox"]
+texture = ExtResource("5_6yikm")
+
+[node name="Cross" type="Sprite2D" parent="page2/GalleryItem4/checkbox"]
+visible = false
+texture = ExtResource("6_o7kiw")
 
 [node name="GalleryItem5" type="Sprite2D" parent="page2"]
 texture_filter = 1
@@ -281,6 +413,19 @@ texture = ExtResource("4_mdy1u")
 scale = Vector2(0.13, 0.13)
 texture = ExtResource("15_dtrjb")
 
+[node name="checkbox" type="Sprite2D" parent="page2/GalleryItem5"]
+visible = false
+position = Vector2(80, -80)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_mdy1u")
+
+[node name="Tick" type="Sprite2D" parent="page2/GalleryItem5/checkbox"]
+texture = ExtResource("5_6yikm")
+
+[node name="Cross" type="Sprite2D" parent="page2/GalleryItem5/checkbox"]
+visible = false
+texture = ExtResource("6_o7kiw")
+
 [node name="GalleryItem6" type="Sprite2D" parent="page2"]
 texture_filter = 1
 position = Vector2(865, 732)
@@ -290,6 +435,19 @@ texture = ExtResource("4_mdy1u")
 [node name="vendor" type="Sprite2D" parent="page2/GalleryItem6"]
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("16_kk4fg")
+
+[node name="checkbox" type="Sprite2D" parent="page2/GalleryItem6"]
+visible = false
+position = Vector2(80, -80)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_mdy1u")
+
+[node name="Tick" type="Sprite2D" parent="page2/GalleryItem6/checkbox"]
+texture = ExtResource("5_6yikm")
+
+[node name="Cross" type="Sprite2D" parent="page2/GalleryItem6/checkbox"]
+visible = false
+texture = ExtResource("6_o7kiw")
 
 [node name="page3" type="CanvasGroup" parent="." groups=["pages"]]
 visible = false
@@ -304,6 +462,19 @@ texture = ExtResource("4_mdy1u")
 scale = Vector2(0.025, 0.025)
 texture = ExtResource("16_n7qvi")
 
+[node name="checkbox" type="Sprite2D" parent="page3/GalleryItem"]
+visible = false
+position = Vector2(80, -80)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_mdy1u")
+
+[node name="Tick" type="Sprite2D" parent="page3/GalleryItem/checkbox"]
+texture = ExtResource("5_6yikm")
+
+[node name="Cross" type="Sprite2D" parent="page3/GalleryItem/checkbox"]
+visible = false
+texture = ExtResource("6_o7kiw")
+
 [node name="GalleryItem2" type="Sprite2D" parent="page3"]
 texture_filter = 1
 position = Vector2(540, 392)
@@ -314,6 +485,19 @@ texture = ExtResource("4_mdy1u")
 texture_filter = 1
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("17_n7qvi")
+
+[node name="checkbox" type="Sprite2D" parent="page3/GalleryItem2"]
+visible = false
+position = Vector2(80, -80)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_mdy1u")
+
+[node name="Tick" type="Sprite2D" parent="page3/GalleryItem2/checkbox"]
+texture = ExtResource("5_6yikm")
+
+[node name="Cross" type="Sprite2D" parent="page3/GalleryItem2/checkbox"]
+visible = false
+texture = ExtResource("6_o7kiw")
 
 [node name="GalleryItem3" type="Sprite2D" parent="page3"]
 texture_filter = 1
@@ -326,6 +510,19 @@ texture_filter = 1
 scale = Vector2(0.07, 0.07)
 texture = ExtResource("18_mcjoy")
 
+[node name="checkbox" type="Sprite2D" parent="page3/GalleryItem3"]
+visible = false
+position = Vector2(80, -80)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_mdy1u")
+
+[node name="Tick" type="Sprite2D" parent="page3/GalleryItem3/checkbox"]
+texture = ExtResource("5_6yikm")
+
+[node name="Cross" type="Sprite2D" parent="page3/GalleryItem3/checkbox"]
+visible = false
+texture = ExtResource("6_o7kiw")
+
 [node name="GalleryItem4" type="Sprite2D" parent="page3"]
 texture_filter = 1
 position = Vector2(215, 732)
@@ -335,6 +532,19 @@ texture = ExtResource("4_mdy1u")
 [node name="valve" type="Sprite2D" parent="page3/GalleryItem4"]
 texture_filter = 1
 texture = ExtResource("19_1osqm")
+
+[node name="checkbox" type="Sprite2D" parent="page3/GalleryItem4"]
+visible = false
+position = Vector2(80, -80)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_mdy1u")
+
+[node name="Tick" type="Sprite2D" parent="page3/GalleryItem4/checkbox"]
+texture = ExtResource("5_6yikm")
+
+[node name="Cross" type="Sprite2D" parent="page3/GalleryItem4/checkbox"]
+visible = false
+texture = ExtResource("6_o7kiw")
 
 [node name="GalleryItem5" type="Sprite2D" parent="page3"]
 texture_filter = 1
@@ -348,6 +558,19 @@ position = Vector2(-3.3333337, 2.666667)
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("20_kr8uu")
 
+[node name="checkbox" type="Sprite2D" parent="page3/GalleryItem5"]
+visible = false
+position = Vector2(80, -80)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_mdy1u")
+
+[node name="Tick" type="Sprite2D" parent="page3/GalleryItem5/checkbox"]
+texture = ExtResource("5_6yikm")
+
+[node name="Cross" type="Sprite2D" parent="page3/GalleryItem5/checkbox"]
+visible = false
+texture = ExtResource("6_o7kiw")
+
 [node name="GalleryItem6" type="Sprite2D" parent="page3"]
 texture_filter = 1
 position = Vector2(865, 732)
@@ -358,6 +581,19 @@ texture = ExtResource("4_mdy1u")
 texture_filter = 1
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("21_13rq5")
+
+[node name="checkbox" type="Sprite2D" parent="page3/GalleryItem6"]
+visible = false
+position = Vector2(80, -80)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_mdy1u")
+
+[node name="Tick" type="Sprite2D" parent="page3/GalleryItem6/checkbox"]
+texture = ExtResource("5_6yikm")
+
+[node name="Cross" type="Sprite2D" parent="page3/GalleryItem6/checkbox"]
+visible = false
+texture = ExtResource("6_o7kiw")
 
 [node name="buttonback" type="Button" parent="." groups=["uibutton"]]
 layout_mode = 1

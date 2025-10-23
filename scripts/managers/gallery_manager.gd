@@ -35,7 +35,7 @@ func _ready():
 	_refresh_buttons()
 	_refresh_gallery()
 
-func _process(delta):
+func _process(delta): 
 	_handle_dpad_input()
 	_handle_joystick_input()
 	_scroll_background()
@@ -90,11 +90,28 @@ func _input(event):
 		elif event.button_index == JOY_BUTTON_A:
 			if current_button == 0:
 				get_tree().change_scene_to_file("res://scenes/menu.tscn")
-			elif current_button == 7:
+			elif current_button == 13:
 				_on_left_pressed()
-			elif current_button == 8:
+			elif current_button == 14:
 				_on_right_pressed()
 			elif item_under_mouse:
+				if item_under_mouse.name.contains("checkbox"):
+					if item_under_mouse.get_child(0).visible == false:
+						item_under_mouse.get_child(1).hide()
+						item_under_mouse.get_child(0).show()
+						var minigame = item_under_mouse.get_parent().get_child(0).name
+						if minigame == "samurai": minigame = "samurai long"
+						globals.all_used_scenes.append("res://scenes/minigames/"+minigame+".tscn")
+					else:
+						if globals.all_used_scenes.size() == 2: return
+						item_under_mouse.get_child(1).hide()
+						item_under_mouse.get_child(0).show()
+						var minigame = item_under_mouse.get_parent().get_child(0).name
+						if minigame == "samurai": minigame = "samurai long"
+						globals.all_used_scenes.erase("res://scenes/minigames/"+minigame+".tscn")
+					globals._play_pop()
+					_refresh_gallery()
+					return
 				var icon = item_under_mouse.get_child(0)
 				if icon and item_under_mouse.get_meta("unlocked"):
 					globals.start_single_minigame(icon.name)
@@ -104,6 +121,23 @@ func _input(event):
 			_on_right_pressed()
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed and not globals.using_gamepad and item_under_mouse:
+		if item_under_mouse.name.contains("checkbox"):
+			if item_under_mouse.get_child(0).visible == false:
+				item_under_mouse.get_child(1).hide()
+				item_under_mouse.get_child(0).show()
+				var minigame = item_under_mouse.get_parent().get_child(0).name
+				if minigame == "samurai": minigame = "samurai long"
+				globals.all_used_scenes.append("res://scenes/minigames/"+minigame+".tscn")
+			else:
+				if globals.all_used_scenes.size() == 2: return
+				item_under_mouse.get_child(1).hide()
+				item_under_mouse.get_child(0).show()
+				var minigame = item_under_mouse.get_parent().get_child(0).name
+				if minigame == "samurai": minigame = "samurai long"
+				globals.all_used_scenes.erase("res://scenes/minigames/"+minigame+".tscn")
+			globals._play_pop()
+			_refresh_gallery()
+			return
 		var icon = item_under_mouse.get_child(0)
 		if icon and item_under_mouse.get_meta("unlocked"):
 			globals.start_single_minigame(icon.name)
@@ -201,11 +235,15 @@ func _highlight_items():
 		for i in range(buttons.size()):
 			var btn = buttons[i]
 			if i == current_button:
-				if get_tree().get_nodes_in_group("uibutton").has(btn): btn.scale = Vector2(1.15, 1.15) 
+				if btn.visible == false:
+					current_button -= 1
+					return
+				if get_tree().get_nodes_in_group("uibutton").has(btn): btn.scale = Vector2(1.15, 1.15)
+				elif btn.name.contains("checkbox"): btn.scale = Vector2(0.35, 0.35)
 				else: btn.scale = Vector2(1.75, 1.75)
-				if btn is not Button: item_under_mouse = btn
 			else:
-				if get_tree().get_nodes_in_group("uibutton").has(btn): btn.scale = Vector2(1, 1) 
+				if get_tree().get_nodes_in_group("uibutton").has(btn): btn.scale = Vector2(1, 1)
+				elif btn.name.contains("checkbox"): btn.scale = Vector2(0.3, 0.3)
 				else: btn.scale = Vector2(1.5, 1.5)
 		return
 		
@@ -213,13 +251,23 @@ func _highlight_items():
 	item_under_mouse = null
 	for item in get_node("page" + str(page)).get_children():
 		var scale_target = Vector2(1.5, 1.5)
-		if is_mouse_over_item(item, mouse_pos):
+		if is_mouse_over_item(item.get_child(1), mouse_pos):
+			item.get_child(1).scale = Vector2(0.35, 0.35)
 			scale_target = Vector2(1.75, 1.75)
+			item_under_mouse = item.get_child(1)
+		elif is_mouse_over_item(item, mouse_pos):
+			scale_target = Vector2(1.75, 1.75)
+			item.get_child(1).scale = Vector2(0.3, 0.3)
 			if item.get_meta("unlocked"):
+				item.get_child(1).show()
 				item_under_mouse = item
+		else:
+			item.get_child(1).hide()
 		item.scale = scale_target
 
 func _refresh_gallery():
+	for en in globals.all_unlocked_scenes:
+		print(en)
 	for page_node in get_tree().get_nodes_in_group("pages"):
 		for item in page_node.get_children():
 			var item_icon = null
@@ -240,12 +288,17 @@ func _refresh_gallery():
 			if not unlocked and item is Sprite2D:
 				item.texture = gallery_locked_sprite
 			item.set_meta("unlocked", unlocked)
+			if icon_name == "climb": icon_name = "climb long"
+			if not globals.all_used_scenes.has("res://scenes/minigames/" + icon_name + ".tscn"):
+				item.get_child(1).get_child(1).show()
+				item.get_child(1).get_child(0).hide()
 
 func _refresh_buttons():
 	buttons.clear()
 	buttons.append(button_back)
 	for item in get_node("page" + str(page)).get_children():
 		buttons.append(item)
+		buttons.append(item.get_child(1))
 	buttons.append(button_left)
 	buttons.append(button_right)
 

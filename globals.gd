@@ -43,6 +43,12 @@ var all_unlocked_scenes := [
 	"res://scenes/minigames/climb long.tscn"
 ]
 
+var all_used_scenes := [
+	"res://scenes/minigames/apples.tscn",
+	"res://scenes/minigames/clean.tscn",
+	"res://scenes/minigames/climb long.tscn"
+]
+
 var all_unlocked_hands := [
 	"default",
 ]
@@ -138,7 +144,7 @@ func start_roll_from_menu():
 	has_lost_life = false
 	roll_started = true
 	is_long = false
-	pool = all_unlocked_scenes.duplicate()
+	pool = all_used_scenes.duplicate()
 	last_scene = ""
 	game_score = -1
 	_start_roll()
@@ -154,7 +160,7 @@ func _start_roll():
 	
 	if pool.is_empty():
 		pool = []
-		for s in all_unlocked_scenes:
+		for s in all_used_scenes:
 			if s != last_scene:
 				pool.append(s)
 
@@ -205,6 +211,7 @@ func _unlock_minigame(minigame: String, with_message = true):
 	var scene_path = "res://scenes/minigames/"+minigame.to_lower()+".tscn"
 	if all_unlocked_scenes.has(scene_path): return
 	all_unlocked_scenes.push_back(scene_path)
+	all_used_scenes.push_back(scene_path)
 	if with_message: pending_menu_messages.push_back("Unlocked new .minigame: "+minigame+"!")
 	
 func _unlock_hands(hands: String, with_message = true):
