@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://b5ca5q0w0qxkn" path="res://scripts/managers/boss_manager.gd" id="1_khkct"]
 [ext_resource type="Texture2D" uid="uid://cb0v8wmpwl7nl" path="res://hand sprites/open hand.png" id="2_khkct"]
-[ext_resource type="Texture2D" uid="uid://dd1uxcrghspfr" path="res://intro sprites/TextBG6.png" id="3_cjbxy"]
 [ext_resource type="Script" uid="uid://q7wuu6gbpxpu" path="res://scripts/player/player_hands_BOSS.gd" id="3_y7fmv"]
+[ext_resource type="Texture2D" uid="uid://b8wryomlr8t2m" path="res://intro sprites/TextBG8.png" id="4_jphvc"]
 [ext_resource type="Script" uid="uid://cujlduaqdkpvi" path="res://scripts/managers/mgIntro_manager.gd" id="4_y7fmv"]
 [ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="5_gm162"]
 [ext_resource type="Texture2D" uid="uid://ddxgo2saijcvr" path="res://footer.png" id="6_ic5a2"]
@@ -423,7 +423,7 @@ z_index = 999
 texture_filter = 1
 position = Vector2(530, 400)
 scale = Vector2(3, 2)
-texture = ExtResource("3_cjbxy")
+texture = ExtResource("4_jphvc")
 script = ExtResource("4_y7fmv")
 
 [node name="Label" type="Label" parent="TextBg1"]
@@ -434,9 +434,9 @@ anchor_top = 0.22580644
 anchor_right = 1.0599251
 anchor_bottom = 0.7741935
 offset_left = -140.66672
-offset_top = -59.5
+offset_top = -61.5
 offset_right = -60.666718
-offset_bottom = -59.5
+offset_bottom = -61.5
 scale = Vector2(0.6, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_gm162")

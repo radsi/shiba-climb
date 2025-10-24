@@ -108,6 +108,7 @@ flip_h = true
 position = Vector2(-7.3333335, -38)
 
 [node name="TextBg1" type="Sprite2D" parent="."]
+self_modulate = Color(0.49824125, 0.76637053, 0.6254293, 1)
 z_index = 15
 texture_filter = 1
 position = Vector2(530, 400)
