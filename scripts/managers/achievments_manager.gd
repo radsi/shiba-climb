@@ -4,11 +4,21 @@ extends Node
 @onready var bg2 = $Bg2
 @onready var button_back = $buttonback
 @onready var scroll_container = $MarginContainer/VBoxContainer/ScrollContainer
+@onready var scroll_elements = $MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer
 
 func _ready():
 	bg1.global_position.y = globals.current_menu_bg_pos[0]
 	bg2.global_position.y = globals.current_menu_bg_pos[1]
 	$AnimationPlayer2.play("arrow_back")
+	
+	for element in scroll_elements.get_children():
+		if globals.all_unlocked_scenes.has("res://scenes/minigames/" + element.name + ".tscn"):
+			element.get_child(0).modulate = Color.LIME_GREEN
+			if element.name == "boss": element.get_child(1).modulate = Color(1,1,1)
+		if globals.all_unlocked_hands.has(element.name):
+			element.get_child(0).modulate = Color.LIME_GREEN
+			element.get_child(1).modulate = Color(1,1,1)
+			element.get_child(2).modulate = Color(1,1,1)
 
 func _process(delta: float) -> void:
 	_scroll_background()

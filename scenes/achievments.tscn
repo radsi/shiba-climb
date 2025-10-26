@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bda4l1sdyfw76"]
+[gd_scene load_steps=30 format=3 uid="uid://bda4l1sdyfw76"]
 
 [ext_resource type="Script" uid="uid://lnyjom2ub715" path="res://scripts/managers/achievments_manager.gd" id="1_mpcko"]
 [ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="2_qr7qa"]
@@ -9,9 +9,21 @@
 [ext_resource type="Texture2D" uid="uid://l2atiswygex0" path="res://transitions/bg.jpg" id="7_jcyua"]
 [ext_resource type="Texture2D" uid="uid://b8svlp3txe6yc" path="res://difficult_element.png" id="8_6sjds"]
 [ext_resource type="Texture2D" uid="uid://cdq8h0bosowb" path="res://gallery item locked.png" id="9_jcyua"]
-[ext_resource type="Texture2D" uid="uid://cb0v8wmpwl7nl" path="res://hand sprites/open hand.png" id="10_tospf"]
-[ext_resource type="Texture2D" uid="uid://nfnuiy7leqsa" path="res://hand sprites/fist hand.png" id="11_6mujd"]
+[ext_resource type="Texture2D" uid="uid://b1lsk1k184epd" path="res://hand sprites/open hand_hearts.png" id="10_x15c4"]
+[ext_resource type="Texture2D" uid="uid://cp34ei74jek0o" path="res://hand sprites/fist hand_heats.png" id="11_whyup"]
 [ext_resource type="Texture2D" uid="uid://cnjpqqh7tdgsr" path="res://mini games sprites/bosses/gas.png" id="12_gn5jl"]
+[ext_resource type="Texture2D" uid="uid://lwj1fhr7k277" path="res://hand sprites/open hand_camo.png" id="12_pjuic"]
+[ext_resource type="Texture2D" uid="uid://dhu0gxyygt15l" path="res://hand sprites/fist hand_camo.png" id="13_glprp"]
+[ext_resource type="Texture2D" uid="uid://67m3bcjsttlv" path="res://hand sprites/open hand_caution.png" id="14_f7uu2"]
+[ext_resource type="Texture2D" uid="uid://dif2866ktpwx8" path="res://hand sprites/fist hand_caution.png" id="15_y6mb1"]
+[ext_resource type="Texture2D" uid="uid://d1mrao3pdvet" path="res://hand sprites/open hand_fire.png" id="16_yj46j"]
+[ext_resource type="Texture2D" uid="uid://cfnw2a1umf03s" path="res://hand sprites/fist hand_fire.png" id="17_2kf75"]
+[ext_resource type="Texture2D" uid="uid://bhfjwa827leh5" path="res://hand sprites/open hand_dalmata.png" id="18_xqofr"]
+[ext_resource type="Texture2D" uid="uid://tghgj6km07yq" path="res://hand sprites/fist hand_dalmata.png" id="19_vw0f0"]
+[ext_resource type="Texture2D" uid="uid://v6k8ihhvp02k" path="res://hand sprites/open hand_striped.png" id="20_pjuic"]
+[ext_resource type="Texture2D" uid="uid://bi6k5y5xsvmvh" path="res://hand sprites/fist hand_striped.png" id="21_glprp"]
+[ext_resource type="Texture2D" uid="uid://dq2p27jerg1lf" path="res://hand sprites/open hand_real.png" id="22_f7uu2"]
+[ext_resource type="Texture2D" uid="uid://dyk1idfs6okm" path="res://hand sprites/fist hand_real.png" id="23_y6mb1"]
 
 [sub_resource type="Animation" id="Animation_vmxya"]
 tracks/0/type = "value"
@@ -166,7 +178,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 60
 
-[node name="Arcade" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="arcade" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -36
@@ -177,19 +189,19 @@ text = "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Arcade"]
+[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/arcade"]
 z_index = -1
 texture_filter = 1
 position = Vector2(541, 69)
 texture = ExtResource("8_6sjds")
 
-[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Arcade"]
+[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/arcade"]
 texture_filter = 1
 position = Vector2(181, 67)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_jcyua")
 
-[node name="Toast" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="toast" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -36
@@ -200,19 +212,19 @@ text = "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Toast"]
+[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/toast"]
 z_index = -1
 texture_filter = 1
 position = Vector2(541, 69)
 texture = ExtResource("8_6sjds")
 
-[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Toast"]
+[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/toast"]
 texture_filter = 1
 position = Vector2(181, 67)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_jcyua")
 
-[node name="Hearts" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="hearts" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -36
@@ -223,26 +235,26 @@ text = "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Hearts"]
+[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/hearts"]
 z_index = -1
 texture_filter = 1
 position = Vector2(541, 69)
 texture = ExtResource("8_6sjds")
 
-[node name="OpenHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Hearts"]
+[node name="OpenHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/hearts"]
 modulate = Color(0, 0, 0, 1)
 texture_filter = 1
 position = Vector2(148.5, 66.5)
-texture = ExtResource("10_tospf")
+texture = ExtResource("10_x15c4")
 
-[node name="FistHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Hearts"]
+[node name="FistHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/hearts"]
 modulate = Color(0, 0, 0, 1)
 texture_filter = 1
 position = Vector2(210, 67)
-texture = ExtResource("11_6mujd")
+texture = ExtResource("11_whyup")
 flip_h = true
 
-[node name="Camo" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="camo" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -36
@@ -253,26 +265,26 @@ text = "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Camo"]
+[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/camo"]
 z_index = -1
 texture_filter = 1
 position = Vector2(541, 69)
 texture = ExtResource("8_6sjds")
 
-[node name="OpenHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Camo"]
+[node name="OpenHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/camo"]
 modulate = Color(0, 0, 0, 1)
 texture_filter = 1
 position = Vector2(148.5, 66.5)
-texture = ExtResource("10_tospf")
+texture = ExtResource("12_pjuic")
 
-[node name="FistHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Camo"]
+[node name="FistHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/camo"]
 modulate = Color(0, 0, 0, 1)
 texture_filter = 1
 position = Vector2(210, 67)
-texture = ExtResource("11_6mujd")
+texture = ExtResource("13_glprp")
 flip_h = true
 
-[node name="Rope" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="rope" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -36
@@ -283,19 +295,19 @@ text = "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Rope"]
+[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/rope"]
 z_index = -1
 texture_filter = 1
 position = Vector2(541, 69)
 texture = ExtResource("8_6sjds")
 
-[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Rope"]
+[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/rope"]
 texture_filter = 1
 position = Vector2(181, 67)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_jcyua")
 
-[node name="Caution" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="caution" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -36
@@ -306,26 +318,26 @@ text = "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Caution"]
+[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/caution"]
 z_index = -1
 texture_filter = 1
 position = Vector2(541, 69)
 texture = ExtResource("8_6sjds")
 
-[node name="OpenHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Caution"]
+[node name="OpenHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/caution"]
 modulate = Color(0, 0, 0, 1)
 texture_filter = 1
 position = Vector2(148.5, 66.5)
-texture = ExtResource("10_tospf")
+texture = ExtResource("14_f7uu2")
 
-[node name="FistHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Caution"]
+[node name="FistHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/caution"]
 modulate = Color(0, 0, 0, 1)
 texture_filter = 1
 position = Vector2(210, 67)
-texture = ExtResource("11_6mujd")
+texture = ExtResource("15_y6mb1")
 flip_h = true
 
-[node name="Bonfire" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="bonfire" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -36
@@ -336,19 +348,19 @@ text = "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Bonfire"]
+[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/bonfire"]
 z_index = -1
 texture_filter = 1
 position = Vector2(541, 69)
 texture = ExtResource("8_6sjds")
 
-[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Bonfire"]
+[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/bonfire"]
 texture_filter = 1
 position = Vector2(181, 67)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_jcyua")
 
-[node name="Fire" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="fire" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -36
@@ -359,26 +371,26 @@ text = "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Fire"]
+[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/fire"]
 z_index = -1
 texture_filter = 1
 position = Vector2(541, 69)
 texture = ExtResource("8_6sjds")
 
-[node name="OpenHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Fire"]
+[node name="OpenHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/fire"]
 modulate = Color(0, 0, 0, 1)
 texture_filter = 1
 position = Vector2(148.5, 66.5)
-texture = ExtResource("10_tospf")
+texture = ExtResource("16_yj46j")
 
-[node name="FistHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Fire"]
+[node name="FistHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/fire"]
 modulate = Color(0, 0, 0, 1)
 texture_filter = 1
 position = Vector2(210, 67)
-texture = ExtResource("11_6mujd")
+texture = ExtResource("17_2kf75")
 flip_h = true
 
-[node name="Kanji" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="kanji" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -36
@@ -389,19 +401,19 @@ text = "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Kanji"]
+[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/kanji"]
 z_index = -1
 texture_filter = 1
 position = Vector2(541, 69)
 texture = ExtResource("8_6sjds")
 
-[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Kanji"]
+[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/kanji"]
 texture_filter = 1
 position = Vector2(181, 67)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_jcyua")
 
-[node name="Dalmata" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="dalmata" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -36
@@ -412,26 +424,26 @@ text = "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Dalmata"]
+[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/dalmata"]
 z_index = -1
 texture_filter = 1
 position = Vector2(541, 69)
 texture = ExtResource("8_6sjds")
 
-[node name="OpenHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Dalmata"]
+[node name="OpenHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/dalmata"]
 modulate = Color(0, 0, 0, 1)
 texture_filter = 1
 position = Vector2(148.5, 66.5)
-texture = ExtResource("10_tospf")
+texture = ExtResource("18_xqofr")
 
-[node name="FistHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Dalmata"]
+[node name="FistHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/dalmata"]
 modulate = Color(0, 0, 0, 1)
 texture_filter = 1
 position = Vector2(210, 67)
-texture = ExtResource("11_6mujd")
+texture = ExtResource("19_vw0f0")
 flip_h = true
 
-[node name="Soccer" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="soccer" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -36
@@ -442,19 +454,19 @@ text = "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Soccer"]
+[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/soccer"]
 z_index = -1
 texture_filter = 1
 position = Vector2(541, 69)
 texture = ExtResource("8_6sjds")
 
-[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Soccer"]
+[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/soccer"]
 texture_filter = 1
 position = Vector2(181, 67)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_jcyua")
 
-[node name="Jail" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="jail" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -36
@@ -465,19 +477,19 @@ text = "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Jail"]
+[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/jail"]
 z_index = -1
 texture_filter = 1
 position = Vector2(541, 69)
 texture = ExtResource("8_6sjds")
 
-[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Jail"]
+[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/jail"]
 texture_filter = 1
 position = Vector2(181, 67)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_jcyua")
 
-[node name="Stripped" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="striped" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -36
@@ -488,26 +500,26 @@ text = "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Stripped"]
+[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/striped"]
 z_index = -1
 texture_filter = 1
 position = Vector2(541, 69)
 texture = ExtResource("8_6sjds")
 
-[node name="OpenHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Stripped"]
+[node name="OpenHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/striped"]
 modulate = Color(0, 0, 0, 1)
 texture_filter = 1
 position = Vector2(148.5, 66.5)
-texture = ExtResource("10_tospf")
+texture = ExtResource("20_pjuic")
 
-[node name="FistHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Stripped"]
+[node name="FistHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/striped"]
 modulate = Color(0, 0, 0, 1)
 texture_filter = 1
 position = Vector2(210, 67)
-texture = ExtResource("11_6mujd")
+texture = ExtResource("21_glprp")
 flip_h = true
 
-[node name="PingPong" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="pingpong" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -36
@@ -518,19 +530,19 @@ text = "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/PingPong"]
+[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/pingpong"]
 z_index = -1
 texture_filter = 1
 position = Vector2(541, 69)
 texture = ExtResource("8_6sjds")
 
-[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/PingPong"]
+[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/pingpong"]
 texture_filter = 1
 position = Vector2(181, 67)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_jcyua")
 
-[node name="Ham" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="ham" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -36
@@ -541,19 +553,19 @@ text = "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Ham"]
+[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ham"]
 z_index = -1
 texture_filter = 1
 position = Vector2(541, 69)
 texture = ExtResource("8_6sjds")
 
-[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Ham"]
+[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ham"]
 texture_filter = 1
 position = Vector2(181, 67)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_jcyua")
 
-[node name="Vendor" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="vendor" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -36
@@ -564,19 +576,19 @@ text = "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Vendor"]
+[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/vendor"]
 z_index = -1
 texture_filter = 1
 position = Vector2(541, 69)
 texture = ExtResource("8_6sjds")
 
-[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Vendor"]
+[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/vendor"]
 texture_filter = 1
 position = Vector2(181, 67)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_jcyua")
 
-[node name="Real" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="real" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -36
@@ -587,26 +599,26 @@ text = "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Real"]
+[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/real"]
 z_index = -1
 texture_filter = 1
 position = Vector2(541, 69)
 texture = ExtResource("8_6sjds")
 
-[node name="OpenHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Real"]
+[node name="OpenHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/real"]
 modulate = Color(0, 0, 0, 1)
 texture_filter = 1
 position = Vector2(148.5, 66.5)
-texture = ExtResource("10_tospf")
+texture = ExtResource("22_f7uu2")
 
-[node name="FistHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Real"]
+[node name="FistHand" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/real"]
 modulate = Color(0, 0, 0, 1)
 texture_filter = 1
 position = Vector2(210, 67)
-texture = ExtResource("11_6mujd")
+texture = ExtResource("23_y6mb1")
 flip_h = true
 
-[node name="Candle" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="candle" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -36
@@ -617,19 +629,19 @@ text = "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Candle"]
+[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/candle"]
 z_index = -1
 texture_filter = 1
 position = Vector2(541, 69)
 texture = ExtResource("8_6sjds")
 
-[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Candle"]
+[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/candle"]
 texture_filter = 1
 position = Vector2(181, 67)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_jcyua")
 
-[node name="Boss" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="boss" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -36
@@ -640,13 +652,13 @@ text = "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Boss"]
+[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/boss"]
 z_index = -1
 texture_filter = 1
 position = Vector2(541, 69)
 texture = ExtResource("8_6sjds")
 
-[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Boss"]
+[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/boss"]
 modulate = Color(0, 0, 0, 1)
 texture_filter = 1
 position = Vector2(181, 67)
