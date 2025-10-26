@@ -21,7 +21,6 @@ var loose_grip = 0
 var one_hand = -1
 
 func _ready():
-	
 	if globals.difficult_tier == 2:
 		loose_grip = randi() % 21
 	
@@ -36,7 +35,7 @@ func _ready():
 	hand_right.modulate = Color(1,1,1)
 
 	modulate = globals.hands_color
-
+	
 	if grappling:
 		hand_left.texture = globals.closehand_texture
 		hand_right.texture = globals.closehand_texture
@@ -85,6 +84,7 @@ func _input(event):
 				hand_right.texture = globals.openhand_texture if not grappling else globals.closehand_texture
 
 func _process(delta):
+	if hand_left == null or hand_right == null: return
 	last_pos_left = hand_left.global_position
 	last_pos_right = hand_right.global_position
 	var screen_half = get_viewport().get_visible_rect().size.x / 2
@@ -144,7 +144,13 @@ func process_hand(hand: Node2D, dragging: bool, is_left: bool, delta: float, mou
 		durability += globals.hands_drain_rate / 3 * delta
 
 	durability = clamp(durability, 0, globals.hands_max_durability)
-	hand.modulate = Color(1, durability / globals.hands_max_durability, durability / globals.hands_max_durability)
+	var ratio = clamp(durability / globals.hands_max_durability, 0.0, 1.0)
+
+	if globals.hands_color == Color(1,1,1):
+		hand.modulate = Color(1,1,1).lerp(Color(1,0,0), 1.0 - ratio)
+	else:
+		hand.modulate = Color(1,1,1).lerp(Color(0,0,0), 1.0 - ratio)
+
 
 	if durability_left <= 0 or durability_right <= 0:
 		hand.texture = globals.closehand_texture

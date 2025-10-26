@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b6svc10pht0ub"]
+[gd_scene load_steps=17 format=3 uid="uid://b6svc10pht0ub"]
 
 [ext_resource type="Script" uid="uid://d3x8srp1fi68e" path="res://scripts/player/player_hands_CLEAN.gd" id="1_0unv6"]
 [ext_resource type="Texture2D" uid="uid://cb0v8wmpwl7nl" path="res://hand sprites/open hand.png" id="2_y0wth"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bwex4tit2aiyt" path="res://footer-timer.png" id="13_rwsbi"]
 [ext_resource type="AudioStream" uid="uid://danuifr8tmgr" path="res://sounds/365588__djpablochiriboga__fx-falda.wav" id="14_rwsbi"]
 [ext_resource type="Texture2D" uid="uid://b47wcx2sjxfrb" path="res://mini games sprites/star.png" id="15_jly5d"]
+[ext_resource type="Texture2D" uid="uid://c5egsxqp6yhiq" path="res://gallery item.png" id="16_wjrym"]
 
 [node name="Clean" type="Node2D"]
 
@@ -236,3 +237,31 @@ texture = ExtResource("13_rwsbi")
 stream = ExtResource("14_rwsbi")
 volume_db = 5.0
 pitch_scale = 2.0
+
+[node name="GalleryItem" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1080, 29)
+scale = Vector2(3, 1.5)
+texture = ExtResource("16_wjrym")
+
+[node name="Label" type="Label" parent="GalleryItem"]
+z_index = 15
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.17228465
+anchor_top = 0.22580644
+anchor_right = 0.9138577
+anchor_bottom = 0.7741935
+offset_left = -168.12393
+offset_top = -45.16129
+offset_right = -123.43855
+offset_bottom = -86.8387
+scale = Vector2(0.5, 1)
+pivot_offset = Vector2(96.5, 34)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_jly5d")
+theme_override_font_sizes/font_size = 64
+text = "0/3"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
