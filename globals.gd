@@ -4,6 +4,7 @@ var difficult_tier = 1
 
 var username = ""
 var pending_score = false
+var deads = 0
 
 var using_gamepad = false
 var hands_color = Color(1,1,1)

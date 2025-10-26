@@ -5,6 +5,7 @@ extends Node
 @onready var button_back = $buttonback
 @onready var scroll_container = $MarginContainer/VBoxContainer/ScrollContainer
 @onready var scroll_elements = $MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer
+@onready var gallery_item_sprite = preload("res://gallery item.png")
 
 func _ready():
 	bg1.global_position.y = globals.current_menu_bg_pos[0]
@@ -15,6 +16,9 @@ func _ready():
 		if globals.all_unlocked_scenes.has("res://scenes/minigames/" + element.name + ".tscn"):
 			element.get_child(0).modulate = Color.LIME_GREEN
 			if element.name == "boss": element.get_child(1).modulate = Color(1,1,1)
+			else: 
+				element.get_child(1).texture = gallery_item_sprite
+				element.get_child(1).get_child(0).show()
 		if globals.all_unlocked_hands.has(element.name):
 			element.get_child(0).modulate = Color.LIME_GREEN
 			element.get_child(1).modulate = Color(1,1,1)

@@ -8,6 +8,7 @@ extends Node
 @onready var bg1 = $Bg
 @onready var bg2 = $Bg2
 var timer = 0
+
 var original_positions := {}
 
 var colors = ["#F8FAB4", "#91ADC8", "#D9E9CF", "#A376A2"]
@@ -40,6 +41,11 @@ func _ready() -> void:
 	
 	if globals.has_lost_life:
 		globals.has_lost_life = false
+		globals.deads += 1
+		if globals.deads >= 10:
+			globals._unlock_minigame("Valve")
+		if globals.deads >= 20:
+			globals._unlock_minigame("Samurai")
 		text.text = messages_bad[randf_range(0, messages_bad.size())]
 		hands.flip_v = true
 		$bad.play()

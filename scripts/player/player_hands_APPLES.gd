@@ -5,11 +5,17 @@ var attached_left : Sprite2D = null
 var attached_right : Sprite2D = null
 var grab_margin = 20.0
 
+var timer = 0
+
 func _ready():
 	super._ready()
 
 func _process(delta):
 	super._process(delta)
+	timer += delta
+	
+	if timer >= 60:
+		globals._unlock_minigame("Puzzle")
 	
 	if hand_left == null or hand_right == null: return
 	update_attached_hand(attached_left, hand_left, true, delta)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bda4l1sdyfw76"]
+[gd_scene load_steps=44 format=3 uid="uid://bda4l1sdyfw76"]
 
 [ext_resource type="Script" uid="uid://lnyjom2ub715" path="res://scripts/managers/achievments_manager.gd" id="1_mpcko"]
 [ext_resource type="FontFile" uid="uid://bj8pwquunfxx8" path="res://Pizza Tower.ttf" id="2_qr7qa"]
@@ -9,21 +9,35 @@
 [ext_resource type="Texture2D" uid="uid://l2atiswygex0" path="res://transitions/bg.jpg" id="7_jcyua"]
 [ext_resource type="Texture2D" uid="uid://b8svlp3txe6yc" path="res://difficult_element.png" id="8_6sjds"]
 [ext_resource type="Texture2D" uid="uid://cdq8h0bosowb" path="res://gallery item locked.png" id="9_jcyua"]
+[ext_resource type="Texture2D" uid="uid://dwqm5laa2uilq" path="res://SpaceInvaders.png" id="10_glprp"]
 [ext_resource type="Texture2D" uid="uid://b1lsk1k184epd" path="res://hand sprites/open hand_hearts.png" id="10_x15c4"]
+[ext_resource type="Texture2D" uid="uid://balhamsanka73" path="res://mini games sprites/toast.png" id="11_r74oh"]
 [ext_resource type="Texture2D" uid="uid://cp34ei74jek0o" path="res://hand sprites/fist hand_heats.png" id="11_whyup"]
 [ext_resource type="Texture2D" uid="uid://cnjpqqh7tdgsr" path="res://mini games sprites/bosses/gas.png" id="12_gn5jl"]
 [ext_resource type="Texture2D" uid="uid://lwj1fhr7k277" path="res://hand sprites/open hand_camo.png" id="12_pjuic"]
 [ext_resource type="Texture2D" uid="uid://dhu0gxyygt15l" path="res://hand sprites/fist hand_camo.png" id="13_glprp"]
 [ext_resource type="Texture2D" uid="uid://67m3bcjsttlv" path="res://hand sprites/open hand_caution.png" id="14_f7uu2"]
+[ext_resource type="Texture2D" uid="uid://dw76vvrwbouh" path="res://mini games sprites/samurai 1.png" id="14_klaso"]
 [ext_resource type="Texture2D" uid="uid://dif2866ktpwx8" path="res://hand sprites/fist hand_caution.png" id="15_y6mb1"]
+[ext_resource type="Texture2D" uid="uid://cgx4juqgdoc6p" path="res://mini games sprites/girl hand.png" id="16_i4iay"]
 [ext_resource type="Texture2D" uid="uid://d1mrao3pdvet" path="res://hand sprites/open hand_fire.png" id="16_yj46j"]
 [ext_resource type="Texture2D" uid="uid://cfnw2a1umf03s" path="res://hand sprites/fist hand_fire.png" id="17_2kf75"]
 [ext_resource type="Texture2D" uid="uid://bhfjwa827leh5" path="res://hand sprites/open hand_dalmata.png" id="18_xqofr"]
+[ext_resource type="Texture2D" uid="uid://ctg81sh5c2by3" path="res://woodicon.png" id="19_03dec"]
 [ext_resource type="Texture2D" uid="uid://tghgj6km07yq" path="res://hand sprites/fist hand_dalmata.png" id="19_vw0f0"]
 [ext_resource type="Texture2D" uid="uid://v6k8ihhvp02k" path="res://hand sprites/open hand_striped.png" id="20_pjuic"]
 [ext_resource type="Texture2D" uid="uid://bi6k5y5xsvmvh" path="res://hand sprites/fist hand_striped.png" id="21_glprp"]
 [ext_resource type="Texture2D" uid="uid://dq2p27jerg1lf" path="res://hand sprites/open hand_real.png" id="22_f7uu2"]
+[ext_resource type="Texture2D" uid="uid://dtl5akw64uc4" path="res://mini games sprites/ink bottle.png" id="22_klaso"]
 [ext_resource type="Texture2D" uid="uid://dyk1idfs6okm" path="res://hand sprites/fist hand_real.png" id="23_y6mb1"]
+[ext_resource type="Texture2D" uid="uid://dvywnga1sjvia" path="res://mini games sprites/soccer ball.png" id="25_7rfex"]
+[ext_resource type="Texture2D" uid="uid://4i1cf5x5j8lv" path="res://mini games sprites/valve.png" id="26_03dec"]
+[ext_resource type="Texture2D" uid="uid://d1fhevnjk7d0e" path="res://mini games sprites/jail door.png" id="26_4bhsi"]
+[ext_resource type="Texture2D" uid="uid://c0x4hvphvr4t1" path="res://ping_pong_PNG10372.png" id="29_r12xo"]
+[ext_resource type="Texture2D" uid="uid://sr84nqefysh3" path="res://mini games sprites/ham.png" id="30_ol13x"]
+[ext_resource type="Texture2D" uid="uid://u3lwql5l6lus" path="res://mini games sprites/coin.png" id="31_06c17"]
+[ext_resource type="Texture2D" uid="uid://cjkhxdksdf54p" path="res://puzzle icon.png" id="34_i4iay"]
+[ext_resource type="Texture2D" uid="uid://vhfh3sg8lwi7" path="res://mini games sprites/candle.png" id="34_qefbe"]
 
 [sub_resource type="Animation" id="Animation_vmxya"]
 tracks/0/type = "value"
@@ -201,6 +215,15 @@ position = Vector2(181, 67)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_jcyua")
 
+[node name="arcade" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/arcade/GalleryItemLocked"]
+visible = false
+texture_filter = 1
+scale = Vector2(12, 12)
+texture = ExtResource("10_glprp")
+hframes = 7
+vframes = 5
+frame = 7
+
 [node name="toast" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -223,6 +246,11 @@ texture_filter = 1
 position = Vector2(181, 67)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_jcyua")
+
+[node name="toast" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/toast/GalleryItemLocked"]
+visible = false
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("11_r74oh")
 
 [node name="hearts" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -253,6 +281,36 @@ texture_filter = 1
 position = Vector2(210, 67)
 texture = ExtResource("11_whyup")
 flip_h = true
+
+[node name="samurai" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -36
+theme_override_fonts/font = ExtResource("2_qr7qa")
+theme_override_font_sizes/font_size = 68
+text = "
+        DIE 20 TIMES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/samurai"]
+z_index = -1
+texture_filter = 1
+position = Vector2(541, 69)
+texture = ExtResource("8_6sjds")
+
+[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/samurai"]
+texture_filter = 1
+position = Vector2(181, 67)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_jcyua")
+
+[node name="samurai" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/samurai/GalleryItemLocked"]
+visible = false
+texture_filter = 1
+position = Vector2(-3.3333337, 2.666667)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("14_klaso")
 
 [node name="camo" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -307,6 +365,11 @@ position = Vector2(181, 67)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_jcyua")
 
+[node name="rope" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/rope/GalleryItemLocked"]
+visible = false
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("16_i4iay")
+
 [node name="caution" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -359,6 +422,12 @@ texture_filter = 1
 position = Vector2(181, 67)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_jcyua")
+
+[node name="bonfire" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/bonfire/GalleryItemLocked"]
+visible = false
+texture_filter = 1
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("19_03dec")
 
 [node name="fire" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -413,6 +482,12 @@ position = Vector2(181, 67)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_jcyua")
 
+[node name="kanji" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/kanji/GalleryItemLocked"]
+visible = false
+texture_filter = 1
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("22_klaso")
+
 [node name="dalmata" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -443,6 +518,34 @@ position = Vector2(210, 67)
 texture = ExtResource("19_vw0f0")
 flip_h = true
 
+[node name="valve" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -36
+theme_override_fonts/font = ExtResource("2_qr7qa")
+theme_override_font_sizes/font_size = 68
+text = "
+        DIE 10 TIMES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/valve"]
+z_index = -1
+texture_filter = 1
+position = Vector2(541, 69)
+texture = ExtResource("8_6sjds")
+
+[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/valve"]
+texture_filter = 1
+position = Vector2(181, 67)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_jcyua")
+
+[node name="valve" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/valve/GalleryItemLocked"]
+visible = false
+texture_filter = 1
+texture = ExtResource("26_03dec")
+
 [node name="soccer" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -466,6 +569,11 @@ position = Vector2(181, 67)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_jcyua")
 
+[node name="soccer" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/soccer/GalleryItemLocked"]
+visible = false
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("25_7rfex")
+
 [node name="jail" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -488,6 +596,11 @@ texture_filter = 1
 position = Vector2(181, 67)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_jcyua")
+
+[node name="jail" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/jail/GalleryItemLocked"]
+visible = false
+scale = Vector2(0.26, 0.26)
+texture = ExtResource("26_4bhsi")
 
 [node name="striped" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -542,6 +655,11 @@ position = Vector2(181, 67)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_jcyua")
 
+[node name="pingpong long" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/pingpong/GalleryItemLocked"]
+visible = false
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("29_r12xo")
+
 [node name="ham" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -565,6 +683,12 @@ position = Vector2(181, 67)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_jcyua")
 
+[node name="ham" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ham/GalleryItemLocked"]
+visible = false
+texture_filter = 1
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("30_ol13x")
+
 [node name="vendor" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -587,6 +711,11 @@ texture_filter = 1
 position = Vector2(181, 67)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_jcyua")
+
+[node name="vendor" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/vendor/GalleryItemLocked"]
+visible = false
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("31_06c17")
 
 [node name="real" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -618,6 +747,35 @@ position = Vector2(210, 67)
 texture = ExtResource("23_y6mb1")
 flip_h = true
 
+[node name="puzzle" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -36
+theme_override_fonts/font = ExtResource("2_qr7qa")
+theme_override_font_sizes/font_size = 68
+text = "
+        60 SECONDS ON APPLES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="diff1" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/puzzle"]
+z_index = -1
+texture_filter = 1
+position = Vector2(541, 69)
+texture = ExtResource("8_6sjds")
+
+[node name="GalleryItemLocked" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/puzzle"]
+texture_filter = 1
+position = Vector2(181, 67)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_jcyua")
+
+[node name="puzzle" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/puzzle/GalleryItemLocked"]
+visible = false
+texture_filter = 1
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("34_i4iay")
+
 [node name="candle" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -640,6 +798,11 @@ texture_filter = 1
 position = Vector2(181, 67)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_jcyua")
+
+[node name="candle" type="Sprite2D" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/candle/GalleryItemLocked"]
+visible = false
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("34_qefbe")
 
 [node name="boss" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
