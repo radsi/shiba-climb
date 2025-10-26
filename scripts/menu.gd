@@ -190,6 +190,7 @@ func _input(event) -> void:
 							message_timer = 0
 							_show_pending_message()
 						else: _close_message()
+						globals.username = ""
 						return
 					username_prompt.text += key.name
 	

@@ -49,6 +49,8 @@ func _process(delta: float) -> void:
 	if all_max_transparent and not shirt_counted:
 		shirt_counted = true
 		shirt_count += 1
+		if shirt_count >= 10:
+			globals._unlock_minigame("ham")
 		$"../../GalleryItem/Label".text = str(shirt_count) + "/" + str(max_shirt)
 		stars.visible = true
 		

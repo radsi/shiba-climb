@@ -6,6 +6,7 @@ extends Node
 @onready var button_back = $buttonback
 @onready var button_left = $left
 @onready var button_right = $right
+@onready var achievments_button = $achievments
 @onready var buttons = []
 
 var item_under_mouse: Sprite2D = null
@@ -79,7 +80,6 @@ func _input(event):
 			konami_progress += 1
 			if konami_progress >= konami_sequence.size():
 				konami_progress = 0
-				print("Konami Code activated!")
 				_on_unlockall_pressed()
 		else:
 			konami_progress = 0
@@ -93,6 +93,8 @@ func _input(event):
 			elif current_button == 13:
 				_on_left_pressed()
 			elif current_button == 14:
+				get_tree().change_scene_to_file("res://scenes/achievments.tscn")
+			elif current_button == 15:
 				_on_right_pressed()
 			elif item_under_mouse:
 				if item_under_mouse.name.contains("checkbox"):
@@ -300,6 +302,7 @@ func _refresh_buttons():
 		buttons.append(item)
 		buttons.append(item.get_child(1))
 	buttons.append(button_left)
+	buttons.append(achievments_button)
 	buttons.append(button_right)
 
 func is_mouse_over_item(item: Sprite2D, mouse_pos: Vector2) -> bool:
@@ -346,9 +349,14 @@ func _on_unlockall_pressed():
 		globals._unlock_minigame(game, false)
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
-func _on_buttonback_2_mouse_entered() -> void: $buttonback.scale = Vector2(1.15,1.15) 
-func _on_buttonback_mouse_exited() -> void: $buttonback.scale = Vector2(1,1) 
-func _on_left_mouse_entered() -> void: $left.scale = Vector2(1.15,1.15) 
-func _on_left_mouse_exited() -> void: $left.scale = Vector2(1,1) 
-func _on_right_mouse_entered() -> void: $right.scale = Vector2(1.15,1.15)
-func _on_right_mouse_exited() -> void: $right.scale = Vector2(1,1)
+func _on_buttonback_2_mouse_entered() -> void: button_back.scale = Vector2(1.15,1.15) 
+func _on_buttonback_mouse_exited() -> void: button_back.scale = Vector2(1,1) 
+func _on_left_mouse_entered() -> void: button_left.scale = Vector2(1.15,1.15) 
+func _on_left_mouse_exited() -> void: button_left.scale = Vector2(1,1) 
+func _on_right_mouse_entered() -> void: button_right.scale = Vector2(1.15,1.15)
+func _on_right_mouse_exited() -> void: button_right.scale = Vector2(1,1)
+func _on_achievments_pressed() -> void:
+	globals._play_pop()
+	get_tree().change_scene_to_file("res://scenes/achievments.tscn")
+func _on_achievments_mouse_entered() -> void: achievments_button.scale = Vector2(1.15,1.15)
+func _on_achievments_mouse_exited() -> void: achievments_button.scale = Vector2(1,1)

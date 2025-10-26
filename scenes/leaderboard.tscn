@@ -6,8 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cw64dvnkk3oqm" path="res://arrow.png" id="4_ldk02"]
 [ext_resource type="Texture2D" uid="uid://bh3rusuqfqwpi" path="res://arrow2.png" id="6_mhq7p"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6lrio"]
-
 [sub_resource type="Animation" id="Animation_6lrio"]
 length = 0.001
 tracks/0/type = "value"
@@ -57,6 +55,8 @@ _data = {
 &"RESET": SubResource("Animation_6lrio"),
 &"arrow_back": SubResource("Animation_jfen3")
 }
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6lrio"]
 
 [node name="Leaderboard" type="Control"]
 layout_mode = 3
@@ -110,6 +110,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ldk02")
+}
+
 [node name="buttonback" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -126,11 +131,6 @@ icon = ExtResource("4_ldk02")
 flat = true
 icon_alignment = 1
 metadata/_edit_use_anchors_ = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ldk02")
-}
 
 [connection signal="mouse_entered" from="buttonback" to="." method="_on_buttonback_mouse_entered"]
 [connection signal="mouse_exited" from="buttonback" to="." method="_on_buttonback_mouse_exited"]
